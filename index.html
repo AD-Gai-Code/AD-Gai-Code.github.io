@@ -253,7 +253,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-24 20:36:57" itemprop="dateModified" datetime="2021-03-24T20:36:57+08:00">2021-03-24</time>
+        <time title="修改时间：2021-03-24 20:49:21" itemprop="dateModified" datetime="2021-03-24T20:49:21+08:00">2021-03-24</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -278,6 +278,7 @@
           <h1 id="排序的分类"><a href="#排序的分类" class="headerlink" title="排序的分类"></a>排序的分类</h1><h2 id="内部排序"><a href="#内部排序" class="headerlink" title="内部排序"></a>内部排序</h2><p>在排序时仅使用主存储器的排序算法成为内部排序，对所有的存储器都能够高速随机存储。</p>
 <h2 id="外部排序"><a href="#外部排序" class="headerlink" title="外部排序"></a>外部排序</h2><p>在排序时需要使用外部存储的排序算法都属于外部排序。</p>
 <h1 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h1><p>冒泡排序的基本思想是迭代地对输入序列中的第一个元素到最后一个元素进行两两比较，当需要时交换这两个元素的位置（升序或者降序），持续迭代直到在一趟排序过程中不需要交换位置为止。由于排序的过程中较小的元素像气泡一样逐渐到序列的顶端，故得名“冒泡排序”。</p>
+<p>冒泡排序代码如下：</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/03/21/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/#more" rel="contents">
@@ -342,7 +343,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-24 20:38:16" itemprop="dateModified" datetime="2021-03-24T20:38:16+08:00">2021-03-24</time>
+        <time title="修改时间：2021-03-24 20:48:51" itemprop="dateModified" datetime="2021-03-24T20:48:51+08:00">2021-03-24</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -366,6 +367,14 @@
     <div class="post-body" itemprop="articleBody">
           <h1 id="1-递归的概念"><a href="#1-递归的概念" class="headerlink" title="1.递归的概念"></a>1.递归的概念</h1><p>​        递归就是方法自己调用自己,每次调用时传入不同的变量.递归有助于解决复杂的问题的同时还可以让代码变得更加简洁。但是值得注意的是，递归只是让解决方案变得清晰，并没有性能上的优势，有时甚至还没有循环的性能好，而这也是递归的主要缺点之一。</p>
 <h2 id="1-1-递归的条件和规则"><a href="#1-1-递归的条件和规则" class="headerlink" title="1.1 递归的条件和规则"></a>1.1 递归的条件和规则</h2><p>​        递归自己调用自己，因此写递归时很容易出错，陷入无限循环。因此编写递归方法时，必须设定条件告诉递归何时停止。</p>
+<ol>
+<li><p>执行一个方法时，就创建一个新的受保护的独立空间(栈空间) </p>
+</li>
+<li><p>方法的局部变量是独立的，不会相互影响, 比如 n 变量 </p>
+</li>
+<li><p>如果方法中使用的是引用类型变量(比如数组)，就会共享该引用类型的数据. </p>
+</li>
+</ol>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/03/08/%E9%80%92%E5%BD%92%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#more" rel="contents">
