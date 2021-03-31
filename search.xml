@@ -419,4 +419,133 @@
         <tag>Java框架</tag>
       </tags>
   </entry>
+  <entry>
+    <title></title>
+    <url>/2021/03/30/%E6%9E%9A%E4%B8%BE%E4%B8%8E%E6%B3%A8%E8%A7%A3%E5%A4%8D%E4%B9%A0%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<hr>
+<p>title: 枚举与注解复习总结<br>tags:</p>
+<ul>
+<li>[JavaSE复习总结]<br>categories:</li>
+<li>[JavaSE复习总结] </li>
+</ul>
+<hr>
+<h1 id="枚举主要内容"><a href="#枚举主要内容" class="headerlink" title="枚举主要内容:"></a>枚举主要内容:</h1><ul>
+<li><p>如何自定义枚举类 </p>
+</li>
+<li><p>如何使用关键字enum定义枚举类 </p>
+</li>
+<li><p>Enum类的主要方法 </p>
+</li>
+<li><p>实现接口的枚举类 </p>
+</li>
+</ul>
+<h1 id="一、枚举类的使用"><a href="#一、枚举类的使用" class="headerlink" title="一、枚举类的使用"></a>一、枚举类的使用</h1><ul>
+<li>1.枚举类的理解：类的对象只有有限个，确定的。我们称此类为枚举类</li>
+<li>2.当需要定义一组常量(final关键字)时，强烈建议使用枚举类</li>
+<li>3.如果枚举类中只有一个对象，则可以作为单例模式的实现方式。</li>
+</ul>
+<h1 id="二、如何定义枚举类"><a href="#二、如何定义枚举类" class="headerlink" title="二、如何定义枚举类"></a>二、如何定义枚举类</h1><ul>
+<li>方式一：jdk5.0之前，自定义枚举类</li>
+</ul>
+<span id="more"></span>
+
+<ul>
+<li>方式二：jdk5.0，可以使用enum关键字定义枚举类</li>
+</ul>
+<h4 id="1-自定义枚举类"><a href="#1-自定义枚举类" class="headerlink" title="1.自定义枚举类"></a>1.自定义枚举类</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//自定义枚举类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Season</span></span>&#123;</span><br><span class="line">    <span class="comment">//1.声明Season对象的属性:private final修饰</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String seasonName;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String seasonDesc;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//2.私有化类的构造器,并给对象属性赋值</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Season</span><span class="params">(String seasonName,String seasonDesc)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.seasonName = seasonName;</span><br><span class="line">        <span class="keyword">this</span>.seasonDesc = seasonDesc;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//3.提供当前枚举类的多个对象：public static final的</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Season SPRING = <span class="keyword">new</span> Season(<span class="string">&quot;春天&quot;</span>,<span class="string">&quot;春暖花开&quot;</span>);</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Season SUMMER = <span class="keyword">new</span> Season(<span class="string">&quot;夏天&quot;</span>,<span class="string">&quot;夏日炎炎&quot;</span>);</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Season AUTUMN = <span class="keyword">new</span> Season(<span class="string">&quot;秋天&quot;</span>,<span class="string">&quot;秋高气爽&quot;</span>);</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Season WINTER = <span class="keyword">new</span> Season(<span class="string">&quot;冬天&quot;</span>,<span class="string">&quot;冰天雪地&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//4.其他诉求1：获取枚举类对象的属性</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getSeasonName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> seasonName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getSeasonDesc</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> seasonDesc;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//4.其他诉求1：提供toString()</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Season&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;seasonName=&#x27;&quot;</span> + seasonName + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&quot;, seasonDesc=&#x27;&quot;</span> + seasonDesc + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-使用enum关键字定义枚举类"><a href="#2-使用enum关键字定义枚举类" class="headerlink" title="2.使用enum关键字定义枚举类"></a>2.使用enum关键字定义枚举类</h4><h4 id="说明："><a href="#说明：" class="headerlink" title="说明："></a>说明：</h4><ul>
+<li>定义的枚举类默认继承于java.lang.Enum类,因此不能再继承其他类</li>
+<li>枚举类的构造器只能使用 private 权限修饰符</li>
+<li>枚举类的所有实例必须在枚举类中显式列出(, 分隔 ; 结尾)。列出的 实例系统会自动添加 ==public static final==修饰</li>
+<li>==必须在枚举类的第一行声明枚举类对象==</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//使用enum关键字枚举类</span></span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Season1</span> <span class="keyword">implements</span> <span class="title">Info</span></span>&#123;</span><br><span class="line">    <span class="comment">//1.提供当前枚举类的对象，多个对象之间用&quot;,&quot;隔开，末尾对象&quot;;&quot;结束</span></span><br><span class="line">    SPRING(<span class="string">&quot;春天&quot;</span>,<span class="string">&quot;春暖花开&quot;</span>),</span><br><span class="line">    SUMMER(<span class="string">&quot;夏天&quot;</span>,<span class="string">&quot;夏日炎炎&quot;</span>),</span><br><span class="line">    AUTUMN(<span class="string">&quot;秋天&quot;</span>,<span class="string">&quot;秋高气爽&quot;</span>),</span><br><span class="line">    WINTER(<span class="string">&quot;冬天&quot;</span>,<span class="string">&quot;天寒地冻&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//2.声明Season对象的属性:private final修饰</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String seasonName;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String seasonDesc;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//2.私有化类的构造器,并给对象属性赋值</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Season1</span><span class="params">(String seasonName,String seasonDesc)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.seasonName = seasonName;</span><br><span class="line">        <span class="keyword">this</span>.seasonDesc = seasonDesc;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//4.其他诉求1：获取枚举类对象的属性</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getSeasonName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> seasonName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getSeasonDesc</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> seasonDesc;</span><br><span class="line">    &#125;</span><br><span class="line">   </span><br></pre></td></tr></table></figure>
+
+<h1 id="三、Enum类的主要方法："><a href="#三、Enum类的主要方法：" class="headerlink" title="三、Enum类的主要方法："></a>三、Enum类的主要方法：</h1><ul>
+<li><strong>values()方法：返回枚举类型的对象数组。该方法可以很方便地遍历所有的枚举值。</strong></li>
+<li><strong>valueOf(String str)：可以把一个字符串转为对应的枚举类对象。要求字符 串必须是枚举类对象的“名字”。如不是，会有运行时异常： IllegalArgumentException。</strong></li>
+<li><strong>toString()：返回当前枚举类对象常量的名称。</strong></li>
+</ul>
+<h1 id="四、使用enum关键字定义的枚举类实现接口的情况"><a href="#四、使用enum关键字定义的枚举类实现接口的情况" class="headerlink" title="四、使用enum关键字定义的枚举类实现接口的情况"></a>四、使用enum关键字定义的枚举类实现接口的情况</h1><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">情况一：实现接口，在<span class="class"><span class="keyword">enum</span>类中实现抽象方法</span></span><br><span class="line"><span class="class">情况二：让枚举类的对象分别实现接口中的抽象方法</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Info</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用enum关键字枚举类</span></span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Season1</span> <span class="keyword">implements</span> <span class="title">Info</span></span>&#123;</span><br><span class="line">    <span class="comment">//1.提供当前枚举类的对象，多个对象之间用&quot;,&quot;隔开，末尾对象&quot;;&quot;结束</span></span><br><span class="line">    SPRING(<span class="string">&quot;春天&quot;</span>,<span class="string">&quot;春暖花开&quot;</span>)&#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;春天在哪里？&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    SUMMER(<span class="string">&quot;夏天&quot;</span>,<span class="string">&quot;夏日炎炎&quot;</span>)&#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;宁夏&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    AUTUMN(<span class="string">&quot;秋天&quot;</span>,<span class="string">&quot;秋高气爽&quot;</span>)&#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;秋天不回来&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    WINTER(<span class="string">&quot;冬天&quot;</span>,<span class="string">&quot;冰天雪地&quot;</span>)&#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">show</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;大约在冬季&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//2.声明Season对象的属性:private final修饰</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String seasonName;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String seasonDesc;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//2.私有化类的构造器,并给对象属性赋值</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Season1</span><span class="params">(String seasonName,String seasonDesc)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.seasonName = seasonName;</span><br><span class="line">        <span class="keyword">this</span>.seasonDesc = seasonDesc;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//4.其他诉求1：获取枚举类对象的属性</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getSeasonName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> seasonName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getSeasonDesc</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> seasonDesc;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="注解主要内容："><a href="#注解主要内容：" class="headerlink" title="注解主要内容："></a>注解主要内容：</h1><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">注解(Annotation)概述</span><br><span class="line">常见的Annotation示例</span><br><span class="line">自定义Annotation</span><br><span class="line">JDK中的元注解</span><br><span class="line">利用反射获取注解信息（在反射部分涉及）</span><br><span class="line">JDK <span class="number">8</span>中注解的新特性</span><br></pre></td></tr></table></figure>
+
+<h1 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h1><ul>
+<li>从 JDK 5.0 开始, Java 增加了对元数据(MetaData) 的支持, 也就是 Annotation(注解)</li>
+<li>Annotation 其实就是代码里的特殊标记（如@Override）, 这些标记可以在编译, 类加 载, 运行时被读取, 并执行相应的处理。通过使用 Annotation, 程序员 可以在不改变原有逻辑的情况下, 在源文件中嵌入一些补充信息。代 码分析工具、开发工具和部署工具可以通过这些补充信息进行验证 或者进行部署。</li>
+<li>Annotation 可以像修饰符一样被使用, 可用于修饰包,类, 构造器, 方 法, 成员变量, 参数, 局部变量的声明, 这些信息被保存在 Annotation  的 “name=value” 对中。</li>
+<li>在 JavaSE 中，注解的使用目的比较简单，例如标记过时的功能， 忽略警告等。在 JavaEE/Android 中注解占据了更重要的角色，例如 用来配置应用程序的任何切面，代替 JavaEE 旧版中所遗留的繁冗 代码和XML配置等。</li>
+<li>开发模式都是基于注解的，JPA是基于注解的，Spring2.5以上都是基于注解的，Hibernate3.x 以后也是基于注解的，现在的 Struts2 有一部分也是基于注解的了，注解是一种趋势，一定程度上 可以说：==框架 = 注解 + 反射 + 设计模式==。</li>
+<li>使用 Annotation 时要在其前面增加 @ 符号, 并把该 Annotation 当成 一个修饰符使用。用于修饰它支持的程序元素。</li>
+</ul>
+<h1 id="二、常见的的Annotation示例"><a href="#二、常见的的Annotation示例" class="headerlink" title="二、常见的的Annotation示例"></a>二、常见的的Annotation示例</h1><h2 id="（1）在编译时进行格式检查-JDK内置的三个基本注解"><a href="#（1）在编译时进行格式检查-JDK内置的三个基本注解" class="headerlink" title="（1）在编译时进行格式检查(JDK内置的三个基本注解)"></a>（1）在编译时进行格式检查(JDK内置的三个基本注解)</h2><ul>
+<li>@Override: 限定重写父类方法, 该注解只能用于方法。</li>
+<li>@Deprecated: 用于表示所修饰的元素(类, 方法等)已过时。通常是因为所修饰的结构危险或==存在更好的选择。==但不影响使用。</li>
+<li>@SuppressWarnings: 抑制编译器警告。如在IDEA中定义的变量未使用时，变量以灰色的形式显示。加上@SuppressWarnings(“unused”)后以黑色显示。</li>
+</ul>
+<h2 id="（2）跟踪代码依赖性，实现替代配置文件功能"><a href="#（2）跟踪代码依赖性，实现替代配置文件功能" class="headerlink" title="（2）跟踪代码依赖性，实现替代配置文件功能"></a>（2）跟踪代码依赖性，实现替代配置文件功能</h2><p><strong>Servlet3.0提供了注解(annotation),使得不再需要在web.xml文件中进行Servlet的部署。</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@WebServlet(&quot;/login&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LoginServlet</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">1L</span>;</span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span></span></span><br><span class="line"><span class="function">ServletException, IOException </span>&#123; &#125;</span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="keyword">throws</span></span></span><br><span class="line"><span class="function">ServletException, IOException </span>&#123;</span><br><span class="line">doGet(request, response);</span><br><span class="line">&#125; &#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&lt;servlet&gt;</span><br><span class="line">&lt;servlet-name&gt;LoginServlet&lt;/servlet-name&gt;</span><br><span class="line">&lt;servlet-<span class="class"><span class="keyword">class</span>&gt;<span class="title">com</span>.<span class="title">servlet</span>.<span class="title">LoginServlet</span>&lt;/<span class="title">servlet</span>-<span class="title">class</span>&gt;</span></span><br><span class="line"><span class="class">&lt;/<span class="title">servlet</span>&gt;</span></span><br><span class="line"><span class="class">&lt;<span class="title">servlet</span>-<span class="title">mapping</span>&gt;</span></span><br><span class="line"><span class="class">&lt;<span class="title">servlet</span>-<span class="title">name</span>&gt;<span class="title">LoginServlet</span>&lt;/<span class="title">servlet</span>-<span class="title">name</span>&gt;</span></span><br><span class="line"><span class="class">&lt;<span class="title">url</span>-<span class="title">pattern</span>&gt;/<span class="title">login</span>&lt;/<span class="title">url</span>-<span class="title">pattern</span>&gt;</span></span><br><span class="line"><span class="class">&lt;/<span class="title">servlet</span>-<span class="title">mapping</span>&gt;</span></span><br><span class="line"><span class="class"></span></span><br></pre></td></tr></table></figure>
+
+<p><strong>spring框架中关于“事务”的管理</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Transactional(propagation=Propagation.REQUIRES_NEW,</span></span><br><span class="line"><span class="meta">isolation=Isolation.READ_COMMITTED,readOnly=false,timeout=3)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">buyBook</span><span class="params">(String username, String isbn)</span> </span>&#123;</span><br><span class="line"><span class="comment">//1.查询书的单价</span></span><br><span class="line"><span class="keyword">int</span> price = bookShopDao.findBookPriceByIsbn(isbn);</span><br><span class="line"><span class="comment">//2. 更新库存</span></span><br><span class="line">bookShopDao.updateBookStock(isbn);</span><br><span class="line"><span class="comment">//3. 更新用户的余额</span></span><br><span class="line">bookShopDao.updateUserAccount(username, price);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="三、自定义-Annotation，参照-SuppressWarnings定义"><a href="#三、自定义-Annotation，参照-SuppressWarnings定义" class="headerlink" title="三、自定义 Annotation，参照@SuppressWarnings定义"></a>三、自定义 Annotation，参照@SuppressWarnings定义</h1><ul>
+<li>定义新的 Annotation 类型使用 @interface 关键字。 </li>
+<li>自定义注解自动继承了java.lang.annotation.Annotation接口。 </li>
+<li>Annotation 的成员变量在 Annotation 定义中以无参数方法的形式来声明。其 方法名和返回值定义了该成员的名字和类型。我们称为配置参数。==类型只能是八种基本数据类型、String类型、Class类型、enum类型、Annotation类型、 以上所有类型的数组==。 </li>
+<li>可以在定义 Annotation 的成员变量时为其指定初始值, 指定成员变量的初始 值可使用 default 关键字。 </li>
+<li>如果只有一个参数成员，建议使用参数名为value。 </li>
+<li>如果定义的注解含有配置参数，那么使用时必须指定参数值，除非它有默认 值。格式是“参数名 = 参数值” ，如果只有一个参数成员，且名称为value， 可以省略“value=”。 </li>
+<li>没有成员定义的 Annotation 称为标记; 包含成员变量的 Annotation 称为元数 据 Annotation。</li>
+</ul>
+<p>注意：自定义注解必须配上注解的信息处理流程（使用反射）才有意义。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@MyAnnotation(value=&quot;尚硅谷&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyAnnotationTest</span> </span>&#123;</span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">         Class clazz = MyAnnotationTest.class;</span><br><span class="line">			Annotation a = clazz.getAnnotation(MyAnnotation.class);</span><br><span class="line">			MyAnnotation m = (MyAnnotation) a;</span><br><span class="line">			String info = m.value();</span><br><span class="line">			System.out.println(info);</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="meta">@Target(ElementType.TYPE)</span></span><br><span class="line"><span class="meta">@interface</span> MyAnnotation&#123;</span><br><span class="line">	<span class="function">String <span class="title">value</span><span class="params">()</span> <span class="keyword">default</span> &quot;auguigu&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="JDK-中的元注解"><a href="#JDK-中的元注解" class="headerlink" title="JDK 中的元注解"></a>JDK 中的元注解</h1><h2 id="元注解：对现有的注解进行解释说明的注解。"><a href="#元注解：对现有的注解进行解释说明的注解。" class="headerlink" title="元注解：对现有的注解进行解释说明的注解。"></a>元注解：对现有的注解进行解释说明的注解。</h2><ul>
+<li>JDK 的元 Annotation 用于修饰其他 Annotation 定义</li>
+<li>JDK5.0提供了4个标准的meta-annotation类型，分别是：</li>
+</ul>
+<h3 id="Retention"><a href="#Retention" class="headerlink" title="Retention"></a>Retention</h3><p>@Retention: 只能用于修饰一个 Annotation 定义, 用于指定该 Annotation 的生命 周期, @Rentention 包含一个 RetentionPolicy 类型的成员变量, 使用 @Rentention 时必须为该 value 成员变量指定值:</p>
+<ul>
+<li>RetentionPolicy.SOURCE:在源文件中有效（即源文件保留），编译器直接丢弃这种策略的注释。</li>
+<li>RetentionPolicy.CLASS（默认行为）:在class文件中有效（即class保留） ， 当运行 Java 程序时, JVM  不会保留注解。 这是默认值</li>
+<li>RetentionPolicy.RUNTIME:在运行时有效（即运行时保留），当==运行 Java 程序时, JVM 会 保留注释。程序可以通过反射获取该注释。==只有声明为RUNTIME生命周期的注解，才能通过反射获取。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">RetentionPolicy</span></span>&#123;</span><br><span class="line">	SOURCE,</span><br><span class="line">	CLASS,</span><br><span class="line">	RUNTIME</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.SOURCE)</span></span><br><span class="line"><span class="meta">@interface</span> MyAnnotation1&#123; &#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="meta">@interface</span> MyAnnotation2&#123; &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h3><p>@Target: 用于修饰 Annotation 定义, 用于指定被修饰的 Annotation 能用于 修饰哪些程序元素。 @Target 也包含一个名为 value 的成员变量。</p>
+<p>​              Documented </p>
+<p>​              Inherited</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>牛客网Java专项错题</title>
+    <url>/2021/03/30/%E7%89%9B%E5%AE%A2%E7%BD%91Java%E4%B8%93%E9%A1%B9%E9%94%99%E9%A2%98/</url>
+    <content><![CDATA[<p>1.数据库事务是指作为单个逻辑工作单元执行的一系列操作，这些操作要么全做要么全不做，是一个不可分割的工作单位。</p>
+<p>数据库事务的四大特性(简称ACID)是： </p>
+<p><strong>(1) 原子性(Atomicity)</strong></p>
+<p>事务的原子性指的是，事务中包含的程序作为数据库的逻辑工作单位，它所做的对数据修改操作要么全部执行，要么完全不执行。这种特性称为原子性。</p>
+<p>例如银行取款事务分为2个步骤(1)存折减款(2)提取现金。不可能存折减款，却没有提取现金。2个步骤必须同时完成或者都不完成。</p>
+<p><strong>(2)一致性(Consistency)</strong>   </p>
+<p>事务的一致性指的是在一个事务执行之前和执行之后数据库都必须处于一致性状态。这种特性称为事务的一致性。假如数据库的状态满足所有的完整性约束，就说该数据库是一致的。</p>
+<p>例如完整性约束a+b=10，一个事务改变了a，那么b也应随之改变。</p>
+<p><strong>(3)分离性(亦称独立性Isolation)</strong></p>
+<p>分离性指并发的事务是相互隔离的。即一个事务内部的操作及正在操作的数据必须封锁起来，不被其它企图进行修改的事务看到。假如并发交叉执行的事务没有任何控制，操纵相同的共享对象的多个并发事务的执行可能引起异常情况。</p>
+<p><strong>(4)持久性(Durability)</strong></p>
+<p>持久性意味着当系统或介质发生故障时，确保已提交事务的更新不能丢失。即一旦一个事务提交，DBMS保证它对数据库中数据的改变应该是永久性的，即对已提交事务的更新能恢复。持久性通过数据库备份和恢复来保证。</p>
+]]></content>
+      <categories>
+        <category>错题总结</category>
+      </categories>
+      <tags>
+        <tag>错题总结</tag>
+      </tags>
+  </entry>
 </search>
