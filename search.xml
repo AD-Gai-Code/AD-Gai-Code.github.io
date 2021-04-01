@@ -475,7 +475,7 @@
 <li>开发模式都是基于注解的，JPA是基于注解的，Spring2.5以上都是基于注解的，Hibernate3.x 以后也是基于注解的，现在的 Struts2 有一部分也是基于注解的了，注解是一种趋势，一定程度上 可以说：==框架 = 注解 + 反射 + 设计模式==。</li>
 <li>使用 Annotation 时要在其前面增加 @ 符号, 并把该 Annotation 当成 一个修饰符使用。用于修饰它支持的程序元素。</li>
 </ul>
-<h2 id="二、常见的的Annotation示例"><a href="#二、常见的的Annotation示例" class="headerlink" title="二、常见的的Annotation示例"></a>二、常见的的Annotation示例</h2><h3 id="（1）在编译时进行格式检查-JDK内置的三个基本注解"><a href="#（1）在编译时进行格式检查-JDK内置的三个基本注解" class="headerlink" title="（1）在编译时进行格式检查(JDK内置的三个基本注解)"></a>（1）在编译时进行格式检查(JDK内置的三个基本注解)</h3><ul>
+<h2 id="二、常见的Annotation示例"><a href="#二、常见的Annotation示例" class="headerlink" title="二、常见的Annotation示例"></a>二、常见的Annotation示例</h2><h3 id="（1）在编译时进行格式检查-JDK内置的三个基本注解"><a href="#（1）在编译时进行格式检查-JDK内置的三个基本注解" class="headerlink" title="（1）在编译时进行格式检查(JDK内置的三个基本注解)"></a>（1）在编译时进行格式检查(JDK内置的三个基本注解)</h3><ul>
 <li>@Override: 限定重写父类方法, 该注解只能用于方法。</li>
 <li>@Deprecated: 用于表示所修饰的元素(类, 方法等)已过时。通常是因为所修饰的结构危险或==存在更好的选择。==但不影响使用。</li>
 <li>@SuppressWarnings: 抑制编译器警告。如在IDEA中定义的变量未使用时，变量以灰色的形式显示。加上@SuppressWarnings(“unused”)后以黑色显示。</li>
@@ -497,7 +497,7 @@
 <li>如果定义的注解含有配置参数，那么使用时必须指定参数值，除非它有默认 值。格式是“参数名 = 参数值” ，如果只有一个参数成员，且名称为value， 可以省略“value=”。 </li>
 <li>没有成员定义的 Annotation 称为标记; 包含成员变量的 Annotation 称为元数 据 Annotation。</li>
 </ul>
-<p>注意：自定义注解必须配上注解的信息处理流程（使用反射）才有意义。</p>
+<p>注意：自定义注解必须配上注解的信息处理流程（使用反射）才有意义。自定义注解通过都会指明两个元注解：Retention、Target</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@MyAnnotation(value=&quot;尚硅谷&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyAnnotationTest</span> </span>&#123;</span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">         Class clazz = MyAnnotationTest.class;</span><br><span class="line">			Annotation a = clazz.getAnnotation(MyAnnotation.class);</span><br><span class="line">			MyAnnotation m = (MyAnnotation) a;</span><br><span class="line">			String info = m.value();</span><br><span class="line">			System.out.println(info);</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="meta">@Target(ElementType.TYPE)</span></span><br><span class="line"><span class="meta">@interface</span> MyAnnotation&#123;</span><br><span class="line">	<span class="function">String <span class="title">value</span><span class="params">()</span> <span class="keyword">default</span> &quot;auguigu&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <h1 id="JDK-中的元注解"><a href="#JDK-中的元注解" class="headerlink" title="JDK 中的元注解"></a>JDK 中的元注解</h1><h2 id="元注解：对现有的注解进行解释说明的注解。"><a href="#元注解：对现有的注解进行解释说明的注解。" class="headerlink" title="元注解：对现有的注解进行解释说明的注解。"></a>元注解：对现有的注解进行解释说明的注解。</h2><ul>
@@ -507,7 +507,7 @@
 <h3 id="Retention"><a href="#Retention" class="headerlink" title="Retention"></a>Retention</h3><p>@Retention: 只能用于修饰一个 Annotation 定义, 用于指定该 Annotation 的生命 周期, @Rentention 包含一个 RetentionPolicy 类型的成员变量, 使用 @Rentention 时必须为该 value 成员变量指定值:</p>
 <ul>
 <li>RetentionPolicy.SOURCE:在源文件中有效（即源文件保留），编译器直接丢弃这种策略的注释。</li>
-<li>RetentionPolicy.CLASS（默认行为）:在class文件中有效（即class保留） ， 当运行 Java 程序时, JVM  不会保留注解。 这是默认值</li>
+<li>RetentionPolicy.CLASS（默认行为）:在class文件中有效（即class保留） ，当运行 Java 程序时, JVM  不会保留注解。 这是默认值</li>
 <li>RetentionPolicy.RUNTIME:在运行时有效（即运行时保留），当==运行 Java 程序时, JVM 会 保留注释。程序可以通过反射获取该注释。==只有声明为RUNTIME生命周期的注解，才能通过反射获取。</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">RetentionPolicy</span></span>&#123;</span><br><span class="line">	SOURCE,</span><br><span class="line">	CLASS,</span><br><span class="line">	RUNTIME</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.SOURCE)</span></span><br><span class="line"><span class="meta">@interface</span> MyAnnotation1&#123; &#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="meta">@interface</span> MyAnnotation2&#123; &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
@@ -515,8 +515,24 @@
 
 
 <h3 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h3><p>@Target: 用于修饰 Annotation 定义, 用于指定被修饰的 Annotation 能用于 修饰哪些程序元素。 @Target 也包含一个名为 value 的成员变量。S</p>
-<p>​              Documented </p>
-<p>​              Inherited</p>
+<pre><code>          ###  Documented
+</code></pre>
+<p>@Documented:用于指定被该元 Annotation 修饰的 Annotation 类将被 javadoc 工具提取成文档。默认情况下，javadoc是不包括注解的。 </p>
+<p>定义为Documented的注解必须设置Retention值为RUNTIME。</p>
+<pre><code>          ###  Inherited
+</code></pre>
+<p>@Inherited: 被它修饰的 Annotation 将具有继承性。如果某个类使用了被 @Inherited 修饰的 Annotation, 则其子类将自动具有该注解。 </p>
+<ul>
+<li><p>比如：如果把标有@Inherited注解的自定义的注解标注在类级别上，子类则可以继承父类类级别的注解 </p>
+</li>
+<li><p>实际应用中，使用较少</p>
+</li>
+</ul>
+<h1 id="JDK8中注解的新特性"><a href="#JDK8中注解的新特性" class="headerlink" title="JDK8中注解的新特性"></a>JDK8中注解的新特性</h1><p>Java 8对注解处理提供了两点改进：可重复的注解及可用于类型的注解。此外，反射也得到了加强，在Java8中能够得到方法参数的名称。这会简化标注在方法参数上的注解。</p>
+<p>① 在MyAnnotation上声明@Repeatable，成员值为MyAnnotations.class<br>       ② MyAnnotation的Target和Retention等元注解与MyAnnotations相同。</p>
+<p>类型注解：JDK1.8之后，关于元注解@Target的参数类型ElementType枚举值多了两个： TYPE_PARAMETER,TYPE_USE。在Java 8之前，注解只能是在声明的地方所使用，Java8开始，注解可以应用 在任何地方。</p>
+<p> ElementType.TYPE_PARAMETER 表示该注解能写在类型变量的声明语 句中（如：泛型声明）。</p>
+<p> ElementType.TYPE_USE 表示该注解能写在使用类型的任何语句中。</p>
 ]]></content>
       <categories>
         <category>JavaSE复习总结</category>

@@ -1,29 +1,26 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
 <head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.4.0">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.2/css/all.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
-
-<script class="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.2.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
-  </script>
-<meta name="description" content="枚举主要内容: 如何自定义枚举类   如何使用关键字enum定义枚举类   Enum类的主要方法   实现接口的枚举类    一、枚举类的使用 1.枚举类的理解：类的对象只有有限个，确定的。我们称此类为枚举类 2.当需要定义一组常量(final关键字)时，强烈建议使用枚举类 3.如果枚举类中只有一个对象，则可以作为单例模式的实现方式。  二、如何定义枚举类 方式一：jdk5.0之前，自定义枚举类">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" >
+    <meta name="author" content="AiLaodu">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="AiLaodu">
+    
+    <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
+    
+    <meta name="description" content="">
+    <meta name="description" content="枚举主要内容: 如何自定义枚举类   如何使用关键字enum定义枚举类   Enum类的主要方法   实现接口的枚举类    一、枚举类的使用 1.枚举类的理解：类的对象只有有限个，确定的。我们称此类为枚举类 2.当需要定义一组常量(final关键字)时，强烈建议使用枚举类 3.如果枚举类中只有一个对象，则可以作为单例模式的实现方式。  二、如何定义枚举类 方式一：jdk5.0之前，自定义枚举类">
 <meta property="og:type" content="article">
 <meta property="og:title" content="枚举与注解复习总结">
 <meta property="og:url" content="http://example.com/2021/03/30/%E6%9E%9A%E4%B8%BE%E4%B8%8E%E6%B3%A8%E8%A7%A3%E5%A4%8D%E4%B9%A0%E6%80%BB%E7%BB%93/index.html">
@@ -31,256 +28,392 @@
 <meta property="og:description" content="枚举主要内容: 如何自定义枚举类   如何使用关键字enum定义枚举类   Enum类的主要方法   实现接口的枚举类    一、枚举类的使用 1.枚举类的理解：类的对象只有有限个，确定的。我们称此类为枚举类 2.当需要定义一组常量(final关键字)时，强烈建议使用枚举类 3.如果枚举类中只有一个对象，则可以作为单例模式的实现方式。  二、如何定义枚举类 方式一：jdk5.0之前，自定义枚举类">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-03-30T01:34:24.346Z">
-<meta property="article:modified_time" content="2021-03-31T12:44:38.816Z">
+<meta property="article:modified_time" content="2021-04-01T09:09:33.577Z">
 <meta property="article:author" content="AiLaodu">
 <meta property="article:tag" content="JavaSE复习总结">
 <meta name="twitter:card" content="summary">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    
+    <title>枚举与注解复习总结 · fi3ework&#39;s Studio</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href= "/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <link rel="stylesheet" href= "/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
 
 
-<link rel="canonical" href="http://example.com/2021/03/30/%E6%9E%9A%E4%B8%BE%E4%B8%8E%E6%B3%A8%E8%A7%A3%E5%A4%8D%E4%B9%A0%E6%80%BB%E7%BB%93/">
-
-
-<script class="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'zh-CN'
-  };
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
 </script>
-<title>枚举与注解复习总结 | ADGai's Blog</title>
-  
 
-
-
-
-  <noscript>
-  <style>
-  body { margin-top: 2rem; }
-
-  .use-motion .menu-item,
-  .use-motion .sidebar,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header {
-    visibility: visible;
-  }
-
-  .use-motion .header,
-  .use-motion .site-brand-container .toggle,
-  .use-motion .footer { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle,
-  .use-motion .custom-logo-image {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line {
-    transform: scaleX(1);
-  }
-
-  .search-pop-overlay, .sidebar-nav { display: none; }
-  .sidebar-panel { display: block; }
-  </style>
-</noscript>
-
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
-  <div class="headband"></div>
-
-  <main class="main">
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏" role="button">
-        <span class="toggle-line"></span>
-        <span class="toggle-line"></span>
-        <span class="toggle-line"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <i class="logo-line"></i>
-      <h1 class="site-title">ADGai's Blog</h1>
-      <i class="logo-line"></i>
-    </a>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-    </div>
-  </div>
-</div>
-
-
-
-<nav class="site-nav">
-  <ul class="main-menu menu">
-        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home    //��ҳ fa-fw"></i>首页</a></li>
-        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user   //�鵵 fa-fw"></i>关于</a></li>
-        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags     //���� fa-fw"></i>标签</a></li>
-        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th   //��ǩ fa-fw"></i>分类</a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive  //���� fa-fw"></i>归档</a></li>
-  </ul>
-</nav>
-
-
-
-
-</div>
-        
-  
-  <div class="toggle sidebar-toggle" role="button">
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-  </div>
-
-  <aside class="sidebar">
-
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
-      <ul class="sidebar-nav">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <div class="sidebar-panel-container">
-        <!--noindex-->
-        <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9E%9A%E4%B8%BE%E4%B8%BB%E8%A6%81%E5%86%85%E5%AE%B9"><span class="nav-text">枚举主要内容:</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%9E%9A%E4%B8%BE%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-text">一、枚举类的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%A6%82%E4%BD%95%E5%AE%9A%E4%B9%89%E6%9E%9A%E4%B8%BE%E7%B1%BB"><span class="nav-text">二、如何定义枚举类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%9E%9A%E4%B8%BE%E7%B1%BB"><span class="nav-text">1.自定义枚举类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E4%BD%BF%E7%94%A8enum%E5%85%B3%E9%94%AE%E5%AD%97%E5%AE%9A%E4%B9%89%E6%9E%9A%E4%B8%BE%E7%B1%BB"><span class="nav-text">2.使用enum关键字定义枚举类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81Enum%E7%B1%BB%E7%9A%84%E4%B8%BB%E8%A6%81%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="nav-text">三、Enum类的主要方法：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E4%BD%BF%E7%94%A8enum%E5%85%B3%E9%94%AE%E5%AD%97%E5%AE%9A%E4%B9%89%E7%9A%84%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%AE%9E%E7%8E%B0%E6%8E%A5%E5%8F%A3%E7%9A%84%E6%83%85%E5%86%B5"><span class="nav-text">四、使用enum关键字定义的枚举类实现接口的情况</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B3%A8%E8%A7%A3%E4%B8%BB%E8%A6%81%E5%86%85%E5%AE%B9%EF%BC%9A"><span class="nav-text">注解主要内容：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%A6%82%E8%BF%B0"><span class="nav-text">一、概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%B8%B8%E8%A7%81%E7%9A%84%E7%9A%84Annotation%E7%A4%BA%E4%BE%8B"><span class="nav-text">二、常见的的Annotation示例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%881%EF%BC%89%E5%9C%A8%E7%BC%96%E8%AF%91%E6%97%B6%E8%BF%9B%E8%A1%8C%E6%A0%BC%E5%BC%8F%E6%A3%80%E6%9F%A5-JDK%E5%86%85%E7%BD%AE%E7%9A%84%E4%B8%89%E4%B8%AA%E5%9F%BA%E6%9C%AC%E6%B3%A8%E8%A7%A3"><span class="nav-text">（1）在编译时进行格式检查(JDK内置的三个基本注解)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%882%EF%BC%89%E8%B7%9F%E8%B8%AA%E4%BB%A3%E7%A0%81%E4%BE%9D%E8%B5%96%E6%80%A7%EF%BC%8C%E5%AE%9E%E7%8E%B0%E6%9B%BF%E4%BB%A3%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%8A%9F%E8%83%BD"><span class="nav-text">（2）跟踪代码依赖性，实现替代配置文件功能</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E8%87%AA%E5%AE%9A%E4%B9%89-Annotation%EF%BC%8C%E5%8F%82%E7%85%A7-SuppressWarnings%E5%AE%9A%E4%B9%89"><span class="nav-text">三、自定义 Annotation，参照@SuppressWarnings定义</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JDK-%E4%B8%AD%E7%9A%84%E5%85%83%E6%B3%A8%E8%A7%A3"><span class="nav-text">JDK 中的元注解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%83%E6%B3%A8%E8%A7%A3%EF%BC%9A%E5%AF%B9%E7%8E%B0%E6%9C%89%E7%9A%84%E6%B3%A8%E8%A7%A3%E8%BF%9B%E8%A1%8C%E8%A7%A3%E9%87%8A%E8%AF%B4%E6%98%8E%E7%9A%84%E6%B3%A8%E8%A7%A3%E3%80%82"><span class="nav-text">元注解：对现有的注解进行解释说明的注解。</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Retention"><span class="nav-text">Retention</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Target"><span class="nav-text">Target</span></a></li></ol></li></ol></li></ol></div>
-        </div>
-        <!--/noindex-->
-
-        <div class="site-overview-wrap sidebar-panel">
-          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="AiLaodu"
-      src="/images/header.jpg">
-  <p class="site-author-name" itemprop="name">AiLaodu</p>
-  <div class="site-description" itemprop="description"></div>
-</div>
-<div class="site-state-wrap site-overview-item animated">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">5</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">4</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">4</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-
-
-
-        </div>
-      </div>
-    </div>
-  </aside>
-  <div class="sidebar-dimmer"></div>
-
-
-    </header>
+    <link rel="icon" href= "/assets/favicon.ico" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script" />
+    <link rel="preload" href="/scripts/main.js" as="script" />
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+<meta name="generator" content="Hexo 5.4.0"></head>
 
     
-  <div class="back-to-top" role="button">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
+        <body class="post-body">
+    
+    
+<header class="header">
 
-<noscript>
-  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
-</noscript>
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >fi3ework&#39;s Studio.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">枚举与注解复习总结</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href=/>fi3ework's Studio.</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
 
 
-    <div class="main-inner post posts-expand">
 
 
-  
 
 
-<div class="post-block">
-  
-  
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/30/%E6%9E%9A%E4%B8%BE%E4%B8%8E%E6%B3%A8%E8%A7%A3%E5%A4%8D%E4%B9%A0%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="AiLaodu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ADGai's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          枚举与注解复习总结
+height:50vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            枚举与注解复习总结
+            <!-- 404 -->
+            
         </h1>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-03-30 09:34:24" itemprop="dateCreated datePublished" datetime="2021-03-30T09:34:24+08:00">2021-03-30</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-31 20:44:38" itemprop="dateModified" datetime="2021-03-31T20:44:38+08:00">2021-03-31</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/JavaSE%E5%A4%8D%E4%B9%A0%E6%80%BB%E7%BB%93/" itemprop="url" rel="index"><span itemprop="name">JavaSE复习总结</span></a>
-        </span>
-    </span>
-
-  
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "JavaSE复习总结">JavaSE复习总结</a>
+    
 </div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">2.9k</span>阅读时长: <span class="post-count reading-time">11 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2021/03/30</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
 
-        </div>
-      </header>
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
         <h1 id="枚举主要内容"><a href="#枚举主要内容" class="headerlink" title="枚举主要内容:"></a>枚举主要内容:</h1><ul>
 <li><p>如何自定义枚举类 </p>
 </li>
@@ -334,7 +467,7 @@
 <li>开发模式都是基于注解的，JPA是基于注解的，Spring2.5以上都是基于注解的，Hibernate3.x 以后也是基于注解的，现在的 Struts2 有一部分也是基于注解的了，注解是一种趋势，一定程度上 可以说：==框架 = 注解 + 反射 + 设计模式==。</li>
 <li>使用 Annotation 时要在其前面增加 @ 符号, 并把该 Annotation 当成 一个修饰符使用。用于修饰它支持的程序元素。</li>
 </ul>
-<h2 id="二、常见的的Annotation示例"><a href="#二、常见的的Annotation示例" class="headerlink" title="二、常见的的Annotation示例"></a>二、常见的的Annotation示例</h2><h3 id="（1）在编译时进行格式检查-JDK内置的三个基本注解"><a href="#（1）在编译时进行格式检查-JDK内置的三个基本注解" class="headerlink" title="（1）在编译时进行格式检查(JDK内置的三个基本注解)"></a>（1）在编译时进行格式检查(JDK内置的三个基本注解)</h3><ul>
+<h2 id="二、常见的Annotation示例"><a href="#二、常见的Annotation示例" class="headerlink" title="二、常见的Annotation示例"></a>二、常见的Annotation示例</h2><h3 id="（1）在编译时进行格式检查-JDK内置的三个基本注解"><a href="#（1）在编译时进行格式检查-JDK内置的三个基本注解" class="headerlink" title="（1）在编译时进行格式检查(JDK内置的三个基本注解)"></a>（1）在编译时进行格式检查(JDK内置的三个基本注解)</h3><ul>
 <li>@Override: 限定重写父类方法, 该注解只能用于方法。</li>
 <li>@Deprecated: 用于表示所修饰的元素(类, 方法等)已过时。通常是因为所修饰的结构危险或==存在更好的选择。==但不影响使用。</li>
 <li>@SuppressWarnings: 抑制编译器警告。如在IDEA中定义的变量未使用时，变量以灰色的形式显示。加上@SuppressWarnings(“unused”)后以黑色显示。</li>
@@ -356,7 +489,7 @@
 <li>如果定义的注解含有配置参数，那么使用时必须指定参数值，除非它有默认 值。格式是“参数名 = 参数值” ，如果只有一个参数成员，且名称为value， 可以省略“value=”。 </li>
 <li>没有成员定义的 Annotation 称为标记; 包含成员变量的 Annotation 称为元数 据 Annotation。</li>
 </ul>
-<p>注意：自定义注解必须配上注解的信息处理流程（使用反射）才有意义。</p>
+<p>注意：自定义注解必须配上注解的信息处理流程（使用反射）才有意义。自定义注解通过都会指明两个元注解：Retention、Target</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@MyAnnotation(value=&quot;尚硅谷&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyAnnotationTest</span> </span>&#123;</span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">         Class clazz = MyAnnotationTest.class;</span><br><span class="line">			Annotation a = clazz.getAnnotation(MyAnnotation.class);</span><br><span class="line">			MyAnnotation m = (MyAnnotation) a;</span><br><span class="line">			String info = m.value();</span><br><span class="line">			System.out.println(info);</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="meta">@Target(ElementType.TYPE)</span></span><br><span class="line"><span class="meta">@interface</span> MyAnnotation&#123;</span><br><span class="line">	<span class="function">String <span class="title">value</span><span class="params">()</span> <span class="keyword">default</span> &quot;auguigu&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <h1 id="JDK-中的元注解"><a href="#JDK-中的元注解" class="headerlink" title="JDK 中的元注解"></a>JDK 中的元注解</h1><h2 id="元注解：对现有的注解进行解释说明的注解。"><a href="#元注解：对现有的注解进行解释说明的注解。" class="headerlink" title="元注解：对现有的注解进行解释说明的注解。"></a>元注解：对现有的注解进行解释说明的注解。</h2><ul>
@@ -366,7 +499,7 @@
 <h3 id="Retention"><a href="#Retention" class="headerlink" title="Retention"></a>Retention</h3><p>@Retention: 只能用于修饰一个 Annotation 定义, 用于指定该 Annotation 的生命 周期, @Rentention 包含一个 RetentionPolicy 类型的成员变量, 使用 @Rentention 时必须为该 value 成员变量指定值:</p>
 <ul>
 <li>RetentionPolicy.SOURCE:在源文件中有效（即源文件保留），编译器直接丢弃这种策略的注释。</li>
-<li>RetentionPolicy.CLASS（默认行为）:在class文件中有效（即class保留） ， 当运行 Java 程序时, JVM  不会保留注解。 这是默认值</li>
+<li>RetentionPolicy.CLASS（默认行为）:在class文件中有效（即class保留） ，当运行 Java 程序时, JVM  不会保留注解。 这是默认值</li>
 <li>RetentionPolicy.RUNTIME:在运行时有效（即运行时保留），当==运行 Java 程序时, JVM 会 保留注释。程序可以通过反射获取该注释。==只有声明为RUNTIME生命周期的注解，才能通过反射获取。</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">RetentionPolicy</span></span>&#123;</span><br><span class="line">	SOURCE,</span><br><span class="line">	CLASS,</span><br><span class="line">	RUNTIME</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.SOURCE)</span></span><br><span class="line"><span class="meta">@interface</span> MyAnnotation1&#123; &#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="meta">@interface</span> MyAnnotation2&#123; &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
@@ -374,107 +507,370 @@
 
 
 <h3 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h3><p>@Target: 用于修饰 Annotation 定义, 用于指定被修饰的 Annotation 能用于 修饰哪些程序元素。 @Target 也包含一个名为 value 的成员变量。S</p>
-<p>​              Documented </p>
-<p>​              Inherited</p>
+<pre><code>          ###  Documented
+</code></pre>
+<p>@Documented:用于指定被该元 Annotation 修饰的 Annotation 类将被 javadoc 工具提取成文档。默认情况下，javadoc是不包括注解的。 </p>
+<p>定义为Documented的注解必须设置Retention值为RUNTIME。</p>
+<pre><code>          ###  Inherited
+</code></pre>
+<p>@Inherited: 被它修饰的 Annotation 将具有继承性。如果某个类使用了被 @Inherited 修饰的 Annotation, 则其子类将自动具有该注解。 </p>
+<ul>
+<li><p>比如：如果把标有@Inherited注解的自定义的注解标注在类级别上，子类则可以继承父类类级别的注解 </p>
+</li>
+<li><p>实际应用中，使用较少</p>
+</li>
+</ul>
+<h1 id="JDK8中注解的新特性"><a href="#JDK8中注解的新特性" class="headerlink" title="JDK8中注解的新特性"></a>JDK8中注解的新特性</h1><p>Java 8对注解处理提供了两点改进：可重复的注解及可用于类型的注解。此外，反射也得到了加强，在Java8中能够得到方法参数的名称。这会简化标注在方法参数上的注解。</p>
+<p>① 在MyAnnotation上声明@Repeatable，成员值为MyAnnotations.class<br>       ② MyAnnotation的Target和Retention等元注解与MyAnnotations相同。</p>
+<p>类型注解：JDK1.8之后，关于元注解@Target的参数类型ElementType枚举值多了两个： TYPE_PARAMETER,TYPE_USE。在Java 8之前，注解只能是在声明的地方所使用，Java8开始，注解可以应用 在任何地方。</p>
+<p> ElementType.TYPE_PARAMETER 表示该注解能写在类型变量的声明语 句中（如：泛型声明）。</p>
+<p> ElementType.TYPE_USE 表示该注解能写在使用类型的任何语句中。</p>
 
-    </div>
-
+    </article>
+    <!-- license  -->
     
+        <div class="license-wrapper">
+            <p>原文作者：<a href="http://example.com">AiLaodu</a>
+            <p>原文链接：<a href="http://example.com/2021/03/30/%E6%9E%9A%E4%B8%BE%E4%B8%8E%E6%B3%A8%E8%A7%A3%E5%A4%8D%E4%B9%A0%E6%80%BB%E7%BB%93/">http://example.com/2021/03/30/%E6%9E%9A%E4%B8%BE%E4%B8%8E%E6%B3%A8%E8%A7%A3%E5%A4%8D%E4%B9%A0%E6%80%BB%E7%BB%93/</a>
+            <p>发表日期：<a href="http://example.com/2021/03/30/%E6%9E%9A%E4%B8%BE%E4%B8%8E%E6%B3%A8%E8%A7%A3%E5%A4%8D%E4%B9%A0%E6%80%BB%E7%BB%93/">March 30th 2021, 9:34:24 am</a>
+            <p>更新日期：<a href="http://example.com/2021/03/30/%E6%9E%9A%E4%B8%BE%E4%B8%8E%E6%B3%A8%E8%A7%A3%E5%A4%8D%E4%B9%A0%E6%80%BB%E7%BB%93/">April 1st 2021, 5:09:33 pm</a>
+            <p>版权声明：本文采用<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+        </div>
     
-    
-
-    <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/JavaSE%E5%A4%8D%E4%B9%A0%E6%80%BB%E7%BB%93/" rel="tag"># JavaSE复习总结</a>
-          </div>
-
-        
-
-          <div class="post-nav">
-            <div class="post-nav-item">
-                <a href="/2021/03/25/spring5%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/" rel="prev" title="Spring5框架学习">
-                  <i class="fa fa-chevron-left"></i> Spring5框架学习
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2021/03/25/spring5%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/" title= "Spring5框架学习">
+                    <div class="prevTitle">Spring5框架学习</div>
                 </a>
-            </div>
-            <div class="post-nav-item">
-            </div>
-          </div>
-    </footer>
-  </article>
-</div>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!-- gitalk评论 -->
+
+    <!-- utteranc评论 -->
+
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
 
 
+    
+    
 
-
-
-
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      const commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-</div>
-  </main>
-
-  <footer class="footer">
-    <div class="footer-inner">
-
-
-<div class="copyright">
-  &copy; 
-  <span itemprop="copyrightYear">2021</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">AiLaodu</span>
-</div>
-
-<div>
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<span id="busuanzi_container_site_pv" style='display:none'>
-    本站总访问量 <span id="busuanzi_value_site_pv"></span> 次
-    <span class="post-meta-divider"></span>
-</span>
-</div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
-  </div>
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:12345@qq.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/fi3ework" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer wechat" title=wechat>
+                  
+                  <img class="profile-qr" src="/assets/example_qr.png" />
+                </span>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
 
     </div>
-  </footer>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
 
-  
-  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
-
-  
 
 
 
 
 
 
-  
+top:50vh;
 
-
-
-
-
-</body>
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9E%9A%E4%B8%BE%E4%B8%BB%E8%A6%81%E5%86%85%E5%AE%B9"><span class="toc-number">1.</span> <span class="toc-text">枚举主要内容:</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%9E%9A%E4%B8%BE%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">1.1.</span> <span class="toc-text">一、枚举类的使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%A6%82%E4%BD%95%E5%AE%9A%E4%B9%89%E6%9E%9A%E4%B8%BE%E7%B1%BB"><span class="toc-number">1.2.</span> <span class="toc-text">二、如何定义枚举类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%87%AA%E5%AE%9A%E4%B9%89%E6%9E%9A%E4%B8%BE%E7%B1%BB"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.自定义枚举类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%BD%BF%E7%94%A8enum%E5%85%B3%E9%94%AE%E5%AD%97%E5%AE%9A%E4%B9%89%E6%9E%9A%E4%B8%BE%E7%B1%BB"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.使用enum关键字定义枚举类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81Enum%E7%B1%BB%E7%9A%84%E4%B8%BB%E8%A6%81%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="toc-number">1.3.</span> <span class="toc-text">三、Enum类的主要方法：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E4%BD%BF%E7%94%A8enum%E5%85%B3%E9%94%AE%E5%AD%97%E5%AE%9A%E4%B9%89%E7%9A%84%E6%9E%9A%E4%B8%BE%E7%B1%BB%E5%AE%9E%E7%8E%B0%E6%8E%A5%E5%8F%A3%E7%9A%84%E6%83%85%E5%86%B5"><span class="toc-number">1.4.</span> <span class="toc-text">四、使用enum关键字定义的枚举类实现接口的情况</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B3%A8%E8%A7%A3%E4%B8%BB%E8%A6%81%E5%86%85%E5%AE%B9%EF%BC%9A"><span class="toc-number">2.</span> <span class="toc-text">注解主要内容：</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%A6%82%E8%BF%B0"><span class="toc-number">2.1.</span> <span class="toc-text">一、概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%B8%B8%E8%A7%81%E7%9A%84Annotation%E7%A4%BA%E4%BE%8B"><span class="toc-number">2.2.</span> <span class="toc-text">二、常见的Annotation示例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E5%9C%A8%E7%BC%96%E8%AF%91%E6%97%B6%E8%BF%9B%E8%A1%8C%E6%A0%BC%E5%BC%8F%E6%A3%80%E6%9F%A5-JDK%E5%86%85%E7%BD%AE%E7%9A%84%E4%B8%89%E4%B8%AA%E5%9F%BA%E6%9C%AC%E6%B3%A8%E8%A7%A3"><span class="toc-number">2.2.1.</span> <span class="toc-text">（1）在编译时进行格式检查(JDK内置的三个基本注解)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E8%B7%9F%E8%B8%AA%E4%BB%A3%E7%A0%81%E4%BE%9D%E8%B5%96%E6%80%A7%EF%BC%8C%E5%AE%9E%E7%8E%B0%E6%9B%BF%E4%BB%A3%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%8A%9F%E8%83%BD"><span class="toc-number">2.2.2.</span> <span class="toc-text">（2）跟踪代码依赖性，实现替代配置文件功能</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E8%87%AA%E5%AE%9A%E4%B9%89-Annotation%EF%BC%8C%E5%8F%82%E7%85%A7-SuppressWarnings%E5%AE%9A%E4%B9%89"><span class="toc-number">2.3.</span> <span class="toc-text">三、自定义 Annotation，参照@SuppressWarnings定义</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JDK-%E4%B8%AD%E7%9A%84%E5%85%83%E6%B3%A8%E8%A7%A3"><span class="toc-number">3.</span> <span class="toc-text">JDK 中的元注解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%83%E6%B3%A8%E8%A7%A3%EF%BC%9A%E5%AF%B9%E7%8E%B0%E6%9C%89%E7%9A%84%E6%B3%A8%E8%A7%A3%E8%BF%9B%E8%A1%8C%E8%A7%A3%E9%87%8A%E8%AF%B4%E6%98%8E%E7%9A%84%E6%B3%A8%E8%A7%A3%E3%80%82"><span class="toc-number">3.1.</span> <span class="toc-text">元注解：对现有的注解进行解释说明的注解。</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Retention"><span class="toc-number">3.1.1.</span> <span class="toc-text">Retention</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Target"><span class="toc-number">3.1.2.</span> <span class="toc-text">Target</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JDK8%E4%B8%AD%E6%B3%A8%E8%A7%A3%E7%9A%84%E6%96%B0%E7%89%B9%E6%80%A7"><span class="toc-number">4.</span> <span class="toc-text">JDK8中注解的新特性</span></a></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 5
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2021/02/27/hexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" >Hexo个人博客搭建</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2021 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/30</span><a class="archive-post-title" href= "/2021/03/30/%E6%9E%9A%E4%B8%BE%E4%B8%8E%E6%B3%A8%E8%A7%A3%E5%A4%8D%E4%B9%A0%E6%80%BB%E7%BB%93/" >枚举与注解复习总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/25</span><a class="archive-post-title" href= "/2021/03/25/spring5%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/" >Spring5框架学习</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/21</span><a class="archive-post-title" href= "/2021/03/21/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" >排序算法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href= "/2021/03/08/%E9%80%92%E5%BD%92%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" >递归算法学习笔记</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="Hexo"><span class="iconfont-archer">&#xe606;</span>Hexo</span>
+    
+        <span class="sidebar-tag-name" data-tags="数据结构与算法"><span class="iconfont-archer">&#xe606;</span>数据结构与算法</span>
+    
+        <span class="sidebar-tag-name" data-tags="Java框架"><span class="iconfont-archer">&#xe606;</span>Java框架</span>
+    
+        <span class="sidebar-tag-name" data-tags="JavaSE复习总结"><span class="iconfont-archer">&#xe606;</span>JavaSE复习总结</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="Hexo"><span class="iconfont-archer">&#xe60a;</span>Hexo</span>
+    
+        <span class="sidebar-category-name" data-categories="数据结构与算法"><span class="iconfont-archer">&#xe60a;</span>数据结构与算法</span>
+    
+        <span class="sidebar-category-name" data-categories="Java框架"><span class="iconfont-archer">&#xe60a;</span>Java框架</span>
+    
+        <span class="sidebar-category-name" data-categories="JavaSE复习总结"><span class="iconfont-archer">&#xe60a;</span>JavaSE复习总结</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "AiLaodu"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+    </body>
 </html>
+
+
