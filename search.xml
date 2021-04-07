@@ -350,7 +350,7 @@
 <ul>
 <li>创建子类的代理对象，增强类的方法</li>
 </ul>
-<p><img src="D:\尚硅谷Java\javaee高级\spring5\笔记\分析图\图4.png" alt="图4"></p>
+<p><img src="https://gitee.com/AD-Gai-Code/pic-go/raw/master/%E5%9B%BE4.png" alt="图4"></p>
 <h2 id="Ⅲ-AOP-JDK动态代理"><a href="#Ⅲ-AOP-JDK动态代理" class="headerlink" title="Ⅲ.AOP(JDK动态代理)"></a>Ⅲ.AOP(JDK动态代理)</h2><h3 id="1、使用-JDK-动态代理，使用-Proxy-类里面的方法创建代理对象"><a href="#1、使用-JDK-动态代理，使用-Proxy-类里面的方法创建代理对象" class="headerlink" title="1、使用 JDK 动态代理，使用 Proxy 类里面的方法创建代理对象"></a>1、使用 JDK 动态代理，使用 Proxy 类里面的方法创建代理对象</h3><p><img src="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210406205345738.png" alt="image-20210406205345738"></p>
 <p>（1）调用 newProxyInstance 方法</p>
 <p><img src="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210406205503654.png" alt="image-20210406205503654"></p>
