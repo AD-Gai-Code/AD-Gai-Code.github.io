@@ -65,24 +65,41 @@
   <entry>
     <title>递归算法学习笔记</title>
     <url>/2021/03/08/%E9%80%92%E5%BD%92%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<h1 id="1-递归的概念"><a href="#1-递归的概念" class="headerlink" title="1.递归的概念"></a>1.递归的概念</h1><p>​        递归就是方法自己调用自己,每次调用时传入不同的变量.递归有助于解决复杂的问题的同时还可以让代码变得更加简洁。但是值得注意的是，递归只是让解决方案变得清晰，并没有性能上的优势，有时甚至还没有循环的性能好，而这也是递归的主要缺点之一。</p>
-<h2 id="1-1-递归的条件和规则"><a href="#1-1-递归的条件和规则" class="headerlink" title="1.1 递归的条件和规则"></a>1.1 递归的条件和规则</h2><p>​        递归自己调用自己，因此写递归时很容易出错，陷入无限循环。因此编写递归方法时，必须设定条件告诉递归何时停止。</p>
-<ol>
-<li><p>执行一个方法时，就创建一个新的受保护的独立空间(栈空间) </p>
-</li>
-<li><p>方法的局部变量是独立的，不会相互影响, 比如 n 变量 </p>
-</li>
-<li><p>如果方法中使用的是引用类型变量(比如数组)，就会共享该引用类型的数据. </p>
-</li>
-</ol>
+    <content><![CDATA[<h1 id="1-递归的概念"><a href="#1-递归的概念" class="headerlink" title="1.递归的概念"></a>1.递归的概念</h1><p>递归就是方法自己调用自己,每次调用时传入不同的变量.递归有助于解决复杂的问题的同时还可以让代码变得更加简洁。但是值得注意的是，递归只是让解决方案变得清晰，并没有性能上的优势，有时甚至还没有循环的性能好，而这也是递归的主要缺点之一。</p>
+<p>比如定义函数 f(x)=x+f(x-1)：</p>
 <span id="more"></span>
 
-<ol start="4">
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x + f(x-<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="1-1-递归的条件和规则"><a href="#1-1-递归的条件和规则" class="headerlink" title="1.1 递归的条件和规则"></a>1.1 递归的条件和规则</h2><p>递归自己调用自己，因此写递归时很容易出错，陷入无限循环。因此编写递归方法时，必须设定条件告诉递归何时停止。如上面的例子：</p>
+<p>如果代入 f(2)：</p>
+<p>返回 2+f(1)；<br>       调用 f(1)；<br>       返回 1+f(0)；<br>       调用 f(0)；<br>       返回 0+f(-1)；<br>       ……</p>
+<p>这时程序会无休止地运行下去，直到崩溃。</p>
+<p>如果我们加一个判断语句 <strong>x&gt;0</strong>;</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x &gt; <span class="number">0</span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> x + f(x-<span class="number">1</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这次计算 f(2)=2+f(1)=2+1+f(0)=2+1+0=3。</p>
+<p>由此可得递归的两个规律：</p>
+<ul>
+<li>递归函数必须要有<strong>终止条件</strong>，否则会出错；</li>
+<li>递归函数先不断调用自身，直到遇到终止条件后进行回溯，最终返回答案。</li>
+</ul>
+<blockquote>
+<ol>
+<li><p>执行一个方法时，就创建一个新的受保护的独立空间(栈空间)</p>
+</li>
+<li><p>方法的局部变量是独立的，不会相互影响, 比如 n 变量</p>
+</li>
+<li><p>如果方法中使用的是引用类型变量(比如数组)，就会共享该引用类型的数据.</p>
+</li>
 <li><p>递归必须向退出递归的条件逼近，否则就是无限递归,会报栈溢出的错误 。</p>
 </li>
-<li><p>当一个方法执行完毕，或者遇到 return，就会返回，遵守谁调用，就将结果返回给谁，同时当方法执行完毕或 者返回时，该方法也就执行完毕。</p>
+<li><p>当一个方法执行完毕，或者遇到 return，就会返回，遵守谁调用，就将结果返回给谁，同时当方法执行完毕或 者返回时，该方法也就执行完毕。   </p>
 </li>
 </ol>
+</blockquote>
 <h2 id="1-2-递归的机制图解"><a href="#1-2-递归的机制图解" class="headerlink" title="1.2 递归的机制图解"></a>1.2 递归的机制图解</h2><p><img src="https://gitee.com/AD-Gai-Code/pic-go/raw/master/10.png"></p>
 <h1 id="2-递归的应用场景"><a href="#2-递归的应用场景" class="headerlink" title="2 递归的应用场景"></a>2 递归的应用场景</h1><h2 id="2-1-阶乘问题"><a href="#2-1-阶乘问题" class="headerlink" title="2.1 阶乘问题"></a>2.1 阶乘问题</h2><p>问题描述：使用递归方法来完成自然数的阶乘。</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">factorial</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">   <span class="keyword">if</span> (n == <span class="number">1</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">     &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">       <span class="keyword">return</span> factorial(n - <span class="number">1</span>) * n; <span class="comment">// 1 * 2 * 3</span></span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -470,13 +487,21 @@
 <li>FileSystemXmlApplicationContext: 从文件系统的相对路径或绝对路径下去搜索配置文件，并根据配置文件来创建Spring容器。</li>
 </ul>
 <h2 id="IOC容器"><a href="#IOC容器" class="headerlink" title="IOC容器"></a>IOC容器</h2><h3 id="Ⅰ-IOC底层的原理"><a href="#Ⅰ-IOC底层的原理" class="headerlink" title="Ⅰ.IOC底层的原理"></a>Ⅰ.IOC底层的原理</h3><h4 id="什么是IOC"><a href="#什么是IOC" class="headerlink" title="什么是IOC"></a>什么是IOC</h4><ul>
-<li><p>控制反转，把对象创建和对象之间的调用过程，交给Spring进行管理。</p>
-</li>
-<li><p>使用Ioc的目的：为了降低耦合度</p>
-</li>
-<li><p>上文中的入门案例就是IOC实现</p>
-</li>
+<li>控制反转，把对象创建和对象之间的调用过程，交给Spring进行管理。</li>
+<li>使用Ioc的目的：为了降低耦合度</li>
+<li>上文中的入门案例就是IOC实现</li>
 </ul>
+<p>先来看spring官网的关于IOC容器的解释：</p>
+<blockquote>
+<p>The org.springframework.context.ApplicationContext interface represents the Spring IoC container and is responsible for instantiating, configuring, and assembling the beans.</p>
+</blockquote>
+<p>大意就是：</p>
+<ul>
+<li>Spring IOC容器就是一个 <strong>org.springframework.context.ApplicationContext</strong> 的实例化对象。</li>
+<li>容器负责实例化，配置以及装配一个bean。</li>
+</ul>
+<p><strong>从代码层面上看：spring容器就是一个实现了ApplicationContext接口的对象。</strong></p>
+<p><strong>从功能层面来看：Spring 容器是 Spring 框架的核心，是用来管理对象的。容器将创建对象，把它们连接在一起，配置它们，并管理他们的整个生命周期从创建到销毁。</strong></p>
 <h4 id="IOC底层原理"><a href="#IOC底层原理" class="headerlink" title="IOC底层原理"></a>IOC底层原理</h4><ul>
 <li>xml注解、工厂模式、反射（得到class文件，操作类中的内容）</li>
 </ul>
@@ -743,6 +768,108 @@
 
 <p>（2）编写测试类</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testService2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//加载配置类</span></span><br><span class="line">        ApplicationContext context</span><br><span class="line">                = <span class="keyword">new</span> AnnotationConfigApplicationContext(SpringConfig.class);</span><br><span class="line">        UserService userService = context.getBean(<span class="string">&quot;userService&quot;</span>, UserService.class);</span><br><span class="line">        System.out.println(userService);</span><br><span class="line">        userService.add();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Java框架</category>
+      </categories>
+      <tags>
+        <tag>Java框架</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Spring5框架学习系列（三）</title>
+    <url>/2021/04/07/Spring5%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0(%E4%B8%89)/</url>
+    <content><![CDATA[<h1 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h1><h2 id="Ⅰ-事务操作-事务的概念"><a href="#Ⅰ-事务操作-事务的概念" class="headerlink" title="Ⅰ.事务操作(事务的概念)"></a>Ⅰ.事务操作(事务的概念)</h2><h3 id="1、什么是事务"><a href="#1、什么是事务" class="headerlink" title="1、什么是事务"></a>1、什么是事务</h3><p>（1）事务是数据库操作最基本单元，逻辑上的一组操作，要么都成功，如果有一个失败所有操作都失败。</p>
+<p>（2）典型场景：银行转账。</p>
+<ul>
+<li><p>lucy 转账 100 元 给 mary </p>
+</li>
+<li><p>lucy 少 100，mary 多 100</p>
+</li>
+</ul>
+<h3 id="2、事务四个特性（ACID）"><a href="#2、事务四个特性（ACID）" class="headerlink" title="2、事务四个特性（ACID）"></a>2、事务四个特性（ACID）</h3><p>（1）原子性：整体 【原子性是指事务包含的所有操作要么全部成功，要么全部失败回滚】</p>
+<p>（2）一致性：数据 【一个事务执行之前和执行之后都必须处于一致性状态】</p>
+<blockquote>
+<p>拿转账来说，假设用户A和用户B两者的钱加起来一共是5000，那么不管A和B之间如何转账，转几次账，事务结束后两个用户的钱相加起来应该还得是5000，这就是事务的一致性。</p>
+</blockquote>
+<p>（3）隔离性: 隔离性是当多个用户并发访问数据库时，比如操作同一张表时，数据库为每一个用户开启的事务，不能被其他事务的操作所干扰，多个并发事务之间要相互隔离。</p>
+<blockquote>
+<p>并发 【对于任意两个并发的事务T1和T2，在事务T1看来，T2要么在T1开始之前就已经结束，要么在T1结束之后才开始，这样每个事务都感觉不到有其他事务在并发地执行。】 </p>
+</blockquote>
+<p>（4）持久性: 结果 【持久性是指一个事务一旦被提交了，那么对数据库中的数据的改变就是永久性的即便是在数据库系统遇到故障的情况下也不会丢失提交事务的操作】</p>
+<h2 id="Ⅱ-事务操作（搭建事务操作环境）"><a href="#Ⅱ-事务操作（搭建事务操作环境）" class="headerlink" title="Ⅱ.事务操作（搭建事务操作环境）"></a>Ⅱ.事务操作（搭建事务操作环境）</h2><p><img src="https://gitee.com/AD-Gai-Code/pic-go/raw/master/%E5%9B%BE6.png" alt="图6"></p>
+<p>WEB层（视图层）、Service（业务逻辑层）、Dao（数据访问层）是Javaee操作中的三层结构。</p>
+<h3 id="1、创建数据库表，添加记录"><a href="#1、创建数据库表，添加记录" class="headerlink" title="1、创建数据库表，添加记录"></a>1、创建数据库表，添加记录</h3><p><img src="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210409163453184.png" alt="image-20210409163453184"></p>
+<h3 id="2、创建-service，搭建-dao，完成对象创建和注入关系"><a href="#2、创建-service，搭建-dao，完成对象创建和注入关系" class="headerlink" title="2、创建 service，搭建 dao，完成对象创建和注入关系"></a>2、创建 service，搭建 dao，完成对象创建和注入关系</h3><p>（1）service 注入 dao，在 dao 注入 JdbcTemplate，在 JdbcTemplate 注入 DataSource</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserService</span> </span>&#123;</span><br><span class="line"> 	<span class="comment">//注入 dao</span></span><br><span class="line"> 	<span class="meta">@Autowired</span></span><br><span class="line"> 	<span class="keyword">private</span> UserDao userDao;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Repository</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserDaoImpl</span> <span class="keyword">implements</span> <span class="title">UserDao</span> </span>&#123;</span><br><span class="line"> 	<span class="meta">@Autowired</span> <span class="keyword">private</span> JdbcTemplate jdbcTemplate;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="3、在-dao-创建两个方法：多钱和少钱的方法，在-service-创建方法（转账的方法）"><a href="#3、在-dao-创建两个方法：多钱和少钱的方法，在-service-创建方法（转账的方法）" class="headerlink" title="3、在 dao 创建两个方法：多钱和少钱的方法，在 service 创建方法（转账的方法）"></a>3、在 dao 创建两个方法：多钱和少钱的方法，在 service 创建方法（转账的方法）</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Repository</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserDaoImpl</span> <span class="keyword">implements</span> <span class="title">UserDao</span> </span>&#123;</span><br><span class="line"> 	<span class="meta">@Autowired</span></span><br><span class="line"> 	<span class="keyword">private</span> JdbcTemplate jdbcTemplate;</span><br><span class="line"> 	<span class="comment">//lucy 转账 100 给 mary</span></span><br><span class="line"> 	<span class="comment">//少钱</span></span><br><span class="line"> 	<span class="meta">@Override</span></span><br><span class="line"> 	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">reduceMoney</span><span class="params">()</span> </span>&#123;</span><br><span class="line"> 	String sql = <span class="string">&quot;update t_account set money=money-? where username=?&quot;</span>;</span><br><span class="line"> 	jdbcTemplate.update(sql,<span class="number">100</span>,<span class="string">&quot;lucy&quot;</span>);</span><br><span class="line"> 	&#125;</span><br><span class="line"> 	<span class="comment">//多钱</span></span><br><span class="line"> 	<span class="meta">@Override</span></span><br><span class="line"> 	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addMoney</span><span class="params">()</span> </span>&#123;</span><br><span class="line"> 	String sql = <span class="string">&quot;update t_account set money=money+? where username=?&quot;</span>;</span><br><span class="line"> 	jdbcTemplate.update(sql,<span class="number">100</span>,<span class="string">&quot;mary&quot;</span>);</span><br><span class="line"> 	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserService</span> </span>&#123;</span><br><span class="line"> 	<span class="comment">//注入 dao</span></span><br><span class="line"> 	<span class="meta">@Autowired</span></span><br><span class="line"> 	<span class="keyword">private</span> UserDao userDao;</span><br><span class="line"> 	<span class="comment">//转账的方法</span></span><br><span class="line"> 	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">accountMoney</span><span class="params">()</span> </span>&#123;</span><br><span class="line"> 	<span class="comment">//lucy 少 100</span></span><br><span class="line"> 	userDao.reduceMoney();</span><br><span class="line"> 	<span class="comment">//mary 多 100</span></span><br><span class="line"> 	userDao.addMoney();</span><br><span class="line"> 	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4、上面代码，如果正常执行没有问题的，但是如果代码执行过程中出现异常就会有问题"><a href="#4、上面代码，如果正常执行没有问题的，但是如果代码执行过程中出现异常就会有问题" class="headerlink" title="4、上面代码，如果正常执行没有问题的，但是如果代码执行过程中出现异常就会有问题"></a>4、上面代码，如果正常执行没有问题的，但是如果代码执行过程中出现异常就会有问题</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//转账的方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">accountMoney</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="comment">//lucy少100</span></span><br><span class="line">            userDao.reduceMoney();</span><br><span class="line"></span><br><span class="line">            <span class="comment">//模拟异常</span></span><br><span class="line">            <span class="keyword">int</span> i = <span class="number">10</span>/<span class="number">0</span>;</span><br><span class="line"> </span><br><span class="line">            <span class="comment">//mary多100</span></span><br><span class="line">            userDao.addMoney();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在上面的例子中，如果在少钱方法执行以后发生了异常，就会导致少钱方法得到了执行而多钱方法没有得到执行的现象出现，即总的钱少了 100，从而不满足事务的一致性原则。</p>
+<h3 id="5-如何解决上面的问题？"><a href="#5-如何解决上面的问题？" class="headerlink" title="5. 如何解决上面的问题？"></a>5. 如何解决上面的问题？</h3><p>使用事务来解决，也就是一个失败的话，所有的都失败。</p>
+<h4 id="事务操作过程"><a href="#事务操作过程" class="headerlink" title="事务操作过程"></a>事务操作过程</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//转账的方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">accountMoney</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="comment">//        try &#123;</span></span><br><span class="line">            <span class="comment">//第一步 开启事务</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">//第二步 进行业务操作</span></span><br><span class="line">            <span class="comment">//lucy少100</span></span><br><span class="line">            userDao.reduceMoney();</span><br><span class="line"></span><br><span class="line">            <span class="comment">//模拟异常</span></span><br><span class="line">            <span class="keyword">int</span> i = <span class="number">10</span>/<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//mary多100</span></span><br><span class="line">            userDao.addMoney();</span><br><span class="line"></span><br><span class="line">            <span class="comment">//第三步 没有发生异常，提交事务</span></span><br><span class="line"><span class="comment">//        &#125;catch(Exception e) &#123;</span></span><br><span class="line">            <span class="comment">//第四步 出现异常，事务回滚（回滚就是回到操作前的状态）</span></span><br><span class="line"><span class="comment">//        &#125;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Ⅲ-事务操作（Spring-事务管理介绍）"><a href="#Ⅲ-事务操作（Spring-事务管理介绍）" class="headerlink" title="Ⅲ.事务操作（Spring 事务管理介绍）"></a>Ⅲ.事务操作（Spring 事务管理介绍）</h2><h3 id="1、事务添加到-JavaEE-三层结构里面-Service-层（业务逻辑层）"><a href="#1、事务添加到-JavaEE-三层结构里面-Service-层（业务逻辑层）" class="headerlink" title="1、事务添加到 JavaEE 三层结构里面 Service 层（业务逻辑层）"></a>1、事务添加到 JavaEE 三层结构里面 Service 层（业务逻辑层）</h3><p>理论上加到哪一层都可以，但是建议加到Service层中去，因为Service层会调用Dao层里面的多个方法。</p>
+<h3 id="2、在-Spring-进行事务管理操作"><a href="#2、在-Spring-进行事务管理操作" class="headerlink" title="2、在 Spring 进行事务管理操作"></a>2、在 Spring 进行事务管理操作</h3><p>有两种方式：编程式事务管理和声明式事务管理（使用）</p>
+<h3 id="3、声明式事务管理"><a href="#3、声明式事务管理" class="headerlink" title="3、声明式事务管理"></a>3、声明式事务管理</h3><p>（1）基于注解方式（使用） </p>
+<p>（2）基于 xml 配置文件方式</p>
+<h3 id="4、在-Spring-进行声明式事务管理，底层使用-AOP-原理"><a href="#4、在-Spring-进行声明式事务管理，底层使用-AOP-原理" class="headerlink" title="4、在 Spring 进行声明式事务管理，底层使用 AOP 原理"></a>4、在 Spring 进行声明式事务管理，底层使用 AOP 原理</h3><p>即在不改变源代码的情况下可以增强类中的方法。</p>
+<h3 id="5、Spring-事务管理-API"><a href="#5、Spring-事务管理-API" class="headerlink" title="5、Spring 事务管理 API"></a>5、Spring 事务管理 API</h3><p>提供一个接口，代表事务管理器（Spring中做事务管理都是用接口做到的），这个接口针对不同的框架提供不同的实现类。</p>
+<p><img src="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210409171918791.png" alt="image-20210409171918791"></p>
+<h2 id="Ⅳ-事务操作（注解声明式事务管理）"><a href="#Ⅳ-事务操作（注解声明式事务管理）" class="headerlink" title="Ⅳ.事务操作（注解声明式事务管理）"></a>Ⅳ.事务操作（注解声明式事务管理）</h2><h3 id="1、在-spring-配置文件配置事务管理器"><a href="#1、在-spring-配置文件配置事务管理器" class="headerlink" title="1、在 spring 配置文件配置事务管理器"></a>1、在 spring 配置文件配置事务管理器</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--创建事务管理器,就是创建实现类的对象--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;transactionManager&quot;</span> </span></span><br><span class="line"><span class="tag"><span class="attr">class</span>=<span class="string">&quot;org.springframework.jdbc.datasource.DataSourceTransactionManager&quot;</span>&gt;</span></span><br><span class="line"> <span class="comment">&lt;!--注入数据源--&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;dataSource&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;dataSource&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2、在-spring-配置文件，开启事务注解"><a href="#2、在-spring-配置文件，开启事务注解" class="headerlink" title="2、在 spring 配置文件，开启事务注解"></a>2、在 spring 配置文件，开启事务注解</h3><p>（1）在 spring 配置文件引入名称空间 tx</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.springframework.org/schema/beans&quot;</span> </span></span><br><span class="line"><span class="tag"> <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span> </span></span><br><span class="line"><span class="tag"> <span class="attr">xmlns:context</span>=<span class="string">&quot;http://www.springframework.org/schema/context&quot;</span> </span></span><br><span class="line"><span class="tag"> <span class="attr">xmlns:aop</span>=<span class="string">&quot;http://www.springframework.org/schema/aop&quot;</span> </span></span><br><span class="line"><span class="tag"> <span class="attr">xmlns:tx</span>=<span class="string">&quot;http://www.springframework.org/schema/tx&quot;</span> </span></span><br><span class="line"><span class="tag"> <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://www.springframework.org/schema/beans </span></span></span><br><span class="line"><span class="tag"><span class="string">http://www.springframework.org/schema/beans/spring-beans.xsd </span></span></span><br><span class="line"><span class="tag"><span class="string"> http://www.springframework.org/schema/context </span></span></span><br><span class="line"><span class="tag"><span class="string">http://www.springframework.org/schema/context/spring-context.xsd </span></span></span><br><span class="line"><span class="tag"><span class="string"> http://www.springframework.org/schema/aop </span></span></span><br><span class="line"><span class="tag"><span class="string">http://www.springframework.org/schema/aop/spring-aop.xsd  http://www.springframework.org/schema/tx </span></span></span><br><span class="line"><span class="tag"><span class="string">http://www.springframework.org/schema/tx/spring-tx.xsd&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>（2）开启事务注解</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--开启事务注解--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">tx:annotation-driven</span> <span class="attr">transactionManager</span>=<span class="string">&quot;transactionManager&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">tx:annotation-driven</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3、在-service-类上面（或者-service-类里面方法上面）添加事务注解"><a href="#3、在-service-类上面（或者-service-类里面方法上面）添加事务注解" class="headerlink" title="3、在 service 类上面（或者 service 类里面方法上面）添加事务注解"></a>3、在 service 类上面（或者 service 类里面方法上面）添加事务注解</h3><p>（1）@Transactional，这个注解添加到类上面，也可以添加方法上面 </p>
+<p>（2）如果把这个注解添加类上面，这个类里面所有的方法都添加事务 </p>
+<p>（3）如果把这个注解添加方法上面，那么只是为这个方法添加事务</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="meta">@Transactional</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserService</span> </span>&#123;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Ⅴ-事务操作（声明式事务管理参数配置）"><a href="#Ⅴ-事务操作（声明式事务管理参数配置）" class="headerlink" title="Ⅴ.事务操作（声明式事务管理参数配置）"></a>Ⅴ.事务操作（声明式事务管理参数配置）</h2><h3 id="1、在-service-类上面添加注解-Transactional，在这个注解里面可以配置事务相关参数"><a href="#1、在-service-类上面添加注解-Transactional，在这个注解里面可以配置事务相关参数" class="headerlink" title="1、在 service 类上面添加注解@Transactional，在这个注解里面可以配置事务相关参数"></a>1、在 service 类上面添加注解@Transactional，在这个注解里面可以配置事务相关参数</h3><p><img src="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210409174536216.png" alt="image-20210409174536216"></p>
+<h3 id="2、propagation：事务传播行为"><a href="#2、propagation：事务传播行为" class="headerlink" title="2、propagation：事务传播行为"></a>2、propagation：事务传播行为</h3><p>（1）多事务方法直接进行调用，这个过程中事务 是如何进行管理的</p>
+<p><img src="https://gitee.com/AD-Gai-Code/pic-go/raw/master/%E5%9B%BE7.png" alt="图7"></p>
+<p>事务的传播行为可以由传播属性决定。Spring指定了7种类传播行为。</p>
+<p><img src="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210409214546605.png" alt="image-20210409214546605"></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="meta">@Transactional(propagation = Propagation.REQUIRED)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserService</span> </span>&#123;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3、isolation：事务隔离级别"><a href="#3、isolation：事务隔离级别" class="headerlink" title="3、isolation：事务隔离级别"></a>3、isolation：事务隔离级别</h3><p>隔离级别是为了解决事务中的隔离性，事务的隔离性指的是在并发操作中产生的一些问题。</p>
+<p> 事务有特性称为隔离性，多事务操作之间不会产生影响。但是不考虑隔离性会产生很多问题 </p>
+<ul>
+<li><p> 有三个读问题：脏读、不可重复读、虚（幻）读</p>
+</li>
+<li><p> 脏读：一个未提交事务读取到另一个未提交事务的数据</p>
+</li>
+<li><p> 不可重复读：一个未提交事务读取到另一提交事务修改数据</p>
+</li>
+</ul>
+<p><img src="https://gitee.com/AD-Gai-Code/pic-go/raw/master/%E5%9B%BE8.png" alt="图8"></p>
+<p>（5）虚读：一个未提交事务读取到另一提交事务添加数据 </p>
+<p>（6）解决：通过设置事务隔离级别，解决读问题</p>
+<p><img src="https://gitee.com/AD-Gai-Code/pic-go/raw/master/%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB.bmp" alt="事务隔离级别"></p>
+<h3 id="4、timeout：超时时间"><a href="#4、timeout：超时时间" class="headerlink" title="4、timeout：超时时间"></a>4、timeout：超时时间</h3><p>（1）事务需要在一定时间内进行提交，如果不提交进行回滚 </p>
+<p>（2）默认值是 -1 ，设置时间以秒单位进行计算</p>
+<h3 id="5、readOnly：是否只读"><a href="#5、readOnly：是否只读" class="headerlink" title="5、readOnly：是否只读"></a>5、readOnly：是否只读</h3><p>（1）读：查询操作，写：添加修改删除操作 </p>
+<p>（2）readOnly 默认值 false，表示可以查询，可以添加修改删除操作</p>
+<p>（3）设置 readOnly 值是 true，设置成 true 之后，只能查询</p>
+<h3 id="6、rollbackFor：回滚"><a href="#6、rollbackFor：回滚" class="headerlink" title="6、rollbackFor：回滚"></a>6、rollbackFor：回滚</h3><p>设置出现哪些异常进行事务回滚</p>
+<h3 id="7、noRollbackFor：不回滚"><a href="#7、noRollbackFor：不回滚" class="headerlink" title="7、noRollbackFor：不回滚"></a>7、noRollbackFor：不回滚</h3><p>设置出现哪些异常不进行事务回滚</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="meta">@Transactional(readOnly = false,timeout = -1,propagation = Propagation.REQUIRED,isolation = Isolation.REPEATABLE_READ)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserService</span> </span>&#123;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Ⅵ-事务操作（XML-声明式事务管理）"><a href="#Ⅵ-事务操作（XML-声明式事务管理）" class="headerlink" title="Ⅵ.事务操作（XML 声明式事务管理）"></a>Ⅵ.事务操作（XML 声明式事务管理）</h2><h3 id="1、在-spring-配置文件中进行配置"><a href="#1、在-spring-配置文件中进行配置" class="headerlink" title="1、在 spring 配置文件中进行配置"></a>1、在 spring 配置文件中进行配置</h3><p>第一步 配置事务管理器 </p>
+<p>第二步 配置通知(增强的部分就叫做通知，这里要增强的部分就是事务)</p>
+<p>第三步 配置切入点（即将事务加到哪个类的哪个方法上）和切面（就是把事务加到方法的过程）</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 组件扫描 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">&quot;com.atguigu&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 数据库连接池 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;dataSource&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.alibaba.druid.pool.DruidDataSource&quot;</span></span></span><br><span class="line"><span class="tag">          <span class="attr">destroy-method</span>=<span class="string">&quot;close&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;url&quot;</span> <span class="attr">value</span>=<span class="string">&quot;jdbc:mysql:///user_db&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span> <span class="attr">value</span>=<span class="string">&quot;root&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> <span class="attr">value</span>=<span class="string">&quot;root&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;driverClassName&quot;</span> <span class="attr">value</span>=<span class="string">&quot;com.mysql.jdbc.Driver&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- JdbcTemplate对象 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;jdbcTemplate&quot;</span> <span class="attr">class</span>=<span class="string">&quot;org.springframework.jdbc.core.JdbcTemplate&quot;</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--注入dataSource--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;dataSource&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;dataSource&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--1 创建事务管理器--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;transactionManager&quot;</span> <span class="attr">class</span>=<span class="string">&quot;org.springframework.jdbc.datasource.DataSourceTransactionManager&quot;</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--注入数据源--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;dataSource&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;dataSource&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--2 配置通知--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tx:advice</span> <span class="attr">id</span>=<span class="string">&quot;txadvice&quot;</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--配置事务参数--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tx:attributes</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--指定哪种规则的方法上面添加事务--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">tx:method</span> <span class="attr">name</span>=<span class="string">&quot;accountMoney&quot;</span> <span class="attr">propagation</span>=<span class="string">&quot;REQUIRED&quot;</span>/&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--&lt;tx:method name=&quot;account*&quot;/&gt;--&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tx:attributes</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tx:advice</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--3 配置切入点和切面--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--配置切入点--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">&quot;pt&quot;</span> <span class="attr">expression</span>=<span class="string">&quot;execution(* com.atguigu.spring5.service.UserService.*(..))&quot;</span>/&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--配置切面--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aop:advisor</span> <span class="attr">advice-ref</span>=<span class="string">&quot;txadvice&quot;</span> <span class="attr">pointcut-ref</span>=<span class="string">&quot;pt&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Ⅶ-事务操作（完全注解声明式事务管理）"><a href="#Ⅶ-事务操作（完全注解声明式事务管理）" class="headerlink" title="Ⅶ.事务操作（完全注解声明式事务管理）"></a>Ⅶ.事务操作（完全注解声明式事务管理）</h2><h3 id="1、创建配置类，使用配置类替代-xml-配置文件"><a href="#1、创建配置类，使用配置类替代-xml-配置文件" class="headerlink" title="1、创建配置类，使用配置类替代 xml 配置文件"></a>1、创建配置类，使用配置类替代 xml 配置文件</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span> <span class="comment">//配置类</span></span><br><span class="line"><span class="meta">@ComponentScan(basePackages = &quot;com.atguigu&quot;)</span> <span class="comment">//组件扫描</span></span><br><span class="line"><span class="meta">@EnableTransactionManagement</span> <span class="comment">//开启事务</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TxConfig</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//创建数据库连接池</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> DruidDataSource <span class="title">getDruidDataSource</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        DruidDataSource dataSource = <span class="keyword">new</span> DruidDataSource();</span><br><span class="line">        dataSource.setDriverClassName(<span class="string">&quot;com.mysql.jdbc.Driver&quot;</span>);</span><br><span class="line">        dataSource.setUrl(<span class="string">&quot;jdbc:mysql:///user_db&quot;</span>);</span><br><span class="line">        dataSource.setUsername(<span class="string">&quot;root&quot;</span>);</span><br><span class="line">        dataSource.setPassword(<span class="string">&quot;root&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> dataSource;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//创建JdbcTemplate对象</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> JdbcTemplate <span class="title">getJdbcTemplate</span><span class="params">(DataSource dataSource)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//到ioc容器中根据类型找到dataSource</span></span><br><span class="line">        JdbcTemplate jdbcTemplate = <span class="keyword">new</span> JdbcTemplate();</span><br><span class="line">        <span class="comment">//注入dataSource</span></span><br><span class="line">        jdbcTemplate.setDataSource(dataSource);</span><br><span class="line">        <span class="keyword">return</span> jdbcTemplate;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//创建事务管理器</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> DataSourceTransactionManager <span class="title">getDataSourceTransactionManager</span><span class="params">(DataSource dataSource)</span> </span>&#123;</span><br><span class="line">        DataSourceTransactionManager transactionManager = <span class="keyword">new</span> DataSourceTransactionManager();</span><br><span class="line">        transactionManager.setDataSource(dataSource);</span><br><span class="line">        <span class="keyword">return</span> transactionManager;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <categories>
