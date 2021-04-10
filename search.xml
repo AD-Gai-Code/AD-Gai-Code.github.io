@@ -782,6 +782,8 @@
     <url>/2021/04/07/Spring5%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0(%E4%B8%89)/</url>
     <content><![CDATA[<h1 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h1><h2 id="Ⅰ-事务操作-事务的概念"><a href="#Ⅰ-事务操作-事务的概念" class="headerlink" title="Ⅰ.事务操作(事务的概念)"></a>Ⅰ.事务操作(事务的概念)</h2><h3 id="1、什么是事务"><a href="#1、什么是事务" class="headerlink" title="1、什么是事务"></a>1、什么是事务</h3><p>（1）事务是数据库操作最基本单元，逻辑上的一组操作，要么都成功，如果有一个失败所有操作都失败。</p>
 <p>（2）典型场景：银行转账。</p>
+<span id="more"></span>
+
 <ul>
 <li><p>lucy 转账 100 元 给 mary </p>
 </li>
