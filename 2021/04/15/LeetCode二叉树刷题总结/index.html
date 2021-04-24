@@ -38,7 +38,7 @@
 <meta property="og:image" content="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210418225713427.png">
 <meta property="og:image" content="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210419230338849.png">
 <meta property="article:published_time" content="2021-04-15T13:03:53.526Z">
-<meta property="article:modified_time" content="2021-04-21T06:33:06.174Z">
+<meta property="article:modified_time" content="2021-04-22T14:51:34.666Z">
 <meta property="article:author" content="AiLaodu">
 <meta property="article:tag" content="LeetCode刷题">
 <meta name="twitter:card" content="summary">
@@ -296,7 +296,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">4.5k</span>阅读时长: <span class="post-count reading-time">18 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">5.1k</span>阅读时长: <span class="post-count reading-time">21 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -530,7 +530,15 @@ height:50vh;
 
 <h2 id="226-翻转二叉树"><a href="#226-翻转二叉树" class="headerlink" title="226.翻转二叉树"></a>226.<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/invert-binary-tree/">翻转二叉树</a></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">题目描述：翻转一棵二叉树。</span><br><span class="line">题解：</span><br><span class="line">    <span class="comment">/*我们在做二叉树题目时候，第一想到的应该是用 递归 来解决。</span></span><br><span class="line"><span class="comment">仔细看下题目的 输入 和 输出，输出的左右子树的位置跟输入正好是相反的，于是我们可以递归的交换左右子树来完成这道题。</span></span><br><span class="line"><span class="comment">其实就是交换一下左右节点，然后再递归的交换左节点，右节点</span></span><br><span class="line"><span class="comment">总结出递归的两个条件如下：</span></span><br><span class="line"><span class="comment">   终止条件：当前节点为 null 时返回</span></span><br><span class="line"><span class="comment">   交换当前节点的左右节点，再递归的交换当前节点的左节点，递归的交换当前节点的右节点</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">invertTree</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        TreeNode temp = root.left;</span><br><span class="line">        root.left = root.right;</span><br><span class="line">        root.right = temp;</span><br><span class="line">        </span><br><span class="line">        invertTree(root.left);</span><br><span class="line">        invertTree(root.right);</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>​    </p>
+<p>​    ##  235.<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-search-tree/">二叉搜索树的最近公共祖先</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">题目描述：给定一个二叉搜索树, 找到该树中两个指定节点的最近公共祖先。</span><br><span class="line">百度百科中最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（一个节点也可以是它自己的祖先）。”</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">题解：</span><br><span class="line">    <span class="comment">/*我们从根节点开始遍历；</span></span><br><span class="line"><span class="comment">    如果当前节点的值大于 pp 和 qq 的值，说明 pp 和 qq 应该在当前节点的左子树，因此将当前节点移动到它的左子节点；</span></span><br><span class="line"><span class="comment">    如果当前节点的值小于 pp 和 qq 的值，说明 pp 和 qq 应该在当前节点的右子树，因此将当前节点移动到它的右子节点；</span></span><br><span class="line"><span class="comment">    如果当前节点的值不满足上述两条要求，那么说明当前节点就是「分岔点」。此时，pp 和 qq 要么在当前节点的不同的子树中，要么其中一个就是当前节点。</span></span><br><span class="line"><span class="comment">    可以发现，如果我们将这两个节点放在一起遍历，我们就省去了存储路径需要的空间。*/</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> TreeNode <span class="title">lowestCommonAncestor</span><span class="params">(TreeNode root, TreeNode p, TreeNode q)</span> </span>&#123;</span><br><span class="line">        TreeNode ancient = root;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(ancient.val &gt; p.val &amp;&amp; ancient.val &gt; q.val)&#123;</span><br><span class="line">                ancient = ancient.left;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span>(ancient.val &lt; p.val &amp;&amp; ancient.val &lt; q.val)&#123;</span><br><span class="line">                ancient = ancient.right;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ancient;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="404-左叶子之和"><a href="#404-左叶子之和" class="headerlink" title="404.左叶子之和"></a>404.<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/sum-of-left-leaves/">左叶子之和</a></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">题目描述：</span><br><span class="line">    计算给定二叉树的所有左叶子之和。</span><br><span class="line">    <span class="number">3</span></span><br><span class="line">   / \</span><br><span class="line">  <span class="number">9</span>  <span class="number">20</span></span><br><span class="line">    /  \</span><br><span class="line">   <span class="number">15</span>   <span class="number">7</span></span><br><span class="line"></span><br><span class="line">在这个二叉树中，有两个左叶子，分别是 <span class="number">9</span> 和 <span class="number">15</span>，所以返回 <span class="number">24</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">题解：</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    一个节点为「左叶子」节点，当且仅当它是某个节点的左子节点，并且它是一个叶子结点。因此我们可以考虑对整棵树进行遍历，当我们遍历到节点 \textit&#123;node&#125;node 时，如果它的左子节点是一个叶子结点，那么就将它的左子节点的值累加计入答案。</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">sumOfLeftLeaves</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> root != <span class="keyword">null</span> ? dfs(root) : <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">dfs</span><span class="params">(TreeNode node)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span>(node.left != <span class="keyword">null</span>)&#123;</span><br><span class="line">            res += isLeafNode(node.left) ? node.left.val : dfs(node.left);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(node.right != <span class="keyword">null</span> &amp;&amp; !isLeafNode(node.right))&#123;</span><br><span class="line">            res += dfs(node.right);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res; </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isLeafNode</span><span class="params">(TreeNode node)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> node.left == <span class="keyword">null</span> &amp;&amp; node.right == <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
     </article>
     <!-- license  -->
@@ -539,7 +547,7 @@ height:50vh;
             <p>原文作者：<a href="http://example.com">AiLaodu</a>
             <!--<p>原文链接：<a href="http://example.com/2021/04/15/LeetCode%E4%BA%8C%E5%8F%89%E6%A0%91%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93/">http://example.com/2021/04/15/LeetCode%E4%BA%8C%E5%8F%89%E6%A0%91%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93/</a>-->
             <p>发表日期：<a href="http://example.com/2021/04/15/LeetCode%E4%BA%8C%E5%8F%89%E6%A0%91%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93/">April 15th 2021, 9:03:53 pm</a>
-            <p>更新日期：<a href="http://example.com/2021/04/15/LeetCode%E4%BA%8C%E5%8F%89%E6%A0%91%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93/">April 21st 2021, 2:33:06 pm</a>
+            <p>更新日期：<a href="http://example.com/2021/04/15/LeetCode%E4%BA%8C%E5%8F%89%E6%A0%91%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93/">April 22nd 2021, 10:51:34 pm</a>
             <!--<p>版权声明：本文采用<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>-->
         </div>
     
@@ -687,7 +695,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9B%B6%E3%80%81%E5%88%A4%E6%96%AD-BST-%E7%9A%84%E5%90%88%E6%B3%95%E6%80%A7"><span class="toc-number">1.</span> <span class="toc-text">零、判断 BST 的合法性</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%9C%A8-BST-%E4%B8%AD%E6%9F%A5%E6%89%BE%E4%B8%80%E4%B8%AA%E6%95%B0%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8"><span class="toc-number">2.</span> <span class="toc-text">一、在 BST 中查找一个数是否存在</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%9C%A8-BST-%E4%B8%AD%E6%8F%92%E5%85%A5%E4%B8%80%E4%B8%AA%E6%95%B0"><span class="toc-number">3.</span> <span class="toc-text">二、在 BST 中插入一个数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%9C%A8-BST-%E4%B8%AD%E5%88%A0%E9%99%A4%E4%B8%80%E4%B8%AA%E6%95%B0"><span class="toc-number">4.</span> <span class="toc-text">三、在 BST 中删除一个数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%9C%80%E5%90%8E%E6%80%BB%E7%BB%93"><span class="toc-number">5.</span> <span class="toc-text">四、最后总结</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E3%80%81LeetCode%E7%9B%B8%E5%85%B3%E9%A2%98%E7%9B%AE"><span class="toc-number">6.</span> <span class="toc-text">五、LeetCode相关题目</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#100-%E7%9B%B8%E5%90%8C%E7%9A%84%E6%A0%91"><span class="toc-number">6.1.</span> <span class="toc-text">100.相同的树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#101-%E5%AF%B9%E7%A7%B0%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-number">6.2.</span> <span class="toc-text">101.对称二叉树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#104-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E6%B7%B1%E5%BA%A6"><span class="toc-number">6.3.</span> <span class="toc-text">104.二叉树的最大深度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#108-%E5%B0%86%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E8%BD%AC%E5%AD%98%E4%B8%BA%E6%90%9C%E7%B4%A2%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-number">6.4.</span> <span class="toc-text">108.将有序数组转存为搜索二叉树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#110-%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-number">6.5.</span> <span class="toc-text">110.平衡二叉树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#111-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%B0%8F%E6%B7%B1%E5%BA%A6"><span class="toc-number">6.6.</span> <span class="toc-text">111.二叉树的最小深度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#112-%E8%B7%AF%E5%BE%84%E6%80%BB%E5%92%8C"><span class="toc-number">6.7.</span> <span class="toc-text">112.路径总和</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#226-%E7%BF%BB%E8%BD%AC%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-number">6.8.</span> <span class="toc-text">226.翻转二叉树</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9B%B6%E3%80%81%E5%88%A4%E6%96%AD-BST-%E7%9A%84%E5%90%88%E6%B3%95%E6%80%A7"><span class="toc-number">1.</span> <span class="toc-text">零、判断 BST 的合法性</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%9C%A8-BST-%E4%B8%AD%E6%9F%A5%E6%89%BE%E4%B8%80%E4%B8%AA%E6%95%B0%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8"><span class="toc-number">2.</span> <span class="toc-text">一、在 BST 中查找一个数是否存在</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%9C%A8-BST-%E4%B8%AD%E6%8F%92%E5%85%A5%E4%B8%80%E4%B8%AA%E6%95%B0"><span class="toc-number">3.</span> <span class="toc-text">二、在 BST 中插入一个数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%9C%A8-BST-%E4%B8%AD%E5%88%A0%E9%99%A4%E4%B8%80%E4%B8%AA%E6%95%B0"><span class="toc-number">4.</span> <span class="toc-text">三、在 BST 中删除一个数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%9C%80%E5%90%8E%E6%80%BB%E7%BB%93"><span class="toc-number">5.</span> <span class="toc-text">四、最后总结</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E3%80%81LeetCode%E7%9B%B8%E5%85%B3%E9%A2%98%E7%9B%AE"><span class="toc-number">6.</span> <span class="toc-text">五、LeetCode相关题目</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#100-%E7%9B%B8%E5%90%8C%E7%9A%84%E6%A0%91"><span class="toc-number">6.1.</span> <span class="toc-text">100.相同的树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#101-%E5%AF%B9%E7%A7%B0%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-number">6.2.</span> <span class="toc-text">101.对称二叉树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#104-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E6%B7%B1%E5%BA%A6"><span class="toc-number">6.3.</span> <span class="toc-text">104.二叉树的最大深度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#108-%E5%B0%86%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E8%BD%AC%E5%AD%98%E4%B8%BA%E6%90%9C%E7%B4%A2%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-number">6.4.</span> <span class="toc-text">108.将有序数组转存为搜索二叉树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#110-%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-number">6.5.</span> <span class="toc-text">110.平衡二叉树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#111-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%B0%8F%E6%B7%B1%E5%BA%A6"><span class="toc-number">6.6.</span> <span class="toc-text">111.二叉树的最小深度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#112-%E8%B7%AF%E5%BE%84%E6%80%BB%E5%92%8C"><span class="toc-number">6.7.</span> <span class="toc-text">112.路径总和</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#226-%E7%BF%BB%E8%BD%AC%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-number">6.8.</span> <span class="toc-text">226.翻转二叉树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#404-%E5%B7%A6%E5%8F%B6%E5%AD%90%E4%B9%8B%E5%92%8C"><span class="toc-number">6.9.</span> <span class="toc-text">404.左叶子之和</span></a></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -821,9 +829,20 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 11
+        Total : 12
         </div>
         <!-- search  -->
         
@@ -910,6 +929,20 @@ top:50vh;
             <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2021/04/07/Spring5%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0(%E4%B8%89)/" >Spring5框架学习系列（三）</a>
         </li>
     
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2021/04/24/mybatis%E7%AC%94%E8%AE%B0(%E4%B8%80)/" >Mybatis 学习（一）</a>
+        </li>
+    
     </div>
   </div>
         <div class="sidebar-panel-tags">
@@ -919,13 +952,15 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="数据结构与算法"><span class="iconfont-archer">&#xe606;</span>数据结构与算法</span>
     
-        <span class="sidebar-tag-name" data-tags="Java框架"><span class="iconfont-archer">&#xe606;</span>Java框架</span>
-    
         <span class="sidebar-tag-name" data-tags="JavaSE"><span class="iconfont-archer">&#xe606;</span>JavaSE</span>
     
         <span class="sidebar-tag-name" data-tags="基础回顾"><span class="iconfont-archer">&#xe606;</span>基础回顾</span>
     
         <span class="sidebar-tag-name" data-tags="LeetCode刷题"><span class="iconfont-archer">&#xe606;</span>LeetCode刷题</span>
+    
+        <span class="sidebar-tag-name" data-tags="Spring"><span class="iconfont-archer">&#xe606;</span>Spring</span>
+    
+        <span class="sidebar-tag-name" data-tags="Mybatis"><span class="iconfont-archer">&#xe606;</span>Mybatis</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -964,13 +999,15 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="数据结构与算法"><span class="iconfont-archer">&#xe60a;</span>数据结构与算法</span>
     
-        <span class="sidebar-category-name" data-categories="Java框架"><span class="iconfont-archer">&#xe60a;</span>Java框架</span>
-    
         <span class="sidebar-category-name" data-categories="JavaSE"><span class="iconfont-archer">&#xe60a;</span>JavaSE</span>
     
         <span class="sidebar-category-name" data-categories="基础回顾"><span class="iconfont-archer">&#xe60a;</span>基础回顾</span>
     
         <span class="sidebar-category-name" data-categories="LeetCode刷题"><span class="iconfont-archer">&#xe60a;</span>LeetCode刷题</span>
+    
+        <span class="sidebar-category-name" data-categories="Spring"><span class="iconfont-archer">&#xe60a;</span>Spring</span>
+    
+        <span class="sidebar-category-name" data-categories="Mybatis"><span class="iconfont-archer">&#xe60a;</span>Mybatis</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
