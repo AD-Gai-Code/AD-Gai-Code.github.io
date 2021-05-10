@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" >
+    <meta name="author" content="AiLaodu">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="AiLaodu">
+    
+    <meta name="keywords" content="hexo,hexo主题,个人博客">
+    
+    <meta name="description" content="">
+    <meta property="og:type" content="article">
+<meta property="og:title" content="校园商铺-2项目设计和框架搭建-2实体类设计与表实现">
+<meta property="og:url" content="http://example.com/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-2%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA-2%E5%AE%9E%E4%BD%93%E7%B1%BB%E8%AE%BE%E8%AE%A1%E4%B8%8E%E8%A1%A8%E5%88%9B%E5%BB%BA/index.html">
+<meta property="og:site_name" content="ADGai&#39;s Blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210510111343611.png">
+<meta property="og:image" content="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210510111443457.png">
+<meta property="og:image" content="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210510112052282.png">
+<meta property="og:image" content="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210510112409604.png">
+<meta property="og:image" content="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210510112639282.png">
+<meta property="og:image" content="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210510112916615.png">
+<meta property="og:image" content="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210510113038913.png">
+<meta property="og:image" content="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210510113326362.png">
+<meta property="og:image" content="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210510114206954.png">
+<meta property="og:image" content="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210510114240130.png">
+<meta property="og:image" content="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210510114327572.png">
+<meta property="article:published_time" content="2021-05-10T03:11:34.332Z">
+<meta property="article:modified_time" content="2021-05-10T08:47:46.803Z">
+<meta property="article:author" content="AiLaodu">
+<meta property="article:tag" content="项目-校园商铺">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210510111343611.png">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    
+    <title>校园商铺-2项目设计和框架搭建-2实体类设计与表实现 · 艾老杜的个人博客</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href= "/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <link rel="stylesheet" href= "/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href= "/intro/favicon.png" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script" />
+    <link rel="preload" href="/scripts/main.js" as="script" />
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >LaoDu&#39;s Blog.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">校园商铺-2项目设计和框架搭建-2实体类设计与表实现</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href=/>LaoDu's Blog.</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:50vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/article/13.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            校园商铺-2项目设计和框架搭建-2实体类设计与表实现
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "项目-校园商铺">项目-校园商铺</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">4.1k</span>阅读时长: <span class="post-count reading-time">22 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2021/05/10</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <p><img src="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210510111343611.png" alt="image-20210510111343611"></p>
+<span id="more"></span>
+
+<h1 id="1-区域"><a href="#1-区域" class="headerlink" title="1.区域"></a>1.区域</h1><p><img src="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210510111443457.png" alt="image-20210510111443457"></p>
+<p><strong>权重：显示优先级。权重大的，优先展示</strong></p>
+<h2 id="1-1-创建Area类"><a href="#1-1-创建Area类" class="headerlink" title="1.1 创建Area类"></a>1.1 创建Area类</h2><p>在src/main/java下新建package名称为com.imooc.o2o.entity，新建Area类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Area</span> </span>&#123;</span><br><span class="line">    <span class="comment">/*ID，注意这里之所以用引用类型而不是基本数据类型，</span></span><br><span class="line"><span class="comment">    是因为基本数据类型会给变量附一个默认的值，</span></span><br><span class="line"><span class="comment">    有的属性为默认值是不合理的，空就为空*/</span></span><br><span class="line">    <span class="keyword">private</span> Integer areaId;</span><br><span class="line">    <span class="comment">//名称</span></span><br><span class="line">    <span class="keyword">private</span> String areaName;</span><br><span class="line">    <span class="comment">//权重</span></span><br><span class="line">    <span class="keyword">private</span> Integer priority;</span><br><span class="line">    <span class="comment">//创建时间</span></span><br><span class="line">    <span class="keyword">private</span> Date createTime;</span><br><span class="line">    <span class="comment">//更新时间</span></span><br><span class="line">    <span class="keyword">private</span> Date lastEditTime;</span><br><span class="line"> <span class="comment">//省略setter和getter方法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-2-建立-tb-area表"><a href="#1-2-建立-tb-area表" class="headerlink" title="1.2 建立 tb_area表"></a>1.2 建立 tb_area表</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">create database if not exists o2o default character set &#x3D; &#39;utf8&#39;;</span><br><span class="line">drop table if EXISTS &#96;tb_area&#96;;</span><br><span class="line">create table &#96;tb_area&#96; (</span><br><span class="line">	&#96;area_id&#96; int(2) NOT NULL auto_increment,</span><br><span class="line">	&#96;area_name&#96; varchar(200) NOT NULL,</span><br><span class="line">	&#96;priority&#96; int(2) NOT NULL DEFAULT &#39;0&#39;,</span><br><span class="line">	&#96;create_time&#96; datetime DEFAULT NULL,</span><br><span class="line">	&#96;last_edit_time&#96; datetime DEFAULT NULL,</span><br><span class="line">	PRIMARY key(&#96;area_id&#96;),</span><br><span class="line">	UNIQUE key &#96;UK_AREA&#96;(&#96;area_name&#96;)</span><br><span class="line">) ENGINE&#x3D;INNODB auto_increment&#x3D;1 DEFAULT CHARSET&#x3D;utf8;</span><br><span class="line">select * from tb_area;</span><br></pre></td></tr></table></figure>
+
+<h1 id="2-用户"><a href="#2-用户" class="headerlink" title="2. 用户"></a>2. 用户</h1><p><img src="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210510112052282.png" alt="image-20210510112052282"></p>
+<h2 id="2-1-创建-PersonInfo-类"><a href="#2-1-创建-PersonInfo-类" class="headerlink" title="2.1 创建 PersonInfo 类"></a>2.1 创建 PersonInfo 类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PersonInfo</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 主键ID</span></span><br><span class="line">    <span class="keyword">private</span> Long userId;</span><br><span class="line">    <span class="comment">// 用户名称</span></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="comment">// 用户头像</span></span><br><span class="line">    <span class="keyword">private</span> String profileImg;</span><br><span class="line">    <span class="comment">// 用户邮箱</span></span><br><span class="line">    <span class="keyword">private</span> String email;</span><br><span class="line">    <span class="comment">// 用户性别</span></span><br><span class="line">    <span class="keyword">private</span> String gender;</span><br><span class="line">    <span class="comment">// 可用状态：0、被禁止 1、可用</span></span><br><span class="line">    <span class="keyword">private</span> Integer enableStatus;</span><br><span class="line">    <span class="comment">// 1.顾客 2.店家 3.超级管理员</span></span><br><span class="line">    <span class="keyword">private</span> Integer userType;</span><br><span class="line">    <span class="comment">// 创建时间</span></span><br><span class="line">    <span class="keyword">private</span> Date createTime;</span><br><span class="line">    <span class="comment">// 最近一次的更新时间</span></span><br><span class="line">    <span class="keyword">private</span> Date lastEditTime;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//省略 get 和 set 方法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-2-创建用户信息表"><a href="#2-2-创建用户信息表" class="headerlink" title="2.2 创建用户信息表"></a>2.2 创建用户信息表</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">drop table if EXISTS &#96;tb_person_info&#96;;</span><br><span class="line">create table &#96;tb_person_info&#96; (</span><br><span class="line">	&#96;user_id&#96; int(10) NOT NULL auto_increment,</span><br><span class="line">	&#96;name&#96; varchar(32) default NULL,</span><br><span class="line">	&#96;profile_img&#96; varchar(1024) DEFAULT NULL,</span><br><span class="line">	&#96;email&#96; varchar(1024) DEFAULT NULL,</span><br><span class="line">	&#96;gender&#96; varchar(2) DEFAULT NULL,</span><br><span class="line">	&#96;enable_status&#96; int(2) NOT NULL DEFAULT &#39;0&#39; COMMENT &#39;0:禁止使用本商城，1:允许使用本商城&#39;,</span><br><span class="line">	&#96;user_type&#96; int(2) NOT NULL DEFAULT &#39;1&#39; COMMENT &#39;1:顾客，2:店家，3:超级管理员&#39;,</span><br><span class="line">	&#96;create_time&#96; datetime DEFAULT NULL,</span><br><span class="line">	&#96;last_edit_time&#96; datetime DEFAULT NULL,</span><br><span class="line">	PRIMARY KEY (&#96;user_id&#96;)</span><br><span class="line">) ENGINE&#x3D;INNODB auto_increment&#x3D;1 DEFAULT CHARSET&#x3D;utf8;</span><br><span class="line">select * from tb_person_info;</span><br></pre></td></tr></table></figure>
+
+<h1 id="3-微信账号和本地用户"><a href="#3-微信账号和本地用户" class="headerlink" title="3.微信账号和本地用户"></a>3.微信账号和本地用户</h1><p>微信账号和本地账号通过 用户ID 与 用户信息表 关联</p>
+<p><img src="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210510112409604.png" alt="image-20210510112409604"></p>
+<h2 id="3-1-创建微信账号和本地用户类"><a href="#3-1-创建微信账号和本地用户类" class="headerlink" title="3.1 创建微信账号和本地用户类"></a>3.1 创建微信账号和本地用户类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WechatAuth</span> </span>&#123;</span><br><span class="line">   <span class="comment">// 主键ID</span></span><br><span class="line">   <span class="keyword">private</span> Long wechatAuthId;</span><br><span class="line">   <span class="comment">// 微信获取用户信息的凭证，对于某个公众号具有唯一性</span></span><br><span class="line">   <span class="keyword">private</span> String openId;</span><br><span class="line">   <span class="comment">// 创建时间</span></span><br><span class="line">   <span class="keyword">private</span> Date createTime;</span><br><span class="line">   <span class="comment">// 用户信息，跟用户表关联，所以使用PersonInfo类</span></span><br><span class="line">   <span class="keyword">private</span> PersonInfo personInfo;</span><br><span class="line">  <span class="comment">//省略 get 和 set 方法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LocalAuth</span> </span>&#123;</span><br><span class="line">   <span class="comment">// 主键ID</span></span><br><span class="line">   <span class="keyword">private</span> Long localAuthId;</span><br><span class="line">   <span class="comment">// 帐号</span></span><br><span class="line">   <span class="keyword">private</span> String username;</span><br><span class="line">   <span class="comment">// 密码</span></span><br><span class="line">   <span class="keyword">private</span> String password;</span><br><span class="line">   <span class="comment">// 创建时间</span></span><br><span class="line">   <span class="keyword">private</span> Date createTime;</span><br><span class="line">   <span class="comment">// 最近一次的更新时间</span></span><br><span class="line">   <span class="keyword">private</span> Date lastEditTime;</span><br><span class="line">   <span class="comment">// 个人信息，关系为一一对应</span></span><br><span class="line">   <span class="keyword">private</span> PersonInfo personInfo;</span><br><span class="line">  <span class="comment">//省略 get 和 set 方法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-2-创建微信账号和本地用户表"><a href="#3-2-创建微信账号和本地用户表" class="headerlink" title="3.2 创建微信账号和本地用户表"></a>3.2 创建微信账号和本地用户表</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">drop table if EXISTS &#96;tb_wechat_auth&#96;;</span><br><span class="line">create table &#96;tb_wechat_auth&#96; (</span><br><span class="line">	&#96;wechat_auth_id&#96; int(10) NOT NULL auto_increment,</span><br><span class="line">	&#96;user_id&#96; int(10) NOT NULL,</span><br><span class="line">	&#96;open_id&#96; varchar(1024) NOT NULL,</span><br><span class="line">	&#96;create_time&#96; datetime DEFAULT NULL,</span><br><span class="line">	PRIMARY KEY(&#96;wechat_auth_id&#96;),</span><br><span class="line">	CONSTRAINT &#96;fk_wechatauth_profile&#96; FOREIGN KEY(&#96;user_id&#96;) REFERENCES &#96;tb_person_info&#96;(&#96;user_id&#96;)</span><br><span class="line">) ENGINE&#x3D;INNODB auto_increment&#x3D;1 DEFAULT CHARSET&#x3D;utf8;</span><br><span class="line">alter table tb_wechat_auth add UNIQUE INDEX(&#96;open_id&#96;);</span><br><span class="line">select * from tb_wechat_auth;</span><br><span class="line"></span><br><span class="line">drop table if EXISTS &#96;tb_local_auth&#96;;</span><br><span class="line">create table &#96;tb_local_auth&#96;(</span><br><span class="line">	&#96;local_auth_id&#96; int(10) NOT NULL auto_increment,</span><br><span class="line">	&#96;user_id&#96; int(10) NOT NULL,</span><br><span class="line">	&#96;username&#96; varchar(128) NOT NULL,</span><br><span class="line">	&#96;password&#96; varchar(128) NOT NULL,</span><br><span class="line">	&#96;create_time&#96; datetime DEFAULT NULL,</span><br><span class="line">	&#96;last_edit_time&#96; datetime DEFAULT NULL,</span><br><span class="line">	PRIMARY KEY(&#96;local_auth_id&#96;),</span><br><span class="line">	UNIQUE KEY &#96;uk_local_profile&#96;(&#96;username&#96;),</span><br><span class="line">	CONSTRAINT &#96;fk_localauth_profile&#96; FOREIGN KEY(&#96;user_id&#96;) REFERENCES &#96;tb_person_info&#96;(&#96;user_id&#96;)</span><br><span class="line">)ENGINE&#x3D;INNODB auto_increment&#x3D;1 DEFAULT CHARSET&#x3D;utf8;</span><br><span class="line">select * from tb_local_auth;</span><br></pre></td></tr></table></figure>
+
+<h1 id="4-头条"><a href="#4-头条" class="headerlink" title="4. 头条"></a>4. 头条</h1><p><img src="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210510112639282.png" alt="image-20210510112639282"></p>
+<h2 id="4-1-创建头条类"><a href="#4-1-创建头条类" class="headerlink" title="4.1 创建头条类"></a>4.1 创建头条类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HeadLine</span> </span>&#123;</span><br><span class="line">   <span class="comment">// 主键ID</span></span><br><span class="line">   <span class="keyword">private</span> Long lineId;</span><br><span class="line">   <span class="comment">// 头条名字</span></span><br><span class="line">   <span class="keyword">private</span> String lineName;</span><br><span class="line">   <span class="comment">// 头条链接，点击头条会进入相应链接中</span></span><br><span class="line">   <span class="keyword">private</span> String lineLink;</span><br><span class="line">   <span class="comment">// 头条图片</span></span><br><span class="line">   <span class="keyword">private</span> String lineImg;</span><br><span class="line">   <span class="comment">// 权重，越大越排前显示</span></span><br><span class="line">   <span class="keyword">private</span> Integer priority;</span><br><span class="line">   <span class="comment">// 0.不可用 1.可用</span></span><br><span class="line">   <span class="keyword">private</span> Integer enableStatus;</span><br><span class="line">   <span class="comment">// 创建时间</span></span><br><span class="line">   <span class="keyword">private</span> Date createTime;</span><br><span class="line">   <span class="comment">// 最近一次的更新时间</span></span><br><span class="line">   <span class="keyword">private</span> Date lastEditTime;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-2-创建头条广告"><a href="#4-2-创建头条广告" class="headerlink" title="4.2 创建头条广告"></a>4.2 创建头条广告</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">drop table if EXISTS &#96;tb_head_line&#96;;</span><br><span class="line">create table &#96;tb_head_line&#96; (</span><br><span class="line">	&#96;line_id&#96; int(100) NOT NULL auto_increment,</span><br><span class="line">	&#96;line_name&#96; varchar(1000) DEFAULT NULL,</span><br><span class="line">	&#96;line_link&#96; varchar(2000) NOT NULL,</span><br><span class="line">	&#96;line_img&#96; varchar(2000) NOT NULL,</span><br><span class="line">	&#96;priority&#96; int(2) NOT NULL DEFAULT &#39;0&#39;,</span><br><span class="line">	&#96;enable_status&#96; int(2) DEFAULT &#39;0&#39;,</span><br><span class="line">	&#96;create_time&#96; datetime DEFAULT NULL,</span><br><span class="line">	&#96;last_edit_time&#96; datetime DEFAULT NULL,</span><br><span class="line">	PRIMARY KEY(&#96;line_id&#96;)</span><br><span class="line">) ENGINE&#x3D;INNODB auto_increment&#x3D;1 DEFAULT CHARSET&#x3D;utf8;</span><br><span class="line"></span><br><span class="line">select * from tb_head_line;</span><br></pre></td></tr></table></figure>
+
+<h1 id="5-店铺类别"><a href="#5-店铺类别" class="headerlink" title="5. 店铺类别"></a>5. 店铺类别</h1><p><img src="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210510112916615.png" alt="image-20210510112916615"></p>
+<h2 id="5-1-创建店铺类别类"><a href="#5-1-创建店铺类别类" class="headerlink" title="5.1 创建店铺类别类"></a>5.1 创建店铺类别类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ShopCategory</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">   <span class="comment">// 主键ID</span></span><br><span class="line">   <span class="keyword">private</span> Long shopCategoryId;</span><br><span class="line">   <span class="comment">// 类别名</span></span><br><span class="line">   <span class="keyword">private</span> String shopCategoryName;</span><br><span class="line">   <span class="comment">// 类别描述</span></span><br><span class="line">   <span class="keyword">private</span> String shopCategoryDesc;</span><br><span class="line">   <span class="comment">// 类别图片地址(针对一级类别)</span></span><br><span class="line">   <span class="keyword">private</span> String shopCategoryImg;</span><br><span class="line">   <span class="comment">// 权重，越大越排前显示</span></span><br><span class="line">   <span class="keyword">private</span> Integer priority;</span><br><span class="line">   <span class="comment">// 创建时间</span></span><br><span class="line">   <span class="keyword">private</span> Date createTime;</span><br><span class="line">   <span class="comment">// 最近的更新时间</span></span><br><span class="line">   <span class="keyword">private</span> Date lastEditTime;</span><br><span class="line">   <span class="comment">// 父类别</span></span><br><span class="line">   <span class="keyword">private</span> ShopCategory parent;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-2-创建店铺类别表"><a href="#5-2-创建店铺类别表" class="headerlink" title="5.2 创建店铺类别表"></a>5.2 创建店铺类别表</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">drop table if EXISTS &#96;tb_shop_category&#96;;</span><br><span class="line">create table &#96;tb_shop_category&#96; (</span><br><span class="line">	&#96;shop_category_id&#96; int(11) NOT NULL auto_increment,</span><br><span class="line">	&#96;shop_category_name&#96; varchar(100) NOT NULL DEFAULT &#39;&#39;,</span><br><span class="line">	&#96;shop_category_desc&#96; varchar(1000) DEFAULT &#39;&#39;,</span><br><span class="line">	&#96;shop_category_img&#96; varchar(2000) DEFAULT NULL,</span><br><span class="line">	&#96;priority&#96; int(2) NOT NULL DEFAULT &#39;0&#39;,</span><br><span class="line">	&#96;create_time&#96; datetime DEFAULT NULL,</span><br><span class="line">	&#96;last_edit_time&#96; datetime DEFAULT NULL,</span><br><span class="line">	&#96;parent_id&#96; int(11) DEFAULT NULL,</span><br><span class="line">	PRIMARY KEY(&#96;shop_category_id&#96;),</span><br><span class="line">	CONSTRAINT &#96;fk_shop_category_self&#96; FOREIGN KEY(&#96;parent_id&#96;) REFERENCES &#96;tb_shop_category&#96;(&#96;shop_category_id&#96;)</span><br><span class="line">) ENGINE&#x3D;INNODB auto_increment&#x3D;1 DEFAULT CHARSET&#x3D;utf8;</span><br><span class="line"></span><br><span class="line">select * from tb_shop_category;</span><br></pre></td></tr></table></figure>
+
+<h1 id="6-店铺"><a href="#6-店铺" class="headerlink" title="6. 店铺"></a>6. 店铺</h1><p><img src="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210510113038913.png" alt="image-20210510113038913"></p>
+<h2 id="6-1-店铺类"><a href="#6-1-店铺类" class="headerlink" title="6.1 店铺类"></a>6.1 店铺类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Shop</span> </span>&#123;</span><br><span class="line">   <span class="comment">// 主键ID</span></span><br><span class="line">   <span class="keyword">private</span> Long shopId;</span><br><span class="line">   <span class="comment">// 店铺名称</span></span><br><span class="line">   <span class="keyword">private</span> String shopName;</span><br><span class="line">   <span class="comment">// 店铺简介</span></span><br><span class="line">   <span class="keyword">private</span> String shopDesc;</span><br><span class="line">   <span class="comment">// 店铺地址</span></span><br><span class="line">   <span class="keyword">private</span> String shopAddr;</span><br><span class="line">   <span class="comment">// 店铺号码</span></span><br><span class="line">   <span class="keyword">private</span> String phone;</span><br><span class="line">   <span class="comment">// 店铺门面图片地址</span></span><br><span class="line">   <span class="keyword">private</span> String shopImg;</span><br><span class="line">   <span class="comment">// 权重，越大越排前显示</span></span><br><span class="line">   <span class="keyword">private</span> Integer priority;</span><br><span class="line">   <span class="comment">// 创建时间</span></span><br><span class="line">   <span class="keyword">private</span> Date createTime;</span><br><span class="line">   <span class="comment">// 最近一次更新的时间</span></span><br><span class="line">   <span class="keyword">private</span> Date lastEditTime;</span><br><span class="line">   <span class="comment">// -1.不可用 0.审核中 1.可用</span></span><br><span class="line">   <span class="keyword">private</span> Integer enableStatus;</span><br><span class="line">   <span class="comment">// 超级管理员给店家的提醒，包括为什么审核不通过等</span></span><br><span class="line">   <span class="keyword">private</span> String advice;</span><br><span class="line">   <span class="comment">// 店铺所属区域</span></span><br><span class="line">   <span class="keyword">private</span> Area area;</span><br><span class="line">   <span class="comment">// 店铺是属于哪个店家的</span></span><br><span class="line">   <span class="keyword">private</span> PersonInfo owner;</span><br><span class="line">   <span class="comment">// 店铺类别</span></span><br><span class="line">   <span class="keyword">private</span> ShopCategory shopCategory;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-2-店铺表"><a href="#6-2-店铺表" class="headerlink" title="6.2 店铺表"></a>6.2 店铺表</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">drop table if EXISTS &#96;tb_shop&#96;;</span><br><span class="line">create table &#96;tb_shop&#96; (</span><br><span class="line">	&#96;shop_id&#96; int(10) NOT NULL auto_increment,</span><br><span class="line">	&#96;owner_id&#96; int(10) NOT NULL COMMENT &#39;店铺创建人&#39;,</span><br><span class="line">	&#96;area_id&#96; int(5) DEFAULT NULL,</span><br><span class="line">	&#96;shop_category_id&#96; int(11) DEFAULT NULL,</span><br><span class="line">	&#96;shop_name&#96; varchar(256) NOT NULL,</span><br><span class="line">	&#96;shop_desc&#96; varchar(1024) DEFAULT NULL,</span><br><span class="line">	&#96;shop_addr&#96; varchar(200) DEFAULT NULL,</span><br><span class="line">	&#96;phone&#96; varchar(128) DEFAULT NULL,</span><br><span class="line">	&#96;shop_img&#96; varchar(1024) DEFAULT NULL,</span><br><span class="line">	&#96;priority&#96; int(3) DEFAULT &#39;0&#39;,</span><br><span class="line">	&#96;create_time&#96; datetime DEFAULT NULL,</span><br><span class="line">	&#96;last_edit_time&#96; datetime DEFAULT NULL,</span><br><span class="line">	&#96;enable_status&#96; int(2) NOT NULL DEFAULT &#39;0&#39;,</span><br><span class="line">	&#96;advice&#96; varchar(255) DEFAULT NULL,</span><br><span class="line">	PRIMARY KEY(&#96;shop_id&#96;),</span><br><span class="line">	CONSTRAINT &#96;fk_shop_area&#96; FOREIGN KEY(&#96;area_id&#96;) REFERENCES &#96;tb_area&#96;(&#96;area_id&#96;),</span><br><span class="line">	CONSTRAINT &#96;fk_shop_profile&#96; FOREIGN KEY(&#96;owner_id&#96;) REFERENCES &#96;tb_person_info&#96;(&#96;user_id&#96;),</span><br><span class="line">	CONSTRAINT &#96;fk_shop_shopcate&#96; FOREIGN KEY(&#96;shop_category_id&#96;) REFERENCES &#96;tb_shop_category&#96;(&#96;shop_category_id&#96;)</span><br><span class="line">) ENGINE&#x3D;INNODB auto_increment&#x3D;1 DEFAULT CHARSET&#x3D;utf8;</span><br><span class="line"></span><br><span class="line">select * from tb_shop;</span><br></pre></td></tr></table></figure>
+
+<h1 id="7-商品类别"><a href="#7-商品类别" class="headerlink" title="7. 商品类别"></a>7. 商品类别</h1><h2 id="7-1-商品类别类"><a href="#7-1-商品类别类" class="headerlink" title="7.1 商品类别类"></a>7.1 商品类别类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProductCategory</span> </span>&#123;</span><br><span class="line">   <span class="comment">// 主键ID</span></span><br><span class="line">   <span class="keyword">private</span> Long productCategoryId;</span><br><span class="line">   <span class="comment">// 该类别是属于哪个店铺的</span></span><br><span class="line">   <span class="keyword">private</span> Long shopId;</span><br><span class="line">   <span class="comment">// 类别名</span></span><br><span class="line">   <span class="keyword">private</span> String productCategoryName;</span><br><span class="line">   <span class="comment">// 权重，越大越排前显示</span></span><br><span class="line">   <span class="keyword">private</span> Integer priority;</span><br><span class="line">   <span class="comment">// 创建时间</span></span><br><span class="line">   <span class="keyword">private</span> Date createTime;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="7-2-商品类别表"><a href="#7-2-商品类别表" class="headerlink" title="7.2 商品类别表"></a>7.2 商品类别表</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">drop table if EXISTS &#96;tb_product_category&#96;;</span><br><span class="line">create table &#96;tb_product_category&#96;(</span><br><span class="line">	&#96;product_category_id&#96; int(11) NOT NULL auto_increment,</span><br><span class="line">	&#96;product_category_name&#96; varchar(100) NOT NULL,</span><br><span class="line">	&#96;priority&#96; int(2) DEFAULT &#39;0&#39;,</span><br><span class="line">	&#96;create_time&#96; datetime DEFAULT NULL,</span><br><span class="line">	&#96;shop_id&#96; int(20) NOT NULL DEFAULT &#39;0&#39;,</span><br><span class="line">	PRIMARY KEY (&#96;product_category_id&#96;),</span><br><span class="line">	CONSTRAINT &#96;fk_procate_shop&#96; FOREIGN KEY(&#96;shop_id&#96;) REFERENCES &#96;tb_shop&#96;(&#96;shop_id&#96;)</span><br><span class="line">) ENGINE&#x3D;INNODB auto_increment&#x3D;1 DEFAULT CHARSET&#x3D;utf8;</span><br><span class="line"></span><br><span class="line">select * from tb_product_category;</span><br></pre></td></tr></table></figure>
+
+<h1 id="8-商品"><a href="#8-商品" class="headerlink" title="8. 商品"></a>8. 商品</h1><p><img src="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210510113326362.png" alt="image-20210510113326362"></p>
+<h2 id="8-1-商品类"><a href="#8-1-商品类" class="headerlink" title="8.1 商品类"></a>8.1 商品类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Product</span> </span>&#123;</span><br><span class="line">   <span class="comment">// 主键ID</span></span><br><span class="line">   <span class="keyword">private</span> Long productId;</span><br><span class="line">   <span class="comment">// 商品名</span></span><br><span class="line">   <span class="keyword">private</span> String productName;</span><br><span class="line">   <span class="comment">// 商品简介</span></span><br><span class="line">   <span class="keyword">private</span> String productDesc;</span><br><span class="line">   <span class="comment">// 简略图</span></span><br><span class="line">   <span class="keyword">private</span> String imgAddr;</span><br><span class="line">   <span class="comment">// 原价</span></span><br><span class="line">   <span class="keyword">private</span> String normalPrice;</span><br><span class="line">   <span class="comment">// 现价(推广价格)</span></span><br><span class="line">   <span class="keyword">private</span> String promotionPrice;</span><br><span class="line">   <span class="comment">// 权重，越大越排前显示</span></span><br><span class="line">   <span class="keyword">private</span> Integer priority;</span><br><span class="line">   <span class="comment">// 商品积分</span></span><br><span class="line">   <span class="keyword">private</span> Integer point;</span><br><span class="line">   <span class="comment">// 创建时间</span></span><br><span class="line">   <span class="keyword">private</span> Date createTime;</span><br><span class="line">   <span class="comment">// 最近一次的更新时间</span></span><br><span class="line">   <span class="keyword">private</span> Date lastEditTime;</span><br><span class="line">   <span class="comment">// 0.下架 1.在前端展示系统展示</span></span><br><span class="line">   <span class="keyword">private</span> Integer enableStatus;</span><br><span class="line"></span><br><span class="line">   <span class="comment">// 图片详情图列表，跟商品是多对一的关系</span></span><br><span class="line">   <span class="keyword">private</span> List&lt;ProductImg&gt; productImgList;</span><br><span class="line">   <span class="comment">// 商品类别，一件商品仅属于一个商品类别</span></span><br><span class="line">   <span class="keyword">private</span> ProductCategory productCategory;</span><br><span class="line">   <span class="comment">// 店铺实体类，标明商品属于哪个店铺</span></span><br><span class="line">   <span class="keyword">private</span> Shop shop;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="8-2-商品表"><a href="#8-2-商品表" class="headerlink" title="8.2 商品表"></a>8.2 商品表</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">drop table if EXISTS &#96;tb_product&#96;;</span><br><span class="line">create table &#96;tb_product&#96; (</span><br><span class="line">	&#96;product_id&#96; int(100) NOT NULL auto_increment,</span><br><span class="line">	&#96;product_name&#96; varchar(100) NOT NULL,</span><br><span class="line">	&#96;product_desc&#96; varchar(2000) DEFAULT NULL,</span><br><span class="line">	&#96;img_addr&#96; varchar(2000) DEFAULT &#39;&#39;,</span><br><span class="line">	&#96;normal_price&#96; varchar(100) DEFAULT NULL,</span><br><span class="line">	&#96;promotion_price&#96; varchar(100) DEFAULT NULL,</span><br><span class="line">	&#96;priority&#96; int(2) NOT NULL DEFAULT &#39;0&#39;,</span><br><span class="line">	&#96;create_time&#96; datetime DEFAULT NULL,</span><br><span class="line">	&#96;last_edit_time&#96; datetime DEFAULT NULL,</span><br><span class="line">	&#96;enable_status&#96; int(2) NOT NULL DEFAULT &#39;0&#39; comment &#39;0下架 1展示&#39;,</span><br><span class="line">	&#96;product_category_id&#96; int(11) DEFAULT NULL,</span><br><span class="line">	&#96;shop_id&#96; int(20) NOT NULL DEFAULT &#39;0&#39;,</span><br><span class="line">	PRIMARY KEY(&#96;product_id&#96;),</span><br><span class="line">	CONSTRAINT &#96;fk_product_procate&#96; FOREIGN KEY(&#96;product_category_id&#96;) REFERENCES &#96;tb_product_category&#96;(&#96;product_category_id&#96;),</span><br><span class="line">	CONSTRAINT &#96;fk_product_shop&#96; FOREIGN KEY(&#96;shop_id&#96;) REFERENCES &#96;tb_shop&#96;(&#96;shop_id&#96;)</span><br><span class="line">) ENGINE&#x3D;INNODB auto_increment&#x3D;1 DEFAULT CHARSET&#x3D;utf8;</span><br><span class="line"></span><br><span class="line">select * from tb_product;</span><br></pre></td></tr></table></figure>
+
+<h1 id="9-详情图片"><a href="#9-详情图片" class="headerlink" title="9. 详情图片"></a>9. 详情图片</h1><h2 id="9-1-商品图片类"><a href="#9-1-商品图片类" class="headerlink" title="9.1 商品图片类"></a>9.1 商品图片类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProductImg</span> </span>&#123;</span><br><span class="line">   <span class="comment">// 主键ID</span></span><br><span class="line">   <span class="keyword">private</span> Long productImgId;</span><br><span class="line">   <span class="comment">// 图片地址</span></span><br><span class="line">   <span class="keyword">private</span> String imgAddr;</span><br><span class="line">   <span class="comment">// 图片简介</span></span><br><span class="line">   <span class="keyword">private</span> String imgDesc;</span><br><span class="line">   <span class="comment">// 权重，越大越排前显示</span></span><br><span class="line">   <span class="keyword">private</span> Integer priority;</span><br><span class="line">   <span class="comment">// 创建时间</span></span><br><span class="line">   <span class="keyword">private</span> Date createTime;</span><br><span class="line">   <span class="comment">// 标明是属于哪个商品的图片</span></span><br><span class="line">   <span class="keyword">private</span> Long productId;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="9-2-商品图片表"><a href="#9-2-商品图片表" class="headerlink" title="9.2 商品图片表"></a>9.2 商品图片表</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">drop table if EXISTS &#96;tb_product_img&#96;;</span><br><span class="line">create table &#96;tb_product_img&#96; (</span><br><span class="line">	&#96;product_img_id&#96; int(20) NOT NULL auto_increment,</span><br><span class="line">	&#96;img_addr&#96; varchar(2000) NOT NULL,</span><br><span class="line">	&#96;img_desc&#96; varchar(2000) DEFAULT NULL,</span><br><span class="line">	&#96;priority&#96; int(2) DEFAULT &#39;0&#39;,</span><br><span class="line">	&#96;create_time&#96; datetime DEFAULT NULL,</span><br><span class="line">	&#96;product_id&#96; int(20) DEFAULT NULL,</span><br><span class="line">	PRIMARY KEY(&#96;product_img_id&#96;),</span><br><span class="line">	CONSTRAINT &#96;fk_proimg_product&#96; FOREIGN KEY (&#96;product_id&#96;) REFERENCES &#96;tb_product&#96;(&#96;product_id&#96;)</span><br><span class="line">) ENGINE&#x3D;INNODB auto_increment&#x3D;1 DEFAULT CHARSET&#x3D;utf8;</span><br><span class="line"></span><br><span class="line">select * from tb_product_img;</span><br></pre></td></tr></table></figure>
+
+<h1 id="10-总结回顾数据模型"><a href="#10-总结回顾数据模型" class="headerlink" title="10.总结回顾数据模型"></a>10.总结回顾数据模型</h1><h2 id="用户信息关联"><a href="#用户信息关联" class="headerlink" title="用户信息关联"></a>用户信息关联</h2><img src="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210510114206954.png" alt="image-20210510114206954" style="zoom:80%;" />
+
+<h2 id="店铺信息关联"><a href="#店铺信息关联" class="headerlink" title="店铺信息关联"></a>店铺信息关联</h2><p><img src="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210510114240130.png" alt="image-20210510114240130"></p>
+<h2 id="店铺信息关联-1"><a href="#店铺信息关联-1" class="headerlink" title="店铺信息关联"></a>店铺信息关联</h2><p><img src="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210510114327572.png" alt="image-20210510114327572"></p>
+<h1 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h1><h2 id="1-为什么成员变量都用的是引用类型，而不是基本类型？"><a href="#1-为什么成员变量都用的是引用类型，而不是基本类型？" class="headerlink" title="1.为什么成员变量都用的是引用类型，而不是基本类型？"></a>1.为什么成员变量都用的是引用类型，而不是基本类型？</h2><p>如果是基本类型，会为空值赋一个默认的值，比如priority，如果是基本类型int，当为空时，priority是0。但对于别的属性，比如areaName，我们并不希望有一个默认值’’，空就是空。因此统一都用引用类型。</p>
+<h2 id="2-数据库初始化"><a href="#2-数据库初始化" class="headerlink" title="2.数据库初始化"></a>2.数据库初始化</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br></pre></td><td class="code"><pre><span class="line">-- create database if not exists o2o default character set &#x3D; &#39;utf8&#39;;</span><br><span class="line"></span><br><span class="line">-- 1.area</span><br><span class="line">drop table if EXISTS &#96;tb_area&#96;;</span><br><span class="line">create table &#96;tb_area&#96; (</span><br><span class="line">	&#96;area_id&#96; int(2) NOT NULL auto_increment,</span><br><span class="line">	&#96;area_name&#96; varchar(200) NOT NULL,</span><br><span class="line">	&#96;priority&#96; int(2) NOT NULL DEFAULT &#39;0&#39;,</span><br><span class="line">	&#96;create_time&#96; datetime DEFAULT NULL,</span><br><span class="line">	&#96;last_edit_time&#96; datetime DEFAULT NULL,</span><br><span class="line">	PRIMARY key(&#96;area_id&#96;),</span><br><span class="line">	UNIQUE key &#96;UK_AREA&#96;(&#96;area_name&#96;)</span><br><span class="line">) ENGINE&#x3D;INNODB auto_increment&#x3D;1 DEFAULT CHARSET&#x3D;utf8;</span><br><span class="line"></span><br><span class="line">-- 2.用户表</span><br><span class="line">drop table if EXISTS &#96;tb_person_info&#96;;</span><br><span class="line">create table &#96;tb_person_info&#96; (</span><br><span class="line">	&#96;user_id&#96; int(10) NOT NULL auto_increment,</span><br><span class="line">	&#96;name&#96; varchar(32) default NULL,</span><br><span class="line">	&#96;profile_img&#96; varchar(1024) DEFAULT NULL,</span><br><span class="line">	&#96;email&#96; varchar(1024) DEFAULT NULL,</span><br><span class="line">	&#96;gender&#96; varchar(2) DEFAULT NULL,</span><br><span class="line">	&#96;enable_status&#96; int(2) NOT NULL DEFAULT &#39;0&#39; COMMENT &#39;0:禁止使用本商城，1:允许使用本商城&#39;,</span><br><span class="line">	&#96;user_type&#96; int(2) NOT NULL DEFAULT &#39;1&#39; COMMENT &#39;1:顾客，2:店家，3:超级管理员&#39;,</span><br><span class="line">	&#96;create_time&#96; datetime DEFAULT NULL,</span><br><span class="line">	&#96;last_edit_time&#96; datetime DEFAULT NULL,</span><br><span class="line">	PRIMARY KEY (&#96;user_id&#96;)</span><br><span class="line">) ENGINE&#x3D;INNODB auto_increment&#x3D;1 DEFAULT CHARSET&#x3D;utf8;</span><br><span class="line"></span><br><span class="line">-- 3微信账号</span><br><span class="line">drop table if EXISTS &#96;tb_wechat_auth&#96;;</span><br><span class="line">create table &#96;tb_wechat_auth&#96; (</span><br><span class="line">	&#96;wechat_auth_id&#96; int(10) NOT NULL auto_increment,</span><br><span class="line">	&#96;user_id&#96; int(10) NOT NULL,</span><br><span class="line">	&#96;open_id&#96; varchar(200) NOT NULL,</span><br><span class="line">	&#96;create_time&#96; datetime DEFAULT NULL,</span><br><span class="line">	PRIMARY KEY(&#96;wechat_auth_id&#96;),</span><br><span class="line">	CONSTRAINT &#96;fk_wechatauth_profile&#96; FOREIGN KEY(&#96;user_id&#96;) REFERENCES &#96;tb_person_info&#96;(&#96;user_id&#96;)</span><br><span class="line">) ENGINE&#x3D;INNODB auto_increment&#x3D;1 DEFAULT CHARSET&#x3D;utf8;</span><br><span class="line">alter table tb_wechat_auth add UNIQUE INDEX(&#96;open_id&#96;);</span><br><span class="line"></span><br><span class="line">-- 4本地账号</span><br><span class="line">drop table if EXISTS &#96;tb_local_auth&#96;;</span><br><span class="line">create table &#96;tb_local_auth&#96;(</span><br><span class="line">	&#96;local_auth_id&#96; int(10) NOT NULL auto_increment,</span><br><span class="line">	&#96;user_id&#96; int(10) NOT NULL,</span><br><span class="line">	&#96;username&#96; varchar(128) NOT NULL,</span><br><span class="line">	&#96;password&#96; varchar(128) NOT NULL,</span><br><span class="line">	&#96;create_time&#96; datetime DEFAULT NULL,</span><br><span class="line">	&#96;last_edit_time&#96; datetime DEFAULT NULL,</span><br><span class="line">	PRIMARY KEY(&#96;local_auth_id&#96;),</span><br><span class="line">	UNIQUE KEY &#96;uk_local_profile&#96;(&#96;username&#96;),</span><br><span class="line">	CONSTRAINT &#96;fk_localauth_profile&#96; FOREIGN KEY(&#96;user_id&#96;) REFERENCES &#96;tb_person_info&#96;(&#96;user_id&#96;)</span><br><span class="line">)ENGINE&#x3D;INNODB auto_increment&#x3D;1 DEFAULT CHARSET&#x3D;utf8;</span><br><span class="line"></span><br><span class="line">-- 5头条</span><br><span class="line">drop table if EXISTS &#96;tb_head_line&#96;;</span><br><span class="line">create table &#96;tb_head_line&#96; (</span><br><span class="line">	&#96;line_id&#96; int(100) NOT NULL auto_increment,</span><br><span class="line">	&#96;line_name&#96; varchar(1000) DEFAULT NULL,</span><br><span class="line">	&#96;line_link&#96; varchar(2000) NOT NULL,</span><br><span class="line">	&#96;line_img&#96; varchar(2000) NOT NULL,</span><br><span class="line">	&#96;priority&#96; int(2) NOT NULL DEFAULT &#39;0&#39;,</span><br><span class="line">	&#96;enable_status&#96; int(2) DEFAULT &#39;0&#39;,</span><br><span class="line">	&#96;create_time&#96; datetime DEFAULT NULL,</span><br><span class="line">	&#96;last_edit_time&#96; datetime DEFAULT NULL,</span><br><span class="line">	PRIMARY KEY(&#96;line_id&#96;)</span><br><span class="line">) ENGINE&#x3D;INNODB auto_increment&#x3D;1 DEFAULT CHARSET&#x3D;utf8;</span><br><span class="line"></span><br><span class="line">-- 6.店铺类别</span><br><span class="line">drop table if EXISTS &#96;tb_shop_category&#96;;</span><br><span class="line">create table &#96;tb_shop_category&#96; (</span><br><span class="line">	&#96;shop_category_id&#96; int(11) NOT NULL auto_increment,</span><br><span class="line">	&#96;shop_category_name&#96; varchar(100) NOT NULL DEFAULT &#39;&#39;,</span><br><span class="line">	&#96;shop_category_desc&#96; varchar(1000) DEFAULT &#39;&#39;,</span><br><span class="line">	&#96;shop_category_img&#96; varchar(2000) DEFAULT NULL,</span><br><span class="line">	&#96;priority&#96; int(2) NOT NULL DEFAULT &#39;0&#39;,</span><br><span class="line">	&#96;create_time&#96; datetime DEFAULT NULL,</span><br><span class="line">	&#96;last_edit_time&#96; datetime DEFAULT NULL,</span><br><span class="line">	&#96;parent_id&#96; int(11) DEFAULT NULL,</span><br><span class="line">	PRIMARY KEY(&#96;shop_category_id&#96;),</span><br><span class="line">	CONSTRAINT &#96;fk_shop_category_self&#96; FOREIGN KEY(&#96;parent_id&#96;) REFERENCES &#96;tb_shop_category&#96;(&#96;shop_category_id&#96;)</span><br><span class="line">) ENGINE&#x3D;INNODB auto_increment&#x3D;1 DEFAULT CHARSET&#x3D;utf8;</span><br><span class="line"></span><br><span class="line">-- 7.店铺</span><br><span class="line">drop table if EXISTS &#96;tb_shop&#96;;</span><br><span class="line">create table &#96;tb_shop&#96; (</span><br><span class="line">	&#96;shop_id&#96; int(10) NOT NULL auto_increment,</span><br><span class="line">	&#96;owner_id&#96; int(10) NOT NULL COMMENT &#39;店铺创建人&#39;,</span><br><span class="line">	&#96;area_id&#96; int(5) DEFAULT NULL,</span><br><span class="line">	&#96;shop_category_id&#96; int(11) DEFAULT NULL,</span><br><span class="line">	&#96;shop_name&#96; varchar(256) NOT NULL,</span><br><span class="line">	&#96;shop_desc&#96; varchar(1024) DEFAULT NULL,</span><br><span class="line">	&#96;shop_addr&#96; varchar(200) DEFAULT NULL,</span><br><span class="line">	&#96;phone&#96; varchar(128) DEFAULT NULL,</span><br><span class="line">	&#96;shop_img&#96; varchar(1024) DEFAULT NULL,</span><br><span class="line">	&#96;priority&#96; int(3) DEFAULT &#39;0&#39;,</span><br><span class="line">	&#96;create_time&#96; datetime DEFAULT NULL,</span><br><span class="line">	&#96;last_edit_time&#96; datetime DEFAULT NULL,</span><br><span class="line">	&#96;enable_status&#96; int(2) NOT NULL DEFAULT &#39;0&#39;,</span><br><span class="line">	&#96;advice&#96; varchar(255) DEFAULT NULL,</span><br><span class="line">	PRIMARY KEY(&#96;shop_id&#96;),</span><br><span class="line">	CONSTRAINT &#96;fk_shop_area&#96; FOREIGN KEY(&#96;area_id&#96;) REFERENCES &#96;tb_area&#96;(&#96;area_id&#96;),</span><br><span class="line">	CONSTRAINT &#96;fk_shop_profile&#96; FOREIGN KEY(&#96;owner_id&#96;) REFERENCES &#96;tb_person_info&#96;(&#96;user_id&#96;),</span><br><span class="line">	CONSTRAINT &#96;fk_shop_shopcate&#96; FOREIGN KEY(&#96;shop_category_id&#96;) REFERENCES &#96;tb_shop_category&#96;(&#96;shop_category_id&#96;)</span><br><span class="line">) ENGINE&#x3D;INNODB auto_increment&#x3D;1 DEFAULT CHARSET&#x3D;utf8;</span><br><span class="line"></span><br><span class="line">-- 8.商品类别</span><br><span class="line">drop table if EXISTS &#96;tb_product_category&#96;;</span><br><span class="line">create table &#96;tb_product_category&#96;(</span><br><span class="line">	&#96;product_category_id&#96; int(11) NOT NULL auto_increment,</span><br><span class="line">	&#96;product_category_name&#96; varchar(100) NOT NULL,</span><br><span class="line">	&#96;priority&#96; int(2) DEFAULT &#39;0&#39;,</span><br><span class="line">	&#96;create_time&#96; datetime DEFAULT NULL,</span><br><span class="line">	&#96;shop_id&#96; int(20) NOT NULL DEFAULT &#39;0&#39;,</span><br><span class="line">	PRIMARY KEY (&#96;product_category_id&#96;),</span><br><span class="line">	CONSTRAINT &#96;fk_procate_shop&#96; FOREIGN KEY(&#96;shop_id&#96;) REFERENCES &#96;tb_shop&#96;(&#96;shop_id&#96;)</span><br><span class="line">) ENGINE&#x3D;INNODB auto_increment&#x3D;1 DEFAULT CHARSET&#x3D;utf8;</span><br><span class="line"></span><br><span class="line">-- 9.商品</span><br><span class="line">drop table if EXISTS &#96;tb_product&#96;;</span><br><span class="line">create table &#96;tb_product&#96; (</span><br><span class="line">	&#96;product_id&#96; int(100) NOT NULL auto_increment,</span><br><span class="line">	&#96;product_name&#96; varchar(100) NOT NULL,</span><br><span class="line">	&#96;product_desc&#96; varchar(2000) DEFAULT NULL,</span><br><span class="line">	&#96;img_addr&#96; varchar(2000) DEFAULT &#39;&#39;,</span><br><span class="line">	&#96;normal_price&#96; varchar(100) DEFAULT NULL,</span><br><span class="line">	&#96;promotion_price&#96; varchar(100) DEFAULT NULL,</span><br><span class="line">	&#96;priority&#96; int(2) NOT NULL DEFAULT &#39;0&#39;,</span><br><span class="line">	&#96;create_time&#96; datetime DEFAULT NULL,</span><br><span class="line">	&#96;last_edit_time&#96; datetime DEFAULT NULL,</span><br><span class="line">	&#96;enable_status&#96; int(2) NOT NULL DEFAULT &#39;0&#39; comment &#39;0下架 1展示&#39;,</span><br><span class="line">	&#96;product_category_id&#96; int(11) DEFAULT NULL,</span><br><span class="line">	&#96;shop_id&#96; int(20) NOT NULL DEFAULT &#39;0&#39;,</span><br><span class="line">	PRIMARY KEY(&#96;product_id&#96;),</span><br><span class="line">	CONSTRAINT &#96;fk_product_procate&#96; FOREIGN KEY(&#96;product_category_id&#96;) REFERENCES &#96;tb_product_category&#96;(&#96;product_category_id&#96;),</span><br><span class="line">	CONSTRAINT &#96;fk_product_shop&#96; FOREIGN KEY(&#96;shop_id&#96;) REFERENCES &#96;tb_shop&#96;(&#96;shop_id&#96;)</span><br><span class="line">) ENGINE&#x3D;INNODB auto_increment&#x3D;1 DEFAULT CHARSET&#x3D;utf8;</span><br><span class="line"></span><br><span class="line">-- 10.商品图片</span><br><span class="line">drop table if EXISTS &#96;tb_product_img&#96;;</span><br><span class="line">create table &#96;tb_product_img&#96; (</span><br><span class="line">	&#96;product_img_id&#96; int(20) NOT NULL auto_increment,</span><br><span class="line">	&#96;img_addr&#96; varchar(2000) NOT NULL,</span><br><span class="line">	&#96;img_desc&#96; varchar(2000) DEFAULT NULL,</span><br><span class="line">	&#96;priority&#96; int(2) DEFAULT &#39;0&#39;,</span><br><span class="line">	&#96;create_time&#96; datetime DEFAULT NULL,</span><br><span class="line">	&#96;product_id&#96; int(20) DEFAULT NULL,</span><br><span class="line">	PRIMARY KEY(&#96;product_img_id&#96;),</span><br><span class="line">	CONSTRAINT &#96;fk_proimg_product&#96; FOREIGN KEY (&#96;product_id&#96;) REFERENCES &#96;tb_product&#96;(&#96;product_id&#96;)</span><br><span class="line">) ENGINE&#x3D;INNODB auto_increment&#x3D;1 DEFAULT CHARSET&#x3D;utf8;</span><br><span class="line">-- 插入地区</span><br><span class="line">insert into tb_area (area_name, priority) values(&#39;东苑&#39;, 1),(&#39;南苑&#39;, 7),(&#39;北苑&#39;, 5);</span><br><span class="line">-- 插入用户</span><br><span class="line">insert into tb_person_info(&#96;name&#96;,&#96;profile_img&#96;,&#96;email&#96;,&#96;gender&#96;,&#96;enable_status&#96;,&#96;user_type&#96;)</span><br><span class="line">    values (&#39;测试&#39;,&#39;test_person_png&#39;,&quot;test@126.com&quot;,1,1,2);</span><br><span class="line">-- 插入店铺类别</span><br><span class="line">insert into tb_shop_category(&#96;shop_category_name&#96;,&#96;shop_category_desc&#96;,&#96;shop_category_img&#96;,&#96;priority&#96;)</span><br><span class="line">    values(&#39;咖啡奶茶&#39;,&#39;飘香醇厚咖啡加上芳美浓郁的牛奶，两种经典饮品的绝妙搭配，两种滋味的碰撞，形成了具有双重口感享受的饮品！&#39;,&#39;test_shop_catetgory_png&#39;,1);</span><br><span class="line">-- 插入店铺</span><br><span class="line">set @userId&#x3D;(select user_id from tb_person_info where &#96;name&#96; &#x3D;&#39;测试&#39; limit 1);</span><br><span class="line">set @areaId&#x3D;(select area_id from tb_area where &#96;area_name&#96; &#x3D; &#39;北苑&#39;);</span><br><span class="line">set @shopCategoryId&#x3D;(select shop_category_id from tb_shop_category where shop_category_name &#x3D; &#39;咖啡奶茶&#39;);</span><br><span class="line">select @userId,@areaId,@shopCategoryId;</span><br><span class="line">insert into tb_shop(</span><br><span class="line">	owner_id, area_id, shop_category_id,</span><br><span class="line">	shop_name, shop_desc,shop_addr,phone,shop_img,priority,</span><br><span class="line">    create_time,</span><br><span class="line">	last_edit_time,</span><br><span class="line">	enable_status,advice)</span><br><span class="line">values(</span><br><span class="line">	@userId, @areaId, @shopCategoryId,</span><br><span class="line">    &#39;测试de店铺&#39;, &#39;店铺描述&#39;, &#39;测试路1号&#39;, &#39;1234567890&#39;, &#39;商铺图片&#39;,3,</span><br><span class="line">    str_to_date(&#39;yyyy-mm-dd hh24:mi:ss&#39;,&#39;2020-03-04b 21:51:55&#39;),</span><br><span class="line">    str_to_date(&#39;yyyy-mm-dd hh24:mi:ss&#39;,&#39;2020-03-04b 21:51:55&#39;),</span><br><span class="line">    1, &#39;审核中&#39;);</span><br><span class="line"></span><br><span class="line">insert into tb_shop(</span><br><span class="line">	&#96;owner_id&#96;, &#96;area_id&#96;,&#96;shop_category_id&#96;,&#96;shop_name&#96;,</span><br><span class="line">	&#96;shop_desc&#96;,&#96;shop_addr&#96;,&#96;phone&#96;,&#96;priority&#96;,&#96;create_time&#96;,</span><br><span class="line">	&#96;last_edit_time&#96;,&#96;enable_status&#96;)</span><br><span class="line">values</span><br><span class="line">(2,1,8,&#39;美美&#39;,&#39;工商局调查员&#39;,&#39;通道北路220号&#39;,&#39;13811112224&#39;,10,</span><br><span class="line">STR_TO_DATE(&#39;2020-03-20 21:45:26&#39;,&#39;%Y-%m-%d %H:%i:%s&#39;),</span><br><span class="line">STR_TO_DATE(&#39;2020-03-20 21:45:26&#39;,&#39;%Y-%m-%d %H:%i:%s&#39;),1),</span><br><span class="line"></span><br><span class="line">(2,1,8,&#39;兰兰&#39;,&#39;地震局调查员&#39;,&#39;通道北路210号&#39;,&#39;13811112223&#39;,10,</span><br><span class="line">STR_TO_DATE(&#39;2020-03-20 21:45:26&#39;,&#39;%Y-%m-%d %H:%i:%s&#39;),</span><br><span class="line">STR_TO_DATE(&#39;2020-03-20 21:45:26&#39;,&#39;%Y-%m-%d %H:%i:%s&#39;),1);</span><br><span class="line">-- 插入商品列别</span><br><span class="line">set @shopId&#x3D;(select &#96;shop_id&#96; from tb_shop where &#96;shop_name&#96;&#x3D;&#39;测试de店铺&#39; limit 1);</span><br><span class="line">insert into tb_product_category(&#96;product_category_name&#96;,&#96;priority&#96;,&#96;shop_id&#96;)</span><br><span class="line">    values(&#39;店铺商品类别1&#39;,0,@shopId),(&#39;店铺商品类别2&#39;,20,@shopId),(&#39;店铺商品类别3&#39;,2,@shopId);</span><br><span class="line">-- 插入商品</span><br><span class="line">set @productCategoryId&#x3D;(select product_category_id from tb_product_category where shop_id&#x3D;@shopId limit 1);</span><br><span class="line">select @shopId,@productCategoryId;</span><br><span class="line">insert into tb_product(&#96;product_name&#96;,&#96;product_desc&#96;,&#96;img_addr&#96;,&#96;normal_price&#96;,&#96;promotion_price&#96;,&#96;priority&#96;,&#96;enable_status&#96;,&#96;product_category_id&#96;,&#96;shop_id&#96;)</span><br><span class="line">values(&#39;美式咖啡&#39;,&#39;美式咖啡的描述&#39;,&#39;美式咖啡的缩略图&#39;,15,10,2,1,@productCategoryId,@shopId);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+    </article>
+    <!-- license  -->
+    
+        <div class="license-wrapper">
+            <p>原文作者：<a href="http://example.com">AiLaodu</a>
+            <!--<p>原文链接：<a href="http://example.com/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-2%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA-2%E5%AE%9E%E4%BD%93%E7%B1%BB%E8%AE%BE%E8%AE%A1%E4%B8%8E%E8%A1%A8%E5%88%9B%E5%BB%BA/">http://example.com/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-2%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA-2%E5%AE%9E%E4%BD%93%E7%B1%BB%E8%AE%BE%E8%AE%A1%E4%B8%8E%E8%A1%A8%E5%88%9B%E5%BB%BA/</a>-->
+            <p>发表日期：<a href="http://example.com/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-2%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA-2%E5%AE%9E%E4%BD%93%E7%B1%BB%E8%AE%BE%E8%AE%A1%E4%B8%8E%E8%A1%A8%E5%88%9B%E5%BB%BA/">May 10th 2021, 11:11:34 am</a>
+            <p>更新日期：<a href="http://example.com/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-2%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA-2%E5%AE%9E%E4%BD%93%E7%B1%BB%E8%AE%BE%E8%AE%A1%E4%B8%8E%E8%A1%A8%E5%88%9B%E5%BB%BA/">May 10th 2021, 4:47:46 pm</a>
+            <!--<p>版权声明：本文采用<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>-->
+        </div>
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-2%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA-3%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84%E8%A7%84%E5%88%92%E5%8F%8AMaven%E9%85%8D%E7%BD%AE/" title= "校园商铺-2项目设计和框架搭建-3项目结构规划及Maven配置">
+                    <div class="nextTitle">校园商铺-2项目设计和框架搭建-3项目结构规划及Maven配置</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-2%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA-1%E7%B3%BB%E7%BB%9F%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97%E5%88%92%E5%88%86/" title= "校园商铺-2项目设计和框架搭建-1系统功能模块划分">
+                    <div class="prevTitle">校园商铺-2项目设计和框架搭建-1系统功能模块划分</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!-- gitalk评论 -->
+
+    <!-- utteranc评论 -->
+
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:1670025948@qq.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/AD-Gai-Code" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer wechat" title=wechat>
+                  
+                  <img class="profile-qr" src="/assets/example_qr.jpg" />
+                </span>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer qq" title=qq>
+                  
+                  <img class="profile-qr" src="/assets/qq.png" />
+                </span>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E5%8C%BA%E5%9F%9F"><span class="toc-number">1.</span> <span class="toc-text">1.区域</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E5%88%9B%E5%BB%BAArea%E7%B1%BB"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 创建Area类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E5%BB%BA%E7%AB%8B-tb-area%E8%A1%A8"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 建立 tb_area表</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E7%94%A8%E6%88%B7"><span class="toc-number">2.</span> <span class="toc-text">2. 用户</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E5%88%9B%E5%BB%BA-PersonInfo-%E7%B1%BB"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 创建 PersonInfo 类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF%E8%A1%A8"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 创建用户信息表</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E5%BE%AE%E4%BF%A1%E8%B4%A6%E5%8F%B7%E5%92%8C%E6%9C%AC%E5%9C%B0%E7%94%A8%E6%88%B7"><span class="toc-number">3.</span> <span class="toc-text">3.微信账号和本地用户</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E5%88%9B%E5%BB%BA%E5%BE%AE%E4%BF%A1%E8%B4%A6%E5%8F%B7%E5%92%8C%E6%9C%AC%E5%9C%B0%E7%94%A8%E6%88%B7%E7%B1%BB"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 创建微信账号和本地用户类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-%E5%88%9B%E5%BB%BA%E5%BE%AE%E4%BF%A1%E8%B4%A6%E5%8F%B7%E5%92%8C%E6%9C%AC%E5%9C%B0%E7%94%A8%E6%88%B7%E8%A1%A8"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 创建微信账号和本地用户表</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-%E5%A4%B4%E6%9D%A1"><span class="toc-number">4.</span> <span class="toc-text">4. 头条</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-%E5%88%9B%E5%BB%BA%E5%A4%B4%E6%9D%A1%E7%B1%BB"><span class="toc-number">4.1.</span> <span class="toc-text">4.1 创建头条类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-%E5%88%9B%E5%BB%BA%E5%A4%B4%E6%9D%A1%E5%B9%BF%E5%91%8A"><span class="toc-number">4.2.</span> <span class="toc-text">4.2 创建头条广告</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-%E5%BA%97%E9%93%BA%E7%B1%BB%E5%88%AB"><span class="toc-number">5.</span> <span class="toc-text">5. 店铺类别</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-%E5%88%9B%E5%BB%BA%E5%BA%97%E9%93%BA%E7%B1%BB%E5%88%AB%E7%B1%BB"><span class="toc-number">5.1.</span> <span class="toc-text">5.1 创建店铺类别类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-%E5%88%9B%E5%BB%BA%E5%BA%97%E9%93%BA%E7%B1%BB%E5%88%AB%E8%A1%A8"><span class="toc-number">5.2.</span> <span class="toc-text">5.2 创建店铺类别表</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-%E5%BA%97%E9%93%BA"><span class="toc-number">6.</span> <span class="toc-text">6. 店铺</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#6-1-%E5%BA%97%E9%93%BA%E7%B1%BB"><span class="toc-number">6.1.</span> <span class="toc-text">6.1 店铺类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-2-%E5%BA%97%E9%93%BA%E8%A1%A8"><span class="toc-number">6.2.</span> <span class="toc-text">6.2 店铺表</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-%E5%95%86%E5%93%81%E7%B1%BB%E5%88%AB"><span class="toc-number">7.</span> <span class="toc-text">7. 商品类别</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#7-1-%E5%95%86%E5%93%81%E7%B1%BB%E5%88%AB%E7%B1%BB"><span class="toc-number">7.1.</span> <span class="toc-text">7.1 商品类别类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-2-%E5%95%86%E5%93%81%E7%B1%BB%E5%88%AB%E8%A1%A8"><span class="toc-number">7.2.</span> <span class="toc-text">7.2 商品类别表</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8-%E5%95%86%E5%93%81"><span class="toc-number">8.</span> <span class="toc-text">8. 商品</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#8-1-%E5%95%86%E5%93%81%E7%B1%BB"><span class="toc-number">8.1.</span> <span class="toc-text">8.1 商品类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-2-%E5%95%86%E5%93%81%E8%A1%A8"><span class="toc-number">8.2.</span> <span class="toc-text">8.2 商品表</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#9-%E8%AF%A6%E6%83%85%E5%9B%BE%E7%89%87"><span class="toc-number">9.</span> <span class="toc-text">9. 详情图片</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#9-1-%E5%95%86%E5%93%81%E5%9B%BE%E7%89%87%E7%B1%BB"><span class="toc-number">9.1.</span> <span class="toc-text">9.1 商品图片类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-2-%E5%95%86%E5%93%81%E5%9B%BE%E7%89%87%E8%A1%A8"><span class="toc-number">9.2.</span> <span class="toc-text">9.2 商品图片表</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#10-%E6%80%BB%E7%BB%93%E5%9B%9E%E9%A1%BE%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B"><span class="toc-number">10.</span> <span class="toc-text">10.总结回顾数据模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF%E5%85%B3%E8%81%94"><span class="toc-number">10.1.</span> <span class="toc-text">用户信息关联</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%97%E9%93%BA%E4%BF%A1%E6%81%AF%E5%85%B3%E8%81%94"><span class="toc-number">10.2.</span> <span class="toc-text">店铺信息关联</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%97%E9%93%BA%E4%BF%A1%E6%81%AF%E5%85%B3%E8%81%94-1"><span class="toc-number">10.3.</span> <span class="toc-text">店铺信息关联</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#FAQ"><span class="toc-number">11.</span> <span class="toc-text">FAQ</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F%E9%83%BD%E7%94%A8%E7%9A%84%E6%98%AF%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B%EF%BC%8C%E8%80%8C%E4%B8%8D%E6%98%AF%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%EF%BC%9F"><span class="toc-number">11.1.</span> <span class="toc-text">1.为什么成员变量都用的是引用类型，而不是基本类型？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">11.2.</span> <span class="toc-text">2.数据库初始化</span></a></li></ol></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 21
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2021/02/27/hexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" >Hexo个人博客搭建</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2021 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/10</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-2%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA-5%E9%AA%8C%E8%AF%81Dao/" >校园商铺-2项目设计和框架搭建-5验证Dao层的配置</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/10</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-2%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA-6%E9%AA%8C%E8%AF%81Service%E5%B1%82%E7%9A%84%E9%85%8D%E7%BD%AE/" >校园商铺-2项目设计和框架搭建-6验证 Service 层的配置</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/10</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-2%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA-3%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84%E8%A7%84%E5%88%92%E5%8F%8AMaven%E9%85%8D%E7%BD%AE/" >校园商铺-2项目设计和框架搭建-3项目结构规划及Maven配置</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/10</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-2%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA-1%E7%B3%BB%E7%BB%9F%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97%E5%88%92%E5%88%86/" >校园商铺-2项目设计和框架搭建-1系统功能模块划分</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/10</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-2%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA-2%E5%AE%9E%E4%BD%93%E7%B1%BB%E8%AE%BE%E8%AE%A1%E4%B8%8E%E8%A1%A8%E5%88%9B%E5%BB%BA/" >校园商铺-2项目设计和框架搭建-2实体类设计与表实现</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/26</span><a class="archive-post-title" href= "/2021/04/26/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA%20bug%20%E6%B1%87%E6%80%BB/" >校园商铺 bug 汇总</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/20</span><a class="archive-post-title" href= "/2021/04/20/Maven%E5%9B%9E%E9%A1%BE/" >Maven 学习</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/15</span><a class="archive-post-title" href= "/2021/04/15/LeetCode%E4%BA%8C%E5%8F%89%E6%A0%91%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93/" >LeetCode二叉树刷题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/10</span><a class="archive-post-title" href= "/2021/04/10/Servlet%EF%BC%8C%E6%88%91%E8%BF%98%E6%98%AF%E7%88%B1%E4%BD%A0%E7%9A%84/" >Servlet，我还是爱你的</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/06</span><a class="archive-post-title" href= "/2021/04/06/Spring5%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0(%E4%BA%8C)/" >Spring5框架学习系列（二）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/03</span><a class="archive-post-title" href= "/2021/04/03/java%E5%8F%82%E6%95%B0%E5%8F%8A%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92/" >Java参数及参数传递</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/30</span><a class="archive-post-title" href= "/2021/03/30/%E6%9E%9A%E4%B8%BE%E4%B8%8E%E6%B3%A8%E8%A7%A3%E5%A4%8D%E4%B9%A0%E6%80%BB%E7%BB%93/" >枚举与注解复习总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/25</span><a class="archive-post-title" href= "/2021/03/25/spring5%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0(%E4%B8%80)/" >Spring5框架学习系列（一）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/21</span><a class="archive-post-title" href= "/2021/03/21/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" >排序算法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href= "/2021/03/08/%E9%80%92%E5%BD%92%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" >递归算法学习笔记</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2021/04/07/Spring5%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0(%E4%B8%89)/" >Spring5框架学习系列（三）</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2021/04/24/mybatis%E7%AC%94%E8%AE%B0(%E4%B8%80)/" >Mybatis 学习（一）</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-2%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA-7%E9%AA%8C%E8%AF%81%20Controller%20%E5%B1%82%E7%9A%84%E9%85%8D%E7%BD%AE/" >校园商铺-2项目设计和框架搭建-7验证 Controller 层的配置</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-3Logback%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8/" >校园商铺-3 Logback配置与使用</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-2%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA-4%E8%87%AA%E4%B8%8B%E8%80%8C%E4%B8%8A%E9%80%90%E5%B1%82%E5%AE%8C%E6%88%90%20SSM%20%E7%9A%84%E5%90%84%E9%A1%B9%E9%85%8D%E7%BD%AE/" >校园商铺-2项目设计和框架搭建-4自下而上逐层完成 SSM 的各项配置</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="Hexo"><span class="iconfont-archer">&#xe606;</span>Hexo</span>
+    
+        <span class="sidebar-tag-name" data-tags="数据结构与算法"><span class="iconfont-archer">&#xe606;</span>数据结构与算法</span>
+    
+        <span class="sidebar-tag-name" data-tags="JavaSE"><span class="iconfont-archer">&#xe606;</span>JavaSE</span>
+    
+        <span class="sidebar-tag-name" data-tags="基础回顾"><span class="iconfont-archer">&#xe606;</span>基础回顾</span>
+    
+        <span class="sidebar-tag-name" data-tags="LeetCode刷题"><span class="iconfont-archer">&#xe606;</span>LeetCode刷题</span>
+    
+        <span class="sidebar-tag-name" data-tags="Spring"><span class="iconfont-archer">&#xe606;</span>Spring</span>
+    
+        <span class="sidebar-tag-name" data-tags="Mybatis"><span class="iconfont-archer">&#xe606;</span>Mybatis</span>
+    
+        <span class="sidebar-tag-name" data-tags="Maven"><span class="iconfont-archer">&#xe606;</span>Maven</span>
+    
+        <span class="sidebar-tag-name" data-tags="项目-校园商铺"><span class="iconfont-archer">&#xe606;</span>项目-校园商铺</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="Hexo"><span class="iconfont-archer">&#xe60a;</span>Hexo</span>
+    
+        <span class="sidebar-category-name" data-categories="数据结构与算法"><span class="iconfont-archer">&#xe60a;</span>数据结构与算法</span>
+    
+        <span class="sidebar-category-name" data-categories="JavaSE"><span class="iconfont-archer">&#xe60a;</span>JavaSE</span>
+    
+        <span class="sidebar-category-name" data-categories="基础回顾"><span class="iconfont-archer">&#xe60a;</span>基础回顾</span>
+    
+        <span class="sidebar-category-name" data-categories="LeetCode刷题"><span class="iconfont-archer">&#xe60a;</span>LeetCode刷题</span>
+    
+        <span class="sidebar-category-name" data-categories="Spring"><span class="iconfont-archer">&#xe60a;</span>Spring</span>
+    
+        <span class="sidebar-category-name" data-categories="Mybatis"><span class="iconfont-archer">&#xe60a;</span>Mybatis</span>
+    
+        <span class="sidebar-category-name" data-categories="Maven"><span class="iconfont-archer">&#xe60a;</span>Maven</span>
+    
+        <span class="sidebar-category-name" data-categories="项目-校园商铺"><span class="iconfont-archer">&#xe60a;</span>项目-校园商铺</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "AiLaodu"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+    </body>
+</html>
+
+
