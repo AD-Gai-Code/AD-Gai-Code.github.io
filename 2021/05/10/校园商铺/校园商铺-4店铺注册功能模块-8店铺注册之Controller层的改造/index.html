@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" >
+    <meta name="author" content="AiLaodu">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="AiLaodu">
+    
+    <meta name="keywords" content="hexo,hexo主题,个人博客">
+    
+    <meta name="description" content="">
+    <meta name="description" content="不合理的地方：  &#x3D;&#x3D;并不需要将 InputStream 转换成 File 类型，直接将 InputStream 传进入交给 CommonsMultipartfile去处理就可以了&#x3D;&#x3D;  如果做这样的转换，每次都需要生成一个空白的文件，然后还需要向文件中写入请求传送过来的文件流，这样不仅仅产生很多垃圾文件，同时有可能造成写入失败，抛出异常的风险，大大地加大了系统的不稳定性。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="校园商铺-4店铺注册功能模块-8店铺注册之 Controller 层的改造">
+<meta property="og:url" content="http://example.com/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-8%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E4%B9%8BController%E5%B1%82%E7%9A%84%E6%94%B9%E9%80%A0/index.html">
+<meta property="og:site_name" content="ADGai&#39;s Blog">
+<meta property="og:description" content="不合理的地方：  &#x3D;&#x3D;并不需要将 InputStream 转换成 File 类型，直接将 InputStream 传进入交给 CommonsMultipartfile去处理就可以了&#x3D;&#x3D;  如果做这样的转换，每次都需要生成一个空白的文件，然后还需要向文件中写入请求传送过来的文件流，这样不仅仅产生很多垃圾文件，同时有可能造成写入失败，抛出异常的风险，大大地加大了系统的不稳定性。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-05-10T13:18:59.973Z">
+<meta property="article:modified_time" content="2021-05-10T15:08:46.238Z">
+<meta property="article:author" content="AiLaodu">
+<meta property="article:tag" content="项目-校园商铺">
+<meta name="twitter:card" content="summary">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    
+    <title>校园商铺-4店铺注册功能模块-8店铺注册之 Controller 层的改造 · 艾老杜的个人博客</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href= "/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <link rel="stylesheet" href= "/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href= "/intro/favicon.png" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script" />
+    <link rel="preload" href="/scripts/main.js" as="script" />
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >LaoDu&#39;s Blog.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">校园商铺-4店铺注册功能模块-8店铺注册之 Controller 层的改造</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href=/>LaoDu's Blog.</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:50vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/article/13.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            校园商铺-4店铺注册功能模块-8店铺注册之 Controller 层的改造
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "项目-校园商铺">项目-校园商铺</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">1.3k</span>阅读时长: <span class="post-count reading-time">5 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2021/05/10</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <p><strong>不合理的地方：</strong></p>
+<ol>
+<li>==并不需要将 InputStream 转换成 File 类型，直接将 InputStream 传进入交给 CommonsMultipartfile去处理就可以了==</li>
+</ol>
+<p>如果做这样的转换，每次都需要生成一个空白的文件，然后还需要向文件中写入请求传送过来的文件流，这样不仅仅产生很多垃圾文件，同时有可能造成写入失败，抛出异常的风险，大大地加大了系统的不稳定性。</p>
+<span id="more"></span>
+
+<ol start="2">
+<li>==问题：一开始设计ShopService接口addShop方法的时候，第二个参数不早早设定为InputStream？==</li>
+</ol>
+<p>原因：体现实际的开发过程。实际的开发中，在设计Service层的时候，只是为了方便对Service层做UT的测试，并且尽快的实现功能，这时第一感觉想到了File。File能够直接读取路径来产生文件流，传入给实现类去做处理，并没有想到Controller层调用时有多么的不便利。 当编写Controller时就感觉<strong>MultipartHttpServletRequest-&gt;CommonsMultipartFile-&gt;File</strong> 转换不合理的了，因此发现不合理的地方就需要去尽早的改动，因为越早地去做重构，后面维护的成本越低。</p>
+<p>在Controller层，处理图片的环节，接收前端传递过来的图片类型为CommonsMultipartFile，而我们之前为了方便Service层的单元测试，addShop接口的定义如下:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ShopExecution <span class="title">addShop</span><span class="params">(Shop shop, File shopFile)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>所以，Controller 在调用 Servie 层的时候，需要将 CommonsMultipartFile 转换为 File，这里我们换个思路，因为 CommonsMultipartFile 可以获取 InputStream,Thumbnailator 又可以直接处理输入流，因为InputStream 中我们无法得到文件的名称，而 thumbnail 中需要根据文件名来获取扩展名，所以还要再加一个参数 String 类型的 fileName。</p>
+<p>既然第二个和第三个参数都是通过 shopImg 获取的，为什么不直接传入一个 shopImg 呢？主要是为了service 层单元测试的方便，因为 service 层很难实例化出一个 CommonsMultipartFile 类型的实例</p>
+<h1 id="1-改造-Service-层接口"><a href="#1-改造-Service-层接口" class="headerlink" title="1.改造 Service 层接口"></a>1.改造 Service 层接口</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.imooc.o2o.service;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.InputStream;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.artisan.o2o.dto.ShopExecution;</span><br><span class="line"><span class="keyword">import</span> com.artisan.o2o.entity.Shop;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ShopService</span> </span>&#123;</span><br><span class="line">	<span class="comment">// 修改入参，将File类型的入参修改为InputStream,同时增加String类型的文件名称</span></span><br><span class="line">	<span class="function">ShopExecution <span class="title">addShop</span><span class="params">(Shop shop, InputStream shopFileInputStream, String fileName)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="2-改造实现类-ShopServiceImpl"><a href="#2-改造实现类-ShopServiceImpl" class="headerlink" title="2.改造实现类 ShopServiceImpl"></a>2.改造实现类 ShopServiceImpl</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 修改入参，将File类型的入参修改为InputStream,同时增加String类型的文件名称</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="meta">@Transactional</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> ShopExecution <span class="title">addShop</span><span class="params">(Shop shop, InputStream shopImgInputStream, String fileName)</span> </span>&#123;</span><br><span class="line">	<span class="comment">// 非空判断 (这里先判断shop是否为空，严格意义上讲shop中的are的属性也需要判断)</span></span><br><span class="line">	<span class="keyword">if</span> (shop == <span class="keyword">null</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> ShopExecution(ShopStateEnum.NULL_SHOP_INFO);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 关键步骤1. 设置基本信息，插入tb_shop</span></span><br><span class="line">	<span class="comment">// 初始状态： 审核中</span></span><br><span class="line">	shop.setEnableStatus(<span class="number">0</span>);</span><br><span class="line">	shop.setCreateTime(<span class="keyword">new</span> Date());</span><br><span class="line">	shop.setLastEditTime(<span class="keyword">new</span> Date());</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> effectedNum = shopDao.insertShop(shop);</span><br><span class="line">	<span class="keyword">if</span> (effectedNum &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> ShopOperationException(<span class="string">&quot;店铺创建失败&quot;</span>);</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="comment">// 关键步骤2. 添加成功,则继续处理文件,获取shopid,用于创建图片存放的目录</span></span><br><span class="line">		<span class="keyword">if</span> (shopImgInputStream != <span class="keyword">null</span>) &#123;</span><br><span class="line">			<span class="keyword">try</span> &#123;</span><br><span class="line">				<span class="comment">// 需要根据shopId来创建目录,所以也需要shop这个入参</span></span><br><span class="line">				addShopImg(shop, shopImgInputStream, fileName);</span><br><span class="line">			&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">				logger.error(<span class="string">&quot;addShopImg error &#123;&#125; &quot;</span>, e.toString());</span><br><span class="line">				<span class="keyword">throw</span> <span class="keyword">new</span> ShopOperationException(<span class="string">&quot;addShopImg error:&quot;</span> + e.getMessage());</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="comment">// 关键步骤3. 更新tb_shop中 shop_img字段</span></span><br><span class="line">			effectedNum = shopDao.updateShop(shop);</span><br><span class="line">			<span class="keyword">if</span> (effectedNum &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">				logger.error(<span class="string">&quot;updateShop error &#123;&#125; &quot;</span>, <span class="string">&quot;更新店铺失败&quot;</span>);</span><br><span class="line">				<span class="keyword">throw</span> <span class="keyword">new</span> ShopOperationException(<span class="string">&quot;updateShop error&quot;</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 返回店铺的状态：审核中，以及店铺信息</span></span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> ShopExecution(ShopStateEnum.CHECK, shop);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Title</span>: addShopImg</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span>: 根据shopId创建目录,并生成水印图片</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> shop</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> shopImg</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span>: void</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">addShopImg</span><span class="params">(Shop shop, InputStream shopImgInputStream, String fileName)</span> </span>&#123;</span><br><span class="line">	String imgPath = FileUtil.getShopImagePath(shop.getShopId());</span><br><span class="line">	<span class="comment">// 生成图片的水印图</span></span><br><span class="line">	String relativeAddr = ImageUtil.generateThumbnails(shopImgInputStream, imgPath, fileName);</span><br><span class="line">	<span class="comment">// 将相对路径设置个shop,用于更新数据库</span></span><br><span class="line">	shop.setShopImg(relativeAddr);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="3-改造-ImageUitl-工具类"><a href="#3-改造-ImageUitl-工具类" class="headerlink" title="3.改造 ImageUitl 工具类"></a>3.改造 ImageUitl 工具类</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 增加fileName参数</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">generateThumbnail</span><span class="params">(InputStream thumbnailInputStream, String fileName,String targetAddr)</span> </span>&#123;</span><br><span class="line">        String realFileName = getRandomFileName();</span><br><span class="line">        String extension = getFileExtension(fileName);</span><br><span class="line">        makeDirPath(targetAddr);</span><br><span class="line">        String relativeAddr = targetAddr + realFileName + extension;</span><br><span class="line">        logger.debug(<span class="string">&quot;current relative is: &quot;</span> + relativeAddr);</span><br><span class="line">        File dest = <span class="keyword">new</span> File(PathUtil.getImgBasePath() + relativeAddr);</span><br><span class="line">        logger.debug(<span class="string">&quot;current complete addr is:&quot;</span> + PathUtil.getImgBasePath() + relativeAddr);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thumbnails.of(thumbnailInputStream).size(<span class="number">200</span>, <span class="number">200</span>)</span><br><span class="line">                    .watermark(Positions.BOTTOM_RIGHT,</span><br><span class="line">                            ImageIO.read(ImageUtil.class.getResource(<span class="string">&quot;/images/watermark.jpg&quot;</span>)),</span><br><span class="line">                            <span class="number">0.25f</span>)</span><br><span class="line">                    .outputQuality(<span class="number">0.8f</span>).toFile(dest);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            logger.error(e.toString());</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 返回图片相对路径地址</span></span><br><span class="line">        <span class="keyword">return</span> relativeAddr;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 修改入参File类型，直接使用String类型</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> String <span class="title">getFileExtension</span><span class="params">(String fileName)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//输入的图片，只需或获取最后一个 &#x27;.&#x27; 后面的字符即可</span></span><br><span class="line">        <span class="keyword">return</span> fileName.substring(fileName.lastIndexOf(<span class="string">&quot;.&quot;</span>));</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="4-单元测试"><a href="#4-单元测试" class="headerlink" title="4.单元测试"></a>4.单元测试</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.imooc.o2o.service;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ShopServiceTest</span> <span class="keyword">extends</span> <span class="title">BaseTest</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> ShopService shopService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testAddShop</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Shop shop = <span class="keyword">new</span> Shop();</span><br><span class="line">        PersonInfo owner = <span class="keyword">new</span> PersonInfo();</span><br><span class="line">        Area area = <span class="keyword">new</span> Area();</span><br><span class="line">        ShopCategory shopCategory = <span class="keyword">new</span> ShopCategory();</span><br><span class="line">        owner.setUserId(<span class="number">1L</span>);</span><br><span class="line">        area.setAreaId(<span class="number">2</span>);</span><br><span class="line">        shopCategory.setShopCategoryId(<span class="number">38L</span>);</span><br><span class="line">        shop.setOwner(owner);</span><br><span class="line">        shop.setArea(area);</span><br><span class="line">        shop.setShopCategory(shopCategory);</span><br><span class="line">        shop.setShopName(<span class="string">&quot;测试的店铺1&quot;</span>);</span><br><span class="line">        shop.setShopAddr(<span class="string">&quot;test1&quot;</span>);</span><br><span class="line">        shop.setPhone(<span class="string">&quot;test1&quot;</span>);</span><br><span class="line">        shop.setShopDesc(<span class="string">&quot;test1&quot;</span>);</span><br><span class="line">        shop.setCreateTime(<span class="keyword">new</span> Date());</span><br><span class="line">        shop.setEnableStatus(ShopStateEnum.CHECK.getState());</span><br><span class="line">        shop.setAdvice(<span class="string">&quot;审核中&quot;</span>);</span><br><span class="line">        File shopImg = <span class="keyword">new</span> File(<span class="string">&quot;D:/projectdev/header.jpg&quot;</span>);</span><br><span class="line">        ShopExecution se = <span class="keyword">null</span>;</span><br><span class="line">        InputStream ins = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            ins = <span class="keyword">new</span> FileInputStream(shopImg);</span><br><span class="line">            se = shopService.addShop(shop,ins,shopImg.getName());</span><br><span class="line">        &#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        assertEquals(ShopStateEnum.CHECK.getState(),se.getState());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+    </article>
+    <!-- license  -->
+    
+        <div class="license-wrapper">
+            <p>原文作者：<a href="http://example.com">AiLaodu</a>
+            <!--<p>原文链接：<a href="http://example.com/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-8%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E4%B9%8BController%E5%B1%82%E7%9A%84%E6%94%B9%E9%80%A0/">http://example.com/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-8%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E4%B9%8BController%E5%B1%82%E7%9A%84%E6%94%B9%E9%80%A0/</a>-->
+            <p>发表日期：<a href="http://example.com/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-8%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E4%B9%8BController%E5%B1%82%E7%9A%84%E6%94%B9%E9%80%A0/">May 10th 2021, 9:18:59 pm</a>
+            <p>更新日期：<a href="http://example.com/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-8%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E4%B9%8BController%E5%B1%82%E7%9A%84%E6%94%B9%E9%80%A0/">May 10th 2021, 11:08:46 pm</a>
+            <!--<p>版权声明：本文采用<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>-->
+        </div>
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-6%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E4%B9%8BController%E5%B1%82%E7%9A%84%E5%AE%9E%E7%8E%B0/" title= "校园商铺-4店铺注册功能模块-6店铺注册之 Controller 层的实现">
+                    <div class="prevTitle">校园商铺-4店铺注册功能模块-6店铺注册之 Controller 层的实现</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!-- gitalk评论 -->
+
+    <!-- utteranc评论 -->
+
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:1670025948@qq.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/AD-Gai-Code" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer wechat" title=wechat>
+                  
+                  <img class="profile-qr" src="/assets/example_qr.jpg" />
+                </span>
+            
+        
+    
+        
+            
+                <span class="iconfont-archer qq" title=qq>
+                  
+                  <img class="profile-qr" src="/assets/qq.png" />
+                </span>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E6%94%B9%E9%80%A0-Service-%E5%B1%82%E6%8E%A5%E5%8F%A3"><span class="toc-number">1.</span> <span class="toc-text">1.改造 Service 层接口</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E6%94%B9%E9%80%A0%E5%AE%9E%E7%8E%B0%E7%B1%BB-ShopServiceImpl"><span class="toc-number">2.</span> <span class="toc-text">2.改造实现类 ShopServiceImpl</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E6%94%B9%E9%80%A0-ImageUitl-%E5%B7%A5%E5%85%B7%E7%B1%BB"><span class="toc-number">3.</span> <span class="toc-text">3.改造 ImageUitl 工具类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95"><span class="toc-number">4.</span> <span class="toc-text">4.单元测试</span></a></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 28
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2021/02/27/hexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" >Hexo个人博客搭建</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2021 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/10</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-6%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E4%B9%8BController%E5%B1%82%E7%9A%84%E5%AE%9E%E7%8E%B0/" >校园商铺-4店铺注册功能模块-6店铺注册之 Controller 层的实现</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/10</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-5%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E4%B9%8BService%E5%B1%82%E7%9A%84%E5%AE%9E%E7%8E%B0/" >校园商铺-4店铺注册功能模块-5店铺注册之Service层的实现</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/10</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-3%20thumbnailator%E5%9B%BE%E7%89%87%E5%A4%84%E7%90%86%E5%92%8C%E5%B0%81%E8%A3%85Util/" >校园商铺-4店铺注册功能模块-3 thumbnailator图片处理和封装Util</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/10</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-1Dao%E5%B1%82%E4%B9%8B%E6%96%B0%E5%A2%9E%E5%BA%97%E9%93%BA/" >校园商铺-4店铺注册功能模块-1 Dao层之新增店铺</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/10</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-2%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA-5%E9%AA%8C%E8%AF%81Dao/" >校园商铺-2项目设计和框架搭建-5验证Dao层的配置</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/10</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-2%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA-6%E9%AA%8C%E8%AF%81Service%E5%B1%82%E7%9A%84%E9%85%8D%E7%BD%AE/" >校园商铺-2项目设计和框架搭建-6验证 Service 层的配置</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/10</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-2%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA-3%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84%E8%A7%84%E5%88%92%E5%8F%8AMaven%E9%85%8D%E7%BD%AE/" >校园商铺-2项目设计和框架搭建-3项目结构规划及Maven配置</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/10</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-2%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA-1%E7%B3%BB%E7%BB%9F%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97%E5%88%92%E5%88%86/" >校园商铺-2项目设计和框架搭建-1系统功能模块划分</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/10</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-2%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA-2%E5%AE%9E%E4%BD%93%E7%B1%BB%E8%AE%BE%E8%AE%A1%E4%B8%8E%E8%A1%A8%E5%88%9B%E5%BB%BA/" >校园商铺-2项目设计和框架搭建-2实体类设计与表实现</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/26</span><a class="archive-post-title" href= "/2021/04/26/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA%20bug%20%E6%B1%87%E6%80%BB/" >校园商铺 bug 汇总</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/20</span><a class="archive-post-title" href= "/2021/04/20/Maven%E5%9B%9E%E9%A1%BE/" >Maven 学习</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/15</span><a class="archive-post-title" href= "/2021/04/15/LeetCode%E4%BA%8C%E5%8F%89%E6%A0%91%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93/" >LeetCode二叉树刷题总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/10</span><a class="archive-post-title" href= "/2021/04/10/Servlet%EF%BC%8C%E6%88%91%E8%BF%98%E6%98%AF%E7%88%B1%E4%BD%A0%E7%9A%84/" >Servlet，我还是爱你的</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/06</span><a class="archive-post-title" href= "/2021/04/06/Spring5%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0(%E4%BA%8C)/" >Spring5框架学习系列（二）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/03</span><a class="archive-post-title" href= "/2021/04/03/java%E5%8F%82%E6%95%B0%E5%8F%8A%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92/" >Java参数及参数传递</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/30</span><a class="archive-post-title" href= "/2021/03/30/%E6%9E%9A%E4%B8%BE%E4%B8%8E%E6%B3%A8%E8%A7%A3%E5%A4%8D%E4%B9%A0%E6%80%BB%E7%BB%93/" >枚举与注解复习总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/25</span><a class="archive-post-title" href= "/2021/03/25/spring5%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0(%E4%B8%80)/" >Spring5框架学习系列（一）</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/21</span><a class="archive-post-title" href= "/2021/03/21/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" >排序算法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/08</span><a class="archive-post-title" href= "/2021/03/08/%E9%80%92%E5%BD%92%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" >递归算法学习笔记</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2021/04/07/Spring5%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0(%E4%B8%89)/" >Spring5框架学习系列（三）</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2021/04/24/mybatis%E7%AC%94%E8%AE%B0(%E4%B8%80)/" >Mybatis 学习（一）</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-2%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA-4%E8%87%AA%E4%B8%8B%E8%80%8C%E4%B8%8A%E9%80%90%E5%B1%82%E5%AE%8C%E6%88%90%20SSM%20%E7%9A%84%E5%90%84%E9%A1%B9%E9%85%8D%E7%BD%AE/" >校园商铺-2项目设计和框架搭建-4自下而上逐层完成 SSM 的各项配置</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-2%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA-7%E9%AA%8C%E8%AF%81%20Controller%20%E5%B1%82%E7%9A%84%E9%85%8D%E7%BD%AE/" >校园商铺-2项目设计和框架搭建-7验证 Controller 层的配置</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-3Logback%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8/" >校园商铺-3 Logback配置与使用</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-2%20Dao%E5%B1%82%E4%B9%8B%E6%9B%B4%E6%96%B0%E5%BA%97%E9%93%BA/" >校园商铺-4店铺注册功能模块-2 Dao层之更新店铺</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-4%20Dto%20%E4%B9%8B%20ShopExecution%20%E7%9A%84%E5%AE%9E%E7%8E%B0/" >校园商铺-4店铺注册功能模块-4 Dto 之 ShopExecution 的实现</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-8%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E4%B9%8BController%E5%B1%82%E7%9A%84%E6%94%B9%E9%80%A0/" >校园商铺-4店铺注册功能模块-8店铺注册之 Controller 层的改造</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="Hexo"><span class="iconfont-archer">&#xe606;</span>Hexo</span>
+    
+        <span class="sidebar-tag-name" data-tags="数据结构与算法"><span class="iconfont-archer">&#xe606;</span>数据结构与算法</span>
+    
+        <span class="sidebar-tag-name" data-tags="JavaSE"><span class="iconfont-archer">&#xe606;</span>JavaSE</span>
+    
+        <span class="sidebar-tag-name" data-tags="基础回顾"><span class="iconfont-archer">&#xe606;</span>基础回顾</span>
+    
+        <span class="sidebar-tag-name" data-tags="LeetCode刷题"><span class="iconfont-archer">&#xe606;</span>LeetCode刷题</span>
+    
+        <span class="sidebar-tag-name" data-tags="Spring"><span class="iconfont-archer">&#xe606;</span>Spring</span>
+    
+        <span class="sidebar-tag-name" data-tags="Mybatis"><span class="iconfont-archer">&#xe606;</span>Mybatis</span>
+    
+        <span class="sidebar-tag-name" data-tags="Maven"><span class="iconfont-archer">&#xe606;</span>Maven</span>
+    
+        <span class="sidebar-tag-name" data-tags="项目-校园商铺"><span class="iconfont-archer">&#xe606;</span>项目-校园商铺</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="Hexo"><span class="iconfont-archer">&#xe60a;</span>Hexo</span>
+    
+        <span class="sidebar-category-name" data-categories="数据结构与算法"><span class="iconfont-archer">&#xe60a;</span>数据结构与算法</span>
+    
+        <span class="sidebar-category-name" data-categories="JavaSE"><span class="iconfont-archer">&#xe60a;</span>JavaSE</span>
+    
+        <span class="sidebar-category-name" data-categories="基础回顾"><span class="iconfont-archer">&#xe60a;</span>基础回顾</span>
+    
+        <span class="sidebar-category-name" data-categories="LeetCode刷题"><span class="iconfont-archer">&#xe60a;</span>LeetCode刷题</span>
+    
+        <span class="sidebar-category-name" data-categories="Spring"><span class="iconfont-archer">&#xe60a;</span>Spring</span>
+    
+        <span class="sidebar-category-name" data-categories="Mybatis"><span class="iconfont-archer">&#xe60a;</span>Mybatis</span>
+    
+        <span class="sidebar-category-name" data-categories="Maven"><span class="iconfont-archer">&#xe60a;</span>Maven</span>
+    
+        <span class="sidebar-category-name" data-categories="项目-校园商铺"><span class="iconfont-archer">&#xe60a;</span>项目-校园商铺</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "AiLaodu"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+    </body>
+</html>
+
+

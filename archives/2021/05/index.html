@@ -355,22 +355,229 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-3Logback%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8/" >
+        <a class="abstract-title" href = "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-8%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E4%B9%8BController%E5%B1%82%E7%9A%84%E6%94%B9%E9%80%A0/" >
+            
+                <span>校园商铺-4店铺注册功能模块-8店铺注册之 Controller 层的改造</span>
+        </a>
+        <div class="abstract-content">
+            <p><strong>不合理的地方：</strong></p>
+<ol>
+<li>==并不需要将 InputStream 转换成 File 类型，直接将 InputStream 传进入交给 CommonsMultipartfile去处理就可以了==</li>
+</ol>
+<p>如果做这样的转换，每次都需要生成一个空白的文件，然后还需要向文件中写入请求传送过来的文件流，这样不仅仅产生很多垃圾文件，同时有可能造成写入失败，抛出异常的风险，大大地加大了系统的不稳定性。</p>
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/05/10</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "项目-校园商铺">项目-校园商铺</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-6%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E4%B9%8BController%E5%B1%82%E7%9A%84%E5%AE%9E%E7%8E%B0/" >
+            
+                <span>校园商铺-4店铺注册功能模块-6店铺注册之 Controller 层的实现</span>
+        </a>
+        <div class="abstract-content">
+            <h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h1><p>Service 层实现之后，接下来编写控制层的代码</p>
+<p>用到了jackson-databind <a target="_blank" rel="noopener" href="https://github.com/FasterXML/jackson-databind">https://github.com/FasterXML/jackson-databind</a> ，将前台传递过来的JSON对象转换为POJO类。</p>
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/05/10</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "项目-校园商铺">项目-校园商铺</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-5%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E4%B9%8BService%E5%B1%82%E7%9A%84%E5%AE%9E%E7%8E%B0/" >
+            
+                <span>校园商铺-4店铺注册功能模块-5店铺注册之Service层的实现</span>
+        </a>
+        <div class="abstract-content">
+            <h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h1><p>截至目前，我们已经完成了持久层insertShop的开发，编写了操作图片和路径的工具类，使用ENUM定义了操作店铺使用的常量，定义了操作店铺返回的DTO类ShopExecution。</p>
+<p>铺垫了这么多，终于可以编写Service层的代码了，service 层操作店铺返回 DTO 类 ShopExecution（不仅包含Shop的信息，同时也要包含操作店铺的状态信息）。</p>
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/05/10</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "项目-校园商铺">项目-校园商铺</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-4%20Dto%20%E4%B9%8B%20ShopExecution%20%E7%9A%84%E5%AE%9E%E7%8E%B0/" >
+            
+                <span>校园商铺-4店铺注册功能模块-4 Dto 之 ShopExecution 的实现</span>
+        </a>
+        <div class="abstract-content">
+            <h1 id="1-DTO概述"><a href="#1-DTO概述" class="headerlink" title="1.DTO概述"></a>1.DTO概述</h1><p>Data Transfer Object，数据传送对象 .</p>
+<p>DTO是一个普通的Java类，它封装了要传送的批量的数据。当客户端需要读取服务器端的数据的时候，服务器端将数据封装在DTO中，这样客户端就可以在一个网络调用中获得它需要的所有数据。</p>
+<p>Shop实体类包含了Shop的基本属性，但是在前端操作时，我们希望可以返回操作的结果等信息，这个时候Shop实体类就不能满足需求了，我们将操作结果和Shop等信息统一放到DTO中处理，即可满足当前的需求。</p>
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/05/10</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "项目-校园商铺">项目-校园商铺</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-3%20thumbnailator%E5%9B%BE%E7%89%87%E5%A4%84%E7%90%86%E5%92%8C%E5%B0%81%E8%A3%85Util/" >
+            
+                <span>校园商铺-4店铺注册功能模块-3 thumbnailator图片处理和封装Util</span>
+        </a>
+        <div class="abstract-content">
+            <h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h1><p>既然是o2o， 图片是不可或缺的。</p>
+<p>存储这些图片，一般的处理方式：放到专门图片服务器或者在主机上单独划分目录去存储这些图片。数据库中的字段仅仅存放图片的地址。 关于图片的存放目录，合理的情况在系统配置表中配置存储的根目录和各个模块图片存放的相对路径， 便于应用的迁移。</p>
+<p>处理图片的框架这里我们选择 Thumbnailator 为图片添加水印，为简化图片的处理，图片工具类自然是不可或缺的。</p>
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/05/10</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "项目-校园商铺">项目-校园商铺</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-2%20Dao%E5%B1%82%E4%B9%8B%E6%9B%B4%E6%96%B0%E5%BA%97%E9%93%BA/" >
+            
+                <span>校园商铺-4店铺注册功能模块-2 Dao层之更新店铺</span>
+        </a>
+        <div class="abstract-content">
+            <h1 id="1-ShopDao中新增updateShop接口"><a href="#1-ShopDao中新增updateShop接口" class="headerlink" title="1.ShopDao中新增updateShop接口"></a>1.ShopDao中新增updateShop接口</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ShopDao</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">insertShop</span><span class="params">(Shop shop)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">updateShop</span><span class="params">(Shop shop)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/05/10</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "项目-校园商铺">项目-校园商铺</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-1Dao%E5%B1%82%E4%B9%8B%E6%96%B0%E5%A2%9E%E5%BA%97%E9%93%BA/" >
+            
+                <span>校园商铺-4店铺注册功能模块-1 Dao层之新增店铺</span>
+        </a>
+        <div class="abstract-content">
+            <h1 id="1-系统功能开发的优先级"><a href="#1-系统功能开发的优先级" class="headerlink" title="1. 系统功能开发的优先级"></a>1. 系统功能开发的优先级</h1><p>项目共有3个系统，前端展示系统，店家管理系统，超级管理员管理系统。<br>        店家的优先级是最高的，因为最有可能带来收益的是店家，而且一旦店家系统开发出来，店家往系统里填写商品信息、前端展示系统才有展示的数据源。<br>        超级管理员系统可以用手工录入的方式来代替，优先级是最低。</p>
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/05/10</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "项目-校园商铺">项目-校园商铺</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-3Logback%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8/" >
             
                 <span>校园商铺-3 Logback配置与使用</span>
         </a>
         <div class="abstract-content">
-            1.日志的作用
-1.故障定位
-2.显示程序运行状态
-
-好的日志记录方式可以提供给我们足够多定位问题的依据，因此我们引入 logback 组件来进行日志的记录
-2.Logback 标准配置1.1 Logback 的主要模块：
-Logback-access：与servlet容器集成，提供通过http来访问日志的功能。第三方软件可以通过Logback-access这个模块来访问Logback记录的日志
-Logcbak-classic：是log4j的改良版本，同时完成的实现了slf4j的API，很方便的更换成其他日志系统
-Logback-core：为前2个模块提供了基础的服务
-
-1.2 Logb...
+            <h1 id="1-日志的作用"><a href="#1-日志的作用" class="headerlink" title="1.日志的作用"></a>1.日志的作用</h1><ul>
+<li>1.故障定位</li>
+<li>2.显示程序运行状态</li>
+</ul>
+<p>好的日志记录方式可以提供给我们足够多定位问题的依据，因此我们引入 logback 组件来进行日志的记录</p>
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -394,13 +601,13 @@ Logback-core：为前2个模块提供了基础的服务
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-2%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA-7%E9%AA%8C%E8%AF%81%20Controller%20%E5%B1%82%E7%9A%84%E9%85%8D%E7%BD%AE/" >
+        <a class="abstract-title" href = "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-2%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA-7%E9%AA%8C%E8%AF%81%20Controller%20%E5%B1%82%E7%9A%84%E9%85%8D%E7%BD%AE/" >
             
                 <span>校园商铺-2项目设计和框架搭建-7验证 Controller 层的配置</span>
         </a>
         <div class="abstract-content">
-            
-1. Controller 层的具体代码1234567891011121314151617181920212223242526272829@Controller@RequestMapping(value = &quot;/superadmin&quot;)public class AreaController &#123;    Logger logger = LoggerFactory.getLogger(AreaController.class);    @Autowired    private AreaService areaService;    @RequestMappin...
+            <p><img src="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210510171110012.png" alt="image-20210510171110012"></p>
+<h1 id="1-Controller-层的具体代码"><a href="#1-Controller-层的具体代码" class="headerlink" title="1. Controller 层的具体代码"></a>1. Controller 层的具体代码</h1>
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -424,164 +631,14 @@ Logback-core：为前2个模块提供了基础的服务
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-2%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA-6%E9%AA%8C%E8%AF%81Service%E5%B1%82%E7%9A%84%E9%85%8D%E7%BD%AE/" >
+        <a class="abstract-title" href = "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-2%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA-6%E9%AA%8C%E8%AF%81Service%E5%B1%82%E7%9A%84%E9%85%8D%E7%BD%AE/" >
             
                 <span>校园商铺-2项目设计和框架搭建-6验证 Service 层的配置</span>
         </a>
         <div class="abstract-content">
-            
+            <img src="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210510165135481.png" alt="image-20210510165135481" style="zoom:80%;" />
 
-1.接口以及实现类接口123public interface AreaService &#123;    List&lt;Area&gt; getAreaList();&#125;
-
-实现类123456789101112131415/** @Description @Service 注解的作用是告诉Spring IOC：AreaServiceImpl 这个类是需要 IOC 容器托管的 * 当别的类调用到 AreaService 时，IOC会动态的将 AreaServiceImpl 注入到 AreaService接口中* @Param* @Return**/@Servicepublic...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/05/10</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "项目-校园商铺">项目-校园商铺</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-2%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA-5%E9%AA%8C%E8%AF%81Dao/" >
-            
-                <span>校园商铺-2项目设计和框架搭建-5验证Dao层的配置</span>
-        </a>
-        <div class="abstract-content">
-            <h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h1><p>整合SSM框架之后，我们分别对持久层、业务层、控制层分别做下单元测试。</p>
-<p>Area这个实体类属性相对较少，所以就选择使用Area来测试。</p>
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/05/10</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "项目-校园商铺">项目-校园商铺</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-2%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA-4%E8%87%AA%E4%B8%8B%E8%80%8C%E4%B8%8A%E9%80%90%E5%B1%82%E5%AE%8C%E6%88%90%20SSM%20%E7%9A%84%E5%90%84%E9%A1%B9%E9%85%8D%E7%BD%AE/" >
-            
-                <span>校园商铺-2项目设计和框架搭建-4自下而上逐层完成 SSM 的各项配置</span>
-        </a>
-        <div class="abstract-content">
-            <h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h1><p>在划分好基本的项目结构后，我们接下来整合SSM。</p>
-<p><strong>我们自下而上来整合，即先整合数据库持久层部分，然后整合服务层，最后整合控制层。</strong></p>
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/05/10</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "项目-校园商铺">项目-校园商铺</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-2%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA-3%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84%E8%A7%84%E5%88%92%E5%8F%8AMaven%E9%85%8D%E7%BD%AE/" >
-            
-                <span>校园商铺-2项目设计和框架搭建-3项目结构规划及Maven配置</span>
-        </a>
-        <div class="abstract-content">
-            <h1 id="1-项目结构规划"><a href="#1-项目结构规划" class="headerlink" title="1.项目结构规划"></a>1.项目结构规划</h1><p><img src="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210510154156552.png" alt="image-20210510154156552"></p>
-<p>按照功能在 com.imooc.o2o下新建几个package ,如上所示。</p>
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/05/10</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "项目-校园商铺">项目-校园商铺</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-2%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA-2%E5%AE%9E%E4%BD%93%E7%B1%BB%E8%AE%BE%E8%AE%A1%E4%B8%8E%E8%A1%A8%E5%88%9B%E5%BB%BA/" >
-            
-                <span>校园商铺-2项目设计和框架搭建-2实体类设计与表实现</span>
-        </a>
-        <div class="abstract-content">
-            <p><img src="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210510111343611.png" alt="image-20210510111343611"></p>
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/05/10</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "项目-校园商铺">项目-校园商铺</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-2%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA-1%E7%B3%BB%E7%BB%9F%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97%E5%88%92%E5%88%86/" >
-            
-                <span>校园商铺-2项目设计和框架搭建-1系统功能模块划分</span>
-        </a>
-        <div class="abstract-content">
-            <p>校园商铺系统的功能模块划分用以下几个思维导图来展示：</p>
+<h1 id="1-接口以及实现类"><a href="#1-接口以及实现类" class="headerlink" title="1.接口以及实现类"></a>1.接口以及实现类</h1>
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -600,6 +657,10 @@ Logback-core：为前2个模块提供了基础的服务
     </article>
     
     <!-- paginator  -->
+    
+    <nav class="page-nav">
+        <span class="page-number current">1</span><a class="page-number" href="/archives/2021/05/page/2/">2</a><a class="extend next" rel="next" href="/archives/2021/05/page/2/">NEXT &gt;</a>
+    </nav>
     
 </main>
             <!-- profile -->
@@ -952,9 +1013,108 @@ Logback-core：为前2个模块提供了基础的服务
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 21
+        Total : 28
         </div>
         <!-- search  -->
         
@@ -984,12 +1144,32 @@ Logback-core：为前2个模块提供了基础的服务
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">05/10</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-6%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E4%B9%8BController%E5%B1%82%E7%9A%84%E5%AE%9E%E7%8E%B0/" >校园商铺-4店铺注册功能模块-6店铺注册之 Controller 层的实现</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/10</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-5%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E4%B9%8BService%E5%B1%82%E7%9A%84%E5%AE%9E%E7%8E%B0/" >校园商铺-4店铺注册功能模块-5店铺注册之Service层的实现</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/10</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-3%20thumbnailator%E5%9B%BE%E7%89%87%E5%A4%84%E7%90%86%E5%92%8C%E5%B0%81%E8%A3%85Util/" >校园商铺-4店铺注册功能模块-3 thumbnailator图片处理和封装Util</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/10</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-1Dao%E5%B1%82%E4%B9%8B%E6%96%B0%E5%A2%9E%E5%BA%97%E9%93%BA/" >校园商铺-4店铺注册功能模块-1 Dao层之新增店铺</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">05/10</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-2%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA-5%E9%AA%8C%E8%AF%81Dao/" >校园商铺-2项目设计和框架搭建-5验证Dao层的配置</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/10</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-2%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA-6%E9%AA%8C%E8%AF%81Service%E5%B1%82%E7%9A%84%E9%85%8D%E7%BD%AE/" >校园商铺-2项目设计和框架搭建-6验证 Service 层的配置</a>
+            <span class="archive-post-date">05/10</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-2%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA-6%E9%AA%8C%E8%AF%81Service%E5%B1%82%E7%9A%84%E9%85%8D%E7%BD%AE/" >校园商铺-2项目设计和框架搭建-6验证 Service 层的配置</a>
         </li>
     
     
@@ -1009,7 +1189,7 @@ Logback-core：为前2个模块提供了基础的服务
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">04/26</span><a class="archive-post-title" href= "/2021/04/26/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA%20bug%20%E6%B1%87%E6%80%BB/" >校园商铺 bug 汇总</a>
+            <span class="archive-post-date">04/26</span><a class="archive-post-title" href= "/2021/04/26/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA%20bug%20%E6%B1%87%E6%80%BB/" >校园商铺 bug 汇总</a>
         </li>
     
     
@@ -1096,35 +1276,77 @@ Logback-core：为前2个模块提供了基础的服务
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-2%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA-7%E9%AA%8C%E8%AF%81%20Controller%20%E5%B1%82%E7%9A%84%E9%85%8D%E7%BD%AE/" >校园商铺-2项目设计和框架搭建-7验证 Controller 层的配置</a>
-        </li>
-    
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> Invalid date </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-3Logback%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8/" >校园商铺-3 Logback配置与使用</a>
-        </li>
-    
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> Invalid date </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-2%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA-4%E8%87%AA%E4%B8%8B%E8%80%8C%E4%B8%8A%E9%80%90%E5%B1%82%E5%AE%8C%E6%88%90%20SSM%20%E7%9A%84%E5%90%84%E9%A1%B9%E9%85%8D%E7%BD%AE/" >校园商铺-2项目设计和框架搭建-4自下而上逐层完成 SSM 的各项配置</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-2%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA-7%E9%AA%8C%E8%AF%81%20Controller%20%E5%B1%82%E7%9A%84%E9%85%8D%E7%BD%AE/" >校园商铺-2项目设计和框架搭建-7验证 Controller 层的配置</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-3Logback%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8/" >校园商铺-3 Logback配置与使用</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-2%20Dao%E5%B1%82%E4%B9%8B%E6%9B%B4%E6%96%B0%E5%BA%97%E9%93%BA/" >校园商铺-4店铺注册功能模块-2 Dao层之更新店铺</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-4%20Dto%20%E4%B9%8B%20ShopExecution%20%E7%9A%84%E5%AE%9E%E7%8E%B0/" >校园商铺-4店铺注册功能模块-4 Dto 之 ShopExecution 的实现</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-8%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E4%B9%8BController%E5%B1%82%E7%9A%84%E6%94%B9%E9%80%A0/" >校园商铺-4店铺注册功能模块-8店铺注册之 Controller 层的改造</a>
         </li>
     
     </div>
