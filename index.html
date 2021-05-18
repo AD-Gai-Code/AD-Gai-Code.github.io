@@ -368,16 +368,206 @@ height:50vh;
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-8%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E4%B9%8BController%E5%B1%82%E7%9A%84%E6%94%B9%E9%80%A0/" >
+        <a class="abstract-title" href = "/2021/05/18/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-13%20%E5%89%8D%E5%90%8E%E7%AB%AF%E8%81%94%E8%B0%83%E6%8A%80%E5%B7%A7%E7%BB%86%E5%8C%96%E4%B8%8E%E6%80%BB%E7%BB%93/" >
             
-                <span>校园商铺-4店铺注册功能模块-8店铺注册之 Controller 层的改造</span>
+                <span>校园商铺-4店铺注册功能模块-13 前后端联调技巧细化与总结</span>
+        </a>
+        <div class="abstract-content">
+            <p><strong>从更细的角度来讲解调试技巧：</strong><br>码农有两个主要的技能，一个是利用百度、谷歌等检索引擎解决问题。另一个是具备调试的能力。<br>经过实践证明：调试能解决80%以上的代码问题，对日后的工作有很大的帮助。<br>编程切莫黑盒，即不要在出现异常的情况下，立即和最终源码进行对比，因为实际工作中，并没有唯一正确答案进行校验，并且即便代码没有问题，但由于环境不同（如数据和文件路径不匹配）造成报错，就不能甩锅给代码。此时一定要具备解决问题的能力。</p>
+<p>本节的目标：</p>
+<ul>
+<li>1.关键按钮的介绍以及断点的设置</li>
+<li>2.如何进行前后端联调</li>
+</ul>
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/05/18</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "项目-校园商铺">项目-校园商铺</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2021/05/18/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-11%20View%E5%B1%82+Controller%E5%B1%82%E4%B9%8B%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0/" >
+            
+                <span>校园商铺-4店铺注册功能模块-11 View层+Controller层之图片上传</span>
+        </a>
+        <div class="abstract-content">
+            <h1 id="1-导入-Maven-依赖"><a href="#1-导入-Maven-依赖" class="headerlink" title="1.导入 Maven 依赖"></a>1.导入 Maven 依赖</h1><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- https:<span class="comment">//mvnrepository.com/artifact/commons-fileupload/commons-fileupload --&gt;</span></span><br><span class="line">	&lt;dependency&gt;</span><br><span class="line">		&lt;groupId&gt;commons-fileupload&lt;/groupId&gt;</span><br><span class="line">		&lt;artifactId&gt;commons-fileupload&lt;/artifactId&gt;</span><br><span class="line">		&lt;version&gt;1.3.2&lt;/version&gt;</span><br><span class="line">	&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/05/18</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "项目-校园商铺">项目-校园商铺</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2021/05/18/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-12%20%E5%89%8D%E5%90%8E%E7%AB%AF%E8%81%94%E8%B0%83%E9%AA%8C%E8%AF%81%E6%95%B4%E4%BD%93%E6%A8%A1%E5%9D%97%E5%8A%9F%E8%83%BD/" >
+            
+                <span>校园商铺-4店铺注册功能模块-12 前后端联调验证整体模块功能</span>
+        </a>
+        <div class="abstract-content">
+            <h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h1><p>我们已经开发完了商铺注册功能，也做了单元测试，那么开启服务，做一次前后端联合的调测吧。</p>
+<h1 id="2-加入断点，开启DEBUG模式"><a href="#2-加入断点，开启DEBUG模式" class="headerlink" title="2.加入断点，开启DEBUG模式"></a>2.加入断点，开启DEBUG模式</h1><p>我们在注册商铺的入口<code>Controller</code>层 <code>ShopManagerController#registerShop </code>加上断点:</p>
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/05/18</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "项目-校园商铺">项目-校园商铺</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2021/05/18/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-10%20%E5%BC%95%E5%85%A5kaptcha%E5%AE%9E%E7%8E%B0%E9%AA%8C%E8%AF%81%E7%A0%81/" >
+            
+                <span>校园商铺-4店铺注册功能模块-10 引入kaptcha实现验证码</span>
+        </a>
+        <div class="abstract-content">
+            <h1 id="1-Kaptcha-概述"><a href="#1-Kaptcha-概述" class="headerlink" title="1.Kaptcha 概述"></a>1.Kaptcha 概述</h1><p>GitHub:<br><a target="_blank" rel="noopener" href="https://github.com/penggle/kaptcha">https://github.com/penggle/kaptcha</a></p>
+<p>官网<br><a target="_blank" rel="noopener" href="http://code.google.com/p/kaptcha/">http://code.google.com/p/kaptcha/</a></p>
+<p>Kaptcha是基于SimpleCaptcha的开源项目。通过调整Kaptcha配置可以生成各种样式的验证码。</p>
+<p>Kaptcha提供的功能如下：</p>
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/05/18</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "项目-校园商铺">项目-校园商铺</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2021/05/13/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-9%20%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E4%B9%8B%E5%BA%97%E9%93%BA%E7%B1%BB%E5%88%AB%E5%8C%BA%E5%9F%9F%E4%BF%A1%E6%81%AF%E7%9A%84%E8%8E%B7%E5%8F%96/" >
+            
+                <span>校园商铺-4店铺注册功能模块-9 店铺注册之店铺类别区域信息的获取</span>
+        </a>
+        <div class="abstract-content">
+            <h1 id="1-请求过程分析"><a href="#1-请求过程分析" class="headerlink" title="1.请求过程分析"></a>1.请求过程分析</h1><p>页面画完之后，我们的下拉框是没有数据的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 商铺分类  下拉列表 --&gt;</span><br><span class="line">	&lt;li&gt;</span><br><span class="line">		&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;item-content&quot;</span>&gt;</span><br><span class="line">			&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;item-inner&quot;</span>&gt;</span><br><span class="line">				&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;item-title label&quot;</span>&gt;商铺分类&lt;/div&gt;</span><br><span class="line">				&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;item-input&quot;</span>&gt;</span><br><span class="line">					&lt;!-- 增加id,便于js中操作，需要从后台读取数据 --&gt;</span><br><span class="line">					&lt;select id=<span class="string">&quot;shop-category&quot;</span>&gt;</span><br><span class="line">					&lt;/select&gt;</span><br><span class="line">				&lt;/div&gt;</span><br><span class="line">			&lt;/div&gt;</span><br><span class="line">		&lt;/div&gt;</span><br><span class="line">	&lt;/li&gt;</span><br><span class="line">	</span><br><span class="line">	&lt;!-- 所属区域  下拉列表 - --&gt;</span><br><span class="line">	&lt;li&gt;</span><br><span class="line">		&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;item-content&quot;</span>&gt;</span><br><span class="line">			&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;item-inner&quot;</span>&gt;</span><br><span class="line">				&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;item-title label&quot;</span>&gt;所属区域&lt;/div&gt;</span><br><span class="line">				&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;item-input&quot;</span>&gt;</span><br><span class="line">					&lt;select id=<span class="string">&quot;shop-area&quot;</span>&gt;</span><br><span class="line">					&lt;/select&gt;</span><br><span class="line">				&lt;/div&gt;</span><br><span class="line">			&lt;/div&gt;</span><br><span class="line">		&lt;/div&gt;</span><br><span class="line">	&lt;/li&gt;</span><br></pre></td></tr></table></figure>
+
+<p>在初始化页面加载<code>js</code>的时候调用:</p>
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/05/13</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "项目-校园商铺">项目-校园商铺</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2021/05/11/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-8%20%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E4%B9%8BView%E5%B1%82%E5%89%8D%E5%8F%B0%E9%A1%B5%E9%9D%A2/" >
+            
+                <span>校园商铺-4店铺注册功能模块-8 店铺注册之 View 层前台页面</span>
+        </a>
+        <div class="abstract-content">
+            <h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h1><p>在开发完 <code>DAO</code> 层、<code>Service</code> 层、<code>Controller</code> 层之后，我们来实现下 <code>View</code> 层的部分。</p>
+<h1 id="2-前端框架选择"><a href="#2-前端框架选择" class="headerlink" title="2.前端框架选择"></a>2.前端框架选择</h1><p>前端知识存在短板，只能利用一些前端开发非常使用的UI库来弥补前端知识的不足，推荐<a target="_blank" rel="noopener" href="http://m.sui.taobao.org/">SUI Mobile</a><br>官方介绍：SUI Mobile是轻量，小巧且精美的UI库，方便迅速搭建手机H5应用。满足了我们用一套模版来响应各种设备展示的需求。</p>
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/05/11</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "项目-校园商铺">项目-校园商铺</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href = "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-7%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E4%B9%8BController%E5%B1%82%E7%9A%84%E6%94%B9%E9%80%A0/" >
+            
+                <span>校园商铺-4店铺注册功能模块-7店铺注册之 Controller 层的改造</span>
         </a>
         <div class="abstract-content">
             <p><strong>不合理的地方：</strong></p>
 <ol>
-<li>并不需要将 InputStream 转换成 File 类型，直接将 InputStream 传进入交给 CommonsMultipartfile去处理就可以了</li>
+<li><p>并不需要将 InputStream 转换成 File 类型，直接将 InputStream 传进入交给 CommonsMultipartfile去处理就可以了</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*由于addShop的第二个参数是File类型的，</span></span><br><span class="line"><span class="comment">           而传入的ShopImg是CommonsMultipartFile这样的一个类型，</span></span><br><span class="line"><span class="comment">           因此需要将CommonsMultipartFile转换成File类型*/</span></span><br><span class="line">           File shopImgFile = <span class="keyword">new</span> File(PathUtil.getImgBasePath()</span><br><span class="line">                   + ImageUtil.getRandomFileName());</span><br><span class="line">           <span class="keyword">try</span> &#123;</span><br><span class="line">               shopImgFile.createNewFile();</span><br><span class="line">           &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">               modelMap.put(<span class="string">&quot;success&quot;</span>, <span class="keyword">false</span>);</span><br><span class="line">               modelMap.put(<span class="string">&quot;errMsg&quot;</span>, e.getMessage());</span><br><span class="line">               <span class="keyword">return</span> modelMap;</span><br><span class="line">           &#125;</span><br></pre></td></tr></table></figure>
+
+</li>
 </ol>
-<p>如果做这样的转换，每次都需要生成一个空白的文件，然后还需要向文件中写入请求传送过来的文件流，这样不仅仅产生很多垃圾文件，同时有可能造成写入失败，抛出异常的风险，大大地加大了系统的不稳定性。</p>
+<p>如果做这样的转换，shopImgFile.createNewFile(); 每次都需要生成一个空白的文件，然后还需要向文件中写入请求传送过来的文件流，这样不仅仅产生很多垃圾文件，同时有可能造成写入失败，抛出异常的风险，大大地加大了系统的不稳定性。</p>
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -486,193 +676,10 @@ height:50vh;
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-3%20thumbnailator%E5%9B%BE%E7%89%87%E5%A4%84%E7%90%86%E5%92%8C%E5%B0%81%E8%A3%85Util/" >
-            
-                <span>校园商铺-4店铺注册功能模块-3 thumbnailator图片处理和封装Util</span>
-        </a>
-        <div class="abstract-content">
-            <h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h1><p>既然是o2o， 图片是不可或缺的。</p>
-<p>存储这些图片，一般的处理方式：放到专门图片服务器或者在主机上单独划分目录去存储这些图片。数据库中的字段仅仅存放图片的地址。 关于图片的存放目录，合理的情况在系统配置表中配置存储的根目录和各个模块图片存放的相对路径， 便于应用的迁移。</p>
-<p>处理图片的框架这里我们选择 Thumbnailator 为图片添加水印，为简化图片的处理，图片工具类自然是不可或缺的。</p>
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/05/10</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "项目-校园商铺">项目-校园商铺</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-2%20Dao%E5%B1%82%E4%B9%8B%E6%9B%B4%E6%96%B0%E5%BA%97%E9%93%BA/" >
-            
-                <span>校园商铺-4店铺注册功能模块-2 Dao层之更新店铺</span>
-        </a>
-        <div class="abstract-content">
-            <h1 id="1-ShopDao中新增updateShop接口"><a href="#1-ShopDao中新增updateShop接口" class="headerlink" title="1.ShopDao中新增updateShop接口"></a>1.ShopDao中新增updateShop接口</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ShopDao</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">insertShop</span><span class="params">(Shop shop)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">updateShop</span><span class="params">(Shop shop)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/05/10</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "项目-校园商铺">项目-校园商铺</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-1Dao%E5%B1%82%E4%B9%8B%E6%96%B0%E5%A2%9E%E5%BA%97%E9%93%BA/" >
-            
-                <span>校园商铺-4店铺注册功能模块-1 Dao层之新增店铺</span>
-        </a>
-        <div class="abstract-content">
-            <h1 id="1-系统功能开发的优先级"><a href="#1-系统功能开发的优先级" class="headerlink" title="1. 系统功能开发的优先级"></a>1. 系统功能开发的优先级</h1><p>项目共有3个系统，前端展示系统，店家管理系统，超级管理员管理系统。<br>        店家的优先级是最高的，因为最有可能带来收益的是店家，而且一旦店家系统开发出来，店家往系统里填写商品信息、前端展示系统才有展示的数据源。<br>        超级管理员系统可以用手工录入的方式来代替，优先级是最低。</p>
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/05/10</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "项目-校园商铺">项目-校园商铺</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-3Logback%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8/" >
-            
-                <span>校园商铺-3 Logback配置与使用</span>
-        </a>
-        <div class="abstract-content">
-            <h1 id="1-日志的作用"><a href="#1-日志的作用" class="headerlink" title="1.日志的作用"></a>1.日志的作用</h1><ul>
-<li>1.故障定位</li>
-<li>2.显示程序运行状态</li>
-</ul>
-<p>好的日志记录方式可以提供给我们足够多定位问题的依据，因此我们引入 logback 组件来进行日志的记录</p>
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/05/10</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "项目-校园商铺">项目-校园商铺</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-2%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA-7%E9%AA%8C%E8%AF%81%20Controller%20%E5%B1%82%E7%9A%84%E9%85%8D%E7%BD%AE/" >
-            
-                <span>校园商铺-2项目设计和框架搭建-7验证 Controller 层的配置</span>
-        </a>
-        <div class="abstract-content">
-            <p><img src="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210510171110012.png" alt="image-20210510171110012"></p>
-<h1 id="1-Controller-层的具体代码"><a href="#1-Controller-层的具体代码" class="headerlink" title="1. Controller 层的具体代码"></a>1. Controller 层的具体代码</h1>
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/05/10</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "项目-校园商铺">项目-校园商铺</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-2%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA-6%E9%AA%8C%E8%AF%81Service%E5%B1%82%E7%9A%84%E9%85%8D%E7%BD%AE/" >
-            
-                <span>校园商铺-2项目设计和框架搭建-6验证 Service 层的配置</span>
-        </a>
-        <div class="abstract-content">
-            <img src="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210510165135481.png" alt="image-20210510165135481"  />
-
-<h1 id="1-接口以及实现类"><a href="#1-接口以及实现类" class="headerlink" title="1.接口以及实现类"></a>1.接口以及实现类</h1>
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/05/10</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "项目-校园商铺">项目-校园商铺</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
     
     <nav class="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">NEXT &gt;</a>
+        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">NEXT &gt;</a>
     </nav>
     
 </main>
@@ -1229,9 +1236,97 @@ height:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 28
+        Total : 34
         </div>
         <!-- search  -->
         
@@ -1258,6 +1353,26 @@ height:50vh;
     
     <div class="archive-year"> 2021 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/18</span><a class="archive-post-title" href= "/2021/05/18/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-13%20%E5%89%8D%E5%90%8E%E7%AB%AF%E8%81%94%E8%B0%83%E6%8A%80%E5%B7%A7%E7%BB%86%E5%8C%96%E4%B8%8E%E6%80%BB%E7%BB%93/" >校园商铺-4店铺注册功能模块-13 前后端联调技巧细化与总结</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/18</span><a class="archive-post-title" href= "/2021/05/18/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-11%20View%E5%B1%82+Controller%E5%B1%82%E4%B9%8B%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0/" >校园商铺-4店铺注册功能模块-11 View层+Controller层之图片上传</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/18</span><a class="archive-post-title" href= "/2021/05/18/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-12%20%E5%89%8D%E5%90%8E%E7%AB%AF%E8%81%94%E8%B0%83%E9%AA%8C%E8%AF%81%E6%95%B4%E4%BD%93%E6%A8%A1%E5%9D%97%E5%8A%9F%E8%83%BD/" >校园商铺-4店铺注册功能模块-12 前后端联调验证整体模块功能</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/13</span><a class="archive-post-title" href= "/2021/05/13/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-9%20%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E4%B9%8B%E5%BA%97%E9%93%BA%E7%B1%BB%E5%88%AB%E5%8C%BA%E5%9F%9F%E4%BF%A1%E6%81%AF%E7%9A%84%E8%8E%B7%E5%8F%96/" >校园商铺-4店铺注册功能模块-9 店铺注册之店铺类别区域信息的获取</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1463,7 +1578,35 @@ height:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-8%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E4%B9%8BController%E5%B1%82%E7%9A%84%E6%94%B9%E9%80%A0/" >校园商铺-4店铺注册功能模块-8店铺注册之 Controller 层的改造</a>
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2021/05/18/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-10%20%E5%BC%95%E5%85%A5kaptcha%E5%AE%9E%E7%8E%B0%E9%AA%8C%E8%AF%81%E7%A0%81/" >校园商铺-4店铺注册功能模块-10 引入kaptcha实现验证码</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-7%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E4%B9%8BController%E5%B1%82%E7%9A%84%E6%94%B9%E9%80%A0/" >校园商铺-4店铺注册功能模块-7店铺注册之 Controller 层的改造</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> Invalid date </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2021/05/11/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-8%20%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E4%B9%8BView%E5%B1%82%E5%89%8D%E5%8F%B0%E9%A1%B5%E9%9D%A2/" >校园商铺-4店铺注册功能模块-8 店铺注册之 View 层前台页面</a>
         </li>
     
     </div>
