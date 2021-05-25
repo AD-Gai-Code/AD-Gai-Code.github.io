@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********    -----Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<!--<![endif]-->
+
+<head>
+  <title>校园商铺-【4店铺注册】-13 前后端联调技巧细化与总结 | ADGai&#39;s Blog</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="ADGai's Blog">
+    <meta name="author" content="AiLaodu">
+    <meta name="description" content="" />
+    <meta name="keywords" content="Java" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href="/atom.xml" title="ADGai&#39;s Blog" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+    
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
+    
+
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+  
+  
+  
+
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+    <div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+        <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+            <img src="/img/close.png" alt="Close"/>
+        </div>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu">
+            <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+            <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
+            <!-- Dropdown Menu -->
+			 
+            <li>
+                <a class="sb-toggle-submenu">Works<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                        <li><a href="/" target="_BLANK" class="animsition-link">AAA</a></li>
+                    
+                        <li><a href="/atom.xml" target="_BLANK" class="animsition-link">BBB</a></li>
+                    
+                </ul>
+            </li>
+            
+            
+        	<li>
+        		<a class="sb-toggle-submenu">Categories<span class="sb-caret"></span></a>
+            	<ul class="sb-submenu">
+				  	
+				    <li><a href="/categories/Hexo/" class="animsition-link">Hexo<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/JavaSE/" class="animsition-link">JavaSE<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/LeetCode刷题/" class="animsition-link">LeetCode刷题<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/Maven/" class="animsition-link">Maven<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/Mybatis/" class="animsition-link">Mybatis<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/Spring/" class="animsition-link">Spring<small>(3)</small></a></li>
+				    
+				    <li><a href="/categories/基础回顾/" class="animsition-link">基础回顾<small>(2)</small></a></li>
+				    
+				    <li><a href="/categories/数据结构与算法/" class="animsition-link">数据结构与算法<small>(2)</small></a></li>
+				    
+				    <li><a href="/categories/项目-校园商铺/" class="animsition-link">项目-校园商铺<small>(30)</small></a></li>
+				    
+				</ul>
+        	</li>
+			
+            
+            <li>
+                <a class="sb-toggle-submenu">Links<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                    <li><a target="_blank" rel="noopener" href="http://go.kieran.top/" class="animsition-link">Kieran</a></li>
+                    
+                    <li><a target="_blank" rel="noopener" href="http://domain.com/" class="animsition-link">Name</a></li>
+                    
+                </ul>
+            </li>
+            
+        </ul>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu secondary">
+            
+            <li><a href="/about.html" class="animsition-link" title="about">About</a></li>
+            <li><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li>
+        </ul>
+    </div>
+    
+    <!-- ============================ END Off-canvas navigation =========================== -->
+
+    <!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+    <div id="sb-site">
+        <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <div id="navigation" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!-- Nav logo -->
+                    <div class="logo">
+                        <a href="/" title="Logo" class="animsition-link">
+                         <img src="/img/logo.png" alt="Logo" width="35px;"/> 
+                        </a>
+                    </div>
+                    <!-- // Nav logo -->
+                    <!-- Info-bar -->
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/" class="animsition-link">ADGai's Blog</a></li>
+                            <li class="nolink"><span>Always </span>Creative.</li>
+                            
+                            <li><a href="https://github.com/" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                            
+                            
+                            <li><a href="https://twitter.com/" title="Twitter" target="_blank"><i class="icon-twitter"></i></a></li>
+                            
+                            
+                            <li><a href="https://www.facebook.com/" title="Facebook" target="_blank"><i class="icon-facebook"></i></a></li>
+                            
+                            
+                            <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a></li>
+                            
+                            
+                            <li><a href="http://weibo.com/" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a></li>
+                            
+                            <li class="nolink"><span>Welcome!</span></li>
+                        </ul>
+                    </nav>
+                    <!--// Info-bar -->
+                </div>
+                <!-- // .container -->
+                <div class="learnmore sb-toggle-right">More</div>
+                <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+                </button>
+            </div>
+            <!-- // .navbar-inner -->
+        </div>
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2021-05-18T13:25:21.460Z" itemprop="datePublished">
+          2021-05-18
+      </time>
+    
+    
+    | 
+    <a href='/tags/项目-校园商铺/'>项目-校园商铺</a>
+    
+    
+</span>
+                <h1>校园商铺-【4店铺注册】-13 前后端联调技巧细化与总结</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<p><strong>从更细的角度来讲解调试技巧：</strong><br>码农有两个主要的技能，一个是利用百度、谷歌等检索引擎解决问题。另一个是具备调试的能力。<br>经过实践证明：调试能解决80%以上的代码问题，对日后的工作有很大的帮助。<br>编程切莫黑盒，即不要在出现异常的情况下，立即和最终源码进行对比，因为实际工作中，并没有唯一正确答案进行校验，并且即便代码没有问题，但由于环境不同（如数据和文件路径不匹配）造成报错，就不能甩锅给代码。此时一定要具备解决问题的能力。</p>
+<p>本节的目标：</p>
+<ul>
+<li>1.关键按钮的介绍以及断点的设置</li>
+<li>2.如何进行前后端联调</li>
+</ul>
+<span id="more"></span>
+
+<h1 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1.准备工作"></a>1.准备工作</h1><p>服务以debug的形式启动.</p>
+<h1 id="2-前端调试"><a href="#2-前端调试" class="headerlink" title="2. 前端调试"></a>2. 前端调试</h1><p>访问店铺注册页面。<br>前端调试必须通过浏览器来进行调试，而不能在我们的eclipse里去打开相关的js代码，在里面设置断点进行调试。<br>原因：js代码是需要从服务器下载并运行在客户端之上的。即只有浏览器才能调试相关的js代码。对于Chrome来说，需要打开它的开发者模式。选择source标签，里面有相关的js业务代码。<br>通常情况下，在业务代码如shopoperation.js里定位问题就可以了，不需要进入框架的源码里面。因为框架是经过长期的各种验证才发布的，出问题一般不要怀疑框架。即便从框架抛出的异常，99%以上也是和我们的业务代码相关的。比如在业务代码里传入一个空的DOM元素，进入到框架里面并执行，也会从框架抛出异常，但却是业务js代码的错误。</p>
+<h2 id="2-1-打开业务代码，设置断点"><a href="#2-1-打开业务代码，设置断点" class="headerlink" title="2.1 打开业务代码，设置断点"></a>2.1 打开业务代码，设置断点</h2><p>设置断点的作用：是让程序执行的时候，能够停在这个断点下，同时保留当时的现场以供观察。<br>一般定位问题的时候，设置断点的位置极为关键。如果没有经验，建议将断点直接设置在明确执行到的方法的入口处。此处点击提交，就会执行submit。因此submit方法便是本次执行的入口。在不明确后续一定会执行到哪里的情况下，就在submit方法体的第一行设置断点。这样就能保证程序能够执行到这个地方。</p>
+<p><img src="https://gitee.com/AD-Gai-Code/pic-go/raw/master/1418970-20200117092757515-444011769.png" alt="img"></p>
+<p>随着不断学习，设置断点的位置会越来越精确，也能够越来越快的定位问题。</p>
+<p>设置好之后，就能填入注册信息了。点击提交，便会停在断点处，此时鼠标移动到相关的变量，就可看到它们的值。<br>经常用到的调试按钮：</p>
+<p><img src="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210518213157370.png" alt="image-20210518213157370"></p>
+<p>在定位问题的时候，可以通过查看当前有哪些值没有被获取或获取不正确，进而再去查看相关的原因。这就是调试。 比如验证码输入不正确，执行验证码相关的逻辑，查看是输入错误，还是控件无法获取到值的问题。</p>
+<h1 id="3-服务端调试"><a href="#3-服务端调试" class="headerlink" title="3.服务端调试"></a>3.服务端调试</h1><ul>
+<li>.以debug模式启动服务</li>
+<li>2.查看前端请求地址（/o2o/shopadmin/shopoperation），确定后端赌赢的controller及其方法</li>
+</ul>
+<p>与前端相同，先将断点设置在方法体的第一行。</p>
+<ul>
+<li>1.选择变量，右键inspect查看该变量的值</li>
+<li>2.如果对这个变量感兴趣，可以将它添加到watch里面</li>
+<li>3.F5：step into 进入被调用的子方法里面</li>
+<li>4.F6:step over 跳过子方法，直接执行下一步</li>
+<li>5.F8:resume 直接执行到下一个断点</li>
+</ul>
+<p>当熟悉相关的业务以及代码执行逻辑后，就不需要每次都在第一行开始调试，而是将第一个断点直接打在肯定执行的地方来缩短调试的时间。<br>不仅可以通过调试，有时还可以通过浏览器和eclipse的控制台输出的异常信息直接定位问题。</p>
+<p><img src="https://gitee.com/AD-Gai-Code/pic-go/raw/master/1418970-20200117105801196-299149627.jpg" alt="img"></p>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
+    
+    <a class="pull-left" href="/2021/05/19/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-5MySql%20%E4%B8%BB%E4%BB%8E%E5%88%86%E7%A6%BB%E5%AE%9E%E7%8E%B0-%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5%E7%90%86%E8%AE%BA%E7%9F%A5%E8%AF%86/" style="float: left;">
+        ← 校园商铺-5MySql 主从分离实现-主从同步理论知识
+    </a>
+    
+    
+    <a class="pull-right" href="/2021/05/18/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-%E3%80%904%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E3%80%91-11%20View%E5%B1%82+Controller%E5%B1%82%E4%B9%8B%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0/">
+        校园商铺-【4店铺注册】-11 View层+Controller层之图片上传 →
+    </a>
+    
+</nav>
+
+        <div class="col-md-8 col-md-offset-2 col-sm-24"><script type="text/javascript">
+  /**
+   * 搜狐畅言
+   */
+
+  /*
+  document.write('<div id="SOHUCS" sid="' + window.location.pathname.slice(1) + '" ></div>');
+
+  window.onload = function () {
+    (function () {
+      var appid = 'cytXXXX';
+      var conf = 'prod_xxxxxxxxxxxxxxxxx';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      var loadJs = function (d, a, id) {
+        var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+        var b = document.createElement("script");
+        b.setAttribute("type", "text/javascript");
+        b.setAttribute("charset", "UTF-8");
+        b.setAttribute("src", d);
+        if (id) {
+          b.setAttribute("id", id);
+        }
+        if (typeof a === "function") {
+          if (window.attachEvent) {
+            b.onreadystatechange = function () {
+              var e = b.readyState;
+              if (e === "loaded" || e === "complete") {
+                b.onreadystatechange = null;
+                a()
+              }
+            }
+          } else {
+            b.onload = a
+          }
+        }
+        c.appendChild(b)
+      };
+
+      loadJs("https://changyan.sohu.com/upload/changyan.js", function () {
+        window.changyan.api.config({
+          appid: appid,
+          conf: conf
+        })
+      });
+    })();
+  }
+  */
+
+</script>
+</div>
+    </div>
+</section>
+
+
+      
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+            <div class="copy">
+                <p>
+                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By AiLaodu. All Rights Reserved.
+                </p>
+                <p>Theme By <a target="_blank" rel="noopener" href="//go.kieran.top" style="color: #767D84">Kieran</a></p>
+            </div>
+            <div class="social">
+                <ul>
+                    
+                    <li><a href="https://github.com/" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://twitter.com/" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://www.facebook.com/" title="Facebook" target="_blank"><i class="icon-facebook"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="http://weibo.com/" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a>&nbsp;</li>
+                    
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+      <!-- Load our scripts -->
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+
+    resizeHero();
+
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$('#intro').find('img').each(function(){
+  var alt = this.alt;
+
+  if (alt){
+    $(this).after('<span class="caption" style="display:none">' + alt + '</span>');
+  }
+
+  $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox" rel="gallery" />');
+});
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+      
+</body>
+</html>

@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********    -----Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<!--<![endif]-->
+
+<head>
+  <title>校园商铺-【4店铺注册】-8 店铺注册之 View 层前台页面 | ADGai&#39;s Blog</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="ADGai's Blog">
+    <meta name="author" content="AiLaodu">
+    <meta name="description" content="" />
+    <meta name="keywords" content="Java" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href="/atom.xml" title="ADGai&#39;s Blog" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+    
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
+    
+
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+  
+  
+  
+
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+    <div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+        <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+            <img src="/img/close.png" alt="Close"/>
+        </div>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu">
+            <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+            <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
+            <!-- Dropdown Menu -->
+			 
+            <li>
+                <a class="sb-toggle-submenu">Works<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                        <li><a href="/" target="_BLANK" class="animsition-link">AAA</a></li>
+                    
+                        <li><a href="/atom.xml" target="_BLANK" class="animsition-link">BBB</a></li>
+                    
+                </ul>
+            </li>
+            
+            
+        	<li>
+        		<a class="sb-toggle-submenu">Categories<span class="sb-caret"></span></a>
+            	<ul class="sb-submenu">
+				  	
+				    <li><a href="/categories/Hexo/" class="animsition-link">Hexo<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/JavaSE/" class="animsition-link">JavaSE<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/LeetCode刷题/" class="animsition-link">LeetCode刷题<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/Maven/" class="animsition-link">Maven<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/Mybatis/" class="animsition-link">Mybatis<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/Spring/" class="animsition-link">Spring<small>(3)</small></a></li>
+				    
+				    <li><a href="/categories/基础回顾/" class="animsition-link">基础回顾<small>(2)</small></a></li>
+				    
+				    <li><a href="/categories/数据结构与算法/" class="animsition-link">数据结构与算法<small>(2)</small></a></li>
+				    
+				    <li><a href="/categories/项目-校园商铺/" class="animsition-link">项目-校园商铺<small>(30)</small></a></li>
+				    
+				</ul>
+        	</li>
+			
+            
+            <li>
+                <a class="sb-toggle-submenu">Links<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                    <li><a target="_blank" rel="noopener" href="http://go.kieran.top/" class="animsition-link">Kieran</a></li>
+                    
+                    <li><a target="_blank" rel="noopener" href="http://domain.com/" class="animsition-link">Name</a></li>
+                    
+                </ul>
+            </li>
+            
+        </ul>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu secondary">
+            
+            <li><a href="/about.html" class="animsition-link" title="about">About</a></li>
+            <li><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li>
+        </ul>
+    </div>
+    
+    <!-- ============================ END Off-canvas navigation =========================== -->
+
+    <!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+    <div id="sb-site">
+        <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <div id="navigation" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!-- Nav logo -->
+                    <div class="logo">
+                        <a href="/" title="Logo" class="animsition-link">
+                         <img src="/img/logo.png" alt="Logo" width="35px;"/> 
+                        </a>
+                    </div>
+                    <!-- // Nav logo -->
+                    <!-- Info-bar -->
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/" class="animsition-link">ADGai's Blog</a></li>
+                            <li class="nolink"><span>Always </span>Creative.</li>
+                            
+                            <li><a href="https://github.com/" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                            
+                            
+                            <li><a href="https://twitter.com/" title="Twitter" target="_blank"><i class="icon-twitter"></i></a></li>
+                            
+                            
+                            <li><a href="https://www.facebook.com/" title="Facebook" target="_blank"><i class="icon-facebook"></i></a></li>
+                            
+                            
+                            <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a></li>
+                            
+                            
+                            <li><a href="http://weibo.com/" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a></li>
+                            
+                            <li class="nolink"><span>Welcome!</span></li>
+                        </ul>
+                    </nav>
+                    <!--// Info-bar -->
+                </div>
+                <!-- // .container -->
+                <div class="learnmore sb-toggle-right">More</div>
+                <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+                </button>
+            </div>
+            <!-- // .navbar-inner -->
+        </div>
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2021-05-11T12:35:15.992Z" itemprop="datePublished">
+          2021-05-11
+      </time>
+    
+    
+    | 
+    <a href='/tags/项目-校园商铺/'>项目-校园商铺</a>
+    
+    
+</span>
+                <h1>校园商铺-【4店铺注册】-8 店铺注册之 View 层前台页面</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h1><p>在开发完 <code>DAO</code> 层、<code>Service</code> 层、<code>Controller</code> 层之后，我们来实现下 <code>View</code> 层的部分。</p>
+<h1 id="2-前端框架选择"><a href="#2-前端框架选择" class="headerlink" title="2.前端框架选择"></a>2.前端框架选择</h1><p>前端知识存在短板，只能利用一些前端开发非常使用的UI库来弥补前端知识的不足，推荐<a target="_blank" rel="noopener" href="http://m.sui.taobao.org/">SUI Mobile</a><br>官方介绍：SUI Mobile是轻量，小巧且精美的UI库，方便迅速搭建手机H5应用。满足了我们用一套模版来响应各种设备展示的需求。</p>
+<span id="more"></span>
+
+<p>特点：是自适应网页设计的框架。自动识别屏幕宽度，并做出相应调整的网页设计，主要针对互联网用户使用多种终端浏览同一个网页的行为趋势。</p>
+<h2 id="2-1-注册页"><a href="#2-1-注册页" class="headerlink" title="2.1 注册页"></a>2.1 注册页</h2><p>注册页使用<a target="_blank" rel="noopener" href="http://sui.yater.net/demos/form/label-input">表单页面</a>模版</p>
+<p><img src="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210513093939207.png" alt="image-20210513093939207"></p>
+<p><strong>先复制其页面源代码，再修改相关的控件即可</strong></p>
+<p>在<code>webapp</code>中新建文件<code>index.html</code>，将注册模版的源代码复制到新建的<code>index.html</code>中。</p>
+<h2 id="2-2-引入静态文件"><a href="#2-2-引入静态文件" class="headerlink" title="2.2 引入静态文件"></a>2.2 引入静态文件</h2><p>对于这个html文件来说，其依赖一些静态资源，如<code>css</code>文件，<code>js</code>文件。这些文件并未引入进来，因此页面不会正确展示。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">    <span class="comment">&lt;!--所有的css和js文件全部删除--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;/dist/css/sm.css&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;/dist/css/sm-extend.css&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;/assets/css/demos.css&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;apple-touch-icon-precomposed&quot;</span> <span class="attr">href</span>=<span class="string">&quot;/assets/img/apple-touch-icon-114x114.png&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;/assets/js/zepto.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;/assets/js/config.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">...</span><br><span class="line"> <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;/dist/js/sm.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;/dist/js/sm-extend.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;/dist/js/sm-city-picker.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;/assets/js/demos.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>SUI网站<a target="_blank" rel="noopener" href="http://sui.yater.net/getting-started/">开始使用</a>中指明可以在创建页面时通过它提供的CDN地址，直接通过URL的形式以远程的方式下载相关的资源。它是通过CDN的网络下载静态资源的，因此速率是相当高的。<br>        CDN是内容分发网络，其目的是通过在现有的<code>Internet</code>增加一层新的网络架构，将网站的内容发布到最接近用户的网络边缘，是用户可以就近取得所需的内容提高用户访问网站的相应速度。淘宝的CDN遍布全国，因此我们可以直接利用它来提升我们的静态资源加载速度，因此这里直接使用它的CDN地址。<br><code>将 index.html 中所有的 css 和 js 文件删除，替换为页面模版中 css 和 js 文件</code></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;//g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css&quot;</span>&gt;</span></span><br><span class="line">...</span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&#x27;text/javascript&#x27;</span> <span class="attr">src</span>=<span class="string">&#x27;//g.alicdn.com/sj/lib/zepto/zepto.min.js&#x27;</span> <span class="attr">charset</span>=<span class="string">&#x27;utf-8&#x27;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&#x27;text/javascript&#x27;</span> <span class="attr">src</span>=<span class="string">&#x27;//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js&#x27;</span> <span class="attr">charset</span>=<span class="string">&#x27;utf-8&#x27;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&#x27;text/javascript&#x27;</span> <span class="attr">src</span>=<span class="string">&#x27;//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js&#x27;</span> <span class="attr">charset</span>=<span class="string">&#x27;utf-8&#x27;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>而后启动tomcat，浏览器输入<a target="_blank" rel="noopener" href="http://localhost:18080/o2o/index.html%EF%BC%8C%E9%A1%B5%E9%9D%A2%E5%A6%82demo%E4%B8%80%E6%A0%B7%E8%83%BD%E6%AD%A3%E5%B8%B8%E5%B1%95%E7%A4%BA">http://localhost:18080/o2o/index.html，页面如demo一样能正常展示</a></p>
+<h2 id="2-3-修改相应的控件"><a href="#2-3-修改相应的控件" class="headerlink" title="2.3 修改相应的控件"></a>2.3 修改相应的控件</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;IE=edge&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>SUI Mobile Demo<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;description&quot;</span></span></span><br><span class="line"><span class="tag">          <span class="attr">content</span>=<span class="string">&quot;MSUI: Build mobile apps with simple HTML, CSS, and JS components.&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;author&quot;</span> <span class="attr">content</span>=<span class="string">&quot;阿里巴巴国际UED前端&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;initial-scale=1, maximum-scale=1&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;shortcut icon&quot;</span> <span class="attr">href</span>=<span class="string">&quot;/favicon.ico&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;apple-mobile-web-app-capable&quot;</span> <span class="attr">content</span>=<span class="string">&quot;yes&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;apple-mobile-web-app-status-bar-style&quot;</span> <span class="attr">content</span>=<span class="string">&quot;black&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;format-detection&quot;</span> <span class="attr">content</span>=<span class="string">&quot;telephone=no&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- Google Web Fonts --&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span></span></span><br><span class="line"><span class="tag">          <span class="attr">href</span>=<span class="string">&quot;//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span></span></span><br><span class="line"><span class="tag">          <span class="attr">href</span>=<span class="string">&quot;//g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;apple-touch-icon-precomposed&quot;</span></span></span><br><span class="line"><span class="tag">          <span class="attr">href</span>=<span class="string">&quot;/assets/img/apple-touch-icon-114x114.png&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">        <span class="comment">//ga</span></span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> _hmt = _hmt || [];</span></span><br><span class="line"><span class="javascript">        (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">var</span> hm = <span class="built_in">document</span>.createElement(<span class="string">&quot;script&quot;</span>);</span></span><br><span class="line"><span class="javascript">            hm.src = <span class="string">&quot;//hm.baidu.com/hm.js?ba76f8230db5f616edc89ce066670710&quot;</span>;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">var</span> s = <span class="built_in">document</span>.getElementsByTagName(<span class="string">&quot;script&quot;</span>)[<span class="number">0</span>];</span></span><br><span class="line">            s.parentNode.insertBefore(hm, s);</span><br><span class="line">        &#125;)();</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;page-group&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;page-label-input&quot;</span> <span class="attr">class</span>=<span class="string">&quot;page&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">header</span> <span class="attr">class</span>=<span class="string">&quot;bar bar-nav&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;button button-link button-nav pull-left back&quot;</span></span></span><br><span class="line"><span class="tag">               <span class="attr">href</span>=<span class="string">&quot;/demos/form&quot;</span>&gt;</span> <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;icon icon-left&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span> 返回</span><br><span class="line">            <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">&quot;title&quot;</span>&gt;</span>商店信息<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;content&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;list-block&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">                    <span class="comment">&lt;!-- Text inputs --&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item-content&quot;</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item-inner&quot;</span>&gt;</span></span><br><span class="line">                                <span class="comment">&lt;!-- 修改item-title label类目文案、placeholder输入框默认问案，增加id，便于在js代码做控制 --&gt;</span></span><br><span class="line">                                <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item-title label&quot;</span>&gt;</span>商铺名称<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item-input&quot;</span>&gt;</span></span><br><span class="line">                                    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">id</span>=<span class="string">&quot;shop-name&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;商铺名称&quot;</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">                    <span class="comment">&lt;!-- 商铺分类 下拉列表 --&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item-content&quot;</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item-inner&quot;</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item-title label&quot;</span>&gt;</span>商铺分类<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item-input&quot;</span>&gt;</span></span><br><span class="line">                                    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;shop-category&quot;</span>&gt;</span></span><br><span class="line">                                        <span class="comment">&lt;!--商铺分类的option从后台读取，此处删除</span></span><br><span class="line"><span class="comment">                                        &lt;option&gt;Male&lt;/option&gt;</span></span><br><span class="line"><span class="comment">                                        &lt;option&gt;Female&lt;/option&gt;--&gt;</span></span><br><span class="line">                                    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">                    <span class="comment">&lt;!-- 区域分类 下拉列表 --&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item-content&quot;</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item-inner&quot;</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item-title label&quot;</span>&gt;</span>所属区域<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item-input&quot;</span>&gt;</span></span><br><span class="line">                                    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;area&quot;</span>&gt;</span></span><br><span class="line">                                    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">                    <span class="comment">&lt;!-- 详细地址 text --&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item-content&quot;</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item-inner&quot;</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item-title label&quot;</span>&gt;</span>详细地址<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item-input&quot;</span>&gt;</span></span><br><span class="line">                                    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span>  <span class="attr">id</span>=<span class="string">&quot;shop-addr&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;详细地址&quot;</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">                    <span class="comment">&lt;!-- 联系电话 text --&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item-content&quot;</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item-inner&quot;</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item-title label&quot;</span>&gt;</span>联系电话<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item-input&quot;</span>&gt;</span></span><br><span class="line">                                    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span>  <span class="attr">id</span>=<span class="string">&quot;shop-phone&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;联系电话&quot;</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">                    <span class="comment">&lt;!-- 缩略图 上传控件 --&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item-content&quot;</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item-inner&quot;</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item-title label&quot;</span>&gt;</span>缩略图<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item-input&quot;</span>&gt;</span></span><br><span class="line">                                    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;file&quot;</span>  <span class="attr">id</span>=<span class="string">&quot;shop-img&quot;</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">                    <span class="comment">&lt;!-- 店铺简介 textarea --&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">&quot;align-top&quot;</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item-content&quot;</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item-inner&quot;</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item-title label&quot;</span>&gt;</span>店铺简介<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;item-input&quot;</span>&gt;</span></span><br><span class="line">                                    <span class="tag">&lt;<span class="name">textarea</span> <span class="attr">id</span>=<span class="string">&quot;shop-desc&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;店铺简介&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">                    <span class="comment">&lt;!-- 验证码 keptcha --&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;content-block&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;row&quot;</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-50&quot;</span>&gt;</span></span><br><span class="line">                        <span class="comment">&lt;!-- 点击返回，应该跳转到店铺管理页，该页面还未设计。设计好后，再修改href的值 --&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span> <span class="attr">class</span>=<span class="string">&quot;button button-big button-fill button-danger&quot;</span>&gt;</span>返回<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;col-50&quot;</span>&gt;</span></span><br><span class="line">                        <span class="comment">&lt;!-- 提交按钮，增加id，便于在js里快速获取 --&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#&quot;</span> <span class="attr">class</span>=<span class="string">&quot;button button-big button-fill button-success&quot;</span> <span class="attr">id</span>=<span class="string">&quot;submit&quot;</span>&gt;</span>提交<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&#x27;text/javascript&#x27;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">src</span>=<span class="string">&#x27;//g.alicdn.com/sj/lib/zepto/zepto.min.js&#x27;</span> <span class="attr">charset</span>=<span class="string">&#x27;utf-8&#x27;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&#x27;text/javascript&#x27;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">src</span>=<span class="string">&#x27;//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js&#x27;</span> <span class="attr">charset</span>=<span class="string">&#x27;utf-8&#x27;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&#x27;text/javascript&#x27;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">src</span>=<span class="string">&#x27;//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js&#x27;</span> <span class="attr">charset</span>=<span class="string">&#x27;utf-8&#x27;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210513094813146.png" alt="image-20210513094813146"></p>
+<p><strong>店铺分类、所属区域，前端并没有列出对应的列表，因此需要从后台去获取店铺类别的信息。</strong><br><strong>验证码等到后面再处理。</strong></p>
+<h1 id="3-限定页面访问规则"><a href="#3-限定页面访问规则" class="headerlink" title="3. 限定页面访问规则"></a>3. 限定页面访问规则</h1><p>我们并不希望用户直接通过<code>index.html</code>直接访问页面，我们希望它能够按照我们定义好的路由规则去访问。<br>WEB-INF：只要将页面放到<code>WEB-INF</code>下面，用户就不能通过页面的名字访问到html页面了。<br>在WEB-INF下建立html文件夹，在html建立shop文件夹。<br>将<code>index.html</code>重命名为<code>shopoperation.html</code>，并移动到WEB-INF/html/shop目录下，此时<code><a target="_blank" rel="noopener" href="http://localhost:18080/o2o/WEB-INF/html/shop/shopoperation.html">http://localhost:18080/o2o/WEB-INF/html/shop/shopoperation.html</a></code>是不能访问的，需要通过后台的路由将它导过去。<br>在<code>com.imooc.o2o.web.shopadmin</code>下新建<code>ShopAdminController</code>类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.imooc.o2o.web.shopadmin;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMethod;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 为了安全，我们将shopoperation.html 迁移到</span></span><br><span class="line"><span class="comment"> * /o2o/src/main/webapp/WEB-INF/html/shop/shopoperation.html </span></span><br><span class="line"><span class="comment"> * 通过 servlet 来控制访问，这样的话，</span></span><br><span class="line"><span class="comment"> * 我们就需要来根据请求路径来进行页面的跳转</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping(value=&quot;shopadmin&quot;,method = &#123;RequestMethod.GET&#125;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ShopAdminController</span> </span>&#123;</span><br><span class="line">    <span class="comment">//指定路由，对应WEB-INF目录下的html.shop.shopoperation.html</span></span><br><span class="line">    <span class="meta">@RequestMapping(value=&quot;/shopoperation&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">shopOperation</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;shop/shopoperation&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>浏览器输入<a target="_blank" rel="noopener" href="http://localhost:18080/o2o/shopadmin/shopoperation">http://localhost:18080/o2o/shopadmin/shopoperation</a></p>
+<p><img src="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210513095316269.png" alt="image-20210513095316269"></p>
+<p><strong>上面的<code>Controller</code>只返回了中间路径<code>shop/shopoperation</code>，为什么没有返回前面的路径和后缀呢？</strong></p>
+<p>在Spring的配置文件<code>/src/main/resources/spring/spring-web.xml</code>当中已经给他设定了前后缀，所以之返回中间的路径.</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 3.定义视图解析器 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;viewResolver&quot;</span></span></span><br><span class="line"><span class="tag">   <span class="attr">class</span>=<span class="string">&quot;org.springframework.web.servlet.view.InternalResourceViewResolver&quot;</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;prefix&quot;</span> <span class="attr">value</span>=<span class="string">&quot;/WEB-INF/html/&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span><span class="comment">&lt;!-- 前缀 --&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;suffix&quot;</span> <span class="attr">value</span>=<span class="string">&quot;.html&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span><span class="comment">&lt;!-- 后缀 --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="4-JS-部分"><a href="#4-JS-部分" class="headerlink" title="4.JS 部分"></a>4.JS 部分</h1><h2 id="4-1-建立js目录和文件"><a href="#4-1-建立js目录和文件" class="headerlink" title="4.1 建立js目录和文件"></a>4.1 建立js目录和文件</h2><h3 id="4-1-1-建立js目录"><a href="#4-1-1-建立js目录" class="headerlink" title="4.1.1 建立js目录"></a>4.1.1 建立js目录</h3><ul>
+<li>在<code>webapp/resources</code>下新建文件夹<code>js</code>，再在<code>js</code>目录下新建<code>shop</code>文件夹。</li>
+</ul>
+<p><img src="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210513100758140.png" alt="image-20210513100758140"></p>
+<h3 id="4-1-2-js文件"><a href="#4-1-2-js文件" class="headerlink" title="4.1.2 js文件"></a>4.1.2 js文件</h3><p><code>js</code>的功能：</p>
+<ul>
+<li>1.从后台获取到店铺分类、区域等信息，将它填充到前台的 html 空间里面，</li>
+<li>2.获取表单信息，将它转发到后台去注册店铺<br>所有的动作都是异步的，不影响用户前端的体验</li>
+</ul>
+<p>在<code>webapp/js/shop</code>目录下，新建<code>shopoperation.js</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> initUrl = <span class="string">&#x27;/o2o/shopadmin/getshopinitinfo&#x27;</span>;<span class="comment">//获取店铺的初始信息，还未定义</span></span><br><span class="line">	<span class="keyword">var</span> registerShopUrl = <span class="string">&#x27;/o2o/shopadmin/registershop&#x27;</span>;<span class="comment">//注册店铺</span></span><br><span class="line">	</span><br><span class="line">    <span class="comment">// 调用函数，加载数据</span></span><br><span class="line">	getShopInitInfo();</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//定义第一个方法getShopInitInfo：获取商铺分类、区域的列表信息</span></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">getShopInitInfo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">//调试弹窗，证明js文件被加载</span></span><br><span class="line">    alert(initUrl);</span><br><span class="line">        <span class="comment">//访问的URL，回调方法</span></span><br><span class="line">		$.getJSON(initUrl,<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123; </span><br><span class="line">			<span class="keyword">if</span>(data.success)&#123; </span><br><span class="line">                <span class="comment">//存放店铺类别列表</span></span><br><span class="line">				<span class="keyword">var</span> tempHtml = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">                <span class="comment">//存放区域列表</span></span><br><span class="line">				<span class="keyword">var</span> tempAreaHtml = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">				data.shopCategoryList.map(<span class="function"><span class="keyword">function</span>(<span class="params">item,index</span>)</span>&#123;</span><br><span class="line">					<span class="comment">//用map遍历店铺类别列表，生成如&lt;option data-id=&quot;1&quot;&gt;盖浇饭&lt;/option&gt;的列表</span></span><br><span class="line">					tempHtml += <span class="string">&#x27;&lt;option data-id=&quot;&#x27;</span> + item.shopCategoryId + <span class="string">&#x27;&quot;&gt;&#x27;</span> +item.shopCategoryName + <span class="string">&quot;&lt;/option&gt;&quot;</span>;</span><br><span class="line">				&#125;);</span><br><span class="line">				data.areaList.map(<span class="function"><span class="keyword">function</span>(<span class="params">item,index</span>)</span>&#123;</span><br><span class="line">					<span class="comment">//用map遍历区域列表，生成如&lt;option data-id=&quot;1&quot;&gt;东苑&lt;/option&gt;的列表</span></span><br><span class="line">					tempAreaHtml += <span class="string">&#x27;&lt;option data-id=&quot;&#x27;</span> + item.areaId + <span class="string">&#x27;&quot;&gt;&#x27;</span> + item.areaName + <span class="string">&#x27;&lt;/option&gt;&#x27;</span>;</span><br><span class="line">				&#125;);</span><br><span class="line">                <span class="comment">// 获取html中对应标签的id 赋值</span></span><br><span class="line">				<span class="comment">//完成遍历之后，将获取到的信息，塞进前台定义好的id里面 #是css的用法，代表id</span></span><br><span class="line">				$(<span class="string">&#x27;#shop-category&#x27;</span>).html(tempHtml);</span><br><span class="line">				$(<span class="string">&#x27;#area&#x27;</span>).html(tempAreaHtml);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;);</span><br><span class="line">        </span><br><span class="line">	<span class="comment">/**第二个方法：点击提交，</span></span><br><span class="line"><span class="comment">	*获取到表单信息，</span></span><br><span class="line"><span class="comment">	*通过ajax转发到后台</span></span><br><span class="line"><span class="comment">	*即submit按钮触发的操作</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">	$(<span class="string">&#x27;#submit&#x27;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="comment">//点击id为submit的空间，调用方法</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 获取页面的值</span></span><br><span class="line">		<span class="keyword">var</span> shop=&#123;&#125;;</span><br><span class="line">		</span><br><span class="line">        <span class="comment">//获取控件的信息</span></span><br><span class="line">        <span class="comment">/** 注意： 这个地方的变量名称要和Shop实体类中的属性保持一致，</span></span><br><span class="line"><span class="comment">        *因为后台接收到shopStr后，会将Json转换为实体类，</span></span><br><span class="line"><span class="comment">        *如果不一致会抛出异</span></span><br><span class="line"><span class="comment">        *com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException*/</span></span><br><span class="line">		shop.shopName = $(<span class="string">&#x27;#shop-name&#x27;</span>).val();</span><br><span class="line">		shop.shopAddr = $(<span class="string">&#x27;#shop-addr&#x27;</span>).val();</span><br><span class="line">		shop.phone = $(<span class="string">&#x27;#shop-phone&#x27;</span>).val();</span><br><span class="line">		shop.shopDesc = $(<span class="string">&#x27;#shop-desc&#x27;</span>).val();</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 选择id,双重否定=肯定</span></span><br><span class="line">		shop.shopCategory = &#123;</span><br><span class="line">            <span class="comment">// 这里定义的变量要和ShopCategory.shopCategoryId保持一致，</span></span><br><span class="line">            <span class="comment">//否则使用databind转换会抛出异常</span></span><br><span class="line">				shopCategoryId:$(<span class="string">&#x27;#shop-category&#x27;</span>).find(<span class="string">&#x27;option&#x27;</span>).not(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">					<span class="keyword">return</span> !<span class="built_in">this</span>.selected;</span><br><span class="line">				&#125;).data(<span class="string">&#x27;id&#x27;</span>)</span><br><span class="line">		&#125;;</span><br><span class="line">		shop.area = &#123;</span><br><span class="line">				areaId:$(<span class="string">&#x27;#area&#x27;</span>).find(<span class="string">&#x27;option&#x27;</span>).not(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">					<span class="keyword">return</span> !<span class="built_in">this</span>.selected;</span><br><span class="line">				&#125;).data(<span class="string">&#x27;id&#x27;</span>)</span><br><span class="line">		&#125;;</span><br><span class="line">        <span class="comment">// 图片</span></span><br><span class="line">		<span class="keyword">var</span> shopImg = $(<span class="string">&#x27;#shop-img&#x27;</span>)[<span class="number">0</span>].files[<span class="number">0</span>];</span><br><span class="line">        <span class="comment">// 定义表单，用于接收</span></span><br><span class="line">		<span class="keyword">var</span> formData = <span class="keyword">new</span> FormData();</span><br><span class="line">        <span class="comment">// 和后端约定好，利用shopImg和 shopStr接收 shop图片信息和shop信息</span></span><br><span class="line">		formData.append(<span class="string">&#x27;shopImg&#x27;</span>,shopImg);</span><br><span class="line">        <span class="comment">// 转成JSON格式，后端收到后将 JSON 转为实体类</span></span><br><span class="line">		formData.append(<span class="string">&#x27;shopStr&#x27;</span>,<span class="built_in">JSON</span>.stringify(shop));</span><br><span class="line">        </span><br><span class="line">		$.ajax(&#123;</span><br><span class="line">			url:registerShopUrl,</span><br><span class="line">			type:<span class="string">&#x27;POST&#x27;</span>,</span><br><span class="line">			data:formData,</span><br><span class="line">            <span class="comment">//既要传文件，又要传文字，设为false</span></span><br><span class="line">			contentType:<span class="literal">false</span>,</span><br><span class="line">			processData:<span class="literal">false</span>,</span><br><span class="line">			cache:<span class="literal">false</span>,</span><br><span class="line">			success:<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">				<span class="keyword">if</span>(data.success)&#123;</span><br><span class="line">					$.toast(<span class="string">&quot;提交成功！&quot;</span>);</span><br><span class="line">				&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">					$.toast(<span class="string">&quot;提交失败：&quot;</span>+data.errMsg);</span><br><span class="line">				&#125;</span><br><span class="line">                <span class="comment">// 点击提交后 不管成功失败都更换验证码，防止重复提交</span></span><br><span class="line">				$(<span class="string">&#x27;#kaptcha_img&#x27;</span>).click()</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-2-shopoperation-html添加脚本文件"><a href="#4-2-shopoperation-html添加脚本文件" class="headerlink" title="4.2. shopoperation.html添加脚本文件"></a>4.2. shopoperation.html添加脚本文件</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&#x27;text/javascript&#x27;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">src</span>=<span class="string">&#x27;../resources/js/shop/shopoperation.js&#x27;</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210513111959646.png" alt="image-20210513111959646"></p>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
+    
+    <a class="pull-left" href="/2021/05/13/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-%E3%80%904%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E3%80%91-9%20%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E4%B9%8B%E5%BA%97%E9%93%BA%E7%B1%BB%E5%88%AB%E5%8C%BA%E5%9F%9F%E4%BF%A1%E6%81%AF%E7%9A%84%E8%8E%B7%E5%8F%96/" style="float: left;">
+        ← 校园商铺-【4店铺注册】-9 店铺注册之店铺类别区域信息的获取
+    </a>
+    
+    
+    <a class="pull-right" href="/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-%E3%80%904%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E3%80%91-7%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E4%B9%8BController%E5%B1%82%E7%9A%84%E6%94%B9%E9%80%A0/">
+        校园商铺-【4店铺注册】-7店铺注册之 Controller 层的改造 →
+    </a>
+    
+</nav>
+
+        <div class="col-md-8 col-md-offset-2 col-sm-24"><script type="text/javascript">
+  /**
+   * 搜狐畅言
+   */
+
+  /*
+  document.write('<div id="SOHUCS" sid="' + window.location.pathname.slice(1) + '" ></div>');
+
+  window.onload = function () {
+    (function () {
+      var appid = 'cytXXXX';
+      var conf = 'prod_xxxxxxxxxxxxxxxxx';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      var loadJs = function (d, a, id) {
+        var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+        var b = document.createElement("script");
+        b.setAttribute("type", "text/javascript");
+        b.setAttribute("charset", "UTF-8");
+        b.setAttribute("src", d);
+        if (id) {
+          b.setAttribute("id", id);
+        }
+        if (typeof a === "function") {
+          if (window.attachEvent) {
+            b.onreadystatechange = function () {
+              var e = b.readyState;
+              if (e === "loaded" || e === "complete") {
+                b.onreadystatechange = null;
+                a()
+              }
+            }
+          } else {
+            b.onload = a
+          }
+        }
+        c.appendChild(b)
+      };
+
+      loadJs("https://changyan.sohu.com/upload/changyan.js", function () {
+        window.changyan.api.config({
+          appid: appid,
+          conf: conf
+        })
+      });
+    })();
+  }
+  */
+
+</script>
+</div>
+    </div>
+</section>
+
+
+      
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+            <div class="copy">
+                <p>
+                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By AiLaodu. All Rights Reserved.
+                </p>
+                <p>Theme By <a target="_blank" rel="noopener" href="//go.kieran.top" style="color: #767D84">Kieran</a></p>
+            </div>
+            <div class="social">
+                <ul>
+                    
+                    <li><a href="https://github.com/" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://twitter.com/" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://www.facebook.com/" title="Facebook" target="_blank"><i class="icon-facebook"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="http://weibo.com/" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a>&nbsp;</li>
+                    
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+      <!-- Load our scripts -->
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+
+    resizeHero();
+
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$('#intro').find('img').each(function(){
+  var alt = this.alt;
+
+  if (alt){
+    $(this).after('<span class="caption" style="display:none">' + alt + '</span>');
+  }
+
+  $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox" rel="gallery" />');
+});
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+      
+</body>
+</html>

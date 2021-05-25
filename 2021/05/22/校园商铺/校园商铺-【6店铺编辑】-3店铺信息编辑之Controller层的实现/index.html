@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********    -----Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<!--<![endif]-->
+
+<head>
+  <title>校园商铺-【6店铺编辑】-3 店铺信息编辑之Controller层的实现 | ADGai&#39;s Blog</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="ADGai's Blog">
+    <meta name="author" content="AiLaodu">
+    <meta name="description" content="" />
+    <meta name="keywords" content="Java" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href="/atom.xml" title="ADGai&#39;s Blog" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+    
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
+    
+
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+  
+  
+  
+
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+    <div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+        <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+            <img src="/img/close.png" alt="Close"/>
+        </div>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu">
+            <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+            <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
+            <!-- Dropdown Menu -->
+			 
+            <li>
+                <a class="sb-toggle-submenu">Works<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                        <li><a href="/" target="_BLANK" class="animsition-link">AAA</a></li>
+                    
+                        <li><a href="/atom.xml" target="_BLANK" class="animsition-link">BBB</a></li>
+                    
+                </ul>
+            </li>
+            
+            
+        	<li>
+        		<a class="sb-toggle-submenu">Categories<span class="sb-caret"></span></a>
+            	<ul class="sb-submenu">
+				  	
+				    <li><a href="/categories/Hexo/" class="animsition-link">Hexo<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/JavaSE/" class="animsition-link">JavaSE<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/LeetCode刷题/" class="animsition-link">LeetCode刷题<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/Maven/" class="animsition-link">Maven<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/Mybatis/" class="animsition-link">Mybatis<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/Spring/" class="animsition-link">Spring<small>(3)</small></a></li>
+				    
+				    <li><a href="/categories/基础回顾/" class="animsition-link">基础回顾<small>(2)</small></a></li>
+				    
+				    <li><a href="/categories/数据结构与算法/" class="animsition-link">数据结构与算法<small>(2)</small></a></li>
+				    
+				    <li><a href="/categories/项目-校园商铺/" class="animsition-link">项目-校园商铺<small>(30)</small></a></li>
+				    
+				</ul>
+        	</li>
+			
+            
+            <li>
+                <a class="sb-toggle-submenu">Links<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                    <li><a target="_blank" rel="noopener" href="http://go.kieran.top/" class="animsition-link">Kieran</a></li>
+                    
+                    <li><a target="_blank" rel="noopener" href="http://domain.com/" class="animsition-link">Name</a></li>
+                    
+                </ul>
+            </li>
+            
+        </ul>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu secondary">
+            
+            <li><a href="/about.html" class="animsition-link" title="about">About</a></li>
+            <li><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li>
+        </ul>
+    </div>
+    
+    <!-- ============================ END Off-canvas navigation =========================== -->
+
+    <!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+    <div id="sb-site">
+        <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <div id="navigation" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!-- Nav logo -->
+                    <div class="logo">
+                        <a href="/" title="Logo" class="animsition-link">
+                         <img src="/img/logo.png" alt="Logo" width="35px;"/> 
+                        </a>
+                    </div>
+                    <!-- // Nav logo -->
+                    <!-- Info-bar -->
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/" class="animsition-link">ADGai's Blog</a></li>
+                            <li class="nolink"><span>Always </span>Creative.</li>
+                            
+                            <li><a href="https://github.com/" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                            
+                            
+                            <li><a href="https://twitter.com/" title="Twitter" target="_blank"><i class="icon-twitter"></i></a></li>
+                            
+                            
+                            <li><a href="https://www.facebook.com/" title="Facebook" target="_blank"><i class="icon-facebook"></i></a></li>
+                            
+                            
+                            <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a></li>
+                            
+                            
+                            <li><a href="http://weibo.com/" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a></li>
+                            
+                            <li class="nolink"><span>Welcome!</span></li>
+                        </ul>
+                    </nav>
+                    <!--// Info-bar -->
+                </div>
+                <!-- // .container -->
+                <div class="learnmore sb-toggle-right">More</div>
+                <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+                </button>
+            </div>
+            <!-- // .navbar-inner -->
+        </div>
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2021-05-22T09:47:46.250Z" itemprop="datePublished">
+          2021-05-22
+      </time>
+    
+    
+    | 
+    <a href='/tags/项目-校园商铺/'>项目-校园商铺</a>
+    
+    
+</span>
+                <h1>校园商铺-【6店铺编辑】-3 店铺信息编辑之Controller层的实现</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<h1 id="1-店铺信息编辑的范围"><a href="#1-店铺信息编辑的范围" class="headerlink" title="1. 店铺信息编辑的范围"></a>1. 店铺信息编辑的范围</h1><p>除了店铺名称、店铺分类不可更改，其他信息（区域、地址、电话、缩略图、店铺简介）都可以更改。</p>
+<h1 id="2-ShopManagerController"><a href="#2-ShopManagerController" class="headerlink" title="2. ShopManagerController"></a>2. ShopManagerController</h1><h2 id="2-1-实现获取店铺信息-getShopInfoById"><a href="#2-1-实现获取店铺信息-getShopInfoById" class="headerlink" title="2.1 实现获取店铺信息 getShopInfoById"></a>2.1 实现获取店铺信息 getShopInfoById</h2><p>在 <code>com/imooc/o2o/web/shopadmin/ShopManagementController.java</code> 中编写实现获取店铺信息的方法：</p>
+<span id="more"></span>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * </span></span><br><span class="line"><span class="comment">	 * </span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@Title</span>: getShopInfoById</span></span><br><span class="line"><span class="comment">	 * </span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@Description</span>: 根据shopId获取shop信息， 接收前端的请求，获取shopId ，所以入参为HttpServletRequest</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@ResponseBody</span> 不需要VIEW展现层模块，直接显示到客户端的内容。 </span></span><br><span class="line"><span class="comment">	 * 将内容或对象作为 HTTP 响应正文返回</span></span><br><span class="line"><span class="comment">	 * </span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> request</span></span><br><span class="line"><span class="comment">	 * </span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span>: Map&lt;String,Object&gt;</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line"><span class="meta">@RequestMapping(value = &quot;getshopbyid&quot;, method = RequestMethod.GET)</span></span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> Map&lt;String, Object&gt; <span class="title">getShopById</span><span class="params">(HttpServletRequest request)</span> </span>&#123;</span><br><span class="line">    Map&lt;String, Object&gt; modelMap = <span class="keyword">new</span> HashMap&lt;String, Object&gt;();</span><br><span class="line">    <span class="comment">// shopId 为和前端约定好的变量</span></span><br><span class="line">    Long shopId = HttpServletRequestUtil.getLong(request, <span class="string">&quot;shopid&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (shopId &gt; -<span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">/**查询 ，按照设计，我们希望前端页面下拉列表中可以修改区域信息，</span></span><br><span class="line"><span class="comment">            所以需要查询出来全量的区域列表</span></span><br><span class="line"><span class="comment">			对已 ShopCategory 而言，我们 DAO 层的 SQL 已经将 shop_category_id 和</span></span><br><span class="line"><span class="comment">			shop_category_name 查询出来，前端设置到对应的属性上即可。没有必要全部查询出来。*/</span></span><br><span class="line">            </span><br><span class="line">            Shop shop = shopService.getByShopId(shopId);</span><br><span class="line">            List&lt;Area&gt; areaList = areaService.getAreaList();</span><br><span class="line">            modelMap.put(<span class="string">&quot;shop&quot;</span>, shop);</span><br><span class="line">            modelMap.put(<span class="string">&quot;areaList&quot;</span>, areaList);</span><br><span class="line">            modelMap.put(<span class="string">&quot;success&quot;</span>, <span class="keyword">true</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            modelMap.put(<span class="string">&quot;success&quot;</span>, <span class="keyword">false</span>);</span><br><span class="line">            modelMap.put(<span class="string">&quot;errMsg&quot;</span>, e.toString());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        modelMap.put(<span class="string">&quot;success&quot;</span>, <span class="keyword">false</span>);</span><br><span class="line">        modelMap.put(<span class="string">&quot;errMsg&quot;</span>, <span class="string">&quot;empty shopId&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> modelMap;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="测试获取店铺信息"><a href="#测试获取店铺信息" class="headerlink" title="测试获取店铺信息"></a>测试获取店铺信息</h3><p>在 Postman 中访问<code><a target="_blank" rel="noopener" href="http://localhost:8080/o2o/shopadmin/getshopbyid?shopid=3649">http://localhost:8080/o2o/shopadmin/getshopbyid?shopid=3649</a></code>,得到如下结果与预期相同，验证完成。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;shop&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;shopId&quot;</span>: <span class="number">3649</span>,</span><br><span class="line">        <span class="attr">&quot;shopName&quot;</span>: <span class="string">&quot;修改后的店铺名称&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;shopDesc&quot;</span>: <span class="string">&quot;测试测试&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;shopAddr&quot;</span>: <span class="string">&quot;测试地址&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;phone&quot;</span>: <span class="string">&quot;13174407562&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;shopImg&quot;</span>: <span class="string">&quot;\\upload\\images\\item\\shop\\3649\\2021052217191795464.jpg&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;priority&quot;</span>: <span class="literal">null</span>,</span><br><span class="line">        <span class="attr">&quot;createTime&quot;</span>: <span class="number">1621344204000</span>,</span><br><span class="line">        <span class="attr">&quot;lastEditTime&quot;</span>: <span class="number">1621675158000</span>,</span><br><span class="line">        <span class="attr">&quot;enableStatus&quot;</span>: <span class="literal">null</span>,</span><br><span class="line">        <span class="attr">&quot;advice&quot;</span>: <span class="literal">null</span>,</span><br><span class="line">        <span class="attr">&quot;area&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;areaId&quot;</span>: <span class="number">2</span>,</span><br><span class="line">            <span class="attr">&quot;areaName&quot;</span>: <span class="string">&quot;北京&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;priority&quot;</span>: <span class="literal">null</span>,</span><br><span class="line">            <span class="attr">&quot;createTime&quot;</span>: <span class="literal">null</span>,</span><br><span class="line">            <span class="attr">&quot;lastEditTime&quot;</span>: <span class="literal">null</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">&quot;owner&quot;</span>: <span class="literal">null</span>,</span><br><span class="line">        <span class="attr">&quot;shopCategory&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;shopCategoryId&quot;</span>: <span class="number">39</span>,</span><br><span class="line">            <span class="attr">&quot;shopCategoryName&quot;</span>: <span class="string">&quot;咖啡&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;shopCategoryDesc&quot;</span>: <span class="literal">null</span>,</span><br><span class="line">            <span class="attr">&quot;shopCategoryImg&quot;</span>: <span class="literal">null</span>,</span><br><span class="line">            <span class="attr">&quot;priority&quot;</span>: <span class="literal">null</span>,</span><br><span class="line">            <span class="attr">&quot;createTime&quot;</span>: <span class="literal">null</span>,</span><br><span class="line">            <span class="attr">&quot;lastEditTime&quot;</span>: <span class="literal">null</span>,</span><br><span class="line">            <span class="attr">&quot;parent&quot;</span>: <span class="literal">null</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">&quot;success&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">&quot;areaList&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;areaId&quot;</span>: <span class="number">2</span>,</span><br><span class="line">            <span class="attr">&quot;areaName&quot;</span>: <span class="string">&quot;北京&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;priority&quot;</span>: <span class="number">2</span>,</span><br><span class="line">            <span class="attr">&quot;createTime&quot;</span>: <span class="literal">null</span>,</span><br><span class="line">            <span class="attr">&quot;lastEditTime&quot;</span>: <span class="literal">null</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;areaId&quot;</span>: <span class="number">4</span>,</span><br><span class="line">            <span class="attr">&quot;areaName&quot;</span>: <span class="string">&quot;深圳&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;priority&quot;</span>: <span class="number">2</span>,</span><br><span class="line">            <span class="attr">&quot;createTime&quot;</span>: <span class="literal">null</span>,</span><br><span class="line">            <span class="attr">&quot;lastEditTime&quot;</span>: <span class="literal">null</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;areaId&quot;</span>: <span class="number">1</span>,</span><br><span class="line">            <span class="attr">&quot;areaName&quot;</span>: <span class="string">&quot;上海&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;priority&quot;</span>: <span class="number">1</span>,</span><br><span class="line">            <span class="attr">&quot;createTime&quot;</span>: <span class="literal">null</span>,</span><br><span class="line">            <span class="attr">&quot;lastEditTime&quot;</span>: <span class="literal">null</span></span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-2-更改店铺信息-modifyShop"><a href="#2-2-更改店铺信息-modifyShop" class="headerlink" title="2.2 更改店铺信息 modifyShop"></a>2.2 更改店铺信息 modifyShop</h2><p><strong>店铺注册流程：</strong></p>
+<ul>
+<li>1.验证码校验</li>
+<li>2.获取请求头的店铺信息接收从前台传递的<code>shopStr</code>对象，将这个对象转换成<code>Shop</code>实体类</li>
+<li>3.获取图片 将请求中的文件流从<code>CommonsMultipartResolver</code>解析为<code>CommonsMultipartFile</code></li>
+<li>4.注册店铺</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//shopStr 是和前端约定好的参数值，后端从 request 中获取 request 这个值来获取 shop 的信息 </span></span><br><span class="line">String shopStr = HttpServletRequestUtil.getString(request, <span class="string">&quot;shopStr&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p><strong>更改店铺同注册流程：</strong></p>
+<ul>
+<li>1.验证码校验</li>
+<li>2.获取请求头的店铺信息接收从前台传递的<code>shopStr</code>对象，将这个对象转换成<code>Shop</code>实体类</li>
+<li>3.获取图片 将请求中的文件流从<code>CommonsMultipartResolver</code>解析为<code>CommonsMultipartFile</code></li>
+<li>4.修改店铺</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 从request的本次会话中的上下文中获取图片的相关内容</span></span><br><span class="line">CommonsMultipartResolver commonsMultipartResolver = <span class="keyword">new</span> CommonsMultipartResolver(</span><br><span class="line">        request.getSession().getServletContext());</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Title</span>: modifyshop</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span>:</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> request</span></span><br><span class="line"><span class="comment"> *            因为是接收前端的请求，而前端的信息都封装在HttpServletRequest中，</span></span><br><span class="line"><span class="comment"> *            所以需要解析HttpServletRequest，获取必要的参数</span></span><br><span class="line"><span class="comment"> *            1. 接收并转换相应的参数，包括shop信息和图片信息 2.修改店铺 3. 返回结果给前台</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span>: Map&lt;String,Object&gt;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@RequestMapping(value = &quot;/modifyshop&quot;, method = RequestMethod.POST)</span></span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Map&lt;String, Object&gt; <span class="title">modifyshop</span><span class="params">(HttpServletRequest request)</span> </span>&#123;</span><br><span class="line">    Map&lt;String, Object&gt; modelMap = <span class="keyword">new</span> HashMap&lt;String, Object&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 0. 验证码校验</span></span><br><span class="line">    <span class="keyword">if</span> (!CodeUtil.checkVerifyCode(request)) &#123;</span><br><span class="line">        modelMap.put(<span class="string">&quot;success&quot;</span>, <span class="keyword">false</span>);</span><br><span class="line">        modelMap.put(<span class="string">&quot;errMsg&quot;</span>, <span class="string">&quot;验证码不正确&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> modelMap;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 1. 接收并转换相应的参数，包括shop信息和图片信息</span></span><br><span class="line">    <span class="comment">// 1.1 shop信息</span></span><br><span class="line">    <span class="comment">// shopStr 是和前端约定好的参数值，后端从request中获取request这个值来获取shop的信息</span></span><br><span class="line">    String shopStr = HttpServletRequestUtil.getString(request, <span class="string">&quot;shopStr&quot;</span>);</span><br><span class="line">    <span class="comment">// 使用jackson-databind 将json转换为pojo</span></span><br><span class="line">    ObjectMapper mapper = <span class="keyword">new</span> ObjectMapper();</span><br><span class="line">    Shop shop = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">// 将json转换为pojo</span></span><br><span class="line">        shop = mapper.readValue(shopStr, Shop.class);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">        <span class="comment">// 将错误信息返回给前台</span></span><br><span class="line">        modelMap.put(<span class="string">&quot;success&quot;</span>, <span class="keyword">false</span>);</span><br><span class="line">        modelMap.put(<span class="string">&quot;errMsg&quot;</span>, e.getMessage());</span><br><span class="line">        <span class="keyword">return</span> modelMap;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 1.2 图片信息 基于Apache Commons FileUpload的文件上传 （ 修改商铺信息 图片可以不更新）</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// Spring MVC中的 图片存在CommonsMultipartFile中</span></span><br><span class="line">    CommonsMultipartFile shopImg = <span class="keyword">null</span>;</span><br><span class="line">    <span class="comment">// 从request的本次会话中的上线文中获取图片的相关内容</span></span><br><span class="line">    CommonsMultipartResolver commonsMultipartResolver = <span class="keyword">new</span> CommonsMultipartResolver(request.getSession().getServletContext());</span><br><span class="line">    <span class="keyword">if</span> (commonsMultipartResolver.isMultipart(request)) &#123;</span><br><span class="line">        MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;</span><br><span class="line">        <span class="comment">// shopImg是和前端约定好的变量名</span></span><br><span class="line">        shopImg = (CommonsMultipartFile) multipartRequest.getFile(<span class="string">&quot;shopImg&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2. 修改店铺 修改时图片可上传也可不上传，但是要修改的话shopId就不能为空</span></span><br><span class="line">    <span class="keyword">if</span> (shop != <span class="keyword">null</span> &amp;&amp; shop.getShopId() != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="comment">// Session 部分的 PersonInfo 修改商铺是不需要的设置的。也就是说不用从 Session 获取用户信息</span></span><br><span class="line">        PersonInfo owner = <span class="keyword">new</span> PersonInfo();</span><br><span class="line">        <span class="comment">//预期从 Session 获取，目前自定义，以后完善</span></span><br><span class="line">        owner.setUserId(<span class="number">3469L</span>);</span><br><span class="line">        shop.setOwner(owner);</span><br><span class="line">        <span class="comment">// 修改店铺</span></span><br><span class="line">        ShopExecution se = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (shopImg != <span class="keyword">null</span>) &#123;</span><br><span class="line">                se = shopService.modifyShop(shop, shopImg.getInputStream(), shopImg.getOriginalFilename());</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                se = shopService.modifyShop(shop, <span class="keyword">null</span>, <span class="keyword">null</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 成功</span></span><br><span class="line">            <span class="keyword">if</span> (se.getState() == ShopStateEnum.SUCCESS.getState()) &#123;</span><br><span class="line">                modelMap.put(<span class="string">&quot;success&quot;</span>, <span class="keyword">true</span>);</span><br><span class="line">                modelMap.put(<span class="string">&quot;errMsg&quot;</span>, <span class="string">&quot;修改成功&quot;</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                modelMap.put(<span class="string">&quot;success&quot;</span>, <span class="keyword">false</span>);</span><br><span class="line">                modelMap.put(<span class="string">&quot;errMsg&quot;</span>, se.getStateInfo());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            modelMap.put(<span class="string">&quot;success&quot;</span>, <span class="keyword">false</span>);</span><br><span class="line">            modelMap.put(<span class="string">&quot;errMsg&quot;</span>, <span class="string">&quot;ModifyShop Error&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 将错误信息返回给前台</span></span><br><span class="line">        modelMap.put(<span class="string">&quot;success&quot;</span>, <span class="keyword">false</span>);</span><br><span class="line">        modelMap.put(<span class="string">&quot;errMsg&quot;</span>, <span class="string">&quot;ShopId不合法&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> modelMap;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="3-Session"><a href="#3-Session" class="headerlink" title="3.Session"></a>3.Session</h1><p>在<code>web</code>开发中，服务器可以为每个用户浏览器创建一个会话对象，就是<code>Session</code>对象。一个浏览器独占一个<code>Session</code>对象。因此在保存用户数据时，服务器程序可以把用户信息写到用户浏览器独占的<code>Session</code>中，当用户使用浏览器访问服务器程序时，服务器程序可以从用户的<code>Session</code>中，取出该用户的数据为用户服务。服务器创建<code>Session</code>出来后，会把<code>Session</code>的ID号以cookie的形式回写给客户机，这样只要客户端的浏览器不关，再去访问服务器的时候，都会带着<code>Session</code>的ID号去。<br>       服务器发现客户端的浏览器带<code>Session</code>的ID过来，就会使用内容中与之对应的<code>Session</code>为之服务。<code>Session</code>是有过期时间的，<code>tomcat</code>默认<code>Session</code>超时时间为30分钟。如果30分钟内没有在平台上做任何操作，<code>Session</code>就过期了。这种情况下，想通过<code>Session</code>去取相关的用户信息，就获取不到了。<br>       <code>Session</code>主要用来保存店铺、用户信息。在我们去存储数据的时候，可以从里面取出想要的信息，同时还能方便我们做权限的验证。<br>        在修改店铺信息的时候，是不需要修改用户的信息的，对它权限的验证，可以放在拦截器中去实现。<br>需要加入<code>Session</code>的地方是在注册中，获取用户的信息。所以需要在 <code>ShopManagerShop#registershop</code> 中做修改：</p>
+<p>之前我们在写 商铺注册部分得代码时，Session TODO 部分现在可以进行修改了：</p>
+<p><img src="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210524103900882.png" alt="image-20210524103900882"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(value = &quot;/registershop&quot;, method = RequestMethod.POST)</span></span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> Map&lt;String, Object&gt; <span class="title">registerShop</span><span class="params">(HttpServletRequest request)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//先定义一个返回值</span></span><br><span class="line">    Map&lt;String, Object&gt; modelMap = <span class="keyword">new</span> HashMap&lt;String, Object&gt;();</span><br><span class="line">    <span class="keyword">if</span> (!CodeUtil.checkVerifyCode(request)) &#123;</span><br><span class="line">        modelMap.put(<span class="string">&quot;success&quot;</span>, <span class="keyword">false</span>);</span><br><span class="line">        modelMap.put(<span class="string">&quot;errMsg&quot;</span>, <span class="string">&quot;输入了错误的验证码&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> modelMap;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/** 1. 接收并转换相应的参数，包括shop信息和图片信息</span></span><br><span class="line"><span class="comment">     1.1 shop信息</span></span><br><span class="line"><span class="comment">     shopStr 是和前端约定好的参数值，后端从 request 中获取 request 这个值来获取 shop 的信息 */</span></span><br><span class="line">    String shopStr = HttpServletRequestUtil.getString(request, <span class="string">&quot;shopStr&quot;</span>);</span><br><span class="line">    <span class="comment">//使用 jackson-databind 将 json 转换为 Shop 实例</span></span><br><span class="line">    ObjectMapper mapper = <span class="keyword">new</span> ObjectMapper();</span><br><span class="line">    Shop shop = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        shop = mapper.readValue(shopStr, Shop.class);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        <span class="comment">// 将错误信息返回给前台</span></span><br><span class="line">        modelMap.put(<span class="string">&quot;success&quot;</span>, <span class="keyword">false</span>);</span><br><span class="line">        modelMap.put(<span class="string">&quot;errMeg&quot;</span>, e.getMessage());</span><br><span class="line">        <span class="keyword">return</span> modelMap;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 1.2 图片信息 基于Apache Commons FileUpload 的文件上传</span></span><br><span class="line">    <span class="comment">//将请求中的文件剥离出来，通过 CommomsMultipartFile 去接收</span></span><br><span class="line">    <span class="comment">// Spring MVC 中的图片存在 CommonsMultipartFile 中</span></span><br><span class="line">    CommonsMultipartFile shopImg = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 从request的本次会话中的上下文中获取图片的相关内容</span></span><br><span class="line">    CommonsMultipartResolver commonsMultipartResolver = <span class="keyword">new</span> CommonsMultipartResolver(</span><br><span class="line">        request.getSession().getServletContext());</span><br><span class="line">    <span class="keyword">if</span> (commonsMultipartResolver.isMultipart(request)) &#123;</span><br><span class="line">        MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;</span><br><span class="line">        <span class="comment">// shopImg是和前端约定好的变量名</span></span><br><span class="line">        shopImg = (CommonsMultipartFile) multipartHttpServletRequest.getFile(<span class="string">&quot;shopImg&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 将错误信息返回给前台</span></span><br><span class="line">        modelMap.put(<span class="string">&quot;success&quot;</span>, <span class="keyword">false</span>);</span><br><span class="line">        modelMap.put(<span class="string">&quot;errMsg&quot;</span>, <span class="string">&quot;上传图片不能为空&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> modelMap;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//2.注册店铺</span></span><br><span class="line">    <span class="keyword">if</span> (shop != <span class="keyword">null</span> &amp;&amp; shopImg != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="comment">/**添加 Session</span></span><br><span class="line"><span class="comment">         注册店铺或者对店铺做操作，是需要登陆的</span></span><br><span class="line"><span class="comment">         店主 persionInfo 的信息，肯定要登录才能注册店铺。</span></span><br><span class="line"><span class="comment">         所以这部分信息我们从session中获取，尽量不依赖前端。*/</span></span><br><span class="line">        <span class="comment">// 获取当前得用户信息，需要用户做登录，将用户的信息写入到 Session 里面，key 是 user</span></span><br><span class="line">        PersonInfo owner = (PersonInfo) request.getSession().getAttribute(<span class="string">&quot;user&quot;</span>);</span><br><span class="line">        shop.setOwner(owner);</span><br><span class="line"></span><br><span class="line">        <span class="comment">/** 注册店铺</span></span><br><span class="line"><span class="comment">         se = shopService.addShop(shop, shopImg); 改造前的调用方式</span></span><br><span class="line"><span class="comment">         这个时候，我们从前端获取到的 shopImg 是 CommonsMultipartFile 类型的，</span></span><br><span class="line"><span class="comment">         如何将 CommonsMultipartFile 转换为 File.</span></span><br><span class="line"><span class="comment">         网上也有将 CommonsMultipartFile 转换为 File 的方法，</span></span><br><span class="line"><span class="comment">         并通过 maxInMemorySize 的设置尽量不产生临时文件</span></span><br><span class="line"><span class="comment">         这里我们换个思路,因为 CommonsMultipartFile 可以获取 InputStream,</span></span><br><span class="line"><span class="comment">         Thumbnailator又可以直接处理输入流</span></span><br><span class="line"><span class="comment">         因为 InputStream 中我们无法得到文件的名称，</span></span><br><span class="line"><span class="comment">         而 thumbnail 中需要根据文件名来获取扩展名，所以还要再加一个参数 String 类型的 				 fileName</span></span><br><span class="line"><span class="comment">         既然第二个和第三个参数都是通过 shopImg 获取的，为什么不直接传入一个 shopImg 呢？</span></span><br><span class="line"><span class="comment">         主要是为了 service 层单元测测试的方便，因为 service 层很难实例化出一个                      CommonsMultipartFile 类型的实例*/</span></span><br><span class="line"></span><br><span class="line">        ShopExecution se = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            se = shopService.addShop(shop, shopImg.getInputStream(), shopImg.getOriginalFilename());</span><br><span class="line">            <span class="keyword">if</span> (se.getState() == ShopStateEnum.CHECK.getState()) &#123;</span><br><span class="line">                <span class="comment">/* 在店铺添加完成后，还需要做 Session 的操作。</span></span><br><span class="line"><span class="comment">               用户和店铺的关系是一对多的，即一个 owner 能够创建多个店铺</span></span><br><span class="line"><span class="comment">                因此需要在 Session 里面保存一个店铺列表来显示用户可以操作的店铺*/</span></span><br><span class="line">                <span class="meta">@SuppressWarnings(&quot;unchecked&quot;)</span></span><br><span class="line">                List&lt;Shop&gt; shopList = (List&lt;Shop&gt;) request.getSession().getAttribute(<span class="string">&quot;shopList&quot;</span>);</span><br><span class="line">                <span class="keyword">if</span>(shopList == <span class="keyword">null</span> || shopList.size() == <span class="number">0</span>)&#123;</span><br><span class="line">                    shopList = <span class="keyword">new</span> ArrayList&lt;Shop&gt;();</span><br><span class="line">                &#125;</span><br><span class="line">                shopList.add(se.getShop());</span><br><span class="line">                request.getSession().setAttribute(<span class="string">&quot;shopList&quot;</span>,shopList);</span><br><span class="line">                modelMap.put(<span class="string">&quot;success&quot;</span>, <span class="keyword">true</span>);</span><br><span class="line">                modelMap.put(<span class="string">&quot;errMsg&quot;</span>, <span class="string">&quot;注册成功&quot;</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                modelMap.put(<span class="string">&quot;success&quot;</span>, <span class="keyword">false</span>);</span><br><span class="line">                modelMap.put(<span class="string">&quot;errMsg&quot;</span>, se.getStateInfo());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ShopOperationException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            modelMap.put(<span class="string">&quot;success&quot;</span>, <span class="keyword">false</span>);</span><br><span class="line">            modelMap.put(<span class="string">&quot;errMsg&quot;</span>, <span class="string">&quot;addShop Error&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e)&#123;</span><br><span class="line">            modelMap.put(<span class="string">&quot;success&quot;</span>,<span class="keyword">false</span>);</span><br><span class="line">            modelMap.put(<span class="string">&quot;errMsg&quot;</span>,e.getMessage());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> modelMap;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">//将错误信息返回给前台</span></span><br><span class="line">        modelMap.put(<span class="string">&quot;success&quot;</span>, <span class="keyword">false</span>);</span><br><span class="line">        modelMap.put(<span class="string">&quot;errMsg&quot;</span>, <span class="string">&quot;请输入店铺信息&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> modelMap;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
+    
+    <a class="pull-left" href="/2021/05/24/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-%E3%80%906%E5%BA%97%E9%93%BA%E7%BC%96%E8%BE%91%E3%80%91-4%E5%BA%97%E9%93%BA%E4%BF%A1%E6%81%AF%E7%BC%96%E8%BE%91%E4%B9%8B%E5%89%8D%E7%AB%AF%E5%AE%9E%E7%8E%B0/" style="float: left;">
+        ← 校园商铺-【6店铺编辑】-4店铺信息编辑之前端实现
+    </a>
+    
+    
+    <a class="pull-right" href="/2021/05/20/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-%E3%80%906%E5%BA%97%E9%93%BA%E7%BC%96%E8%BE%91%E3%80%91-2%E5%BA%97%E9%93%BA%E4%BF%A1%E6%81%AF%E7%BC%96%E8%BE%91%E4%B9%8BService%E5%B1%82%E7%9A%84%E5%AE%9E%E7%8E%B0/">
+        校园商铺-【6店铺编辑】-2店铺信息编辑之Service层的实现 →
+    </a>
+    
+</nav>
+
+        <div class="col-md-8 col-md-offset-2 col-sm-24"><script type="text/javascript">
+  /**
+   * 搜狐畅言
+   */
+
+  /*
+  document.write('<div id="SOHUCS" sid="' + window.location.pathname.slice(1) + '" ></div>');
+
+  window.onload = function () {
+    (function () {
+      var appid = 'cytXXXX';
+      var conf = 'prod_xxxxxxxxxxxxxxxxx';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      var loadJs = function (d, a, id) {
+        var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+        var b = document.createElement("script");
+        b.setAttribute("type", "text/javascript");
+        b.setAttribute("charset", "UTF-8");
+        b.setAttribute("src", d);
+        if (id) {
+          b.setAttribute("id", id);
+        }
+        if (typeof a === "function") {
+          if (window.attachEvent) {
+            b.onreadystatechange = function () {
+              var e = b.readyState;
+              if (e === "loaded" || e === "complete") {
+                b.onreadystatechange = null;
+                a()
+              }
+            }
+          } else {
+            b.onload = a
+          }
+        }
+        c.appendChild(b)
+      };
+
+      loadJs("https://changyan.sohu.com/upload/changyan.js", function () {
+        window.changyan.api.config({
+          appid: appid,
+          conf: conf
+        })
+      });
+    })();
+  }
+  */
+
+</script>
+</div>
+    </div>
+</section>
+
+
+      
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+            <div class="copy">
+                <p>
+                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By AiLaodu. All Rights Reserved.
+                </p>
+                <p>Theme By <a target="_blank" rel="noopener" href="//go.kieran.top" style="color: #767D84">Kieran</a></p>
+            </div>
+            <div class="social">
+                <ul>
+                    
+                    <li><a href="https://github.com/" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://twitter.com/" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://www.facebook.com/" title="Facebook" target="_blank"><i class="icon-facebook"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="http://weibo.com/" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a>&nbsp;</li>
+                    
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+      <!-- Load our scripts -->
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+
+    resizeHero();
+
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$('#intro').find('img').each(function(){
+  var alt = this.alt;
+
+  if (alt){
+    $(this).after('<span class="caption" style="display:none">' + alt + '</span>');
+  }
+
+  $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox" rel="gallery" />');
+});
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+      
+</body>
+</html>

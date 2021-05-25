@@ -1,1722 +1,422 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-    <!-- title -->
-
-
-
-
-<!-- keywords -->
-
-
-
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********    -----Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<!--<![endif]-->
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" >
+  <title>Archives: 2021/5 | ADGai&#39;s Blog</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="ADGai's Blog">
     <meta name="author" content="AiLaodu">
-    <meta name="renderer" content="webkit">
-    <meta name="copyright" content="AiLaodu">
+    <meta name="description" content="" />
+    <meta name="keywords" content="Java" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href="/atom.xml" title="ADGai&#39;s Blog" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
     
-    <meta name="keywords" content="hexo,hexo主题,个人博客">
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
     
-    <meta name="description" content="">
-    <meta property="og:type" content="website">
-<meta property="og:title" content="ADGai&#39;s Blog">
-<meta property="og:url" content="http://example.com/archives/2021/05/page/2/index.html">
-<meta property="og:site_name" content="ADGai&#39;s Blog">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:author" content="AiLaodu">
-<meta property="article:tag" content="Java">
-<meta name="twitter:card" content="summary">
-    <meta http-equiv="Cache-control" content="no-cache">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    
-    <title>艾老杜的个人博客</title>
-    <style type="text/css">
-    @font-face {
-        font-family: 'Oswald-Regular';
-        src: url("/font/Oswald-Regular.ttf");
-    }
 
-    body {
-        margin: 0;
-    }
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
 
-    header,
-    footer,
-    .back-top,
-    .sidebar,
-    .container,
-    .site-intro-meta,
-    .toc-wrapper {
-        display: none;
-    }
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
 
-    .site-intro {
-        position: relative;
-        z-index: 3;
-        width: 100%;
-        /* height: 50vh; */
-        overflow: hidden;
-    }
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
 
-    .site-intro-placeholder {
-        position: absolute;
-        z-index: -2;
-        top: 0;
-        left: 0;
-        width: calc(100% + 300px);
-        height: 100%;
-        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
-        background-position: center center;
-        transform: translate3d(-226px, 0, 0);
-        animation: gradient-move 2.5s ease-out 0s infinite;
-    }
+  
+  
+  
 
-    @keyframes gradient-move {
-        0% {
-            transform: translate3d(-226px, 0, 0);
-        }
-        100% {
-            transform: translate3d(0, 0, 0);
-        }
-    }
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
 
-</style>
+<!--
+<body class="home-template">
+-->
+<body id="index" class="lightnav animsition">
 
-    <link rel="preload" href= "/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    <link rel="stylesheet" href= "/css/mobile.css?v=20180824" media="(max-width: 980px)">
-    
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    
-    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
-/* This file is meant as a standalone workflow for
-- testing support for link[rel=preload]
-- enabling async CSS loading in browsers that do not support rel=preload
-- applying rel preload css once loaded, whether supported or not.
-*/ -->
-<script>
-(function( w ){
-	"use strict";
-	// rel=preload support test
-	if( !w.loadCSS ){
-		w.loadCSS = function(){};
-	}
-	// define on the loadCSS obj
-	var rp = loadCSS.relpreload = {};
-	// rel=preload feature support test
-	// runs once and returns a function for compat purposes
-	rp.support = (function(){
-		var ret;
-		try {
-			ret = w.document.createElement( "link" ).relList.supports( "preload" );
-		} catch (e) {
-			ret = false;
-		}
-		return function(){
-			return ret;
-		};
-	})();
+      <!-- ============================ Off-canvas navigation =========================== -->
 
-	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
-	// then change that media back to its intended value on load
-	rp.bindMediaToggle = function( link ){
-		// remember existing media attr for ultimate state, or default to 'all'
-		var finalMedia = link.media || "all";
-
-		function enableStylesheet(){
-			link.media = finalMedia;
-		}
-
-		// bind load handlers to enable media
-		if( link.addEventListener ){
-			link.addEventListener( "load", enableStylesheet );
-		} else if( link.attachEvent ){
-			link.attachEvent( "onload", enableStylesheet );
-		}
-
-		// Set rel and non-applicable media type to start an async request
-		// note: timeout allows this to happen async to let rendering continue in IE
-		setTimeout(function(){
-			link.rel = "stylesheet";
-			link.media = "only x";
-		});
-		// also enable media after 3 seconds,
-		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
-		setTimeout( enableStylesheet, 3000 );
-	};
-
-	// loop through link elements in DOM
-	rp.poly = function(){
-		// double check this to prevent external calls from running
-		if( rp.support() ){
-			return;
-		}
-		var links = w.document.getElementsByTagName( "link" );
-		for( var i = 0; i < links.length; i++ ){
-			var link = links[ i ];
-			// qualify links to those with rel=preload and as=style attrs
-			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
-				// prevent rerunning on link
-				link.setAttribute( "data-loadcss", true );
-				// bind listeners to toggle media back
-				rp.bindMediaToggle( link );
-			}
-		}
-	};
-
-	// if unsupported, run the polyfill
-	if( !rp.support() ){
-		// run once at least
-		rp.poly();
-
-		// rerun poly on an interval until onload
-		var run = w.setInterval( rp.poly, 500 );
-		if( w.addEventListener ){
-			w.addEventListener( "load", function(){
-				rp.poly();
-				w.clearInterval( run );
-			} );
-		} else if( w.attachEvent ){
-			w.attachEvent( "onload", function(){
-				rp.poly();
-				w.clearInterval( run );
-			} );
-		}
-	}
-
-
-	// commonjs
-	if( typeof exports !== "undefined" ){
-		exports.loadCSS = loadCSS;
-	}
-	else {
-		w.loadCSS = loadCSS;
-	}
-}( typeof global !== "undefined" ? global : this ) );
-</script>
-
-    <link rel="icon" href= "/intro/favicon.png" />
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script" />
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script" />
-    <link rel="preload" href="/scripts/main.js" as="script" />
-    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
-    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
-    
-    <!-- fancybox -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
-    <!-- 百度统计  -->
-    
-    <!-- 谷歌统计  -->
-    
-<meta name="generator" content="Hexo 5.4.0"></head>
-
-    
-    
-<header class="header">
-
-    <div class="read-progress"></div>
-    <div class="header-sidebar-menu">&#xe775;</div>
-    <!-- post页的toggle banner  -->
-    
-    <a class="home-link" href=/>LaoDu's Blog.</a>
-</header>
-    <div class="wrapper">
-        <div class="site-intro" style="
-
-
-
-
-
-
-">
-    
-    <!-- 主页  -->
-            
-    <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
-    <div class="site-intro-meta">
-        <!-- 标题  -->
-        <h1 class="intro-title">
-            <!-- 主页  -->
-            
-        </h1>
-        <!-- 副标题 -->
-        <p class="intro-subtitle">
-            <!-- 主页副标题  -->
-            
-        </p>
-        <!-- 文章页meta -->
-        
-    </div>
-</div>
-        <script>
- 
-  // get user agent
-  var browser = {
-    versions: function () {
-      var u = window.navigator.userAgent;
-      return {
-        userAgent: u,
-        trident: u.indexOf('Trident') > -1, //IE内核
-        presto: u.indexOf('Presto') > -1, //opera内核
-        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
-        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
-        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
-        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
-        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
-        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
-        iPad: u.indexOf('iPad') > -1, //是否为iPad
-        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
-        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
-        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
-      };
-    }()
-  }
-  console.log("userAgent:" + browser.versions.userAgent);
-
-  // callback
-  function fontLoaded() {
-    console.log('font loaded');
-    if (document.getElementsByClassName('site-intro-meta')) {
-      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
-      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
-      var postIntros = document.getElementsByClassName('post-intros')[0]
-      if (postIntros) {
-        postIntros.classList.add('post-fade-in');
-      }
-    }
-  }
-
-  // UC不支持跨域，所以直接显示
-  function asyncCb(){
-    if (browser.versions.uc) {
-      console.log("UCBrowser");
-      fontLoaded();
-    } else {
-      WebFont.load({
-        custom: {
-          families: ['Oswald-Regular']
-        },
-        loading: function () {  //所有字体开始加载
-          // console.log('loading');
-        },
-        active: function () {  //所有字体已渲染
-          fontLoaded();
-        },
-        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
-          console.log('inactive: timeout');
-          fontLoaded();
-        },
-        timeout: 5000 // Set the timeout to two seconds
-      });
-    }
-  }
-
-  function asyncErr(){
-    console.warn('script load from CDN failed, will load local script')
-  }
-
-  // load webfont-loader async, and add callback function
-  function async(u, cb, err) {
-    var d = document, t = 'script',
-      o = d.createElement(t),
-      s = d.getElementsByTagName(t)[0];
-    o.src = u;
-    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
-    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
-    s.parentNode.insertBefore(o, s);
-  }
-
-  var asyncLoadWithFallBack = function(arr, success, reject) {
-      var currReject = function(){
-        reject()
-        arr.shift()
-        if(arr.length)
-          async(arr[0], success, currReject)
-        }
-
-      async(arr[0], success, currReject)
-  }
-
-  asyncLoadWithFallBack([
-    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
-    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
-    "/lib/webfontloader.min.js"
-  ], asyncCb, asyncErr)
-</script>        
-        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
-        <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2021/05/11/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-8%20%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E4%B9%8BView%E5%B1%82%E5%89%8D%E5%8F%B0%E9%A1%B5%E9%9D%A2/" >
-            
-                <span>校园商铺-4店铺注册功能模块-8 店铺注册之 View 层前台页面</span>
-        </a>
-        <div class="abstract-content">
-            <h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h1><p>在开发完 <code>DAO</code> 层、<code>Service</code> 层、<code>Controller</code> 层之后，我们来实现下 <code>View</code> 层的部分。</p>
-<h1 id="2-前端框架选择"><a href="#2-前端框架选择" class="headerlink" title="2.前端框架选择"></a>2.前端框架选择</h1><p>前端知识存在短板，只能利用一些前端开发非常使用的UI库来弥补前端知识的不足，推荐<a target="_blank" rel="noopener" href="http://m.sui.taobao.org/">SUI Mobile</a><br>官方介绍：SUI Mobile是轻量，小巧且精美的UI库，方便迅速搭建手机H5应用。满足了我们用一套模版来响应各种设备展示的需求。</p>
+    <div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+        <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+            <img src="/img/close.png" alt="Close"/>
         </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/05/11</span>
-            </div>
-            <!-- tags  -->
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu">
+            <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+            <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
+            <!-- Dropdown Menu -->
+			 
+            <li>
+                <a class="sb-toggle-submenu">Works<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                        <li><a href="/" target="_BLANK" class="animsition-link">AAA</a></li>
+                    
+                        <li><a href="/atom.xml" target="_BLANK" class="animsition-link">BBB</a></li>
+                    
+                </ul>
+            </li>
             
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "项目-校园商铺">项目-校园商铺</a>
-    
-</div>
             
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-7%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E4%B9%8BController%E5%B1%82%E7%9A%84%E6%94%B9%E9%80%A0/" >
+        	<li>
+        		<a class="sb-toggle-submenu">Categories<span class="sb-caret"></span></a>
+            	<ul class="sb-submenu">
+				  	
+				    <li><a href="/categories/Hexo/" class="animsition-link">Hexo<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/JavaSE/" class="animsition-link">JavaSE<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/LeetCode刷题/" class="animsition-link">LeetCode刷题<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/Maven/" class="animsition-link">Maven<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/Mybatis/" class="animsition-link">Mybatis<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/Spring/" class="animsition-link">Spring<small>(3)</small></a></li>
+				    
+				    <li><a href="/categories/基础回顾/" class="animsition-link">基础回顾<small>(2)</small></a></li>
+				    
+				    <li><a href="/categories/数据结构与算法/" class="animsition-link">数据结构与算法<small>(2)</small></a></li>
+				    
+				    <li><a href="/categories/项目-校园商铺/" class="animsition-link">项目-校园商铺<small>(30)</small></a></li>
+				    
+				</ul>
+        	</li>
+			
             
-                <span>校园商铺-4店铺注册功能模块-7店铺注册之 Controller 层的改造</span>
-        </a>
-        <div class="abstract-content">
-            <p><strong>不合理的地方：</strong></p>
-<ol>
-<li><p>并不需要将 InputStream 转换成 File 类型，直接将 InputStream 传进入交给 CommonsMultipartfile去处理就可以了</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*由于addShop的第二个参数是File类型的，</span></span><br><span class="line"><span class="comment">           而传入的ShopImg是CommonsMultipartFile这样的一个类型，</span></span><br><span class="line"><span class="comment">           因此需要将CommonsMultipartFile转换成File类型*/</span></span><br><span class="line">           File shopImgFile = <span class="keyword">new</span> File(PathUtil.getImgBasePath()</span><br><span class="line">                   + ImageUtil.getRandomFileName());</span><br><span class="line">           <span class="keyword">try</span> &#123;</span><br><span class="line">               shopImgFile.createNewFile();</span><br><span class="line">           &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">               modelMap.put(<span class="string">&quot;success&quot;</span>, <span class="keyword">false</span>);</span><br><span class="line">               modelMap.put(<span class="string">&quot;errMsg&quot;</span>, e.getMessage());</span><br><span class="line">               <span class="keyword">return</span> modelMap;</span><br><span class="line">           &#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<p>如果做这样的转换，shopImgFile.createNewFile(); 每次都需要生成一个空白的文件，然后还需要向文件中写入请求传送过来的文件流，这样不仅仅产生很多垃圾文件，同时有可能造成写入失败，抛出异常的风险，大大地加大了系统的不稳定性。</p>
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/05/10</span>
-            </div>
-            <!-- tags  -->
+            <li>
+                <a class="sb-toggle-submenu">Links<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                    <li><a target="_blank" rel="noopener" href="http://go.kieran.top/" class="animsition-link">Kieran</a></li>
+                    
+                    <li><a target="_blank" rel="noopener" href="http://domain.com/" class="animsition-link">Name</a></li>
+                    
+                </ul>
+            </li>
             
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "项目-校园商铺">项目-校园商铺</a>
-    
-</div>
+        </ul>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu secondary">
             
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-6%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E4%B9%8BController%E5%B1%82%E7%9A%84%E5%AE%9E%E7%8E%B0/" >
-            
-                <span>校园商铺-4店铺注册功能模块-6店铺注册之 Controller 层的实现</span>
-        </a>
-        <div class="abstract-content">
-            <h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h1><p>Service 层实现之后，接下来编写控制层的代码</p>
-<p>用到了jackson-databind <a target="_blank" rel="noopener" href="https://github.com/FasterXML/jackson-databind">https://github.com/FasterXML/jackson-databind</a> ，将前台传递过来的JSON对象转换为POJO类。</p>
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/05/10</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "项目-校园商铺">项目-校园商铺</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-5%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E4%B9%8BService%E5%B1%82%E7%9A%84%E5%AE%9E%E7%8E%B0/" >
-            
-                <span>校园商铺-4店铺注册功能模块-5店铺注册之Service层的实现</span>
-        </a>
-        <div class="abstract-content">
-            <h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h1><p>截至目前，我们已经完成了持久层insertShop的开发，编写了操作图片和路径的工具类，使用ENUM定义了操作店铺使用的常量，定义了操作店铺返回的DTO类ShopExecution。</p>
-<p>铺垫了这么多，终于可以编写Service层的代码了，service 层操作店铺返回 DTO 类 ShopExecution（不仅包含Shop的信息，同时也要包含操作店铺的状态信息）。</p>
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/05/10</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "项目-校园商铺">项目-校园商铺</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-4%20Dto%20%E4%B9%8B%20ShopExecution%20%E7%9A%84%E5%AE%9E%E7%8E%B0/" >
-            
-                <span>校园商铺-4店铺注册功能模块-4 Dto 之 ShopExecution 的实现</span>
-        </a>
-        <div class="abstract-content">
-            <h1 id="1-DTO概述"><a href="#1-DTO概述" class="headerlink" title="1.DTO概述"></a>1.DTO概述</h1><p>Data Transfer Object，数据传送对象 .</p>
-<p>DTO是一个普通的Java类，它封装了要传送的批量的数据。当客户端需要读取服务器端的数据的时候，服务器端将数据封装在DTO中，这样客户端就可以在一个网络调用中获得它需要的所有数据。</p>
-<p>Shop实体类包含了Shop的基本属性，但是在前端操作时，我们希望可以返回操作的结果等信息，这个时候Shop实体类就不能满足需求了，我们将操作结果和Shop等信息统一放到DTO中处理，即可满足当前的需求。</p>
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/05/10</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "项目-校园商铺">项目-校园商铺</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-3%20thumbnailator%E5%9B%BE%E7%89%87%E5%A4%84%E7%90%86%E5%92%8C%E5%B0%81%E8%A3%85Util/" >
-            
-                <span>校园商铺-4店铺注册功能模块-3 thumbnailator图片处理和封装Util</span>
-        </a>
-        <div class="abstract-content">
-            <h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h1><p>既然是o2o， 图片是不可或缺的。</p>
-<p>存储这些图片，一般的处理方式：放到专门图片服务器或者在主机上单独划分目录去存储这些图片。数据库中的字段仅仅存放图片的地址。 关于图片的存放目录，合理的情况在系统配置表中配置存储的根目录和各个模块图片存放的相对路径， 便于应用的迁移。</p>
-<p>处理图片的框架这里我们选择 Thumbnailator 为图片添加水印，为简化图片的处理，图片工具类自然是不可或缺的。</p>
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/05/10</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "项目-校园商铺">项目-校园商铺</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-2%20Dao%E5%B1%82%E4%B9%8B%E6%9B%B4%E6%96%B0%E5%BA%97%E9%93%BA/" >
-            
-                <span>校园商铺-4店铺注册功能模块-2 Dao层之更新店铺</span>
-        </a>
-        <div class="abstract-content">
-            <h1 id="1-ShopDao中新增updateShop接口"><a href="#1-ShopDao中新增updateShop接口" class="headerlink" title="1.ShopDao中新增updateShop接口"></a>1.ShopDao中新增updateShop接口</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ShopDao</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">insertShop</span><span class="params">(Shop shop)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">updateShop</span><span class="params">(Shop shop)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/05/10</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "项目-校园商铺">项目-校园商铺</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-1Dao%E5%B1%82%E4%B9%8B%E6%96%B0%E5%A2%9E%E5%BA%97%E9%93%BA/" >
-            
-                <span>校园商铺-4店铺注册功能模块-1 Dao层之新增店铺</span>
-        </a>
-        <div class="abstract-content">
-            <h1 id="1-系统功能开发的优先级"><a href="#1-系统功能开发的优先级" class="headerlink" title="1. 系统功能开发的优先级"></a>1. 系统功能开发的优先级</h1><p>项目共有3个系统，前端展示系统，店家管理系统，超级管理员管理系统。<br>        店家的优先级是最高的，因为最有可能带来收益的是店家，而且一旦店家系统开发出来，店家往系统里填写商品信息、前端展示系统才有展示的数据源。<br>        超级管理员系统可以用手工录入的方式来代替，优先级是最低。</p>
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/05/10</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "项目-校园商铺">项目-校园商铺</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-3Logback%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8/" >
-            
-                <span>校园商铺-3 Logback配置与使用</span>
-        </a>
-        <div class="abstract-content">
-            <h1 id="1-日志的作用"><a href="#1-日志的作用" class="headerlink" title="1.日志的作用"></a>1.日志的作用</h1><ul>
-<li>1.故障定位</li>
-<li>2.显示程序运行状态</li>
-</ul>
-<p>好的日志记录方式可以提供给我们足够多定位问题的依据，因此我们引入 logback 组件来进行日志的记录</p>
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/05/10</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "项目-校园商铺">项目-校园商铺</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-2%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA-7%E9%AA%8C%E8%AF%81%20Controller%20%E5%B1%82%E7%9A%84%E9%85%8D%E7%BD%AE/" >
-            
-                <span>校园商铺-2项目设计和框架搭建-7验证 Controller 层的配置</span>
-        </a>
-        <div class="abstract-content">
-            <p><img src="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210510171110012.png" alt="image-20210510171110012"></p>
-<h1 id="1-Controller-层的具体代码"><a href="#1-Controller-层的具体代码" class="headerlink" title="1. Controller 层的具体代码"></a>1. Controller 层的具体代码</h1>
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2021/05/10</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "项目-校园商铺">项目-校园商铺</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    <!-- paginator  -->
-    
-    <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="/archives/2021/05/">&lt; PREV</a><a class="page-number" href="/archives/2021/05/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/2021/05/page/3/">3</a><a class="extend next" rel="next" href="/archives/2021/05/page/3/">NEXT &gt;</a>
-    </nav>
-    
-</main>
-            <!-- profile -->
-            
-        </div>
-        <footer class="footer footer-unloaded">
-    <!-- social  -->
-    
-    <div class="social">
-        
-    
-        
-            
-                <a href="mailto:1670025948@qq.com" class="iconfont-archer email" title=email ></a>
-            
-        
-    
-        
-            
-                <a href="//github.com/AD-Gai-Code" class="iconfont-archer github" target="_blank" title=github></a>
-            
-        
-    
-        
-            
-                <span class="iconfont-archer wechat" title=wechat>
-                  
-                  <img class="profile-qr" src="/assets/example_qr.jpg" />
-                </span>
-            
-        
-    
-        
-            
-                <span class="iconfont-archer qq" title=qq>
-                  
-                  <img class="profile-qr" src="/assets/qq.png" />
-                </span>
-            
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-
+            <li><a href="/about.html" class="animsition-link" title="about">About</a></li>
+            <li><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li>
+        </ul>
     </div>
     
-    <!-- powered by Hexo  -->
-    <div class="copyright">
-        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    <!-- ============================ END Off-canvas navigation =========================== -->
+
+    <!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+    <div id="sb-site">
+        <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <div id="navigation" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!-- Nav logo -->
+                    <div class="logo">
+                        <a href="/" title="Logo" class="animsition-link">
+                         <img src="/img/logo.png" alt="Logo" width="35px;"/> 
+                        </a>
+                    </div>
+                    <!-- // Nav logo -->
+                    <!-- Info-bar -->
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/" class="animsition-link">ADGai's Blog</a></li>
+                            <li class="nolink"><span>Always </span>Creative.</li>
+                            
+                            <li><a href="https://github.com/" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                            
+                            
+                            <li><a href="https://twitter.com/" title="Twitter" target="_blank"><i class="icon-twitter"></i></a></li>
+                            
+                            
+                            <li><a href="https://www.facebook.com/" title="Facebook" target="_blank"><i class="icon-facebook"></i></a></li>
+                            
+                            
+                            <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a></li>
+                            
+                            
+                            <li><a href="http://weibo.com/" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a></li>
+                            
+                            <li class="nolink"><span>Welcome!</span></li>
+                        </ul>
+                    </nav>
+                    <!--// Info-bar -->
+                </div>
+                <!-- // .container -->
+                <div class="learnmore sb-toggle-right">More</div>
+                <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+                </button>
+            </div>
+            <!-- // .navbar-inner -->
+        </div>
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+
+      <!-- ============================ Hero Image =========================== -->
+
+<section id="hero" class="scrollme">
+    <div class="container-fluid element-img" style="background: url(/img/bg_img.jpg) no-repeat center center fixed;background-size: cover">
+        <div class="row">
+            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 vertical-align cover boost text-center">
+                <div class="center-me animateme" data-when="exit" data-from="0" data-to="0.6" data-opacity="0" data-translatey="100">
+                    <div>
+                        
+                        <h2>YOU'VE MADE A <span>BRAVE</span> DECISION, WELCOME.</h2>
+                        <p></p>
+                        
+                        <h2></h2>
+                        <p>每一个不曾起舞的日子都是对生命的辜负。</p>
+                        
+
+                    </div>
+                </div>
+            </div>
+            <!-- // .col-md-12 -->
+        </div>
+        <div class="herofade beige-dk"></div>
     </div>
-    <!-- 不蒜子  -->
-    
-    <div class="busuanzi-container">
-    
-     
-    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
-    
+</section>
+
+<!-- Height spacing helper -->
+<div class="heightblock"></div>
+<!-- // End height spacing helper -->
+
+<!-- ============================ END Hero Image =========================== -->
+
+
+
+
+<section id="services">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="row boxes">
+                    
+                    
+                        
+                        
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
+                            
+                              <h4 class="title"><a href="/2021/05/18/校园商铺/校园商铺-【4店铺注册】-12 前后端联调验证整体模块功能/">校园商铺-【4店铺注册】-12 前后端联调验证整体模块功能</a></h4>
+                            
+                            <p><time datetime="2021-05-18T12:31:45.056Z"><a href="/2021/05/18/校园商铺/校园商铺-【4店铺注册】-12 前后端联调验证整体模块功能/">2021-05-18</a></time></p>
+                        </div>
+                    
+                        
+                        
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
+                            
+                              <h4 class="title"><a href="/2021/05/18/校园商铺/校园商铺-【4店铺注册】-10 引入kaptcha实现验证码/">校园商铺-【4店铺注册】-10 引入kaptcha实现验证码</a></h4>
+                            
+                            <p><time datetime="2021-05-18T11:57:08.717Z"><a href="/2021/05/18/校园商铺/校园商铺-【4店铺注册】-10 引入kaptcha实现验证码/">2021-05-18</a></time></p>
+                        </div>
+                    
+                        
+                        
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
+                            
+                              <h4 class="title"><a href="/2021/05/13/校园商铺/校园商铺-【4店铺注册】-9 店铺注册之店铺类别区域信息的获取/">校园商铺-【4店铺注册】-9 店铺注册之店铺类别区域信息的获取</a></h4>
+                            
+                            <p><time datetime="2021-05-13T03:25:05.557Z"><a href="/2021/05/13/校园商铺/校园商铺-【4店铺注册】-9 店铺注册之店铺类别区域信息的获取/">2021-05-13</a></time></p>
+                        </div>
+                    
+                        
+                        
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
+                            
+                              <h4 class="title"><a href="/2021/05/11/校园商铺/校园商铺-【4店铺注册】-8 店铺注册之View层前台页面/">校园商铺-【4店铺注册】-8 店铺注册之 View 层前台页面</a></h4>
+                            
+                            <p><time datetime="2021-05-11T12:35:15.992Z"><a href="/2021/05/11/校园商铺/校园商铺-【4店铺注册】-8 店铺注册之View层前台页面/">2021-05-11</a></time></p>
+                        </div>
+                    
+                        
+                            </div><div class="row boxes">
+                            
+                        
+                        
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
+                            
+                              <h4 class="title"><a href="/2021/05/10/校园商铺/校园商铺-【4店铺注册】-7店铺注册之Controller层的改造/">校园商铺-【4店铺注册】-7店铺注册之 Controller 层的改造</a></h4>
+                            
+                            <p><time datetime="2021-05-10T13:18:59.973Z"><a href="/2021/05/10/校园商铺/校园商铺-【4店铺注册】-7店铺注册之Controller层的改造/">2021-05-10</a></time></p>
+                        </div>
+                    
+                        
+                        
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
+                            
+                              <h4 class="title"><a href="/2021/05/10/校园商铺/校园商铺-【4店铺注册】-6店铺注册之Controller层的实现/">校园商铺-【4店铺注册】-6店铺注册之 Controller 层的实现</a></h4>
+                            
+                            <p><time datetime="2021-05-10T13:01:07.006Z"><a href="/2021/05/10/校园商铺/校园商铺-【4店铺注册】-6店铺注册之Controller层的实现/">2021-05-10</a></time></p>
+                        </div>
+                    
+                        
+                        
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
+                            
+                              <h4 class="title"><a href="/2021/05/10/校园商铺/校园商铺-【4店铺注册】-5店铺注册之Service层的实现/">校园商铺-【4店铺注册】-5店铺注册之Service层的实现</a></h4>
+                            
+                            <p><time datetime="2021-05-10T12:52:43.520Z"><a href="/2021/05/10/校园商铺/校园商铺-【4店铺注册】-5店铺注册之Service层的实现/">2021-05-10</a></time></p>
+                        </div>
+                    
+                        
+                        
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
+                            
+                              <h4 class="title"><a href="/2021/05/10/校园商铺/校园商铺-【4店铺注册】-4 Dto 之 ShopExecution 的实现/">校园商铺-【4店铺注册】-4 Dto 之 ShopExecution 的实现</a></h4>
+                            
+                            <p><time datetime="2021-05-10T12:40:52.769Z"><a href="/2021/05/10/校园商铺/校园商铺-【4店铺注册】-4 Dto 之 ShopExecution 的实现/">2021-05-10</a></time></p>
+                        </div>
+                    
+                        
+                            </div><div class="row boxes">
+                            
+                        
+                        
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
+                            
+                              <h4 class="title"><a href="/2021/05/10/校园商铺/校园商铺-【4店铺注册】-3 thumbnailator图片处理和封装Util/">校园商铺-【4店铺注册】-3 thumbnailator图片处理和封装Util</a></h4>
+                            
+                            <p><time datetime="2021-05-10T12:09:16.350Z"><a href="/2021/05/10/校园商铺/校园商铺-【4店铺注册】-3 thumbnailator图片处理和封装Util/">2021-05-10</a></time></p>
+                        </div>
+                    
+                        
+                        
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
+                            
+                              <h4 class="title"><a href="/2021/05/10/校园商铺/校园商铺-【4店铺注册】-2 Dao层之更新店铺/">校园商铺-【4店铺注册】-2 Dao层之更新店铺</a></h4>
+                            
+                            <p><time datetime="2021-05-10T11:56:30.620Z"><a href="/2021/05/10/校园商铺/校园商铺-【4店铺注册】-2 Dao层之更新店铺/">2021-05-10</a></time></p>
+                        </div>
+                    
+                </div>
+            </div>    
+        </div>
     </div>
-    
+</section> 
+
+<section id="statement">
+    <div class="container text-center wow fadeInUp" data-wow-delay="0.5s">
+        <div class="row">
+            <p>虽然还没想好写点什么，但是总觉得这里放句话比较和谐。</p>
+        </div>
+    </div>
+</section>
+      
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+            <div class="copy">
+                <p>
+                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By AiLaodu. All Rights Reserved.
+                </p>
+                <p>Theme By <a target="_blank" rel="noopener" href="//go.kieran.top" style="color: #767D84">Kieran</a></p>
+            </div>
+            <div class="social">
+                <ul>
+                    
+                    <li><a href="https://github.com/" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://twitter.com/" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://www.facebook.com/" title="Facebook" target="_blank"><i class="icon-facebook"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="http://weibo.com/" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a>&nbsp;</li>
+                    
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
 </footer>
-    </div>
-    <!-- toc -->
-    
-    <div class="back-top iconfont-archer">&#xe639;</div>
-    <div class="sidebar sidebar-hide">
-    <ul class="sidebar-tabs sidebar-tabs-active-0">
-        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
-        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
-        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
-    </ul>
-    <div class="sidebar-content sidebar-content-show-archive">
-          <div class="sidebar-panel-archives">
-    <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <div class="total-and-search">
-        <div class="total-archive">
-        Total : 39
-        </div>
-        <!-- search  -->
-        
-    </div>
-    
-    <div class="post-archive">
-    
-    
-    
-    
-    <div class="archive-year"> Invalid date </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2021/02/27/hexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" >Hexo个人博客搭建</a>
-        </li>
-    
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> 2021 </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/24</span><a class="archive-post-title" href= "/2021/05/24/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-6%E5%BA%97%E9%93%BA%E7%BC%96%E8%BE%91%E5%88%97%E8%A1%A8%E5%92%8C%E5%88%97%E8%A1%A8%E5%8A%9F%E8%83%BD-4%E5%BA%97%E9%93%BA%E4%BF%A1%E6%81%AF%E7%BC%96%E8%BE%91%E4%B9%8B%E5%89%8D%E7%AB%AF%E5%AE%9E%E7%8E%B0/" >校园商铺-6店铺编辑列表和列表功能-4店铺信息编辑之前端实现</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/22</span><a class="archive-post-title" href= "/2021/05/22/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-6%E5%BA%97%E9%93%BA%E7%BC%96%E8%BE%91%E5%88%97%E8%A1%A8%E5%92%8C%E5%88%97%E8%A1%A8%E5%8A%9F%E8%83%BD-3%E5%BA%97%E9%93%BA%E4%BF%A1%E6%81%AF%E7%BC%96%E8%BE%91%E4%B9%8BController%E5%B1%82%E7%9A%84%E5%AE%9E%E7%8E%B0/" >校园商铺-6 店铺编辑列表和列表功能-3 店铺信息编辑之Controller层的实现</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/19</span><a class="archive-post-title" href= "/2021/05/19/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-5MySql%20%E4%B8%BB%E4%BB%8E%E5%88%86%E7%A6%BB%E5%AE%9E%E7%8E%B0-%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5%E7%90%86%E8%AE%BA%E7%9F%A5%E8%AF%86/" >校园商铺-5MySql 主从分离实现-主从同步理论知识</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/18</span><a class="archive-post-title" href= "/2021/05/18/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-13%20%E5%89%8D%E5%90%8E%E7%AB%AF%E8%81%94%E8%B0%83%E6%8A%80%E5%B7%A7%E7%BB%86%E5%8C%96%E4%B8%8E%E6%80%BB%E7%BB%93/" >校园商铺-4店铺注册功能模块-13 前后端联调技巧细化与总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/18</span><a class="archive-post-title" href= "/2021/05/18/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-11%20View%E5%B1%82+Controller%E5%B1%82%E4%B9%8B%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0/" >校园商铺-4店铺注册功能模块-11 View层+Controller层之图片上传</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/18</span><a class="archive-post-title" href= "/2021/05/18/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-12%20%E5%89%8D%E5%90%8E%E7%AB%AF%E8%81%94%E8%B0%83%E9%AA%8C%E8%AF%81%E6%95%B4%E4%BD%93%E6%A8%A1%E5%9D%97%E5%8A%9F%E8%83%BD/" >校园商铺-4店铺注册功能模块-12 前后端联调验证整体模块功能</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/13</span><a class="archive-post-title" href= "/2021/05/13/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-9%20%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E4%B9%8B%E5%BA%97%E9%93%BA%E7%B1%BB%E5%88%AB%E5%8C%BA%E5%9F%9F%E4%BF%A1%E6%81%AF%E7%9A%84%E8%8E%B7%E5%8F%96/" >校园商铺-4店铺注册功能模块-9 店铺注册之店铺类别区域信息的获取</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/10</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-6%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E4%B9%8BController%E5%B1%82%E7%9A%84%E5%AE%9E%E7%8E%B0/" >校园商铺-4店铺注册功能模块-6店铺注册之 Controller 层的实现</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/10</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-5%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E4%B9%8BService%E5%B1%82%E7%9A%84%E5%AE%9E%E7%8E%B0/" >校园商铺-4店铺注册功能模块-5店铺注册之Service层的实现</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/10</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-3%20thumbnailator%E5%9B%BE%E7%89%87%E5%A4%84%E7%90%86%E5%92%8C%E5%B0%81%E8%A3%85Util/" >校园商铺-4店铺注册功能模块-3 thumbnailator图片处理和封装Util</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/10</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-1Dao%E5%B1%82%E4%B9%8B%E6%96%B0%E5%A2%9E%E5%BA%97%E9%93%BA/" >校园商铺-4店铺注册功能模块-1 Dao层之新增店铺</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/10</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-2%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA-5%E9%AA%8C%E8%AF%81Dao/" >校园商铺-2项目设计和框架搭建-5验证Dao层的配置</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/10</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-2%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA-6%E9%AA%8C%E8%AF%81Service%E5%B1%82%E7%9A%84%E9%85%8D%E7%BD%AE/" >校园商铺-2项目设计和框架搭建-6验证 Service 层的配置</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/10</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-2%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA-3%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84%E8%A7%84%E5%88%92%E5%8F%8AMaven%E9%85%8D%E7%BD%AE/" >校园商铺-2项目设计和框架搭建-3项目结构规划及Maven配置</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/10</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-2%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA-1%E7%B3%BB%E7%BB%9F%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97%E5%88%92%E5%88%86/" >校园商铺-2项目设计和框架搭建-1系统功能模块划分</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/10</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-2%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA-2%E5%AE%9E%E4%BD%93%E7%B1%BB%E8%AE%BE%E8%AE%A1%E4%B8%8E%E8%A1%A8%E5%88%9B%E5%BB%BA/" >校园商铺-2项目设计和框架搭建-2实体类设计与表实现</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/26</span><a class="archive-post-title" href= "/2021/04/26/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA%20bug%20%E6%B1%87%E6%80%BB/" >校园商铺 bug 汇总</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/20</span><a class="archive-post-title" href= "/2021/04/20/Maven%E5%9B%9E%E9%A1%BE/" >Maven 学习</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/15</span><a class="archive-post-title" href= "/2021/04/15/LeetCode%E4%BA%8C%E5%8F%89%E6%A0%91%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93/" >LeetCode二叉树刷题总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/10</span><a class="archive-post-title" href= "/2021/04/10/Servlet%EF%BC%8C%E6%88%91%E8%BF%98%E6%98%AF%E7%88%B1%E4%BD%A0%E7%9A%84/" >Servlet，我还是爱你的</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/06</span><a class="archive-post-title" href= "/2021/04/06/Spring5%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0(%E4%BA%8C)/" >Spring5框架学习系列（二）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/03</span><a class="archive-post-title" href= "/2021/04/03/java%E5%8F%82%E6%95%B0%E5%8F%8A%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92/" >Java参数及参数传递</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/30</span><a class="archive-post-title" href= "/2021/03/30/%E6%9E%9A%E4%B8%BE%E4%B8%8E%E6%B3%A8%E8%A7%A3%E5%A4%8D%E4%B9%A0%E6%80%BB%E7%BB%93/" >枚举与注解复习总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/25</span><a class="archive-post-title" href= "/2021/03/25/spring5%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0(%E4%B8%80)/" >Spring5框架学习系列（一）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/21</span><a class="archive-post-title" href= "/2021/03/21/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" >排序算法</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/08</span><a class="archive-post-title" href= "/2021/03/08/%E9%80%92%E5%BD%92%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" >递归算法学习笔记</a>
-        </li>
-    
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> Invalid date </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2021/04/07/Spring5%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0(%E4%B8%89)/" >Spring5框架学习系列（三）</a>
-        </li>
-    
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> Invalid date </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2021/04/24/mybatis%E7%AC%94%E8%AE%B0(%E4%B8%80)/" >Mybatis 学习（一）</a>
-        </li>
-    
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> Invalid date </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-2%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA-4%E8%87%AA%E4%B8%8B%E8%80%8C%E4%B8%8A%E9%80%90%E5%B1%82%E5%AE%8C%E6%88%90%20SSM%20%E7%9A%84%E5%90%84%E9%A1%B9%E9%85%8D%E7%BD%AE/" >校园商铺-2项目设计和框架搭建-4自下而上逐层完成 SSM 的各项配置</a>
-        </li>
-    
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> Invalid date </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-2%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA-7%E9%AA%8C%E8%AF%81%20Controller%20%E5%B1%82%E7%9A%84%E9%85%8D%E7%BD%AE/" >校园商铺-2项目设计和框架搭建-7验证 Controller 层的配置</a>
-        </li>
-    
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> Invalid date </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-3Logback%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8/" >校园商铺-3 Logback配置与使用</a>
-        </li>
-    
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> Invalid date </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-2%20Dao%E5%B1%82%E4%B9%8B%E6%9B%B4%E6%96%B0%E5%BA%97%E9%93%BA/" >校园商铺-4店铺注册功能模块-2 Dao层之更新店铺</a>
-        </li>
-    
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> Invalid date </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-4%20Dto%20%E4%B9%8B%20ShopExecution%20%E7%9A%84%E5%AE%9E%E7%8E%B0/" >校园商铺-4店铺注册功能模块-4 Dto 之 ShopExecution 的实现</a>
-        </li>
-    
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> Invalid date </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2021/05/18/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-10%20%E5%BC%95%E5%85%A5kaptcha%E5%AE%9E%E7%8E%B0%E9%AA%8C%E8%AF%81%E7%A0%81/" >校园商铺-4店铺注册功能模块-10 引入kaptcha实现验证码</a>
-        </li>
-    
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> Invalid date </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-7%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E4%B9%8BController%E5%B1%82%E7%9A%84%E6%94%B9%E9%80%A0/" >校园商铺-4店铺注册功能模块-7店铺注册之 Controller 层的改造</a>
-        </li>
-    
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> Invalid date </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2021/05/11/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-8%20%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E4%B9%8BView%E5%B1%82%E5%89%8D%E5%8F%B0%E9%A1%B5%E9%9D%A2/" >校园商铺-4店铺注册功能模块-8 店铺注册之 View 层前台页面</a>
-        </li>
-    
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> Invalid date </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2021/05/20/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-6%E5%BA%97%E9%93%BA%E7%BC%96%E8%BE%91%E5%88%97%E8%A1%A8%E5%92%8C%E5%88%97%E8%A1%A8%E5%8A%9F%E8%83%BD-1%E5%BA%97%E9%93%BA%E4%BF%A1%E6%81%AF%E7%BC%96%E8%BE%91%E4%B9%8BDao%E5%B1%82%E5%BC%80%E5%8F%91/" >校园商铺-6店铺编辑列表和列表功能-1 店铺信息编辑之Dao层开发</a>
-        </li>
-    
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> Invalid date </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2021/05/20/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-6%E5%BA%97%E9%93%BA%E7%BC%96%E8%BE%91%E5%88%97%E8%A1%A8%E5%92%8C%E5%88%97%E8%A1%A8%E5%8A%9F%E8%83%BD-2%E5%BA%97%E9%93%BA%E4%BF%A1%E6%81%AF%E7%BC%96%E8%BE%91%E4%B9%8BService%E5%B1%82%E7%9A%84%E5%AE%9E%E7%8E%B0/" >校园商铺-6店铺编辑列表和列表功能-2店铺信息编辑之Service层的实现</a>
-        </li>
-    
-    </div>
-  </div>
-        <div class="sidebar-panel-tags">
-    <div class="sidebar-tags-name">
-    
-        <span class="sidebar-tag-name" data-tags="Hexo"><span class="iconfont-archer">&#xe606;</span>Hexo</span>
-    
-        <span class="sidebar-tag-name" data-tags="数据结构与算法"><span class="iconfont-archer">&#xe606;</span>数据结构与算法</span>
-    
-        <span class="sidebar-tag-name" data-tags="JavaSE"><span class="iconfont-archer">&#xe606;</span>JavaSE</span>
-    
-        <span class="sidebar-tag-name" data-tags="基础回顾"><span class="iconfont-archer">&#xe606;</span>基础回顾</span>
-    
-        <span class="sidebar-tag-name" data-tags="LeetCode刷题"><span class="iconfont-archer">&#xe606;</span>LeetCode刷题</span>
-    
-        <span class="sidebar-tag-name" data-tags="Spring"><span class="iconfont-archer">&#xe606;</span>Spring</span>
-    
-        <span class="sidebar-tag-name" data-tags="Mybatis"><span class="iconfont-archer">&#xe606;</span>Mybatis</span>
-    
-        <span class="sidebar-tag-name" data-tags="Maven"><span class="iconfont-archer">&#xe606;</span>Maven</span>
-    
-        <span class="sidebar-tag-name" data-tags="项目-校园商铺"><span class="iconfont-archer">&#xe606;</span>项目-校园商铺</span>
-    
-    </div>
-    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
-    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
-    缺失模块。<br/>
-    1、请确保node版本大于6.2<br/>
-    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
-    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
-    3、在根目录_config.yml里添加配置：
-    <pre style="color: #787878; font-size: 0.6rem;">
-jsonContent:
-  meta: false
-  pages: false
-  posts:
-    title: true
-    date: true
-    path: true
-    text: false
-    raw: false
-    content: false
-    slug: false
-    updated: false
-    comments: false
-    link: false
-    permalink: false
-    excerpt: false
-    categories: true
-    tags: true</pre>
-    </div> 
-    <div class="sidebar-tags-list"></div>
-</div>
-        <div class="sidebar-panel-categories">
-    <div class="sidebar-categories-name">
-    
-        <span class="sidebar-category-name" data-categories="Hexo"><span class="iconfont-archer">&#xe60a;</span>Hexo</span>
-    
-        <span class="sidebar-category-name" data-categories="数据结构与算法"><span class="iconfont-archer">&#xe60a;</span>数据结构与算法</span>
-    
-        <span class="sidebar-category-name" data-categories="JavaSE"><span class="iconfont-archer">&#xe60a;</span>JavaSE</span>
-    
-        <span class="sidebar-category-name" data-categories="基础回顾"><span class="iconfont-archer">&#xe60a;</span>基础回顾</span>
-    
-        <span class="sidebar-category-name" data-categories="LeetCode刷题"><span class="iconfont-archer">&#xe60a;</span>LeetCode刷题</span>
-    
-        <span class="sidebar-category-name" data-categories="Spring"><span class="iconfont-archer">&#xe60a;</span>Spring</span>
-    
-        <span class="sidebar-category-name" data-categories="Mybatis"><span class="iconfont-archer">&#xe60a;</span>Mybatis</span>
-    
-        <span class="sidebar-category-name" data-categories="Maven"><span class="iconfont-archer">&#xe60a;</span>Maven</span>
-    
-        <span class="sidebar-category-name" data-categories="项目-校园商铺"><span class="iconfont-archer">&#xe60a;</span>项目-校园商铺</span>
-    
-    </div>
-    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
-    <div class="sidebar-categories-list"></div>
-</div>
-    </div>
-</div> 
-    <script>
-    var siteMeta = {
-        root: "/",
-        author: "AiLaodu"
-    }
+
+<!-- ============================ END Footer =========================== -->
+      <!-- Load our scripts -->
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+
+    resizeHero();
+
+    $(window).resize(function () {
+        resizeHero();
+    });
 </script>
-    <!-- CDN failover -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
-    <script type="text/javascript">
-        if (typeof window.$ === 'undefined')
-        {
-            console.warn('jquery load from jsdelivr failed, will load local script')
-            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
-        }
-    </script>
-    <script src="/scripts/main.js"></script>
-    <!-- algolia -->
-    
-    <!-- busuanzi  -->
-    
-    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    
-    <!-- CNZZ  -->
-    
-    </div>
-    <!-- async load share.js -->
-     
-    </body>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$('#intro').find('img').each(function(){
+  var alt = this.alt;
+
+  if (alt){
+    $(this).after('<span class="caption" style="display:none">' + alt + '</span>');
+  }
+
+  $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox" rel="gallery" />');
+});
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+      
+</body>
 </html>
-
-

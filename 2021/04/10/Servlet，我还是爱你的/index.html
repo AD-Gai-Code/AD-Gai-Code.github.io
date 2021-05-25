@@ -1,433 +1,218 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-    <!-- title -->
-
-
-
-
-<!-- keywords -->
-
-
-
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********    -----Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<!--<![endif]-->
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" >
+  <title>Servlet，我还是爱你的 | ADGai&#39;s Blog</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="ADGai's Blog">
     <meta name="author" content="AiLaodu">
-    <meta name="renderer" content="webkit">
-    <meta name="copyright" content="AiLaodu">
+    <meta name="description" content="" />
+    <meta name="keywords" content="Java" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href="/atom.xml" title="ADGai&#39;s Blog" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
     
-    <meta name="keywords" content="hexo,hexo主题,个人博客">
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
     
-    <meta name="description" content="">
-    <meta name="description" content="之前在学习Servlet的时候，觉得都2020年了，没必要再学这些老掉牙的技术，所以就马马虎虎得过去了，今天在学完Spring开始学习SpringMVC得时候，发现SpringMVC的核心就是Servlet，所以现在回头再看看Servlet，顺便做个总结。 Ⅰ. 为什么需要Servlet1.1 Tomcat">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Servlet，我还是爱你的">
-<meta property="og:url" content="http://example.com/2021/04/10/Servlet%EF%BC%8C%E6%88%91%E8%BF%98%E6%98%AF%E7%88%B1%E4%BD%A0%E7%9A%84/index.html">
-<meta property="og:site_name" content="ADGai&#39;s Blog">
-<meta property="og:description" content="之前在学习Servlet的时候，觉得都2020年了，没必要再学这些老掉牙的技术，所以就马马虎虎得过去了，今天在学完Spring开始学习SpringMVC得时候，发现SpringMVC的核心就是Servlet，所以现在回头再看看Servlet，顺便做个总结。 Ⅰ. 为什么需要Servlet1.1 Tomcat">
-<meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210410173843721.png">
-<meta property="og:image" content="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210411005345135.png">
-<meta property="og:image" content="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210412111221442.png">
-<meta property="og:image" content="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210412113852585.png">
-<meta property="og:image" content="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210412153202697.png">
-<meta property="og:image" content="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210412160221386.png">
-<meta property="og:image" content="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210412160730423.png">
-<meta property="og:image" content="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210412165223986.png">
-<meta property="og:image" content="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210412170344538.png">
-<meta property="og:image" content="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210412171712463.png">
-<meta property="og:image" content="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210412174417990.png">
-<meta property="og:image" content="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210412174537456.png">
-<meta property="article:published_time" content="2021-04-10T09:23:32.426Z">
-<meta property="article:modified_time" content="2021-04-12T12:09:12.251Z">
-<meta property="article:author" content="AiLaodu">
-<meta property="article:tag" content="基础回顾">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210410173843721.png">
-    <meta http-equiv="Cache-control" content="no-cache">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    
-    <title>Servlet，我还是爱你的 · 艾老杜的个人博客</title>
-    <style type="text/css">
-    @font-face {
-        font-family: 'Oswald-Regular';
-        src: url("/font/Oswald-Regular.ttf");
-    }
 
-    body {
-        margin: 0;
-    }
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
 
-    header,
-    footer,
-    .back-top,
-    .sidebar,
-    .container,
-    .site-intro-meta,
-    .toc-wrapper {
-        display: none;
-    }
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
 
-    .site-intro {
-        position: relative;
-        z-index: 3;
-        width: 100%;
-        /* height: 50vh; */
-        overflow: hidden;
-    }
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
 
-    .site-intro-placeholder {
-        position: absolute;
-        z-index: -2;
-        top: 0;
-        left: 0;
-        width: calc(100% + 300px);
-        height: 100%;
-        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
-        background-position: center center;
-        transform: translate3d(-226px, 0, 0);
-        animation: gradient-move 2.5s ease-out 0s infinite;
-    }
+  
+  
+  
 
-    @keyframes gradient-move {
-        0% {
-            transform: translate3d(-226px, 0, 0);
-        }
-        100% {
-            transform: translate3d(0, 0, 0);
-        }
-    }
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
 
-</style>
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
 
-    <link rel="preload" href= "/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    <link rel="stylesheet" href= "/css/mobile.css?v=20180824" media="(max-width: 980px)">
-    
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    
-    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
-/* This file is meant as a standalone workflow for
-- testing support for link[rel=preload]
-- enabling async CSS loading in browsers that do not support rel=preload
-- applying rel preload css once loaded, whether supported or not.
-*/ -->
-<script>
-(function( w ){
-	"use strict";
-	// rel=preload support test
-	if( !w.loadCSS ){
-		w.loadCSS = function(){};
-	}
-	// define on the loadCSS obj
-	var rp = loadCSS.relpreload = {};
-	// rel=preload feature support test
-	// runs once and returns a function for compat purposes
-	rp.support = (function(){
-		var ret;
-		try {
-			ret = w.document.createElement( "link" ).relList.supports( "preload" );
-		} catch (e) {
-			ret = false;
-		}
-		return function(){
-			return ret;
-		};
-	})();
+      <!-- ============================ Off-canvas navigation =========================== -->
 
-	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
-	// then change that media back to its intended value on load
-	rp.bindMediaToggle = function( link ){
-		// remember existing media attr for ultimate state, or default to 'all'
-		var finalMedia = link.media || "all";
-
-		function enableStylesheet(){
-			link.media = finalMedia;
-		}
-
-		// bind load handlers to enable media
-		if( link.addEventListener ){
-			link.addEventListener( "load", enableStylesheet );
-		} else if( link.attachEvent ){
-			link.attachEvent( "onload", enableStylesheet );
-		}
-
-		// Set rel and non-applicable media type to start an async request
-		// note: timeout allows this to happen async to let rendering continue in IE
-		setTimeout(function(){
-			link.rel = "stylesheet";
-			link.media = "only x";
-		});
-		// also enable media after 3 seconds,
-		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
-		setTimeout( enableStylesheet, 3000 );
-	};
-
-	// loop through link elements in DOM
-	rp.poly = function(){
-		// double check this to prevent external calls from running
-		if( rp.support() ){
-			return;
-		}
-		var links = w.document.getElementsByTagName( "link" );
-		for( var i = 0; i < links.length; i++ ){
-			var link = links[ i ];
-			// qualify links to those with rel=preload and as=style attrs
-			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
-				// prevent rerunning on link
-				link.setAttribute( "data-loadcss", true );
-				// bind listeners to toggle media back
-				rp.bindMediaToggle( link );
-			}
-		}
-	};
-
-	// if unsupported, run the polyfill
-	if( !rp.support() ){
-		// run once at least
-		rp.poly();
-
-		// rerun poly on an interval until onload
-		var run = w.setInterval( rp.poly, 500 );
-		if( w.addEventListener ){
-			w.addEventListener( "load", function(){
-				rp.poly();
-				w.clearInterval( run );
-			} );
-		} else if( w.attachEvent ){
-			w.attachEvent( "onload", function(){
-				rp.poly();
-				w.clearInterval( run );
-			} );
-		}
-	}
-
-
-	// commonjs
-	if( typeof exports !== "undefined" ){
-		exports.loadCSS = loadCSS;
-	}
-	else {
-		w.loadCSS = loadCSS;
-	}
-}( typeof global !== "undefined" ? global : this ) );
-</script>
-
-    <link rel="icon" href= "/intro/favicon.png" />
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script" />
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script" />
-    <link rel="preload" href="/scripts/main.js" as="script" />
-    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
-    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
-    
-    <!-- fancybox -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
-    <!-- 百度统计  -->
-    
-    <!-- 谷歌统计  -->
-    
-<meta name="generator" content="Hexo 5.4.0"></head>
-
-    
-        <body class="post-body">
-    
-    
-<header class="header">
-
-    <div class="read-progress"></div>
-    <div class="header-sidebar-menu">&#xe775;</div>
-    <!-- post页的toggle banner  -->
-    
-    <div class="banner">
-            <div class="blog-title">
-                <a href="/" >LaoDu&#39;s Blog.</a>
-            </div>
-            <div class="post-title">
-                <a href="#" class="post-name">Servlet，我还是爱你的</a>
-            </div>
+    <div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+        <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+            <img src="/img/close.png" alt="Close"/>
+        </div>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu">
+            <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+            <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
+            <!-- Dropdown Menu -->
+			 
+            <li>
+                <a class="sb-toggle-submenu">Works<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                        <li><a href="/" target="_BLANK" class="animsition-link">AAA</a></li>
+                    
+                        <li><a href="/atom.xml" target="_BLANK" class="animsition-link">BBB</a></li>
+                    
+                </ul>
+            </li>
+            
+            
+        	<li>
+        		<a class="sb-toggle-submenu">Categories<span class="sb-caret"></span></a>
+            	<ul class="sb-submenu">
+				  	
+				    <li><a href="/categories/Hexo/" class="animsition-link">Hexo<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/JavaSE/" class="animsition-link">JavaSE<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/LeetCode刷题/" class="animsition-link">LeetCode刷题<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/Maven/" class="animsition-link">Maven<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/Mybatis/" class="animsition-link">Mybatis<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/Spring/" class="animsition-link">Spring<small>(3)</small></a></li>
+				    
+				    <li><a href="/categories/基础回顾/" class="animsition-link">基础回顾<small>(2)</small></a></li>
+				    
+				    <li><a href="/categories/数据结构与算法/" class="animsition-link">数据结构与算法<small>(2)</small></a></li>
+				    
+				    <li><a href="/categories/项目-校园商铺/" class="animsition-link">项目-校园商铺<small>(30)</small></a></li>
+				    
+				</ul>
+        	</li>
+			
+            
+            <li>
+                <a class="sb-toggle-submenu">Links<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                    <li><a target="_blank" rel="noopener" href="http://go.kieran.top/" class="animsition-link">Kieran</a></li>
+                    
+                    <li><a target="_blank" rel="noopener" href="http://domain.com/" class="animsition-link">Name</a></li>
+                    
+                </ul>
+            </li>
+            
+        </ul>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu secondary">
+            
+            <li><a href="/about.html" class="animsition-link" title="about">About</a></li>
+            <li><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li>
+        </ul>
     </div>
     
-    <a class="home-link" href=/>LaoDu's Blog.</a>
-</header>
-    <div class="wrapper">
-        <div class="site-intro" style="
+    <!-- ============================ END Off-canvas navigation =========================== -->
 
+    <!-- ============================ #sb-site Main Page Wrapper =========================== -->
 
+    <div id="sb-site">
+        <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
 
+        <!-- ============================ Header & Logo bar =========================== -->
 
-
-
-
-height:50vh;
-">
-    
-    <!-- 主页  -->
-    
-    
-    <!-- 404页  -->
-            
-    <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/article/9.jpg)"></div>
-    <div class="site-intro-meta">
-        <!-- 标题  -->
-        <h1 class="intro-title">
-            <!-- 主页  -->
-            
-            Servlet，我还是爱你的
-            <!-- 404 -->
-            
-        </h1>
-        <!-- 副标题 -->
-        <p class="intro-subtitle">
-            <!-- 主页副标题  -->
-            
-            
-            <!-- 404 -->
-            
-        </p>
-        <!-- 文章页meta -->
-        
-            <div class="post-intros">
-                <!-- 文章页标签  -->
-                
-                    <div class= post-intro-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "基础回顾">基础回顾</a>
-    
-</div>
-                
-                
-                    <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">8.2k</span>阅读时长: <span class="post-count reading-time">32 min</span></span>
+        <div id="navigation" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!-- Nav logo -->
+                    <div class="logo">
+                        <a href="/" title="Logo" class="animsition-link">
+                         <img src="/img/logo.png" alt="Logo" width="35px;"/> 
+                        </a>
                     </div>
-                
-                <div class="post-intro-meta">
-                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2021/04/10</span>
-                    
-                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
-                        <span class="iconfont-archer">&#xe602;</span>
-                        <span id="busuanzi_value_page_pv"></span>
-                    </span>
-                    
-                    <span class="shareWrapper">
-                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
-                        <span class="shareText">Share</span>
-                        <ul class="shareList">
-                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
-                                <div class="share-qrcode"></div>
-                            </li>
-                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
-                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
-                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
-                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                    <!-- // Nav logo -->
+                    <!-- Info-bar -->
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/" class="animsition-link">ADGai's Blog</a></li>
+                            <li class="nolink"><span>Always </span>Creative.</li>
+                            
+                            <li><a href="https://github.com/" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                            
+                            
+                            <li><a href="https://twitter.com/" title="Twitter" target="_blank"><i class="icon-twitter"></i></a></li>
+                            
+                            
+                            <li><a href="https://www.facebook.com/" title="Facebook" target="_blank"><i class="icon-facebook"></i></a></li>
+                            
+                            
+                            <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a></li>
+                            
+                            
+                            <li><a href="http://weibo.com/" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a></li>
+                            
+                            <li class="nolink"><span>Welcome!</span></li>
                         </ul>
-                    </span>
+                    </nav>
+                    <!--// Info-bar -->
                 </div>
+                <!-- // .container -->
+                <div class="learnmore sb-toggle-right">More</div>
+                <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+                </button>
             </div>
-        
-    </div>
-</div>
-        <script>
- 
-  // get user agent
-  var browser = {
-    versions: function () {
-      var u = window.navigator.userAgent;
-      return {
-        userAgent: u,
-        trident: u.indexOf('Trident') > -1, //IE内核
-        presto: u.indexOf('Presto') > -1, //opera内核
-        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
-        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
-        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
-        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
-        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
-        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
-        iPad: u.indexOf('iPad') > -1, //是否为iPad
-        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
-        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
-        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
-      };
-    }()
-  }
-  console.log("userAgent:" + browser.versions.userAgent);
+            <!-- // .navbar-inner -->
+        </div>
 
-  // callback
-  function fontLoaded() {
-    console.log('font loaded');
-    if (document.getElementsByClassName('site-intro-meta')) {
-      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
-      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
-      var postIntros = document.getElementsByClassName('post-intros')[0]
-      if (postIntros) {
-        postIntros.classList.add('post-fade-in');
-      }
-    }
-  }
+        <!-- ============================ Header & Logo bar =========================== -->
 
-  // UC不支持跨域，所以直接显示
-  function asyncCb(){
-    if (browser.versions.uc) {
-      console.log("UCBrowser");
-      fontLoaded();
-    } else {
-      WebFont.load({
-        custom: {
-          families: ['Oswald-Regular']
-        },
-        loading: function () {  //所有字体开始加载
-          // console.log('loading');
-        },
-        active: function () {  //所有字体已渲染
-          fontLoaded();
-        },
-        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
-          console.log('inactive: timeout');
-          fontLoaded();
-        },
-        timeout: 5000 // Set the timeout to two seconds
-      });
-    }
-  }
 
-  function asyncErr(){
-    console.warn('script load from CDN failed, will load local script')
-  }
-
-  // load webfont-loader async, and add callback function
-  function async(u, cb, err) {
-    var d = document, t = 'script',
-      o = d.createElement(t),
-      s = d.getElementsByTagName(t)[0];
-    o.src = u;
-    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
-    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
-    s.parentNode.insertBefore(o, s);
-  }
-
-  var asyncLoadWithFallBack = function(arr, success, reject) {
-      var currReject = function(){
-        reject()
-        arr.shift()
-        if(arr.length)
-          async(arr[0], success, currReject)
-        }
-
-      async(arr[0], success, currReject)
-  }
-
-  asyncLoadWithFallBack([
-    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
-    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
-    "/lib/webfontloader.min.js"
-  ], asyncCb, asyncErr)
-</script>        
-        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
-        <div class="container container-unloaded">
-            <main class="main post-page">
-    <article class="article-entry">
-        <p>之前在学习Servlet的时候，觉得都2020年了，没必要再学这些老掉牙的技术，所以就马马虎虎得过去了，今天在学完Spring开始学习SpringMVC得时候，发现SpringMVC的核心就是Servlet，所以现在回头再看看Servlet，顺便做个总结。</p>
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2021-04-10T09:23:32.426Z" itemprop="datePublished">
+          2021-04-10
+      </time>
+    
+    
+    | 
+    <a href='/tags/基础回顾/'>基础回顾</a>
+    
+    
+</span>
+                <h1>Servlet，我还是爱你的</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<p>之前在学习Servlet的时候，觉得都2020年了，没必要再学这些老掉牙的技术，所以就马马虎虎得过去了，今天在学完Spring开始学习SpringMVC得时候，发现SpringMVC的核心就是Servlet，所以现在回头再看看Servlet，顺便做个总结。</p>
 <h1 id="Ⅰ-为什么需要Servlet"><a href="#Ⅰ-为什么需要Servlet" class="headerlink" title="Ⅰ. 为什么需要Servlet"></a>Ⅰ. 为什么需要Servlet</h1><h2 id="1-1-Tomcat"><a href="#1-1-Tomcat" class="headerlink" title="1.1 Tomcat"></a>1.1 Tomcat</h2><span id="more"></span>
 
 <p>Tomcat是一个Web服务器（同时也是Servlet容器），通过它我们可以很方便地<strong>接收和返回</strong>到请求（如果不用Tomcat，那我们需要自己写Socket来接收和返回请求）。</p>
@@ -793,1127 +578,151 @@ height:50vh;
 <li>如果一个变量<strong>不需要共享</strong>，则<strong>直接在 doGet() 或者 doPost()定义</strong>.这样不会存在线程安全问题</li>
 </ol>
 
-    </article>
-    <!-- license  -->
-    
-        <div class="license-wrapper">
-            <p>原文作者：<a href="http://example.com">AiLaodu</a>
-            <!--<p>原文链接：<a href="http://example.com/2021/04/10/Servlet%EF%BC%8C%E6%88%91%E8%BF%98%E6%98%AF%E7%88%B1%E4%BD%A0%E7%9A%84/">http://example.com/2021/04/10/Servlet%EF%BC%8C%E6%88%91%E8%BF%98%E6%98%AF%E7%88%B1%E4%BD%A0%E7%9A%84/</a>-->
-            <p>发表日期：<a href="http://example.com/2021/04/10/Servlet%EF%BC%8C%E6%88%91%E8%BF%98%E6%98%AF%E7%88%B1%E4%BD%A0%E7%9A%84/">April 10th 2021, 5:23:32 pm</a>
-            <p>更新日期：<a href="http://example.com/2021/04/10/Servlet%EF%BC%8C%E6%88%91%E8%BF%98%E6%98%AF%E7%88%B1%E4%BD%A0%E7%9A%84/">April 12th 2021, 8:09:12 pm</a>
-            <!--<p>版权声明：本文采用<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>-->
+            <div class="clearfix"></div>
+            <hr class="nogutter">
         </div>
+        <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
     
-    <!-- paginator  -->
-    <ul class="post-paginator">
-        <li class="next">
-            
-                <div class="nextSlogan">Next Post</div>
-                <a href= "/2021/04/15/LeetCode%E4%BA%8C%E5%8F%89%E6%A0%91%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93/" title= "LeetCode二叉树刷题总结">
-                    <div class="nextTitle">LeetCode二叉树刷题总结</div>
-                </a>
-            
-        </li>
-        <li class="previous">
-            
-                <div class="prevSlogan">Previous Post</div>
-                <a href= "/2021/04/07/Spring5%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0(%E4%B8%89)/" title= "Spring5框架学习系列（三）">
-                    <div class="prevTitle">Spring5框架学习系列（三）</div>
-                </a>
-            
-        </li>
-    </ul>
-    <!-- 评论插件 -->
-    <!-- 来必力City版安装代码 -->
+    <a class="pull-left" href="/2021/04/15/LeetCode%E4%BA%8C%E5%8F%89%E6%A0%91%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93/" style="float: left;">
+        ← LeetCode二叉树刷题总结
+    </a>
+    
+    
+    <a class="pull-right" href="/2021/04/07/Spring5%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0(%E4%B8%89)/">
+        Spring5框架学习系列（三） →
+    </a>
+    
+</nav>
 
-<!-- City版安装代码已完成 -->
-    
-    
-    <!-- gitalk评论 -->
+        <div class="col-md-8 col-md-offset-2 col-sm-24"><script type="text/javascript">
+  /**
+   * 搜狐畅言
+   */
 
-    <!-- utteranc评论 -->
+  /*
+  document.write('<div id="SOHUCS" sid="' + window.location.pathname.slice(1) + '" ></div>');
 
-    <!-- partial('_partial/comment/changyan') -->
-    <!--PC版-->
-
-
-    
-    
-
-    <!-- 评论 -->
-</main>
-            <!-- profile -->
-            
-        </div>
-        <footer class="footer footer-unloaded">
-    <!-- social  -->
-    
-    <div class="social">
-        
-    
-        
-            
-                <a href="mailto:1670025948@qq.com" class="iconfont-archer email" title=email ></a>
-            
-        
-    
-        
-            
-                <a href="//github.com/AD-Gai-Code" class="iconfont-archer github" target="_blank" title=github></a>
-            
-        
-    
-        
-            
-                <span class="iconfont-archer wechat" title=wechat>
-                  
-                  <img class="profile-qr" src="/assets/example_qr.jpg" />
-                </span>
-            
-        
-    
-        
-            
-                <span class="iconfont-archer qq" title=qq>
-                  
-                  <img class="profile-qr" src="/assets/qq.png" />
-                </span>
-            
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-
-    </div>
-    
-    <!-- powered by Hexo  -->
-    <div class="copyright">
-        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
-    </div>
-    <!-- 不蒜子  -->
-    
-    <div class="busuanzi-container">
-    
-     
-    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
-    
-    </div>
-    
-</footer>
-    </div>
-    <!-- toc -->
-    
-    <div class="toc-wrapper" style=
-    
-
-
-
-
-
-
-
-top:50vh;
-
-    >
-        <div class="toc-catalog">
-            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
-        </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E2%85%A0-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81Servlet"><span class="toc-number">1.</span> <span class="toc-text">Ⅰ. 为什么需要Servlet</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-Tomcat"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 Tomcat</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Tomcat%E7%9A%84%E7%9B%AE%E5%BD%95%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84"><span class="toc-number">1.1.1.</span> <span class="toc-text">Tomcat的目录层次结构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E4%BB%80%E4%B9%88%E6%98%AFServlet%EF%BC%9F"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 什么是Servlet？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-HTTP%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 HTTP协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4-HTTP-%E8%AF%B7%E6%B1%82"><span class="toc-number">1.4.</span> <span class="toc-text">1.4 HTTP 请求</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E8%A1%8C"><span class="toc-number">1.4.1.</span> <span class="toc-text">请求行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E5%A4%B4"><span class="toc-number">1.4.2.</span> <span class="toc-text">请求头</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-5-HTTP%E5%93%8D%E5%BA%94"><span class="toc-number">1.5.</span> <span class="toc-text">1.5 HTTP响应</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E8%A1%8C"><span class="toc-number">1.5.1.</span> <span class="toc-text">状态行</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E2%85%A1-Servlet%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-number">2.</span> <span class="toc-text">Ⅱ. Servlet的作用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0Servlet"><span class="toc-number">2.1.</span> <span class="toc-text">实现Servlet</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#URL%E5%88%B0-Servlet-%E7%A8%8B%E5%BA%8F%E7%9A%84%E8%AE%BF%E9%97%AE"><span class="toc-number">2.2.</span> <span class="toc-text">URL到 Servlet 程序的访问</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Servlet-%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-number">2.3.</span> <span class="toc-text">Servlet 的生命周期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GET-%E5%92%8C-POST-%E8%AF%B7%E6%B1%82%E7%9A%84%E5%88%86%E5%8F%91%E5%A4%84%E7%90%86"><span class="toc-number">2.4.</span> <span class="toc-text">GET 和 POST 请求的分发处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E8%BF%87%E7%BB%A7%E6%89%BF-HttpServlet-%E5%AE%9E%E7%8E%B0-Servlet-%E7%A8%8B%E5%BA%8F"><span class="toc-number">2.5.</span> <span class="toc-text">通过继承 HttpServlet 实现 Servlet 程序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Servlet%E7%B1%BB%E7%9A%84%E7%BB%A7%E6%89%BF%E4%BD%93%E7%B3%BB"><span class="toc-number">2.6.</span> <span class="toc-text">Servlet类的继承体系</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E2%85%A2-HttpServletRequest-%E7%B1%BB"><span class="toc-number">3.</span> <span class="toc-text">Ⅲ.HttpServletRequest 类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#HttpServletRequest-%E7%B1%BB%E6%9C%89%E4%BB%80%E4%B9%88%E4%BD%9C%E7%94%A8"><span class="toc-number">3.1.</span> <span class="toc-text">HttpServletRequest 类有什么作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HttpServletRequest"><span class="toc-number">3.2.</span> <span class="toc-text">HttpServletRequest</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E7%9A%84%E8%BD%AC%E5%8F%91"><span class="toc-number">3.3.</span> <span class="toc-text">请求的转发</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E2%85%A3-HttpServletResponse-%E7%B1%BB"><span class="toc-number">4.</span> <span class="toc-text">Ⅳ.HttpServletResponse 类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#HttpServletResponse-%E7%B1%BB%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-number">4.1.</span> <span class="toc-text">HttpServletResponse 类的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%A4%E4%B8%AA%E8%BE%93%E5%87%BA%E6%B5%81%E7%9A%84%E8%AF%B4%E6%98%8E"><span class="toc-number">4.2.</span> <span class="toc-text">两个输出流的说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%BE%80%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%9B%9E%E4%BC%A0%E6%95%B0%E6%8D%AE"><span class="toc-number">4.3.</span> <span class="toc-text">如何往客户端回传数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%93%8D%E5%BA%94%E7%9A%84%E4%B9%B1%E7%A0%81%E8%A7%A3%E5%86%B3"><span class="toc-number">4.4.</span> <span class="toc-text">响应的乱码解决</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E9%87%8D%E5%AE%9A%E5%90%91"><span class="toc-number">4.5.</span> <span class="toc-text">请求重定向</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E2%85%A4-Servlet%E7%9A%84%E4%B8%80%E4%BA%9B%E7%BB%86%E8%8A%82"><span class="toc-number">5.</span> <span class="toc-text">Ⅴ.Servlet的一些细节</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%B8%80%E4%B8%AA%E5%B7%B2%E7%BB%8F%E6%B3%A8%E5%86%8C%E7%9A%84Servlet%E5%8F%AF%E4%BB%A5%E8%A2%AB%E5%A4%9A%E6%AC%A1%E6%98%A0%E5%B0%84"><span class="toc-number">5.1.</span> <span class="toc-text">1.一个已经注册的Servlet可以被多次映射</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Servlet%E6%98%AF%E5%8D%95%E4%BE%8B%E7%9A%84"><span class="toc-number">5.2.</span> <span class="toc-text">2.Servlet是单例的</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88Servlet%E6%98%AF%E5%8D%95%E4%BE%8B%E7%9A%84"><span class="toc-number">5.2.1.</span> <span class="toc-text">为什么Servlet是单例的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AF%8F%E6%AC%A1%E8%AE%BF%E9%97%AE%E8%AF%B7%E6%B1%82%E5%AF%B9%E8%B1%A1%E5%92%8C%E5%93%8D%E5%BA%94%E5%AF%B9%E8%B1%A1%E9%83%BD%E6%98%AF%E6%96%B0%E7%9A%84"><span class="toc-number">5.2.2.</span> <span class="toc-text">每次访问请求对象和响应对象都是新的</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98"><span class="toc-number">5.3.</span> <span class="toc-text">3.线程安全问题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E2%85%A5-ServletContext%E5%AF%B9%E8%B1%A1"><span class="toc-number">6.</span> <span class="toc-text">Ⅵ. ServletContext对象</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-ServletContext"><span class="toc-number">6.1.</span> <span class="toc-text">什么是 ServletContext?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ServletContext%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8%EF%BC%9F"><span class="toc-number">6.2.</span> <span class="toc-text">ServletContext有什么用？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E2%85%A6-%E4%BC%9A%E8%AF%9D%E6%8A%80%E6%9C%AF-Cookie-%E5%92%8C-Session"><span class="toc-number">7.</span> <span class="toc-text">Ⅶ. 会话技术 Cookie 和 Session</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E4%BC%9A%E8%AF%9D%E6%8A%80%E6%9C%AF%EF%BC%9F"><span class="toc-number">7.1.</span> <span class="toc-text">1.为什么需要会话技术？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E4%BC%9A%E8%AF%9D%E6%8A%80%E6%9C%AF%E5%88%86%E7%B1%BB"><span class="toc-number">7.2.</span> <span class="toc-text">2. 会话技术分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Cookie"><span class="toc-number">7.3.</span> <span class="toc-text">3. Cookie</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BACookie"><span class="toc-number">7.3.1.</span> <span class="toc-text">如何创建Cookie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96-Cookie"><span class="toc-number">7.3.2.</span> <span class="toc-text">服务器如何获取 Cookie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cookie%E5%80%BC%E7%9A%84%E4%BF%AE%E6%94%B9"><span class="toc-number">7.3.3.</span> <span class="toc-text">Cookie值的修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E6%9F%A5%E7%9C%8B-Cookie%EF%BC%9A"><span class="toc-number">7.3.4.</span> <span class="toc-text">浏览器查看 Cookie：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cookie-%E7%94%9F%E5%91%BD%E6%8E%A7%E5%88%B6"><span class="toc-number">7.3.5.</span> <span class="toc-text">Cookie 生命控制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Session"><span class="toc-number">7.4.</span> <span class="toc-text">4.Session</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-Session-%E4%BC%9A%E8%AF%9D"><span class="toc-number">7.4.1.</span> <span class="toc-text">什么是 Session 会话?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8Session%E6%8A%80%E6%9C%AF%EF%BC%9F"><span class="toc-number">7.4.2.</span> <span class="toc-text">为什么要使用Session技术？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA-Session-%E5%92%8C%E8%8E%B7%E5%8F%96-id-%E5%8F%B7-%E6%98%AF%E5%90%A6%E4%B8%BA%E6%96%B0%EF%BC%89"><span class="toc-number">7.4.3.</span> <span class="toc-text">如何创建 Session 和获取(id 号,是否为新）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Session-%E5%9F%9F%E6%95%B0%E6%8D%AE%E7%9A%84%E5%AD%98%E5%8F%96"><span class="toc-number">7.4.4.</span> <span class="toc-text">Session 域数据的存取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Session-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E6%8E%A7%E5%88%B6"><span class="toc-number">7.4.5.</span> <span class="toc-text">Session 生命周期控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E5%92%8C-Session-%E4%B9%8B%E9%97%B4%E5%85%B3%E8%81%94%E7%9A%84%E6%8A%80%E6%9C%AF%E5%86%85%E5%B9%95"><span class="toc-number">7.4.6.</span> <span class="toc-text">浏览器和 Session 之间关联的技术内幕</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E2%85%A7-%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98"><span class="toc-number">8.</span> <span class="toc-text">Ⅷ. 常见面试题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Tomcat-%E6%9C%89%E5%93%AA%E5%87%A0%E7%A7%8DConnector-%E8%BF%90%E8%A1%8C%E6%A8%A1%E5%BC%8F-%E4%BC%98%E5%8C%96-%EF%BC%9F"><span class="toc-number">8.1.</span> <span class="toc-text">1.Tomcat 有哪几种Connector 运行模式(优化)？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Servlet%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-number">8.2.</span> <span class="toc-text">2.Servlet生命周期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-get%E6%96%B9%E5%BC%8F%E5%92%8Cpost%E6%96%B9%E5%BC%8F%E6%9C%89%E4%BD%95%E5%8C%BA%E5%88%AB"><span class="toc-number">8.3.</span> <span class="toc-text">3.get方式和post方式有何区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-forward%E5%92%8Credirect%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">8.4.</span> <span class="toc-text">4.forward和redirect的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-tomcat%E5%AE%B9%E5%99%A8%E6%98%AF%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BAservlet%E7%B1%BB%E5%AE%9E%E4%BE%8B%EF%BC%9F%E7%94%A8%E5%88%B0%E4%BA%86%E4%BB%80%E4%B9%88%E5%8E%9F%E7%90%86%EF%BC%9F"><span class="toc-number">8.5.</span> <span class="toc-text">5.tomcat容器是如何创建servlet类实例？用到了什么原理？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E4%BB%80%E4%B9%88%E6%98%AFcookie%EF%BC%9FSession%E5%92%8Ccookie%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-number">8.6.</span> <span class="toc-text">6.什么是cookie？Session和cookie有什么区别？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-Servlet%E5%AE%89%E5%85%A8%E6%80%A7%E9%97%AE%E9%A2%98"><span class="toc-number">8.7.</span> <span class="toc-text">7.Servlet安全性问题</span></a></li></ol></li></ol>
-    </div>
-    
-    <div class="back-top iconfont-archer">&#xe639;</div>
-    <div class="sidebar sidebar-hide">
-    <ul class="sidebar-tabs sidebar-tabs-active-0">
-        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
-        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
-        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
-    </ul>
-    <div class="sidebar-content sidebar-content-show-archive">
-          <div class="sidebar-panel-archives">
-    <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <div class="total-and-search">
-        <div class="total-archive">
-        Total : 39
-        </div>
-        <!-- search  -->
-        
-    </div>
-    
-    <div class="post-archive">
-    
-    
-    
-    
-    <div class="archive-year"> Invalid date </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2021/02/27/hexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" >Hexo个人博客搭建</a>
-        </li>
-    
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> 2021 </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/24</span><a class="archive-post-title" href= "/2021/05/24/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-6%E5%BA%97%E9%93%BA%E7%BC%96%E8%BE%91%E5%88%97%E8%A1%A8%E5%92%8C%E5%88%97%E8%A1%A8%E5%8A%9F%E8%83%BD-4%E5%BA%97%E9%93%BA%E4%BF%A1%E6%81%AF%E7%BC%96%E8%BE%91%E4%B9%8B%E5%89%8D%E7%AB%AF%E5%AE%9E%E7%8E%B0/" >校园商铺-6店铺编辑列表和列表功能-4店铺信息编辑之前端实现</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/22</span><a class="archive-post-title" href= "/2021/05/22/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-6%E5%BA%97%E9%93%BA%E7%BC%96%E8%BE%91%E5%88%97%E8%A1%A8%E5%92%8C%E5%88%97%E8%A1%A8%E5%8A%9F%E8%83%BD-3%E5%BA%97%E9%93%BA%E4%BF%A1%E6%81%AF%E7%BC%96%E8%BE%91%E4%B9%8BController%E5%B1%82%E7%9A%84%E5%AE%9E%E7%8E%B0/" >校园商铺-6 店铺编辑列表和列表功能-3 店铺信息编辑之Controller层的实现</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/19</span><a class="archive-post-title" href= "/2021/05/19/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-5MySql%20%E4%B8%BB%E4%BB%8E%E5%88%86%E7%A6%BB%E5%AE%9E%E7%8E%B0-%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5%E7%90%86%E8%AE%BA%E7%9F%A5%E8%AF%86/" >校园商铺-5MySql 主从分离实现-主从同步理论知识</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/18</span><a class="archive-post-title" href= "/2021/05/18/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-13%20%E5%89%8D%E5%90%8E%E7%AB%AF%E8%81%94%E8%B0%83%E6%8A%80%E5%B7%A7%E7%BB%86%E5%8C%96%E4%B8%8E%E6%80%BB%E7%BB%93/" >校园商铺-4店铺注册功能模块-13 前后端联调技巧细化与总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/18</span><a class="archive-post-title" href= "/2021/05/18/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-11%20View%E5%B1%82+Controller%E5%B1%82%E4%B9%8B%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0/" >校园商铺-4店铺注册功能模块-11 View层+Controller层之图片上传</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/18</span><a class="archive-post-title" href= "/2021/05/18/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-12%20%E5%89%8D%E5%90%8E%E7%AB%AF%E8%81%94%E8%B0%83%E9%AA%8C%E8%AF%81%E6%95%B4%E4%BD%93%E6%A8%A1%E5%9D%97%E5%8A%9F%E8%83%BD/" >校园商铺-4店铺注册功能模块-12 前后端联调验证整体模块功能</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/13</span><a class="archive-post-title" href= "/2021/05/13/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-9%20%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E4%B9%8B%E5%BA%97%E9%93%BA%E7%B1%BB%E5%88%AB%E5%8C%BA%E5%9F%9F%E4%BF%A1%E6%81%AF%E7%9A%84%E8%8E%B7%E5%8F%96/" >校园商铺-4店铺注册功能模块-9 店铺注册之店铺类别区域信息的获取</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/10</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-6%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E4%B9%8BController%E5%B1%82%E7%9A%84%E5%AE%9E%E7%8E%B0/" >校园商铺-4店铺注册功能模块-6店铺注册之 Controller 层的实现</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/10</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-5%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E4%B9%8BService%E5%B1%82%E7%9A%84%E5%AE%9E%E7%8E%B0/" >校园商铺-4店铺注册功能模块-5店铺注册之Service层的实现</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/10</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-3%20thumbnailator%E5%9B%BE%E7%89%87%E5%A4%84%E7%90%86%E5%92%8C%E5%B0%81%E8%A3%85Util/" >校园商铺-4店铺注册功能模块-3 thumbnailator图片处理和封装Util</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/10</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-1Dao%E5%B1%82%E4%B9%8B%E6%96%B0%E5%A2%9E%E5%BA%97%E9%93%BA/" >校园商铺-4店铺注册功能模块-1 Dao层之新增店铺</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/10</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-2%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA-5%E9%AA%8C%E8%AF%81Dao/" >校园商铺-2项目设计和框架搭建-5验证Dao层的配置</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/10</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-2%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA-6%E9%AA%8C%E8%AF%81Service%E5%B1%82%E7%9A%84%E9%85%8D%E7%BD%AE/" >校园商铺-2项目设计和框架搭建-6验证 Service 层的配置</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/10</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-2%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA-3%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84%E8%A7%84%E5%88%92%E5%8F%8AMaven%E9%85%8D%E7%BD%AE/" >校园商铺-2项目设计和框架搭建-3项目结构规划及Maven配置</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/10</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-2%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA-1%E7%B3%BB%E7%BB%9F%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97%E5%88%92%E5%88%86/" >校园商铺-2项目设计和框架搭建-1系统功能模块划分</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/10</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-2%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA-2%E5%AE%9E%E4%BD%93%E7%B1%BB%E8%AE%BE%E8%AE%A1%E4%B8%8E%E8%A1%A8%E5%88%9B%E5%BB%BA/" >校园商铺-2项目设计和框架搭建-2实体类设计与表实现</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/26</span><a class="archive-post-title" href= "/2021/04/26/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA%20bug%20%E6%B1%87%E6%80%BB/" >校园商铺 bug 汇总</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/20</span><a class="archive-post-title" href= "/2021/04/20/Maven%E5%9B%9E%E9%A1%BE/" >Maven 学习</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/15</span><a class="archive-post-title" href= "/2021/04/15/LeetCode%E4%BA%8C%E5%8F%89%E6%A0%91%E5%88%B7%E9%A2%98%E6%80%BB%E7%BB%93/" >LeetCode二叉树刷题总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/10</span><a class="archive-post-title" href= "/2021/04/10/Servlet%EF%BC%8C%E6%88%91%E8%BF%98%E6%98%AF%E7%88%B1%E4%BD%A0%E7%9A%84/" >Servlet，我还是爱你的</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/06</span><a class="archive-post-title" href= "/2021/04/06/Spring5%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0(%E4%BA%8C)/" >Spring5框架学习系列（二）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/03</span><a class="archive-post-title" href= "/2021/04/03/java%E5%8F%82%E6%95%B0%E5%8F%8A%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92/" >Java参数及参数传递</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/30</span><a class="archive-post-title" href= "/2021/03/30/%E6%9E%9A%E4%B8%BE%E4%B8%8E%E6%B3%A8%E8%A7%A3%E5%A4%8D%E4%B9%A0%E6%80%BB%E7%BB%93/" >枚举与注解复习总结</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/25</span><a class="archive-post-title" href= "/2021/03/25/spring5%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0(%E4%B8%80)/" >Spring5框架学习系列（一）</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/21</span><a class="archive-post-title" href= "/2021/03/21/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" >排序算法</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">03/08</span><a class="archive-post-title" href= "/2021/03/08/%E9%80%92%E5%BD%92%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" >递归算法学习笔记</a>
-        </li>
-    
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> Invalid date </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2021/04/07/Spring5%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0(%E4%B8%89)/" >Spring5框架学习系列（三）</a>
-        </li>
-    
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> Invalid date </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2021/04/24/mybatis%E7%AC%94%E8%AE%B0(%E4%B8%80)/" >Mybatis 学习（一）</a>
-        </li>
-    
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> Invalid date </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-2%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA-4%E8%87%AA%E4%B8%8B%E8%80%8C%E4%B8%8A%E9%80%90%E5%B1%82%E5%AE%8C%E6%88%90%20SSM%20%E7%9A%84%E5%90%84%E9%A1%B9%E9%85%8D%E7%BD%AE/" >校园商铺-2项目设计和框架搭建-4自下而上逐层完成 SSM 的各项配置</a>
-        </li>
-    
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> Invalid date </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-2%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1%E5%92%8C%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA-7%E9%AA%8C%E8%AF%81%20Controller%20%E5%B1%82%E7%9A%84%E9%85%8D%E7%BD%AE/" >校园商铺-2项目设计和框架搭建-7验证 Controller 层的配置</a>
-        </li>
-    
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> Invalid date </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-3Logback%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8/" >校园商铺-3 Logback配置与使用</a>
-        </li>
-    
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> Invalid date </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-2%20Dao%E5%B1%82%E4%B9%8B%E6%9B%B4%E6%96%B0%E5%BA%97%E9%93%BA/" >校园商铺-4店铺注册功能模块-2 Dao层之更新店铺</a>
-        </li>
-    
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> Invalid date </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-4%20Dto%20%E4%B9%8B%20ShopExecution%20%E7%9A%84%E5%AE%9E%E7%8E%B0/" >校园商铺-4店铺注册功能模块-4 Dto 之 ShopExecution 的实现</a>
-        </li>
-    
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> Invalid date </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2021/05/18/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-10%20%E5%BC%95%E5%85%A5kaptcha%E5%AE%9E%E7%8E%B0%E9%AA%8C%E8%AF%81%E7%A0%81/" >校园商铺-4店铺注册功能模块-10 引入kaptcha实现验证码</a>
-        </li>
-    
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> Invalid date </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-7%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E4%B9%8BController%E5%B1%82%E7%9A%84%E6%94%B9%E9%80%A0/" >校园商铺-4店铺注册功能模块-7店铺注册之 Controller 层的改造</a>
-        </li>
-    
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> Invalid date </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2021/05/11/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-4%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97-8%20%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E4%B9%8BView%E5%B1%82%E5%89%8D%E5%8F%B0%E9%A1%B5%E9%9D%A2/" >校园商铺-4店铺注册功能模块-8 店铺注册之 View 层前台页面</a>
-        </li>
-    
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> Invalid date </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2021/05/20/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-6%E5%BA%97%E9%93%BA%E7%BC%96%E8%BE%91%E5%88%97%E8%A1%A8%E5%92%8C%E5%88%97%E8%A1%A8%E5%8A%9F%E8%83%BD-1%E5%BA%97%E9%93%BA%E4%BF%A1%E6%81%AF%E7%BC%96%E8%BE%91%E4%B9%8BDao%E5%B1%82%E5%BC%80%E5%8F%91/" >校园商铺-6店铺编辑列表和列表功能-1 店铺信息编辑之Dao层开发</a>
-        </li>
-    
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> Invalid date </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">Invalid date</span><a class="archive-post-title" href= "/2021/05/20/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-6%E5%BA%97%E9%93%BA%E7%BC%96%E8%BE%91%E5%88%97%E8%A1%A8%E5%92%8C%E5%88%97%E8%A1%A8%E5%8A%9F%E8%83%BD-2%E5%BA%97%E9%93%BA%E4%BF%A1%E6%81%AF%E7%BC%96%E8%BE%91%E4%B9%8BService%E5%B1%82%E7%9A%84%E5%AE%9E%E7%8E%B0/" >校园商铺-6店铺编辑列表和列表功能-2店铺信息编辑之Service层的实现</a>
-        </li>
-    
-    </div>
-  </div>
-        <div class="sidebar-panel-tags">
-    <div class="sidebar-tags-name">
-    
-        <span class="sidebar-tag-name" data-tags="Hexo"><span class="iconfont-archer">&#xe606;</span>Hexo</span>
-    
-        <span class="sidebar-tag-name" data-tags="数据结构与算法"><span class="iconfont-archer">&#xe606;</span>数据结构与算法</span>
-    
-        <span class="sidebar-tag-name" data-tags="JavaSE"><span class="iconfont-archer">&#xe606;</span>JavaSE</span>
-    
-        <span class="sidebar-tag-name" data-tags="基础回顾"><span class="iconfont-archer">&#xe606;</span>基础回顾</span>
-    
-        <span class="sidebar-tag-name" data-tags="LeetCode刷题"><span class="iconfont-archer">&#xe606;</span>LeetCode刷题</span>
-    
-        <span class="sidebar-tag-name" data-tags="Spring"><span class="iconfont-archer">&#xe606;</span>Spring</span>
-    
-        <span class="sidebar-tag-name" data-tags="Mybatis"><span class="iconfont-archer">&#xe606;</span>Mybatis</span>
-    
-        <span class="sidebar-tag-name" data-tags="Maven"><span class="iconfont-archer">&#xe606;</span>Maven</span>
-    
-        <span class="sidebar-tag-name" data-tags="项目-校园商铺"><span class="iconfont-archer">&#xe606;</span>项目-校园商铺</span>
-    
-    </div>
-    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
-    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
-    缺失模块。<br/>
-    1、请确保node版本大于6.2<br/>
-    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
-    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
-    3、在根目录_config.yml里添加配置：
-    <pre style="color: #787878; font-size: 0.6rem;">
-jsonContent:
-  meta: false
-  pages: false
-  posts:
-    title: true
-    date: true
-    path: true
-    text: false
-    raw: false
-    content: false
-    slug: false
-    updated: false
-    comments: false
-    link: false
-    permalink: false
-    excerpt: false
-    categories: true
-    tags: true</pre>
-    </div> 
-    <div class="sidebar-tags-list"></div>
-</div>
-        <div class="sidebar-panel-categories">
-    <div class="sidebar-categories-name">
-    
-        <span class="sidebar-category-name" data-categories="Hexo"><span class="iconfont-archer">&#xe60a;</span>Hexo</span>
-    
-        <span class="sidebar-category-name" data-categories="数据结构与算法"><span class="iconfont-archer">&#xe60a;</span>数据结构与算法</span>
-    
-        <span class="sidebar-category-name" data-categories="JavaSE"><span class="iconfont-archer">&#xe60a;</span>JavaSE</span>
-    
-        <span class="sidebar-category-name" data-categories="基础回顾"><span class="iconfont-archer">&#xe60a;</span>基础回顾</span>
-    
-        <span class="sidebar-category-name" data-categories="LeetCode刷题"><span class="iconfont-archer">&#xe60a;</span>LeetCode刷题</span>
-    
-        <span class="sidebar-category-name" data-categories="Spring"><span class="iconfont-archer">&#xe60a;</span>Spring</span>
-    
-        <span class="sidebar-category-name" data-categories="Mybatis"><span class="iconfont-archer">&#xe60a;</span>Mybatis</span>
-    
-        <span class="sidebar-category-name" data-categories="Maven"><span class="iconfont-archer">&#xe60a;</span>Maven</span>
-    
-        <span class="sidebar-category-name" data-categories="项目-校园商铺"><span class="iconfont-archer">&#xe60a;</span>项目-校园商铺</span>
-    
-    </div>
-    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
-    <div class="sidebar-categories-list"></div>
-</div>
-    </div>
-</div> 
-    <script>
-    var siteMeta = {
-        root: "/",
-        author: "AiLaodu"
-    }
-</script>
-    <!-- CDN failover -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
-    <script type="text/javascript">
-        if (typeof window.$ === 'undefined')
-        {
-            console.warn('jquery load from jsdelivr failed, will load local script')
-            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+  window.onload = function () {
+    (function () {
+      var appid = 'cytXXXX';
+      var conf = 'prod_xxxxxxxxxxxxxxxxx';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      var loadJs = function (d, a, id) {
+        var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+        var b = document.createElement("script");
+        b.setAttribute("type", "text/javascript");
+        b.setAttribute("charset", "UTF-8");
+        b.setAttribute("src", d);
+        if (id) {
+          b.setAttribute("id", id);
         }
-    </script>
-    <script src="/scripts/main.js"></script>
-    <!-- algolia -->
-    
-    <!-- busuanzi  -->
-    
-    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    
-    <!-- CNZZ  -->
-    
+        if (typeof a === "function") {
+          if (window.attachEvent) {
+            b.onreadystatechange = function () {
+              var e = b.readyState;
+              if (e === "loaded" || e === "complete") {
+                b.onreadystatechange = null;
+                a()
+              }
+            }
+          } else {
+            b.onload = a
+          }
+        }
+        c.appendChild(b)
+      };
+
+      loadJs("https://changyan.sohu.com/upload/changyan.js", function () {
+        window.changyan.api.config({
+          appid: appid,
+          conf: conf
+        })
+      });
+    })();
+  }
+  */
+
+</script>
+</div>
     </div>
-    <!-- async load share.js -->
-    
-        <script src="/scripts/share.js" async></script>    
-     
-    </body>
+</section>
+
+
+      
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+            <div class="copy">
+                <p>
+                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By AiLaodu. All Rights Reserved.
+                </p>
+                <p>Theme By <a target="_blank" rel="noopener" href="//go.kieran.top" style="color: #767D84">Kieran</a></p>
+            </div>
+            <div class="social">
+                <ul>
+                    
+                    <li><a href="https://github.com/" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://twitter.com/" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://www.facebook.com/" title="Facebook" target="_blank"><i class="icon-facebook"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="http://weibo.com/" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a>&nbsp;</li>
+                    
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+      <!-- Load our scripts -->
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+
+    resizeHero();
+
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$('#intro').find('img').each(function(){
+  var alt = this.alt;
+
+  if (alt){
+    $(this).after('<span class="caption" style="display:none">' + alt + '</span>');
+  }
+
+  $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox" rel="gallery" />');
+});
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+      
+</body>
 </html>
-
-

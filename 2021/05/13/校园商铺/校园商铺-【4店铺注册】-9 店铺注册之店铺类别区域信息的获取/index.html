@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********    -----Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<!--<![endif]-->
+
+<head>
+  <title>校园商铺-【4店铺注册】-9 店铺注册之店铺类别区域信息的获取 | ADGai&#39;s Blog</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="ADGai's Blog">
+    <meta name="author" content="AiLaodu">
+    <meta name="description" content="" />
+    <meta name="keywords" content="Java" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href="/atom.xml" title="ADGai&#39;s Blog" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+    
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
+    
+
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+  
+  
+  
+
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+    <div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+        <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+            <img src="/img/close.png" alt="Close"/>
+        </div>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu">
+            <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+            <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
+            <!-- Dropdown Menu -->
+			 
+            <li>
+                <a class="sb-toggle-submenu">Works<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                        <li><a href="/" target="_BLANK" class="animsition-link">AAA</a></li>
+                    
+                        <li><a href="/atom.xml" target="_BLANK" class="animsition-link">BBB</a></li>
+                    
+                </ul>
+            </li>
+            
+            
+        	<li>
+        		<a class="sb-toggle-submenu">Categories<span class="sb-caret"></span></a>
+            	<ul class="sb-submenu">
+				  	
+				    <li><a href="/categories/Hexo/" class="animsition-link">Hexo<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/JavaSE/" class="animsition-link">JavaSE<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/LeetCode刷题/" class="animsition-link">LeetCode刷题<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/Maven/" class="animsition-link">Maven<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/Mybatis/" class="animsition-link">Mybatis<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/Spring/" class="animsition-link">Spring<small>(3)</small></a></li>
+				    
+				    <li><a href="/categories/基础回顾/" class="animsition-link">基础回顾<small>(2)</small></a></li>
+				    
+				    <li><a href="/categories/数据结构与算法/" class="animsition-link">数据结构与算法<small>(2)</small></a></li>
+				    
+				    <li><a href="/categories/项目-校园商铺/" class="animsition-link">项目-校园商铺<small>(30)</small></a></li>
+				    
+				</ul>
+        	</li>
+			
+            
+            <li>
+                <a class="sb-toggle-submenu">Links<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                    <li><a target="_blank" rel="noopener" href="http://go.kieran.top/" class="animsition-link">Kieran</a></li>
+                    
+                    <li><a target="_blank" rel="noopener" href="http://domain.com/" class="animsition-link">Name</a></li>
+                    
+                </ul>
+            </li>
+            
+        </ul>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu secondary">
+            
+            <li><a href="/about.html" class="animsition-link" title="about">About</a></li>
+            <li><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li>
+        </ul>
+    </div>
+    
+    <!-- ============================ END Off-canvas navigation =========================== -->
+
+    <!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+    <div id="sb-site">
+        <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <div id="navigation" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!-- Nav logo -->
+                    <div class="logo">
+                        <a href="/" title="Logo" class="animsition-link">
+                         <img src="/img/logo.png" alt="Logo" width="35px;"/> 
+                        </a>
+                    </div>
+                    <!-- // Nav logo -->
+                    <!-- Info-bar -->
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/" class="animsition-link">ADGai's Blog</a></li>
+                            <li class="nolink"><span>Always </span>Creative.</li>
+                            
+                            <li><a href="https://github.com/" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                            
+                            
+                            <li><a href="https://twitter.com/" title="Twitter" target="_blank"><i class="icon-twitter"></i></a></li>
+                            
+                            
+                            <li><a href="https://www.facebook.com/" title="Facebook" target="_blank"><i class="icon-facebook"></i></a></li>
+                            
+                            
+                            <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a></li>
+                            
+                            
+                            <li><a href="http://weibo.com/" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a></li>
+                            
+                            <li class="nolink"><span>Welcome!</span></li>
+                        </ul>
+                    </nav>
+                    <!--// Info-bar -->
+                </div>
+                <!-- // .container -->
+                <div class="learnmore sb-toggle-right">More</div>
+                <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+                </button>
+            </div>
+            <!-- // .navbar-inner -->
+        </div>
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2021-05-13T03:25:05.557Z" itemprop="datePublished">
+          2021-05-13
+      </time>
+    
+    
+    | 
+    <a href='/tags/项目-校园商铺/'>项目-校园商铺</a>
+    
+    
+</span>
+                <h1>校园商铺-【4店铺注册】-9 店铺注册之店铺类别区域信息的获取</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<h1 id="1-请求过程分析"><a href="#1-请求过程分析" class="headerlink" title="1.请求过程分析"></a>1.请求过程分析</h1><p>页面画完之后，我们的下拉框是没有数据的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 商铺分类  下拉列表 --&gt;</span><br><span class="line">	&lt;li&gt;</span><br><span class="line">		&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;item-content&quot;</span>&gt;</span><br><span class="line">			&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;item-inner&quot;</span>&gt;</span><br><span class="line">				&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;item-title label&quot;</span>&gt;商铺分类&lt;/div&gt;</span><br><span class="line">				&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;item-input&quot;</span>&gt;</span><br><span class="line">					&lt;!-- 增加id,便于js中操作，需要从后台读取数据 --&gt;</span><br><span class="line">					&lt;select id=<span class="string">&quot;shop-category&quot;</span>&gt;</span><br><span class="line">					&lt;/select&gt;</span><br><span class="line">				&lt;/div&gt;</span><br><span class="line">			&lt;/div&gt;</span><br><span class="line">		&lt;/div&gt;</span><br><span class="line">	&lt;/li&gt;</span><br><span class="line">	</span><br><span class="line">	&lt;!-- 所属区域  下拉列表 - --&gt;</span><br><span class="line">	&lt;li&gt;</span><br><span class="line">		&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;item-content&quot;</span>&gt;</span><br><span class="line">			&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;item-inner&quot;</span>&gt;</span><br><span class="line">				&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;item-title label&quot;</span>&gt;所属区域&lt;/div&gt;</span><br><span class="line">				&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;item-input&quot;</span>&gt;</span><br><span class="line">					&lt;select id=<span class="string">&quot;shop-area&quot;</span>&gt;</span><br><span class="line">					&lt;/select&gt;</span><br><span class="line">				&lt;/div&gt;</span><br><span class="line">			&lt;/div&gt;</span><br><span class="line">		&lt;/div&gt;</span><br><span class="line">	&lt;/li&gt;</span><br></pre></td></tr></table></figure>
+
+<p>在初始化页面加载<code>js</code>的时候调用:</p>
+<span id="more"></span>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 调用函数，加载数据</span></span><br><span class="line">getShopInitInfo();</span><br></pre></td></tr></table></figure>
+
+<p>函数定义如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义第一个方法getShopInitInfo：获取商铺分类、区域的列表信息</span></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">getShopInitInfo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">//调试弹窗，证明js文件被加载</span></span><br><span class="line">    alert(initUrl);</span><br><span class="line">        <span class="comment">//访问的URL，回调方法</span></span><br><span class="line">		$.getJSON(initUrl,<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123; </span><br><span class="line">			<span class="keyword">if</span>(data.success)&#123; </span><br><span class="line">                <span class="comment">//存放店铺类别列表</span></span><br><span class="line">				<span class="keyword">var</span> tempHtml = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">                <span class="comment">//存放区域列表</span></span><br><span class="line">				<span class="keyword">var</span> tempAreaHtml = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">				data.shopCategoryList.map(<span class="function"><span class="keyword">function</span>(<span class="params">item,index</span>)</span>&#123;</span><br><span class="line">					<span class="comment">//用map遍历店铺类别列表，生成如&lt;option data-id=&quot;1&quot;&gt;盖浇饭&lt;/option&gt;的列表</span></span><br><span class="line">					tempHtml += <span class="string">&#x27;&lt;option data-id=&quot;&#x27;</span> + item.shopCategoryId + <span class="string">&#x27;&quot;&gt;&#x27;</span> +item.shopCategoryName + <span class="string">&quot;&lt;/option&gt;&quot;</span>;</span><br><span class="line">				&#125;);</span><br><span class="line">				data.areaList.map(<span class="function"><span class="keyword">function</span>(<span class="params">item,index</span>)</span>&#123;</span><br><span class="line">					<span class="comment">//用map遍历区域列表，生成如&lt;option data-id=&quot;1&quot;&gt;东苑&lt;/option&gt;的列表</span></span><br><span class="line">					tempAreaHtml += <span class="string">&#x27;&lt;option data-id=&quot;&#x27;</span> + item.areaId + <span class="string">&#x27;&quot;&gt;&#x27;</span> + item.areaName + <span class="string">&#x27;&lt;/option&gt;&#x27;</span>;</span><br><span class="line">				&#125;);</span><br><span class="line">                <span class="comment">// 获取html中对应标签的id 赋值</span></span><br><span class="line">				<span class="comment">//完成遍历之后，将获取到的信息，塞进前台定义好的id里面 #是css的用法，代表id</span></span><br><span class="line">				$(<span class="string">&#x27;#shop-category&#x27;</span>).html(tempHtml);</span><br><span class="line">				$(<span class="string">&#x27;#area&#x27;</span>).html(tempAreaHtml);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>请求 initUrl ， 我们设置的值为 /o2o/shopadmin/getshopinitinfo ，根据web.xml中配置拦截所有请求可知在经过 DispatcherServlet 分发到 Controller 层，接收到请求后继续处理。</p>
+<h1 id="2-店铺类别"><a href="#2-店铺类别" class="headerlink" title="2.店铺类别"></a>2.店铺类别</h1><h2 id="2-1-Dao-层的实现"><a href="#2-1-Dao-层的实现" class="headerlink" title="2.1 Dao 层的实现"></a>2.1 Dao 层的实现</h2><p>需要获取商铺分类列表和区域列表，DAO层我们还没做完，来完善下:</p>
+<p><img src="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210513114001897.png" alt="image-20210513114001897"></p>
+<h3 id="2-1-1-AreaDao接口-Mapper映射文件及单元测试"><a href="#2-1-1-AreaDao接口-Mapper映射文件及单元测试" class="headerlink" title="2.1.1 AreaDao接口,Mapper映射文件及单元测试"></a>2.1.1 AreaDao接口,Mapper映射文件及单元测试</h3><p>我们在实战之前[<code>验证DAO层、Service层、Controller层的配置</code>中已经开发了queryArea接口以及配置了mapper映射文件，这里直接复用这个接口即可。剩下的就是<code>ShopCategory</code>的了。</p>
+<h3 id="2-1-2-ShopCategoryDao接口"><a href="#2-1-2-ShopCategoryDao接口" class="headerlink" title="2.1.2 ShopCategoryDao接口"></a>2.1.2 ShopCategoryDao接口</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span>: 按照需求</span></span><br><span class="line"><span class="comment"> * 1.首页展示一级目录（即 parent_id 为 null 的商铺类别）</span></span><br><span class="line"><span class="comment"> * 2.点进去某个一级目录加载对应目录下的子目录</span></span><br><span class="line"><span class="comment"> *   所以这里需要加个入参 ShopCategory，</span></span><br><span class="line"><span class="comment"> *   并通过 MyBatis 提供的注解 <span class="doctag">@Param</span>与 Mapper 映射文件中的 SQL关联起来</span></span><br><span class="line"><span class="comment"> *   在SQL中进行判断</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ShopCategoryDao</span> </span>&#123;</span><br><span class="line">    <span class="function">List&lt;ShopCategory&gt; <span class="title">queryShopCategory</span><span class="params">(<span class="meta">@Param(&quot;shopCategoryCondition&quot;)</span> ShopCategory shopCategoryCondition)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-1-3-ShopCategoryDao-xml-Mapper映射文件"><a href="#2-1-3-ShopCategoryDao-xml-Mapper映射文件" class="headerlink" title="2.1.3 ShopCategoryDao.xml Mapper映射文件"></a>2.1.3 ShopCategoryDao.xml Mapper映射文件</h3><p><code>/o2o/src/main/resources/mapper/ShopCategoryDao.xml</code></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">mapper</span> <span class="meta-keyword">PUBLIC</span> <span class="meta-string">&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span></span></span><br><span class="line"><span class="meta">        <span class="meta-string">&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">&quot;com.imooc.o2o.dao.ShopCategoryDao&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;queryShopCategory&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;com.imooc.o2o.entity.ShopCategory&quot;</span>&gt;</span></span><br><span class="line">        SELECT</span><br><span class="line">        shop_category_id ,</span><br><span class="line">        shop_category_name,</span><br><span class="line">        shop_category_desc,</span><br><span class="line">        shop_category_img,</span><br><span class="line">        priority,</span><br><span class="line">        create_time,</span><br><span class="line">        last_edit_time,</span><br><span class="line">        parent_id</span><br><span class="line">        FROM</span><br><span class="line">        tb_shop_category</span><br><span class="line">        <span class="tag">&lt;<span class="name">where</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 控制层 getshopinitinfo 的方法</span></span><br><span class="line"><span class="comment">            shopCategoryService.getShopCategoryList(new ShopCategory());</span></span><br><span class="line"><span class="comment">                只能选择二级商铺类别，不能挂在一级商铺类别大类目录下</span></span><br><span class="line"><span class="comment">             --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;shopCategoryCondition != null&quot;</span>&gt;</span></span><br><span class="line">                and parent_id is not null</span><br><span class="line">            <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 如果传递了父类的id,则查询对应父类下的目录 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;shopCategoryCondition.parent != null&quot;</span>&gt;</span></span><br><span class="line">                and parent_id = #&#123;shopCategoryCondition.parent.shopCategoryId&#125;</span><br><span class="line">            <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">where</span>&gt;</span></span><br><span class="line">        ORDER BY priority</span><br><span class="line">        DESC</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-1-4-单元测试"><a href="#2-1-4-单元测试" class="headerlink" title="2.1.4 单元测试"></a>2.1.4 单元测试</h3><p>tb_shop_category中的数据</p>
+<p>为了方便测试，我们添加几条测试数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO &#96;tb_shop_category&#96; VALUES (&#39;1&#39;, &#39;咖啡奶茶&#39;, &#39;咖啡奶茶大类&#39;, &#39;&#x2F;xxxx&#x2F;xxxx&#39;, &#39;0&#39;, NULL, NULL, NULL);</span><br><span class="line">INSERT INTO &#96;tb_shop_category&#96; VALUES (&#39;2&#39;, &#39;咖啡&#39;, &#39;咖啡小类&#39;, &#39;&#x2F;yyyy&#x2F;yyyy&#39;, &#39;2&#39;, NULL, NULL, &#39;1&#39;);</span><br><span class="line">INSERT INTO &#96;tb_shop_category&#96; VALUES (&#39;3&#39;, &#39;奶茶&#39;, &#39;奶茶小类&#39;, &#39;&#x2F;aaa&#x2F;bbb&#39;, &#39;0&#39;, NULL, NULL, &#39;1&#39;);</span><br></pre></td></tr></table></figure>
+
+<p>单元测试类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.artisan.o2o.dao;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.junit.Assert;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.artisan.o2o.BaseTest;</span><br><span class="line"><span class="keyword">import</span> com.artisan.o2o.entity.ShopCategory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ShopCategoryDaoTest</span> <span class="keyword">extends</span> <span class="title">BaseTest</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Autowired</span></span><br><span class="line">	ShopCategoryDao shopCategoryDao;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testQueryShopCategoryList</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// shopCategoryCondition 不为null的情况，查询parent_id is not null 的数据</span></span><br><span class="line">		ShopCategory shopCategory = <span class="keyword">new</span> ShopCategory();</span><br><span class="line">		List&lt;ShopCategory&gt; categoryList = shopCategoryDao.queryShopCategoryList(shopCategory);</span><br><span class="line">		Assert.assertEquals(<span class="number">2</span>, categoryList.size());</span><br><span class="line">		<span class="keyword">for</span> (ShopCategory shopCategory2 : categoryList) &#123;</span><br><span class="line">			System.out.println(shopCategory2);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// shopCategoryCondition.parent 不为null的情况</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">// 查询parent=1的店铺目录</span></span><br><span class="line">		ShopCategory child = <span class="keyword">new</span> ShopCategory();</span><br><span class="line">		ShopCategory parent = <span class="keyword">new</span> ShopCategory();</span><br><span class="line">		parent.setShopCategoryId(<span class="number">1L</span>);</span><br><span class="line">		child.setParent(parent);</span><br><span class="line"></span><br><span class="line">		categoryList = shopCategoryDao.queryShopCategoryList(child);</span><br><span class="line">		Assert.assertEquals(<span class="number">2</span>, categoryList.size());</span><br><span class="line">		<span class="keyword">for</span> (ShopCategory shopCategory2 : categoryList) &#123;</span><br><span class="line">			System.out.println(shopCategory2);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>单元测试通过.</p>
+<h2 id="2-2-Service-层的实现"><a href="#2-2-Service-层的实现" class="headerlink" title="2.2 Service 层的实现"></a>2.2 Service 层的实现</h2><p><img src="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210513165903208.png" alt="image-20210513165903208"></p>
+<h3 id="2-2-1-AreaService-接口-AreaServiceImpl-接口实现类及单元测试"><a href="#2-2-1-AreaService-接口-AreaServiceImpl-接口实现类及单元测试" class="headerlink" title="2.2.1 AreaService 接口,AreaServiceImpl 接口实现类及单元测试"></a>2.2.1 AreaService 接口,AreaServiceImpl 接口实现类及单元测试</h3><p>我们在<code>验证DAO层、Service层、Controller层的配置</code>中已经开发了<code>AreaService</code>接口,<code>AreaServiceImpl</code>接口实现类及单元测试，我们这里直接复用即可。</p>
+<h3 id="2-2-2-ShopCategoryService-接口"><a href="#2-2-2-ShopCategoryService-接口" class="headerlink" title="2.2.2 ShopCategoryService 接口"></a>2.2.2 ShopCategoryService 接口</h3><p><code>/o2o/src/main/java/com/imooc/o2o/service/ShopCategoryService.java</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ShopCategoryService</span> </span>&#123;</span><br><span class="line">    <span class="function">List&lt;ShopCategory&gt; <span class="title">getShopCategoryList</span><span class="params">(ShopCategory shopCategoryCondition)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-3-ShopCategoryServiceImpl-接口实现类"><a href="#2-2-3-ShopCategoryServiceImpl-接口实现类" class="headerlink" title="2.2.3 ShopCategoryServiceImpl 接口实现类"></a>2.2.3 ShopCategoryServiceImpl 接口实现类</h3><p><code>/o2o/src/main/java/com/imooc/o2o/service/impl/ShopCategoryServiceImpl.java</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.imooc.o2o.service.impl;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.imooc.o2o.dao.ShopCategoryDao;</span><br><span class="line"><span class="keyword">import</span> com.imooc.o2o.entity.ShopCategory;</span><br><span class="line"><span class="keyword">import</span> com.imooc.o2o.service.ShopCategoryService;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Service;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ShopCategoryServiceImpl</span> <span class="keyword">implements</span> <span class="title">ShopCategoryService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> ShopCategoryDao shopCategoryDao;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;ShopCategory&gt; <span class="title">getShopCategoryList</span><span class="params">(ShopCategory shopCategory)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> shopCategoryDao.queryShopCategory(shopCategory);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-4-单元测试"><a href="#2-2-4-单元测试" class="headerlink" title="2.2.4 单元测试"></a>2.2.4 单元测试</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.imooc.o2o.service;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.imooc.o2o.BaseTest;</span><br><span class="line"><span class="keyword">import</span> com.imooc.o2o.entity.ShopCategory;</span><br><span class="line"><span class="keyword">import</span> org.junit.Assert;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.junit.Assert.assertEquals;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ShopCategoryServiceTest</span> <span class="keyword">extends</span> <span class="title">BaseTest</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    ShopCategoryService shopCategoryService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testGetShopCategoryList</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ShopCategory parent = <span class="keyword">new</span> ShopCategory();</span><br><span class="line">        List&lt;ShopCategory&gt; shopCategoryList = shopCategoryService.getShopCategoryList(parent);</span><br><span class="line">        assertEquals(<span class="number">2</span>, shopCategoryList.size());</span><br><span class="line">        ShopCategory son = <span class="keyword">new</span> ShopCategory();</span><br><span class="line">        parent.setShopCategoryId(<span class="number">1L</span>);</span><br><span class="line">        son.setParent(parent);</span><br><span class="line">        List&lt;ShopCategory&gt; shopCategoryList2 = shopCategoryService.getShopCategoryList(son);</span><br><span class="line">        assertEquals(<span class="number">2</span>, shopCategoryList2.size());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>单元测试通过。</p>
+<h2 id="2-3-Controller-层的实现"><a href="#2-3-Controller-层的实现" class="headerlink" title="2.3 Controller 层的实现"></a>2.3 Controller 层的实现</h2><p>在之前创建的<code>src/main/java/com/imooc/o2o/web/shopadmin/ShopManagementController.java</code></p>
+<p>类中添加获取信息的方法：</p>
+<p><code>/o2o/src/main/java/com/artisan/o2o/web/shopadmin/ShopController.java</code><code>getshopinitinfo </code>中使用<code>@RequestMapping</code>匹配前端请求的URL，返回前端的数据为<code>@ResponseBody</code>将返回Map&lt;String, Object&gt;类型转为的<code>JSON</code>串。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/shopadmin&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ShopManagementController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//同时给它在执行的时候通过 Spring 容器注入之前实现好的 ShopService 实现类，用来提供 addShop 的服务。</span></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> ShopService shopService;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> ShopCategoryService shopCategoryService;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> AreaService areaServicel;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(value=&quot;getShopinitinfo&quot;,method= RequestMethod.GET)</span></span><br><span class="line">    <span class="meta">@ResponseBody</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> Map&lt;String,Object&gt; <span class="title">getShopInitInfo</span><span class="params">(HttpServletRequest request)</span></span>&#123;</span><br><span class="line">        Map&lt;String,Object&gt;modelMap = <span class="keyword">new</span> HashMap&lt;String, Object&gt;();</span><br><span class="line">        List&lt;ShopCategory&gt; shopCategoryList = <span class="keyword">null</span>;</span><br><span class="line">        List&lt;Area&gt; areaList = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            shopCategoryList = shopCategoryService.getShopCategoryList(<span class="keyword">new</span> ShopCategory());</span><br><span class="line">            areaList = areaServicel.getAreaList();</span><br><span class="line">            modelMap.put(<span class="string">&quot;shopCategoryList&quot;</span>,shopCategoryList);</span><br><span class="line">            modelMap.put(<span class="string">&quot;areaList&quot;</span>,areaList);</span><br><span class="line">            modelMap.put(<span class="string">&quot;success&quot;</span>,<span class="keyword">true</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">            modelMap.put(<span class="string">&quot;success&quot;</span>,<span class="keyword">false</span>);</span><br><span class="line">            modelMap.put(<span class="string">&quot;errMsg&quot;</span>,e.getMessage());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> modelMap;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>验证：打开Postman输入<code>localhost:8080/o2o/shopadmin/getShopinitinfo</code>得到：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;shopCategoryList&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">&quot;shopCategoryId&quot;</span>: <span class="number">2</span>,</span><br><span class="line">            <span class="string">&quot;shopCategoryName&quot;</span>: <span class="string">&quot;咖啡&quot;</span>,</span><br><span class="line">            <span class="string">&quot;shopCategoryDesc&quot;</span>: <span class="string">&quot;咖啡小类&quot;</span>,</span><br><span class="line">            <span class="string">&quot;shopCategoryImg&quot;</span>: <span class="string">&quot;/yyyy/yyyy&quot;</span>,</span><br><span class="line">            <span class="string">&quot;priority&quot;</span>: <span class="number">2</span>,</span><br><span class="line">            <span class="string">&quot;createTime&quot;</span>: <span class="keyword">null</span>,</span><br><span class="line">            <span class="string">&quot;lastEditTime&quot;</span>: <span class="keyword">null</span>,</span><br><span class="line">            <span class="string">&quot;parent&quot;</span>: <span class="keyword">null</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">&quot;shopCategoryId&quot;</span>: <span class="number">3</span>,</span><br><span class="line">            <span class="string">&quot;shopCategoryName&quot;</span>: <span class="string">&quot;奶茶&quot;</span>,</span><br><span class="line">            <span class="string">&quot;shopCategoryDesc&quot;</span>: <span class="string">&quot;奶茶小类&quot;</span>,</span><br><span class="line">            <span class="string">&quot;shopCategoryImg&quot;</span>: <span class="string">&quot;/aaa/bbb&quot;</span>,</span><br><span class="line">            <span class="string">&quot;priority&quot;</span>: <span class="number">0</span>,</span><br><span class="line">            <span class="string">&quot;createTime&quot;</span>: <span class="keyword">null</span>,</span><br><span class="line">            <span class="string">&quot;lastEditTime&quot;</span>: <span class="keyword">null</span>,</span><br><span class="line">            <span class="string">&quot;parent&quot;</span>: <span class="keyword">null</span></span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    <span class="string">&quot;success&quot;</span>: <span class="keyword">true</span>,</span><br><span class="line">    <span class="string">&quot;areaList&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">&quot;areaId&quot;</span>: <span class="number">3</span>,</span><br><span class="line">            <span class="string">&quot;priority&quot;</span>: <span class="number">2</span>,</span><br><span class="line">            <span class="string">&quot;createTime&quot;</span>: <span class="keyword">null</span>,</span><br><span class="line">            <span class="string">&quot;lastEditTime&quot;</span>: <span class="keyword">null</span>,</span><br><span class="line">            <span class="string">&quot;areaname&quot;</span>: <span class="string">&quot;西苑&quot;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="string">&quot;areaId&quot;</span>: <span class="number">2</span>,</span><br><span class="line">            <span class="string">&quot;priority&quot;</span>: <span class="number">1</span>,</span><br><span class="line">            <span class="string">&quot;createTime&quot;</span>: <span class="keyword">null</span>,</span><br><span class="line">            <span class="string">&quot;lastEditTime&quot;</span>: <span class="keyword">null</span>,</span><br><span class="line">            <span class="string">&quot;areaname&quot;</span>: <span class="string">&quot;东苑&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>前端界面：</strong></p>
+<p><img src="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210517112914649.png" alt="image-20210517112914649"></p>
+<h2 id="2-4-bug-解决："><a href="#2-4-bug-解决：" class="headerlink" title="2.4 bug 解决："></a>2.4 bug 解决：</h2><p>后台方法返回的数据正常，但是在前端界面中区域下拉列表显示的却是 undefined：</p>
+<p><img src="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210517113109591.png" alt="image-20210517113109591"></p>
+<p>解决：在网上找到了碰到同样问题的小伙伴，因为对前端不太熟悉，所以费了很大的功夫：<a target="_blank" rel="noopener" href="https://bbs.csdn.net/topics/391989540">Ajax前台显示为undefined</a> 后来发现，在 Area 实体类中，区域名称由于手误定义成了 Areaname 但是在 json代码中写成了 Area Name 导致出错，改正后前端显示正常。</p>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
+    
+    <a class="pull-left" href="/2021/05/18/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-%E3%80%904%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E3%80%91-10%20%E5%BC%95%E5%85%A5kaptcha%E5%AE%9E%E7%8E%B0%E9%AA%8C%E8%AF%81%E7%A0%81/" style="float: left;">
+        ← 校园商铺-【4店铺注册】-10 引入kaptcha实现验证码
+    </a>
+    
+    
+    <a class="pull-right" href="/2021/05/11/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-%E3%80%904%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E3%80%91-8%20%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E4%B9%8BView%E5%B1%82%E5%89%8D%E5%8F%B0%E9%A1%B5%E9%9D%A2/">
+        校园商铺-【4店铺注册】-8 店铺注册之 View 层前台页面 →
+    </a>
+    
+</nav>
+
+        <div class="col-md-8 col-md-offset-2 col-sm-24"><script type="text/javascript">
+  /**
+   * 搜狐畅言
+   */
+
+  /*
+  document.write('<div id="SOHUCS" sid="' + window.location.pathname.slice(1) + '" ></div>');
+
+  window.onload = function () {
+    (function () {
+      var appid = 'cytXXXX';
+      var conf = 'prod_xxxxxxxxxxxxxxxxx';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      var loadJs = function (d, a, id) {
+        var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+        var b = document.createElement("script");
+        b.setAttribute("type", "text/javascript");
+        b.setAttribute("charset", "UTF-8");
+        b.setAttribute("src", d);
+        if (id) {
+          b.setAttribute("id", id);
+        }
+        if (typeof a === "function") {
+          if (window.attachEvent) {
+            b.onreadystatechange = function () {
+              var e = b.readyState;
+              if (e === "loaded" || e === "complete") {
+                b.onreadystatechange = null;
+                a()
+              }
+            }
+          } else {
+            b.onload = a
+          }
+        }
+        c.appendChild(b)
+      };
+
+      loadJs("https://changyan.sohu.com/upload/changyan.js", function () {
+        window.changyan.api.config({
+          appid: appid,
+          conf: conf
+        })
+      });
+    })();
+  }
+  */
+
+</script>
+</div>
+    </div>
+</section>
+
+
+      
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+            <div class="copy">
+                <p>
+                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By AiLaodu. All Rights Reserved.
+                </p>
+                <p>Theme By <a target="_blank" rel="noopener" href="//go.kieran.top" style="color: #767D84">Kieran</a></p>
+            </div>
+            <div class="social">
+                <ul>
+                    
+                    <li><a href="https://github.com/" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://twitter.com/" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://www.facebook.com/" title="Facebook" target="_blank"><i class="icon-facebook"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="http://weibo.com/" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a>&nbsp;</li>
+                    
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+      <!-- Load our scripts -->
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+
+    resizeHero();
+
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$('#intro').find('img').each(function(){
+  var alt = this.alt;
+
+  if (alt){
+    $(this).after('<span class="caption" style="display:none">' + alt + '</span>');
+  }
+
+  $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox" rel="gallery" />');
+});
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+      
+</body>
+</html>

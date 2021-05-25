@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********    -----Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<!--<![endif]-->
+
+<head>
+  <title>校园商铺-【4店铺注册】-5店铺注册之Service层的实现 | ADGai&#39;s Blog</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="ADGai's Blog">
+    <meta name="author" content="AiLaodu">
+    <meta name="description" content="" />
+    <meta name="keywords" content="Java" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href="/atom.xml" title="ADGai&#39;s Blog" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+    
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
+    
+
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+  
+  
+  
+
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+    <div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+        <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+            <img src="/img/close.png" alt="Close"/>
+        </div>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu">
+            <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+            <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
+            <!-- Dropdown Menu -->
+			 
+            <li>
+                <a class="sb-toggle-submenu">Works<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                        <li><a href="/" target="_BLANK" class="animsition-link">AAA</a></li>
+                    
+                        <li><a href="/atom.xml" target="_BLANK" class="animsition-link">BBB</a></li>
+                    
+                </ul>
+            </li>
+            
+            
+        	<li>
+        		<a class="sb-toggle-submenu">Categories<span class="sb-caret"></span></a>
+            	<ul class="sb-submenu">
+				  	
+				    <li><a href="/categories/Hexo/" class="animsition-link">Hexo<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/JavaSE/" class="animsition-link">JavaSE<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/LeetCode刷题/" class="animsition-link">LeetCode刷题<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/Maven/" class="animsition-link">Maven<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/Mybatis/" class="animsition-link">Mybatis<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/Spring/" class="animsition-link">Spring<small>(3)</small></a></li>
+				    
+				    <li><a href="/categories/基础回顾/" class="animsition-link">基础回顾<small>(2)</small></a></li>
+				    
+				    <li><a href="/categories/数据结构与算法/" class="animsition-link">数据结构与算法<small>(2)</small></a></li>
+				    
+				    <li><a href="/categories/项目-校园商铺/" class="animsition-link">项目-校园商铺<small>(30)</small></a></li>
+				    
+				</ul>
+        	</li>
+			
+            
+            <li>
+                <a class="sb-toggle-submenu">Links<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                    <li><a target="_blank" rel="noopener" href="http://go.kieran.top/" class="animsition-link">Kieran</a></li>
+                    
+                    <li><a target="_blank" rel="noopener" href="http://domain.com/" class="animsition-link">Name</a></li>
+                    
+                </ul>
+            </li>
+            
+        </ul>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu secondary">
+            
+            <li><a href="/about.html" class="animsition-link" title="about">About</a></li>
+            <li><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li>
+        </ul>
+    </div>
+    
+    <!-- ============================ END Off-canvas navigation =========================== -->
+
+    <!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+    <div id="sb-site">
+        <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <div id="navigation" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!-- Nav logo -->
+                    <div class="logo">
+                        <a href="/" title="Logo" class="animsition-link">
+                         <img src="/img/logo.png" alt="Logo" width="35px;"/> 
+                        </a>
+                    </div>
+                    <!-- // Nav logo -->
+                    <!-- Info-bar -->
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/" class="animsition-link">ADGai's Blog</a></li>
+                            <li class="nolink"><span>Always </span>Creative.</li>
+                            
+                            <li><a href="https://github.com/" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                            
+                            
+                            <li><a href="https://twitter.com/" title="Twitter" target="_blank"><i class="icon-twitter"></i></a></li>
+                            
+                            
+                            <li><a href="https://www.facebook.com/" title="Facebook" target="_blank"><i class="icon-facebook"></i></a></li>
+                            
+                            
+                            <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a></li>
+                            
+                            
+                            <li><a href="http://weibo.com/" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a></li>
+                            
+                            <li class="nolink"><span>Welcome!</span></li>
+                        </ul>
+                    </nav>
+                    <!--// Info-bar -->
+                </div>
+                <!-- // .container -->
+                <div class="learnmore sb-toggle-right">More</div>
+                <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+                </button>
+            </div>
+            <!-- // .navbar-inner -->
+        </div>
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2021-05-10T12:52:43.520Z" itemprop="datePublished">
+          2021-05-10
+      </time>
+    
+    
+    | 
+    <a href='/tags/项目-校园商铺/'>项目-校园商铺</a>
+    
+    
+</span>
+                <h1>校园商铺-【4店铺注册】-5店铺注册之Service层的实现</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<h1 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h1><p>截至目前，我们已经完成了持久层insertShop的开发，编写了操作图片和路径的工具类，使用ENUM定义了操作店铺使用的常量，定义了操作店铺返回的DTO类ShopExecution。</p>
+<p>铺垫了这么多，终于可以编写Service层的代码了，service 层操作店铺返回 DTO 类 ShopExecution（不仅包含Shop的信息，同时也要包含操作店铺的状态信息）。</p>
+<span id="more"></span>
+
+<h1 id="2-ShopService开发步骤"><a href="#2-ShopService开发步骤" class="headerlink" title="2.ShopService开发步骤"></a>2.ShopService开发步骤</h1><img src="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210510205527218.png" alt="image-20210510205527218"  />
+
+<h2 id="Step1-Service层接口类-ShopService"><a href="#Step1-Service层接口类-ShopService" class="headerlink" title="Step1 Service层接口类 ShopService"></a>Step1 Service层接口类 ShopService</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.imooc.o2o.service;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.imooc.o2o.dto.ShopExecution;</span><br><span class="line"><span class="keyword">import</span> com.imooc.o2o.entity.Shop;</span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ShopService</span> </span>&#123;</span><br><span class="line">    <span class="function">ShopExecution <span class="title">addShop</span><span class="params">(Shop shop, File shopImg)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Step2-Service层接口实现类ShopServiceImpl"><a href="#Step2-Service层接口实现类ShopServiceImpl" class="headerlink" title="Step2 Service层接口实现类ShopServiceImpl"></a>Step2 Service层接口实现类ShopServiceImpl</h2><p>src/main/java先建立com.artisan.o2o.service.impl, 编写ShopService的接口实现类ShopServiceImpl</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.imooc.o2o.service.impl;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.imooc.o2o.dao.ShopDao;</span><br><span class="line"><span class="keyword">import</span> com.imooc.o2o.dto.ShopExecution;</span><br><span class="line"><span class="keyword">import</span> com.imooc.o2o.entity.Shop;</span><br><span class="line"><span class="keyword">import</span> com.imooc.o2o.enums.ShopStateEnum;</span><br><span class="line"><span class="keyword">import</span> com.imooc.o2o.exceptions.ShopOperationException;</span><br><span class="line"><span class="keyword">import</span> com.imooc.o2o.service.ShopService;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.imooc.o2o.util.PathUtil;</span><br><span class="line"><span class="keyword">import</span> com.imooc.o2o.util.ImageUtil;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Service;</span><br><span class="line"><span class="keyword">import</span> org.springframework.transaction.annotation.Transactional;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ShopServiceImpl</span> <span class="keyword">implements</span> <span class="title">ShopService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger logger = LoggerFactory.getLogger(ShopServiceImpl.class);</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> ShopDao shopDao;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 3个步骤需要在一个事务中,添加 <span class="doctag">@Transactional</span> 注解</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * 1. 将shop基本信息添加到数据库，返回shopId</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * 2. 根据shopId创建目录,得到图片存储的相对路径</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * 3. 将相对路径更新到数据库</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * Spring默认情况下会对运行期异常(RunTimeException)进行事务回滚</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * （1）注解<span class="doctag">@Transactional</span> 只能应用到 public 方法才有效</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * （2）在 Spring 的 AOP 代理下，只有目标方法由外部调用，目标方法才由 Spring成的代理对象来管理，这会造成自调用问题。</span></span><br><span class="line"><span class="comment">     * 若同一类中的其他没有<span class="doctag">@Transactional</span> 注解的方法内部调用有<span class="doctag">@Transactional</span> 注解的方法，</span></span><br><span class="line"><span class="comment">     * 有<span class="doctag">@Transactional</span>注解的方法的事务被忽略，不会发生回滚。</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * 上面的两个问题<span class="doctag">@Transactional</span> 注解只应用到 public 方法和自调用问题，是由于使用 Spring AOP</span></span><br><span class="line"><span class="comment">     * 代理造成的。为解决这两个问题，可以使用 AspectJ 取代 Spring AOP 代理</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * 在应用系统调用声明 <span class="doctag">@Transactional</span> 的目标方法时，Spring Framework 默认使用 AOP</span></span><br><span class="line"><span class="comment">     * 代理，在代码运行时生成一个代理对象，根据<span class="doctag">@Transactional</span> 的属性配置信息，这个代理对象决定该声明<span class="doctag">@Transactional</span></span></span><br><span class="line"><span class="comment">     * 的目标方法是否由拦截器 TransactionInterceptor 来使用拦截，在 TransactionInterceptor</span></span><br><span class="line"><span class="comment">     * 拦截时，会在在目标方法开始执行之前创建并加入事务，并执行目标方法的逻辑,</span></span><br><span class="line"><span class="comment">     * 最后根据执行情况是否出现异常，利用抽象事务管理器AbstractPlatformTransactionManager 操作数据源</span></span><br><span class="line"><span class="comment">     * DataSource 提交或回滚事务</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="meta">@Transactional</span></span><br><span class="line">    <span class="comment">// @Transactional 标签表明这个方法是需要事务的支持的</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ShopExecution <span class="title">addShop</span><span class="params">(Shop shop, File shopImg)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 空值判断 (这里先判断shop是否为空，严格意义上讲shop中的area等的属性也需要判断)</span></span><br><span class="line">        <span class="keyword">if</span> (shop == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> ShopExecution(ShopStateEnum.NULL_SHOP);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">/*关键步骤1. 设置基本信息，插入shop</span></span><br><span class="line"><span class="comment">            初始状态： 审核中*/</span></span><br><span class="line">            shop.setEnableStatus(<span class="number">0</span>);</span><br><span class="line">            shop.setCreateTime(<span class="keyword">new</span> Date());</span><br><span class="line">            shop.setLastEditTime(<span class="keyword">new</span> Date());</span><br><span class="line">            <span class="comment">//添加店铺信息</span></span><br><span class="line">            <span class="keyword">int</span> effectedNum = shopDao.insertShop(shop);</span><br><span class="line">            <span class="keyword">if</span>(effectedNum &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> ShopOperationException(<span class="string">&quot;店铺创建失败&quot;</span>);</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">// 关键步骤2. 添加成功,则继续处理文件,获取 shopId,用于创建图片存放的目录</span></span><br><span class="line">                <span class="keyword">if</span>(shopImg != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    <span class="comment">//存储图片</span></span><br><span class="line">                    <span class="keyword">try</span> &#123;</span><br><span class="line">                        addShopImg(shop,shopImg);</span><br><span class="line">                    &#125;<span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                        <span class="keyword">throw</span> <span class="keyword">new</span> </span><br><span class="line">                            ShopOperationException(<span class="string">&quot;addShopImgerror:&quot;</span>+e.getMessage());</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="comment">//更新店铺的图片信息</span></span><br><span class="line">                    effectedNum = shopDao.updateShop(shop);</span><br><span class="line">                    <span class="keyword">if</span>(effectedNum &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">                        <span class="keyword">throw</span> <span class="keyword">new</span> ShopOperationException(<span class="string">&quot;更新图片地址失败&quot;</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            logger.error(<span class="string">&quot;addShopImg error&#123;&#125;&quot;</span>, e.toString());</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> ShopOperationException(<span class="string">&quot;addShopImg error:&quot;</span> + e.getMessage());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ShopExecution(ShopStateEnum.CHECK, shop);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">addShopImg</span><span class="params">(Shop shop, File shopImg)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//获取 shop 图片目录的相对路径</span></span><br><span class="line">        String dest = PathUtil.getShopImagePath(shop.getShopId());</span><br><span class="line">        String shopImgAddr = ImageUtil.generateThumbnail(shopImg,dest);</span><br><span class="line">        <span class="comment">// 将相对路径设置个shop,用于更新数据库</span></span><br><span class="line">        shop.setShopImg(shopImgAddr);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Step3-ShopOperationException"><a href="#Step3-ShopOperationException" class="headerlink" title="Step3 ShopOperationException"></a>Step3 ShopOperationException</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.imooc.o2o.exceptions;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*为什么会用RuntimeException，而不是Exception呢？</span></span><br><span class="line"><span class="comment">  当我们的程序仅当跑出RuntimeException或者继承RuntimeException的异常类时，</span></span><br><span class="line"><span class="comment">  事务才得以终止并回滚。</span></span><br><span class="line"><span class="comment">  如果是Exception，事务就无法终止和回滚</span></span><br><span class="line"><span class="comment">  可以将 ShopOperationException 看作是对 RuntimeException 做了一层很薄的封装</span></span><br><span class="line"><span class="comment">  这样做的意义在于当开发者看到 ShopOperationException 时</span></span><br><span class="line"><span class="comment">  就知道抛出的异常是跟 shop 操作相关的</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ShopOperationException</span> <span class="keyword">extends</span> <span class="title">RuntimeException</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">6860566652051914211L</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ShopOperationException</span><span class="params">(String message)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(message);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>为什么会用RuntimeException，而不是Exception呢？</strong></p>
+<p>当我们的程序仅当跑出RuntimeException或者继承RuntimeException的异常类时，事物才得以终止并回滚。如果是Exception，事物就无法终止和回滚</p>
+<h1 id="3-单元测试"><a href="#3-单元测试" class="headerlink" title="3.单元测试"></a>3.单元测试</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.imooc.o2o.service;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.imooc.o2o.BaseTest;</span><br><span class="line"><span class="keyword">import</span> com.imooc.o2o.dto.ShopExecution;</span><br><span class="line"><span class="keyword">import</span> com.imooc.o2o.entity.Area;</span><br><span class="line"><span class="keyword">import</span> com.imooc.o2o.entity.PersonInfo;</span><br><span class="line"><span class="keyword">import</span> com.imooc.o2o.entity.Shop;</span><br><span class="line"><span class="keyword">import</span> com.imooc.o2o.entity.ShopCategory;</span><br><span class="line"><span class="keyword">import</span> com.imooc.o2o.enums.ShopStateEnum;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.junit.Assert.assertEquals;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ShopServiceTest</span> <span class="keyword">extends</span> <span class="title">BaseTest</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> ShopService shopService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testAddShop</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Shop shop = <span class="keyword">new</span> Shop();</span><br><span class="line">        PersonInfo owner = <span class="keyword">new</span> PersonInfo();</span><br><span class="line">        Area area = <span class="keyword">new</span> Area();</span><br><span class="line">        ShopCategory shopCategory = <span class="keyword">new</span> ShopCategory();</span><br><span class="line">        owner.setUserId(<span class="number">1L</span>);</span><br><span class="line">        area.setAreaId(<span class="number">2</span>);</span><br><span class="line">        shopCategory.setShopCategoryId(<span class="number">38L</span>);</span><br><span class="line">        shop.setOwner(owner);</span><br><span class="line">        shop.setArea(area);</span><br><span class="line">        shop.setShopCategory(shopCategory);</span><br><span class="line">        shop.setShopName(<span class="string">&quot;测试的店铺1&quot;</span>);</span><br><span class="line">        shop.setShopAddr(<span class="string">&quot;test1&quot;</span>);</span><br><span class="line">        shop.setPhone(<span class="string">&quot;test1&quot;</span>);</span><br><span class="line">        shop.setShopDesc(<span class="string">&quot;test1&quot;</span>);</span><br><span class="line">        shop.setCreateTime(<span class="keyword">new</span> Date());</span><br><span class="line">        shop.setEnableStatus(ShopStateEnum.CHECK.getState());</span><br><span class="line">        shop.setAdvice(<span class="string">&quot;审核中&quot;</span>);</span><br><span class="line">        File shopImg = <span class="keyword">new</span> File(<span class="string">&quot;D:/projectdev/header.jpg&quot;</span>);</span><br><span class="line">        ShopExecution se = shopService.addShop(shop,shopImg);</span><br><span class="line">        assertEquals(ShopStateEnum.CHECK.getState(),se.getState());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="4-注意事项"><a href="#4-注意事项" class="headerlink" title="4.注意事项"></a>4.注意事项</h1><ol>
+<li><p>addShop的多个操作步骤（设置基本信息，插入tb_shop || 添加成功,则继续处理文件,获取shopid,用于创建图片存放的目录 || 更新tb_shop中 shop_img字段 ），需要找同一个事务中，所以addShop方法添加了@Transactional注解</p>
+</li>
+<li><p>Spring默认情况下会对运行期例外(RunTimeException)进行事务回滚，所以ShopOperationException必须继承RuntimeException才可以实现回滚，如果继承Exception则不会回滚数据库操作。</p>
+</li>
+</ol>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
+    
+    <a class="pull-left" href="/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-%E3%80%904%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E3%80%91-6%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E4%B9%8BController%E5%B1%82%E7%9A%84%E5%AE%9E%E7%8E%B0/" style="float: left;">
+        ← 校园商铺-【4店铺注册】-6店铺注册之 Controller 层的实现
+    </a>
+    
+    
+    <a class="pull-right" href="/2021/05/10/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA/%E6%A0%A1%E5%9B%AD%E5%95%86%E9%93%BA-%E3%80%904%E5%BA%97%E9%93%BA%E6%B3%A8%E5%86%8C%E3%80%91-4%20Dto%20%E4%B9%8B%20ShopExecution%20%E7%9A%84%E5%AE%9E%E7%8E%B0/">
+        校园商铺-【4店铺注册】-4 Dto 之 ShopExecution 的实现 →
+    </a>
+    
+</nav>
+
+        <div class="col-md-8 col-md-offset-2 col-sm-24"><script type="text/javascript">
+  /**
+   * 搜狐畅言
+   */
+
+  /*
+  document.write('<div id="SOHUCS" sid="' + window.location.pathname.slice(1) + '" ></div>');
+
+  window.onload = function () {
+    (function () {
+      var appid = 'cytXXXX';
+      var conf = 'prod_xxxxxxxxxxxxxxxxx';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      var loadJs = function (d, a, id) {
+        var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+        var b = document.createElement("script");
+        b.setAttribute("type", "text/javascript");
+        b.setAttribute("charset", "UTF-8");
+        b.setAttribute("src", d);
+        if (id) {
+          b.setAttribute("id", id);
+        }
+        if (typeof a === "function") {
+          if (window.attachEvent) {
+            b.onreadystatechange = function () {
+              var e = b.readyState;
+              if (e === "loaded" || e === "complete") {
+                b.onreadystatechange = null;
+                a()
+              }
+            }
+          } else {
+            b.onload = a
+          }
+        }
+        c.appendChild(b)
+      };
+
+      loadJs("https://changyan.sohu.com/upload/changyan.js", function () {
+        window.changyan.api.config({
+          appid: appid,
+          conf: conf
+        })
+      });
+    })();
+  }
+  */
+
+</script>
+</div>
+    </div>
+</section>
+
+
+      
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+            <div class="copy">
+                <p>
+                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By AiLaodu. All Rights Reserved.
+                </p>
+                <p>Theme By <a target="_blank" rel="noopener" href="//go.kieran.top" style="color: #767D84">Kieran</a></p>
+            </div>
+            <div class="social">
+                <ul>
+                    
+                    <li><a href="https://github.com/" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://twitter.com/" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://www.facebook.com/" title="Facebook" target="_blank"><i class="icon-facebook"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="http://weibo.com/" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a>&nbsp;</li>
+                    
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+      <!-- Load our scripts -->
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+
+    resizeHero();
+
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$('#intro').find('img').each(function(){
+  var alt = this.alt;
+
+  if (alt){
+    $(this).after('<span class="caption" style="display:none">' + alt + '</span>');
+  }
+
+  $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox" rel="gallery" />');
+});
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+      
+</body>
+</html>
