@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/header.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/icon.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icon.jpg">
+  <link rel="mask-icon" href="/images/icon.jpg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.8.0","exturl":false,"sidebar":{"position":"left","display":"remove","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="AOP(面向切面编程)Ⅰ.什么是 AOP（1）面向切面编程（方面），利用 AOP 可以对业务逻辑的各个部分进行隔离，从而使得业务逻辑各部分之间的耦合度降低，提高程序的可重用性，同时提高了开发的效率。  （2）通俗描述：不通过修改源代码方式，在主干功能里面添加新功能   （3）使用登录例子说明 AOP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring5框架学习系列（二）">
+<meta property="og:url" content="http://example.com/2021/09/04/Spring5%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0(%E4%BA%8C)/index.html">
+<meta property="og:site_name" content="ADGai&#39;s Blog">
+<meta property="og:description" content="AOP(面向切面编程)Ⅰ.什么是 AOP（1）面向切面编程（方面），利用 AOP 可以对业务逻辑的各个部分进行隔离，从而使得业务逻辑各部分之间的耦合度降低，提高程序的可重用性，同时提高了开发的效率。  （2）通俗描述：不通过修改源代码方式，在主干功能里面添加新功能   （3）使用登录例子说明 AOP">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/AD-Gai-Code/pic-go/raw/master/%E5%9B%BE3.png">
+<meta property="og:image" content="https://gitee.com/AD-Gai-Code/pic-go/raw/master/%E5%9B%BE4.png">
+<meta property="og:image" content="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210406205345738.png">
+<meta property="og:image" content="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210406205503654.png">
+<meta property="og:image" content="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210407155239140.png">
+<meta property="article:published_time" content="2021-09-04T14:32:51.521Z">
+<meta property="article:modified_time" content="2021-10-26T09:21:34.272Z">
+<meta property="article:author" content="AiLaodu">
+<meta property="article:tag" content="Spring">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/AD-Gai-Code/pic-go/raw/master/%E5%9B%BE3.png">
+
+
+<link rel="canonical" href="http://example.com/2021/09/04/Spring5%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0(%E4%BA%8C)/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2021/09/04/Spring5%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0(%E4%BA%8C)/","path":"2021/09/04/Spring5框架学习(二)/","title":"Spring5框架学习系列（二）"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Spring5框架学习系列（二） | ADGai's Blog</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">ADGai's Blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/04/Spring5%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0(%E4%BA%8C)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="AiLaodu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ADGai's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Spring5框架学习系列（二）
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-09-04 22:32:51" itemprop="dateCreated datePublished" datetime="2021-09-04T22:32:51+08:00">2021-09-04</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-10-26 17:21:34" itemprop="dateModified" datetime="2021-10-26T17:21:34+08:00">2021-10-26</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="AOP-面向切面编程"><a href="#AOP-面向切面编程" class="headerlink" title="AOP(面向切面编程)"></a>AOP(面向切面编程)</h1><h2 id="Ⅰ-什么是-AOP"><a href="#Ⅰ-什么是-AOP" class="headerlink" title="Ⅰ.什么是 AOP"></a>Ⅰ.什么是 AOP</h2><p>（1）面向切面编程（方面），利用 AOP 可以对业务逻辑的各个部分进行隔离，从而使得业务逻辑各部分之间的耦合度降低，提高程序的可重用性，同时提高了开发的效率。</p>
+<p> （2）通俗描述：不通过修改源代码方式，在主干功能里面添加新功能 </p>
+<p> （3）使用登录例子说明 AOP</p>
+<span id="more"></span>
+
+<p><img src="https://gitee.com/AD-Gai-Code/pic-go/raw/master/%E5%9B%BE3.png" alt="图3"></p>
+<h2 id="Ⅱ-AOP底层原理"><a href="#Ⅱ-AOP底层原理" class="headerlink" title="Ⅱ.AOP底层原理"></a>Ⅱ.AOP底层原理</h2><h3 id="1、AOP-底层使用动态代理"><a href="#1、AOP-底层使用动态代理" class="headerlink" title="1、AOP 底层使用动态代理"></a>1、AOP 底层使用动态代理</h3><h4 id="1-有两种情况动态代理"><a href="#1-有两种情况动态代理" class="headerlink" title="(1)有两种情况动态代理"></a>(1)有两种情况动态代理</h4><p>第一种 有接口情况，使用 JDK 动态代理</p>
+<ul>
+<li>创建接口实现类代理对象，增强类的方法</li>
+</ul>
+<p>第二种 没有接口情况，使用 CGLIB 动态代理</p>
+<ul>
+<li>创建子类的代理对象，增强类的方法</li>
+</ul>
+<p><img src="https://gitee.com/AD-Gai-Code/pic-go/raw/master/%E5%9B%BE4.png"></p>
+<h2 id="Ⅲ-AOP-JDK动态代理"><a href="#Ⅲ-AOP-JDK动态代理" class="headerlink" title="Ⅲ.AOP(JDK动态代理)"></a>Ⅲ.AOP(JDK动态代理)</h2><h3 id="1、使用-JDK-动态代理，使用-Proxy-类里面的方法创建代理对象"><a href="#1、使用-JDK-动态代理，使用-Proxy-类里面的方法创建代理对象" class="headerlink" title="1、使用 JDK 动态代理，使用 Proxy 类里面的方法创建代理对象"></a>1、使用 JDK 动态代理，使用 Proxy 类里面的方法创建代理对象</h3><p><img src="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210406205345738.png" alt="image-20210406205345738"></p>
+<p>（1）调用 newProxyInstance 方法</p>
+<p><img src="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210406205503654.png" alt="image-20210406205503654"></p>
+<p>该方法有三个参数： </p>
+<p>第一参数，类加载器 </p>
+<p>第二参数，增强方法所在的类，这个类实现的接口，支持多个接口 </p>
+<p>第三参数，实现这个接口 InvocationHandler，创建代理对象，写增强的部分</p>
+<h3 id="2、编写-JDK-动态代理代码"><a href="#2、编写-JDK-动态代理代码" class="headerlink" title="2、编写 JDK 动态代理代码"></a>2、编写 JDK 动态代理代码</h3><p>（1）创建接口，定义方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserDao</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">update</span><span class="params">(String id)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（2）创建接口实现类，实现方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserDaoImpl</span> <span class="keyword">implements</span> <span class="title">UserDao</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;add方法执行了.....&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> a+b;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">update</span><span class="params">(String id)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;update方法执行了.....&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>（3）使用 Proxy 类创建接口代理对象(即增强的功能)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JDKProxy</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//创建接口实现类代理对象</span></span><br><span class="line">        Class[] interfaces = &#123;UserDao.class&#125;;</span><br><span class="line"><span class="comment">//        Proxy.newProxyInstance(JDKProxy.class.getClassLoader(), interfaces, new InvocationHandler() &#123;</span></span><br><span class="line"><span class="comment">//            @Override</span></span><br><span class="line"><span class="comment">//            public Object invoke(Object proxy, Method method, Object[] args) throws Throwable &#123;</span></span><br><span class="line"><span class="comment">//                return null;</span></span><br><span class="line"><span class="comment">//            &#125;</span></span><br><span class="line"><span class="comment">//        &#125;); 即使用匿名内部类实现</span></span><br><span class="line">        UserDaoImpl userDao = <span class="keyword">new</span> UserDaoImpl();</span><br><span class="line">        UserDao dao = (UserDao)Proxy.newProxyInstance(JDKProxy.class.getClassLoader(), interfaces, <span class="keyword">new</span> UserDaoProxy(userDao));</span><br><span class="line">        <span class="keyword">int</span> result = dao.add(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;result:&quot;</span>+result);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建代理对象代码</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserDaoProxy</span> <span class="keyword">implements</span> <span class="title">InvocationHandler</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//1 把创建的是谁的代理对象，把谁传递过来</span></span><br><span class="line">    <span class="comment">//有参数构造传递</span></span><br><span class="line">    <span class="keyword">private</span> Object obj;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">UserDaoProxy</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.obj = obj;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//增强的逻辑</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        <span class="comment">//方法之前</span></span><br><span class="line">        System.out.println(<span class="string">&quot;方法之前执行....&quot;</span>+method.getName()+<span class="string">&quot; :传递的参数...&quot;</span>+ Arrays.toString(args));</span><br><span class="line"></span><br><span class="line">        <span class="comment">//被增强的方法执行</span></span><br><span class="line">        Object res = method.invoke(obj, args);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//方法之后</span></span><br><span class="line">        System.out.println(<span class="string">&quot;方法之后执行....&quot;</span>+obj);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Ⅳ-AOP术语"><a href="#Ⅳ-AOP术语" class="headerlink" title="Ⅳ.AOP术语"></a>Ⅳ.AOP术语</h2><h3 id="1-连接点"><a href="#1-连接点" class="headerlink" title="1.连接点"></a>1.连接点</h3><p>类里面有哪些方法可以被增强，这些方法就被叫做连接点。</p>
+<h3 id="2-切入点"><a href="#2-切入点" class="headerlink" title="2.切入点"></a>2.切入点</h3><p>实际真正被增强的方法就被称为切入点。</p>
+<h3 id="3-通知（增强）"><a href="#3-通知（增强）" class="headerlink" title="3.通知（增强）"></a>3.通知（增强）</h3><p>（1）实际增强的逻辑部分就叫做通知（增强）。</p>
+<p>（2）通知有多种类型</p>
+<ul>
+<li>前置通知：在被增强方法之前执行</li>
+<li>后置通知：在被增强方法之后执行</li>
+<li>环绕通知：在被增强方法之前和之后都会执行</li>
+<li>异常通知：在被增强方法抛出异常时会执行</li>
+<li>最终通知：类似finally，一定会执行</li>
+</ul>
+<h3 id="4-切面"><a href="#4-切面" class="headerlink" title="4.切面"></a>4.切面</h3><p>是动作上的一个操作，即把通知应用到切入点的过程就叫做切面。</p>
+<h2 id="Ⅴ-AOP-操作（准备工作）"><a href="#Ⅴ-AOP-操作（准备工作）" class="headerlink" title="Ⅴ.AOP 操作（准备工作）"></a>Ⅴ.AOP 操作（准备工作）</h2><h3 id="1、Spring-框架一般都是基于-AspectJ-实现-AOP-操作"><a href="#1、Spring-框架一般都是基于-AspectJ-实现-AOP-操作" class="headerlink" title="1、Spring 框架一般都是基于 AspectJ 实现 AOP 操作"></a>1、Spring 框架一般都是基于 AspectJ 实现 AOP 操作</h3><p><strong>什么是AspectJ：</strong>AspectJ 不是 Spring 组成部分，独立 AOP 框架，一般把 AspectJ 和 Spirng 框架一起使用，进行 AOP 操作。</p>
+<h3 id="2、基于-AspectJ-实现-AOP-操作"><a href="#2、基于-AspectJ-实现-AOP-操作" class="headerlink" title="2、基于 AspectJ 实现 AOP 操作"></a>2、基于 AspectJ 实现 AOP 操作</h3><p>（1）基于 xml 配置文件实现 </p>
+<p>（2）基于注解方式实现（实际中一般使用注解方式实现）</p>
+<h3 id="3、在项目工程里面引入-AOP-相关依赖"><a href="#3、在项目工程里面引入-AOP-相关依赖" class="headerlink" title="3、在项目工程里面引入 AOP 相关依赖"></a>3、在项目工程里面引入 AOP 相关依赖</h3><p><img src="https://gitee.com/AD-Gai-Code/pic-go/raw/master/image-20210407155239140.png" alt="image-20210407155239140"></p>
+<h3 id="4、切入点表达式"><a href="#4、切入点表达式" class="headerlink" title="4、切入点表达式"></a>4、切入点表达式</h3><p>（1）切入点表达式作用：知道对哪个类里面的哪个方法进行增强 </p>
+<p>（2）语法结构： execution([权限修饰符] [返回类型] [类全路径] [方法名称] （[参数列表]）)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//举例 1：对 com.atguigu.dao.BookDao 类里面的 add 进行增强 *表示任意修饰符，返回类型可以省略</span></span><br><span class="line">execution(* com.atguigu.dao.BookDao.add(..))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//举例 2：对 com.atguigu.dao.BookDao 类里面的所有的方法进行增强</span></span><br><span class="line">execution(* com.atguigu.dao.BookDao.* (..))</span><br></pre></td></tr></table></figure>
+
+<h2 id="Ⅵ-AOP-操作（AspectJ-注解）"><a href="#Ⅵ-AOP-操作（AspectJ-注解）" class="headerlink" title="Ⅵ.AOP 操作（AspectJ 注解）"></a>Ⅵ.AOP 操作（AspectJ 注解）</h2><h3 id="1、创建类，在类里面定义方法"><a href="#1、创建类，在类里面定义方法" class="headerlink" title="1、创建类，在类里面定义方法"></a>1、创建类，在类里面定义方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;add.......&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="2、创建增强类（编写增强逻辑）"><a href="#2、创建增强类（编写增强逻辑）" class="headerlink" title="2、创建增强类（编写增强逻辑）"></a>2、创建增强类（编写增强逻辑）</h3><p>（1）在增强类里面，创建方法，让不同方法代表不同通知类型</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//增强的类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserProxy</span> </span>&#123;</span><br><span class="line"> 	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">before</span><span class="params">()</span> </span>&#123;<span class="comment">//前置通知</span></span><br><span class="line"> 	System.out.println(<span class="string">&quot;before......&quot;</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3、进行通知的配置"><a href="#3、进行通知的配置" class="headerlink" title="3、进行通知的配置"></a>3、进行通知的配置</h3><p>（1）在 spring 配置文件中，开启注解扫描</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.springframework.org/schema/beans&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:context</span>=<span class="string">&quot;http://www.springframework.org/schema/context&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:aop</span>=<span class="string">&quot;http://www.springframework.org/schema/aop&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd</span></span></span><br><span class="line"><span class="string"><span class="tag">                        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd</span></span></span><br><span class="line"><span class="string"><span class="tag">                        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 开启注解扫描 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">&quot;com.atguigu.spring5.aopanno&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>（2）使用注解创建 User 和 UserProxy 对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//被增强的类</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="comment">//增强的类</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Order(3)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserProxy</span> </span>&#123;</span><br></pre></td></tr></table></figure>
+
+<p>（3）在增强类上面添加注解 @Aspect</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//增强的类</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Aspect</span>  <span class="comment">//生成代理对象</span></span><br><span class="line"><span class="meta">@Order(3)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserProxy</span> </span>&#123;</span><br></pre></td></tr></table></figure>
+
+<p>（4）在 spring 配置文件中开启生成代理对象</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 开启Aspect生成代理对象--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">aop:aspectj-autoproxy</span>&gt;</span><span class="tag">&lt;/<span class="name">aop:aspectj-autoproxy</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="4、配置不同类型的通知"><a href="#4、配置不同类型的通知" class="headerlink" title="4、配置不同类型的通知"></a>4、配置不同类型的通知</h3><p>（1）在增强类的里面，在作为通知方法上面添加通知类型注解，使用切入点表达式配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//增强的类</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Aspect</span> <span class="comment">//生成代理对象</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserProxy</span> </span>&#123;</span><br><span class="line"> 	<span class="comment">//前置通知</span></span><br><span class="line"> 	<span class="comment">//@Before 注解表示作为前置通知</span></span><br><span class="line"> 	<span class="meta">@Before(value = &quot;execution(* com.atguigu.spring5.aopanno.User.add(..))&quot;)</span></span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">before</span><span class="params">()</span> </span>&#123;</span><br><span class="line"> 		System.out.println(<span class="string">&quot;before.........&quot;</span>);</span><br><span class="line"> 	&#125;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">//后置通知（返回通知）</span></span><br><span class="line"> 	<span class="meta">@AfterReturning(value = &quot;execution(* </span></span><br><span class="line"><span class="meta">								com.atguigu.spring5.aopanno.User.add(..))&quot;)</span></span><br><span class="line"> 	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterReturning</span><span class="params">()</span> </span>&#123;</span><br><span class="line"> 		System.out.println(<span class="string">&quot;afterReturning.........&quot;</span>);</span><br><span class="line"> 	&#125;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">//最终通知</span></span><br><span class="line"> 	<span class="meta">@After(value = &quot;execution(* com.atguigu.spring5.aopanno.User.add(..))&quot;)</span></span><br><span class="line"> 	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">after</span><span class="params">()</span> </span>&#123;</span><br><span class="line"> 		System.out.println(<span class="string">&quot;after.........&quot;</span>);</span><br><span class="line"> 	&#125;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">//异常通知</span></span><br><span class="line"> 	<span class="meta">@AfterThrowing(value = &quot;execution(* </span></span><br><span class="line"><span class="meta">								com.atguigu.spring5.aopanno.User.add(..))&quot;)</span></span><br><span class="line"> 	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterThrowing</span><span class="params">()</span> </span>&#123;</span><br><span class="line"> 		System.out.println(<span class="string">&quot;afterThrowing.........&quot;</span>);</span><br><span class="line"> 	&#125;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">//环绕通知</span></span><br><span class="line"> 	<span class="meta">@Around(value = &quot;execution(* com.atguigu.spring5.aopanno.User.add(..))&quot;)</span></span><br><span class="line"> 	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">around</span><span class="params">(ProceedingJoinPoint proceedingJoinPoint)</span> <span class="keyword">throws</span> </span></span><br><span class="line"><span class="function">		Throwable </span>&#123;</span><br><span class="line"> 			System.out.println(<span class="string">&quot;环绕之前.........&quot;</span>);</span><br><span class="line"> 			<span class="comment">//被增强的方法执行</span></span><br><span class="line"> 			proceedingJoinPoint.proceed();</span><br><span class="line"> 			System.out.println(<span class="string">&quot;环绕之后.........&quot;</span>);</span><br><span class="line"> 	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5、相同的切入点抽取"><a href="#5、相同的切入点抽取" class="headerlink" title="5、相同的切入点抽取"></a>5、相同的切入点抽取</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//相同切入点抽取</span></span><br><span class="line"><span class="meta">@Pointcut(value = &quot;execution(* com.atguigu.spring5.aopanno.User.add(..))&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pointdemo</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//前置通知</span></span><br><span class="line"><span class="comment">//@Before注解表示作为前置通知</span></span><br><span class="line"><span class="meta">@Before(value = &quot;pointdemo()&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">before</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;before.........&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6、有多个增强类多同一个方法进行增强，设置增强类优先级"><a href="#6、有多个增强类多同一个方法进行增强，设置增强类优先级" class="headerlink" title="6、有多个增强类多同一个方法进行增强，设置增强类优先级"></a>6、有多个增强类多同一个方法进行增强，设置增强类优先级</h3><p>（1）在增强类上面添加注解 @Order(数字类型值)，数字类型值<strong>越小优先级越高</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="meta">@Order(1)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PersonProxy</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="7、完全使用注解开发"><a href="#7、完全使用注解开发" class="headerlink" title="7、完全使用注解开发"></a>7、完全使用注解开发</h3><p>（1）创建配置类，不需要创建 xml 配置文件</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@ComponentScan(basePackages = &#123;&quot;com.atguigu&quot;&#125;)</span></span><br><span class="line"><span class="meta">@EnableAspectJAutoProxy(proxyTargetClass = true)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConfigAop</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Ⅶ-AOP-操作（AspectJ-配置文件）"><a href="#Ⅶ-AOP-操作（AspectJ-配置文件）" class="headerlink" title="Ⅶ.AOP 操作（AspectJ 配置文件）"></a>Ⅶ.AOP 操作（AspectJ 配置文件）</h2><h3 id="1、创建两个类，增强类和被增强类，创建方法"><a href="#1、创建两个类，增强类和被增强类，创建方法" class="headerlink" title="1、创建两个类，增强类和被增强类，创建方法"></a>1、创建两个类，增强类和被增强类，创建方法</h3><h3 id="2、在-spring-配置文件中创建两个类对象"><a href="#2、在-spring-配置文件中创建两个类对象" class="headerlink" title="2、在 spring 配置文件中创建两个类对象"></a>2、在 spring 配置文件中创建两个类对象</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--创建对象--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;book&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.atguigu.spring5.aopxml.Book&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;bookProxy&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.atguigu.spring5.aopxml.BookProxy&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3、在-spring-配置文件中配置切入点"><a href="#3、在-spring-配置文件中配置切入点" class="headerlink" title="3、在 spring 配置文件中配置切入点"></a>3、在 spring 配置文件中配置切入点</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--配置aop增强--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--切入点--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">&quot;p&quot;</span> <span class="attr">expression</span>=<span class="string">&quot;execution(* com.atguigu.spring5.aopxml.Book.buy(..))&quot;</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--配置切面（切面：将通知应用到切入点的过程）--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">ref</span>=<span class="string">&quot;bookProxy&quot;</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--增强作用在具体的方法上--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aop:before</span> <span class="attr">method</span>=<span class="string">&quot;before&quot;</span> <span class="attr">pointcut-ref</span>=<span class="string">&quot;p&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Spring/" rel="tag"># Spring</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/09/04/Spring5%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0(%E4%B8%89)/" rel="prev" title="Spring5框架学习系列（三）">
+                  <i class="fa fa-chevron-left"></i> Spring5框架学习系列（三）
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/09/04/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" rel="next" title="排序算法">
+                  排序算法 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">AiLaodu</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
