@@ -1906,7 +1906,7 @@
   <entry>
     <title>在浏览器中输入 url 地址，按下回车后发生了什么</title>
     <url>/2021/11/02/%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E8%BE%93%E5%85%A5URL/</url>
-    <content><![CDATA[<h1 id="在浏览器中输入-url-地址-gt-显示主页的过程"><a href="#在浏览器中输入-url-地址-gt-显示主页的过程" class="headerlink" title="在浏览器中输入 url 地址 -&gt; 显示主页的过程"></a>在浏览器中输入 url 地址 -&gt; 显示主页的过程</h1><h2 id="打开一个网页，整个过程会使用哪些协议？"><a href="#打开一个网页，整个过程会使用哪些协议？" class="headerlink" title="打开一个网页，整个过程会使用哪些协议？"></a>打开一个网页，整个过程会使用哪些协议？</h2><span id="more"></span>
+    <content><![CDATA[<h2 id="打开一个网页，整个过程会使用哪些协议？"><a href="#打开一个网页，整个过程会使用哪些协议？" class="headerlink" title="打开一个网页，整个过程会使用哪些协议？"></a>打开一个网页，整个过程会使用哪些协议？</h2><span id="more"></span>
 
 <p><img src="https://gitee.com/AD-Gai-Code/pic-go/raw/master/202110251645623.jpeg" alt="img">总体来说分为以下几个过程:</p>
 <ol>
@@ -1924,7 +1924,7 @@
 <h3 id="1-2-DNS-优化"><a href="#1-2-DNS-优化" class="headerlink" title="1.2 DNS 优化"></a>1.2 DNS 优化</h3><p>了解了<code>DNS</code>的过程，可以为我们带来哪些？上文中请求到<code>google</code>的<code>IP</code>地址时，经历了8个步骤，这个过程中存在多个请求(大多数情况下 <code>DNS</code> 使用 <code>UDP</code> 进行传输，这就要求域名解析器和域名服务器都必须自己处理超时和重传从而保证可靠性。)。如果每次都经过这么多步骤，是否太耗时间？如何减少该过程的步骤呢？那就是<code>DNS</code>缓存。</p>
 <h4 id="1-2-1-DNS-缓存"><a href="#1-2-1-DNS-缓存" class="headerlink" title="1.2.1 DNS 缓存"></a>1.2.1 DNS 缓存</h4><p><code>DNS</code>存在着多级缓存，从离浏览器的距离排序的话，有以下几种: 浏览器缓存，系统缓存，路由器缓存，<code>IPS</code>服务器缓存，根域名服务器缓存，顶级域名服务器缓存，主域名服务器缓存。</p>
 <h4 id="1-2-2-DNS-负载均衡"><a href="#1-2-2-DNS-负载均衡" class="headerlink" title="1.2.2 DNS 负载均衡"></a>1.2.2 DNS 负载均衡</h4><p>首先思考一个问题：<code>DNS</code>返回的<code>IP</code>地址是否每次都一样？如果每次都一样是否说明你请求的资源都位于同一台机器上面，那么这台机器需要多高的性能和储存才能满足亿万请求呢？其实真实的互联网世界背后存在成千上百台服务器，大型的网站甚至更多。但是在用户的眼中，它需要的只是处理他的请求，哪台机器处理请求并不重要。<code>DNS</code>可以返回一个合适的机器的<code>IP</code>给用户，例如可以根据每台机器的负载量，该机器离用户地理位置的距离等等，这种过程就是<code>DNS</code>负载均衡，又叫做<code>DNS</code>重定向。</p>
-<h2 id="2-TCP-连接"><a href="#2-TCP-连接" class="headerlink" title="2. TCP 连接"></a>2. TCP 连接</h2><p>HTTP 是基于 TCP 协议传输的,客户端与服务器通过三次握手建立起 TCP 连接，具体过程可参考：<a href="">TCP的三次握手</a>。</p>
+<h2 id="2-TCP-连接"><a href="#2-TCP-连接" class="headerlink" title="2. TCP 连接"></a>2. TCP 连接</h2><p>HTTP 是基于 TCP 协议传输的,客户端与服务器通过三次握手建立起 TCP 连接，具体过程可参考：<a href="https://ad-gai-code.github.io/2021/11/02/TCP%E7%9A%84%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B/">TCP的三次握手</a>。</p>
 <h2 id="3-发送-HTTP-请求-前端-HTTP"><a href="#3-发送-HTTP-请求-前端-HTTP" class="headerlink" title="3. 发送 HTTP 请求(前端 HTTP)"></a>3. 发送 HTTP 请求(前端 HTTP)</h2><p>建立了TCP连接之后，发起一个<code>http</code>请求,发送<code>HTTP</code>请求的过程就是构建<code>HTTP</code>请求报文并通过TCP协议中发送到服务器指定端口(<code>HTTP</code>协议<code>80/8080</code>, <code>HTTPS</code>协议<code>443</code>)。<code>HTTP</code>请求报文是由三部分组成: <strong>请求行</strong>, <strong>请求报头</strong>和<strong>请求正文</strong>。</p>
 <h3 id="3-1-请求行"><a href="#3-1-请求行" class="headerlink" title="3.1 请求行"></a>3.1 请求行</h3><p>格式如下:<br><code>Method Request-URL HTTP-Version CRLF</code></p>
 <figure class="highlight http"><table><tr><td class="code"><pre><span class="line"><span class="attribute">eg</span><span class="punctuation">: </span>GET index.html HTTP/1.1</span><br></pre></td></tr></table></figure>
@@ -1991,7 +1991,7 @@
 <h3 id="4-2-响应报头"><a href="#4-2-响应报头" class="headerlink" title="4.2 响应报头"></a>4.2 响应报头</h3><p>常见的响应报头字段有: <code>Server</code>,<code> Connection</code>。</p>
 <h3 id="4-3-响应报文"><a href="#4-3-响应报文" class="headerlink" title="4.3 响应报文"></a>4.3 响应报文</h3><p>服务器返回给浏览器的文本信息，通常<code>HTML</code>,<code> CSS</code>,<code> JS</code>, 图片等文件就放在这一部分。</p>
 <h2 id="5-浏览器解析渲染页面"><a href="#5-浏览器解析渲染页面" class="headerlink" title="5. 浏览器解析渲染页面"></a>5. 浏览器解析渲染页面</h2><p>客户端浏览器解析HTML内容，这部分暂时没有深入学习。</p>
-<h2 id="6-连接结束-四次挥手"><a href="#6-连接结束-四次挥手" class="headerlink" title="6. 连接结束 (四次挥手)"></a>6. 连接结束 (四次挥手)</h2><p>具体过程可参考：<a href="">TCP 的四次挥手</a></p>
+<h2 id="6-连接结束-四次挥手"><a href="#6-连接结束-四次挥手" class="headerlink" title="6. 连接结束 (四次挥手)"></a>6. 连接结束 (四次挥手)</h2><p>具体过程可参考：<a href="https://ad-gai-code.github.io/2021/11/02/TCP%E7%9A%84%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/">TCP 的四次挥手</a></p>
 ]]></content>
       <categories>
         <category>计算机网</category>
