@@ -2001,7 +2001,7 @@
       </tags>
   </entry>
   <entry>
-    <title></title>
+    <title>重读 HashMap 源码，值得一品</title>
     <url>/2022/02/15/%E9%87%8D%E8%AF%BB%20HashMap%20%E6%BA%90%E7%A0%81%EF%BC%8C%E5%80%BC%E5%BE%97%E4%B8%80%E5%93%81/</url>
     <content><![CDATA[<h1 id="重读-HashMap-源码，值得一品"><a href="#重读-HashMap-源码，值得一品" class="headerlink" title="重读 HashMap 源码，值得一品"></a>重读 HashMap 源码，值得一品</h1><p>今天看面经的时候看到了 HashMap 的连环夺命问，故细致地重读一遍 HashMap 的源码，开始之前先把问题放在前面，带着问题去看更具有针对性：</p>
 <blockquote>
@@ -2012,6 +2012,8 @@
 <p>5、 Map map = new HashMap(1000); 当我们存入多少个元素时会触发map的扩容； Map map1 = new HashMap(10000); 我们存入第 10001个元素时会触发 map1 扩容吗</p>
 <p>6、为什么加载因子的默认值是 0.75，并且不推荐我们修改</p>
 </blockquote>
+<span id="more"></span>
+
 <h2 id="问题一：table-的初始化"><a href="#问题一：table-的初始化" class="headerlink" title="问题一：table 的初始化"></a>问题一：table 的初始化</h2><p>HashMap 的构造方法有如下 4 种：</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 构造方法 1</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 通过 指定的 initialCapacity 和 loadFactor 实例化一个空的 HashMap 对象</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">HashMap</span><span class="params">(<span class="keyword">int</span> initialCapacity, <span class="keyword">float</span> loadFactor)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (initialCapacity &lt; <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">&quot;Illegal initial capacity: &quot;</span> +</span><br><span class="line">                                           initialCapacity);</span><br><span class="line">    <span class="keyword">if</span> (initialCapacity &gt; MAXIMUM_CAPACITY)</span><br><span class="line">        initialCapacity = MAXIMUM_CAPACITY;</span><br><span class="line">    <span class="keyword">if</span> (loadFactor &lt;= <span class="number">0</span> || Float.isNaN(loadFactor))</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">&quot;Illegal load factor: &quot;</span> +</span><br><span class="line">                                           loadFactor);</span><br><span class="line">    <span class="keyword">this</span>.loadFactor = loadFactor;</span><br><span class="line">    <span class="keyword">this</span>.threshold = tableSizeFor(initialCapacity);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 构造方法 2</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 通过指定的 initialCapacity 和 默认的 loadFactor(0.75) 实例化一个空的 HashMap 对象</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">HashMap</span><span class="params">(<span class="keyword">int</span> initialCapacity)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>(initialCapacity, DEFAULT_LOAD_FACTOR);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 构造方法 3</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 通过默认的 initialCapacity 和 默认的 loadFactor(0.75) 实例化一个空的 HashMap 对象</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">HashMap</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.loadFactor = DEFAULT_LOAD_FACTOR; <span class="comment">// all other fields defaulted</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 构造方法 4</span></span><br><span class="line"><span class="comment"> * 通过指定的 Map 对象实例化一个 HashMap 对象</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">HashMap</span><span class="params">(Map&lt;? extends K, ? extends V&gt; m)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.loadFactor = DEFAULT_LOAD_FACTOR;</span><br><span class="line">    putMapEntries(m, <span class="keyword">false</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -2065,5 +2067,11 @@
 <h2 id="问题六：加载因子"><a href="#问题六：加载因子" class="headerlink" title="问题六：加载因子"></a>问题六：加载因子</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">为什么加载因子的默认值是 <span class="number">0.75</span>，并且不推荐我们修改</span><br><span class="line">    如果 loadFactor 太小，那么 map 中的 table 需要不断的扩容，扩容是个耗时的过程</span><br><span class="line">    如果 loadFactor 太大，那么 map 中 table 放满了也不不会扩容，导致冲突越来越多，解决冲突而起的链表越来越长，效率越来越低</span><br><span class="line">    而 <span class="number">0.75</span> 这是一个折中的值，是一个比较理想的值</span><br></pre></td></tr></table></figure>
 
 ]]></content>
+      <categories>
+        <category>java 集合</category>
+      </categories>
+      <tags>
+        <tag>java 集合</tag>
+      </tags>
   </entry>
 </search>
