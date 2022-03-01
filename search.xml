@@ -2257,6 +2257,8 @@
 <p>传输服务层提供了网络传输能力的定义和实现方法。它支持 Socket、HTTP 隧道、虚拟机管道等传输方式。Netty 对 TCP、UDP 等数据传输做了抽象和封装，用户可以更聚焦在业务逻辑实现上，而不必关系底层数据传输的细节。</p>
 </li>
 </ul>
+<span id="more"></span>
+
 <p><img src="https://gitee.com/AD-Gai-Code/pic-go/raw/master/CgqCHl-NO7eATPMMAAH8t8KvehQ985.png" alt="Drawing 0.png"></p>
 <p>本文将主要就 Netty 的核心层进行学习，了解 Neety 的核心层组件及其作用。</p>
 <h2 id="2-Netty-核心组件"><a href="#2-Netty-核心组件" class="headerlink" title="2. Netty 核心组件"></a>2. Netty 核心组件</h2><p>Netty 的逻辑处理架构为典型网络分层架构设计，共分为网络通信层、事件调度层、服务编排层，每一层各司其职。每层中包含的核心组件如下所示：</p>
