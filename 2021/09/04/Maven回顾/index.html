@@ -5,12 +5,12 @@
   
   <title>Maven 学习 | ADGai&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Maven高级1.maven基础知识回顾1.1 maven介绍maven 是一个项目管理工具，主要作用是在项目开发阶段对Java项目进行依赖管理和项目构建。 Maven使用项目对象模型（POM-project Object Model）概念，可以通过一小段描述信息来管理项目的构建，报告和文档的软件项目管理工具，在Maven中每个项目都相当于是一个对象，对象（项目）和对象（项目）之间是有关系的。关系">
+  <meta name="description" content="1.maven基础知识回顾1.1 maven介绍maven 是一个项目管理工具，主要作用是在项目开发阶段对Java项目进行依赖管理和项目构建。 Maven使用项目对象模型（POM-project Object Model）概念，可以通过一小段描述信息来管理项目的构建，报告和文档的软件项目管理工具，在Maven中每个项目都相当于是一个对象，对象（项目）和对象（项目）之间是有关系的。关系包含了：依赖、">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Maven 学习">
 <meta property="og:url" content="http://example.com/2021/09/04/Maven%E5%9B%9E%E9%A1%BE/index.html">
 <meta property="og:site_name" content="ADGai&#39;s Blog">
-<meta property="og:description" content="Maven高级1.maven基础知识回顾1.1 maven介绍maven 是一个项目管理工具，主要作用是在项目开发阶段对Java项目进行依赖管理和项目构建。 Maven使用项目对象模型（POM-project Object Model）概念，可以通过一小段描述信息来管理项目的构建，报告和文档的软件项目管理工具，在Maven中每个项目都相当于是一个对象，对象（项目）和对象（项目）之间是有关系的。关系">
+<meta property="og:description" content="1.maven基础知识回顾1.1 maven介绍maven 是一个项目管理工具，主要作用是在项目开发阶段对Java项目进行依赖管理和项目构建。 Maven使用项目对象模型（POM-project Object Model）概念，可以通过一小段描述信息来管理项目的构建，报告和文档的软件项目管理工具，在Maven中每个项目都相当于是一个对象，对象（项目）和对象（项目）之间是有关系的。关系包含了：依赖、">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gitee.com/AD-Gai-Code/pic-go/raw/master/2as.png">
 <meta property="og:image" content="https://gitee.com/AD-Gai-Code/pic-go/raw/master/33.png">
@@ -37,7 +37,7 @@
 <meta property="og:image" content="https://gitee.com/AD-Gai-Code/pic-go/raw/master/6666.png">
 <meta property="og:image" content="https://gitee.com/AD-Gai-Code/pic-go/raw/master/7777.png">
 <meta property="article:published_time" content="2021-09-04T14:32:51.513Z">
-<meta property="article:modified_time" content="2021-10-26T09:19:18.334Z">
+<meta property="article:modified_time" content="2022-03-01T13:15:02.198Z">
 <meta property="article:author" content="AiLaodu">
 <meta property="article:tag" content="Maven">
 <meta name="twitter:card" content="summary">
@@ -82,9 +82,9 @@
           
             <a class="main-nav-link" href="/">首页</a>
           
-            <a class="main-nav-link" href="/categories/life">生活</a>
+            <a class="main-nav-link" href="/categories">归档</a>
           
-            <a class="main-nav-link" href="/archives">归档</a>
+            <a class="main-nav-link" href="/tags">标签</a>
           
         
       -->
@@ -120,9 +120,9 @@
       
         <li><a href="/">首页</a></li>
       
-        <li><a href="/categories/life">生活</a></li>
+        <li><a href="/categories">归档</a></li>
       
-        <li><a href="/archives">归档</a></li>
+        <li><a href="/tags">标签</a></li>
       
       
     </ul>
@@ -155,7 +155,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Maven高级"><a href="#Maven高级" class="headerlink" title="Maven高级"></a>Maven高级</h2><h2 id="1-maven基础知识回顾"><a href="#1-maven基础知识回顾" class="headerlink" title="1.maven基础知识回顾"></a>1.maven基础知识回顾</h2><h3 id="1-1-maven介绍"><a href="#1-1-maven介绍" class="headerlink" title="1.1 maven介绍"></a>1.1 maven介绍</h3><p>maven 是一个项目管理工具，主要作用是在项目开发阶段对Java项目进行依赖管理和项目构建。</p>
+        <h2 id="1-maven基础知识回顾"><a href="#1-maven基础知识回顾" class="headerlink" title="1.maven基础知识回顾"></a>1.maven基础知识回顾</h2><h3 id="1-1-maven介绍"><a href="#1-1-maven介绍" class="headerlink" title="1.1 maven介绍"></a>1.1 maven介绍</h3><p>maven 是一个项目管理工具，主要作用是在项目开发阶段对Java项目进行依赖管理和项目构建。</p>
 <p>Maven使用项目对象模型（POM-project Object Model）概念，可以通过一小段描述信息来管理项目的构建，报告和文档的软件项目管理工具，在Maven中每个项目都相当于是一个对象，对象（项目）和对象（项目）之间是有关系的。关系包含了：依赖、继承、聚合，实现Maven项目可以更加方便的实现导入jar包、拆包项目等结果。</p>
 <span id="more"></span>
 
@@ -475,9 +475,9 @@
   
     <a href="/" class="mobile-nav-link">首页</a>
   
-    <a href="/categories/life" class="mobile-nav-link">生活</a>
+    <a href="/categories" class="mobile-nav-link">归档</a>
   
-    <a href="/archives" class="mobile-nav-link">归档</a>
+    <a href="/tags" class="mobile-nav-link">标签</a>
   
 </nav>
     -->

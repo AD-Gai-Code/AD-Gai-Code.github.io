@@ -5,16 +5,16 @@
   
   <title>java 并发编程：volatile 关键字 | ADGai&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="java 并发编程：volatile 关键字volatile 是 Java 提供的一种轻量级的同步机制。Java 语言包含两种内在的同步机制：同步块（或方法）和 volatile 变量，相比于 synchronized（synchronized通常称为重量级锁），volatile更轻量级，因为它不会引起线程上下文的切换和调度。但是volatile 变量的同步性较差（有时它更简单并且开销更低），而且">
+  <meta name="description" content="volatile 是 Java 提供的一种轻量级的同步机制。Java 语言包含两种内在的同步机制：同步块（或方法）和 volatile 变量，相比于 synchronized（synchronized通常称为重量级锁），volatile更轻量级，因为它不会引起线程上下文的切换和调度。但是volatile 变量的同步性较差（有时它更简单并且开销更低），而且其使用也更容易出错。 一.内存模型的相关概念">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java 并发编程：volatile 关键字">
 <meta property="og:url" content="http://example.com/2022/02/16/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%9Avolatile%E5%85%B3%E9%94%AE%E5%AD%97/index.html">
 <meta property="og:site_name" content="ADGai&#39;s Blog">
-<meta property="og:description" content="java 并发编程：volatile 关键字volatile 是 Java 提供的一种轻量级的同步机制。Java 语言包含两种内在的同步机制：同步块（或方法）和 volatile 变量，相比于 synchronized（synchronized通常称为重量级锁），volatile更轻量级，因为它不会引起线程上下文的切换和调度。但是volatile 变量的同步性较差（有时它更简单并且开销更低），而且">
+<meta property="og:description" content="volatile 是 Java 提供的一种轻量级的同步机制。Java 语言包含两种内在的同步机制：同步块（或方法）和 volatile 变量，相比于 synchronized（synchronized通常称为重量级锁），volatile更轻量级，因为它不会引起线程上下文的切换和调度。但是volatile 变量的同步性较差（有时它更简单并且开销更低），而且其使用也更容易出错。 一.内存模型的相关概念">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gitee.com/AD-Gai-Code/pic-go/raw/master/212219343783699.jpg">
 <meta property="article:published_time" content="2022-02-16T11:08:01.531Z">
-<meta property="article:modified_time" content="2022-02-19T08:34:26.206Z">
+<meta property="article:modified_time" content="2022-03-01T13:14:36.228Z">
 <meta property="article:author" content="AiLaodu">
 <meta property="article:tag" content="java 并发编程">
 <meta name="twitter:card" content="summary">
@@ -59,9 +59,9 @@
           
             <a class="main-nav-link" href="/">首页</a>
           
-            <a class="main-nav-link" href="/categories/life">生活</a>
+            <a class="main-nav-link" href="/categories">归档</a>
           
-            <a class="main-nav-link" href="/archives">归档</a>
+            <a class="main-nav-link" href="/tags">标签</a>
           
         
       -->
@@ -97,9 +97,9 @@
       
         <li><a href="/">首页</a></li>
       
-        <li><a href="/categories/life">生活</a></li>
+        <li><a href="/categories">归档</a></li>
       
-        <li><a href="/archives">归档</a></li>
+        <li><a href="/tags">标签</a></li>
       
       
     </ul>
@@ -132,7 +132,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="java-并发编程：volatile-关键字"><a href="#java-并发编程：volatile-关键字" class="headerlink" title="java 并发编程：volatile 关键字"></a>java 并发编程：volatile 关键字</h1><p>volatile 是 Java 提供的一种轻量级的同步机制。Java 语言包含两种内在的同步机制：同步块（或方法）和 volatile 变量，相比于 synchronized（synchronized通常称为重量级锁），volatile更轻量级，因为它不会引起线程上下文的切换和调度。但是volatile 变量的同步性较差（有时它更简单并且开销更低），而且其使用也更容易出错。</p>
+        <p>volatile 是 Java 提供的一种轻量级的同步机制。Java 语言包含两种内在的同步机制：同步块（或方法）和 volatile 变量，相比于 synchronized（synchronized通常称为重量级锁），volatile更轻量级，因为它不会引起线程上下文的切换和调度。但是volatile 变量的同步性较差（有时它更简单并且开销更低），而且其使用也更容易出错。</p>
 <h2 id="一-内存模型的相关概念"><a href="#一-内存模型的相关概念" class="headerlink" title="一.内存模型的相关概念"></a>一.内存模型的相关概念</h2><p>计算机在执行程序时，每条指令都是在 CPU 中执行的，而执行指令过程中，势必涉及到数据的读取和写入。由于程序运行过程中的临时数据是存放在主内存（物理内存）当中的，这时就存在一个问题，由于 CPU 执行速度很快，而从内存读取数据和向内存写入数据的过程跟 CPU 执行指令的速度比起来要慢的多，因此如果任何时候对数据的操作都要通过和内存的交互来进行，会大大降低指令执行的速度。因此在 CPU 里面就有了高速缓存。</p>
 <span id="more"></span>
 
@@ -344,9 +344,9 @@
   
     <a href="/" class="mobile-nav-link">首页</a>
   
-    <a href="/categories/life" class="mobile-nav-link">生活</a>
+    <a href="/categories" class="mobile-nav-link">归档</a>
   
-    <a href="/archives" class="mobile-nav-link">归档</a>
+    <a href="/tags" class="mobile-nav-link">标签</a>
   
 </nav>
     -->

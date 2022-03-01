@@ -53,9 +53,9 @@
           
             <a class="main-nav-link" href="/">首页</a>
           
-            <a class="main-nav-link" href="/categories/life">生活</a>
+            <a class="main-nav-link" href="/categories">归档</a>
           
-            <a class="main-nav-link" href="/archives">归档</a>
+            <a class="main-nav-link" href="/tags">标签</a>
           
         
       -->
@@ -91,9 +91,9 @@
       
         <li><a href="/">首页</a></li>
       
-        <li><a href="/categories/life">生活</a></li>
+        <li><a href="/categories">归档</a></li>
       
-        <li><a href="/archives">归档</a></li>
+        <li><a href="/tags">标签</a></li>
       
       
     </ul>
@@ -193,7 +193,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="java-并发编程：volatile-关键字"><a href="#java-并发编程：volatile-关键字" class="headerlink" title="java 并发编程：volatile 关键字"></a>java 并发编程：volatile 关键字</h1><p>volatile 是 Java 提供的一种轻量级的同步机制。Java 语言包含两种内在的同步机制：同步块（或方法）和 volatile 变量，相比于 synchronized（synchronized通常称为重量级锁），volatile更轻量级，因为它不会引起线程上下文的切换和调度。但是volatile 变量的同步性较差（有时它更简单并且开销更低），而且其使用也更容易出错。</p>
+        <p>volatile 是 Java 提供的一种轻量级的同步机制。Java 语言包含两种内在的同步机制：同步块（或方法）和 volatile 变量，相比于 synchronized（synchronized通常称为重量级锁），volatile更轻量级，因为它不会引起线程上下文的切换和调度。但是volatile 变量的同步性较差（有时它更简单并且开销更低），而且其使用也更容易出错。</p>
 <h2 id="一-内存模型的相关概念"><a href="#一-内存模型的相关概念" class="headerlink" title="一.内存模型的相关概念"></a>一.内存模型的相关概念</h2><p>计算机在执行程序时，每条指令都是在 CPU 中执行的，而执行指令过程中，势必涉及到数据的读取和写入。由于程序运行过程中的临时数据是存放在主内存（物理内存）当中的，这时就存在一个问题，由于 CPU 执行速度很快，而从内存读取数据和向内存写入数据的过程跟 CPU 执行指令的速度比起来要慢的多，因此如果任何时候对数据的操作都要通过和内存的交互来进行，会大大降低指令执行的速度。因此在 CPU 里面就有了高速缓存。</p>
         
           <p class="article-more-link">
@@ -246,7 +246,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="重读-HashMap-源码，值得一品"><a href="#重读-HashMap-源码，值得一品" class="headerlink" title="重读 HashMap 源码，值得一品"></a>重读 HashMap 源码，值得一品</h1><p>今天看面经的时候看到了 HashMap 的连环夺命问，故细致地重读一遍 HashMap 的源码，开始之前先把问题放在前面，带着问题去看更具有针对性：</p>
+        <p>今天看面经的时候看到了 HashMap 的连环夺命问，故细致地重读一遍 HashMap 的源码，开始之前先把问题放在前面，带着问题去看更具有针对性：</p>
 <blockquote>
 <p>1、table 的初始化时机是什么时候，初始化的 table.length 是多少、阀值（threshold）是多少，实际能容下多少元素</p>
 <p>2、什么时候触发扩容，扩容之后的 table.length、阀值各是多少？</p>
@@ -358,7 +358,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="TCP-的四次挥手"><a href="#TCP-的四次挥手" class="headerlink" title="TCP 的四次挥手"></a>TCP 的四次挥手</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qzcsu/article/details/72861891">(45条消息) 两张动图-彻底明白TCP的三次握手与四次挥手_qzcsu的博客-CSDN博客_三次握手四次挥手详解</a></p>
+        <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qzcsu/article/details/72861891">(45条消息) 两张动图-彻底明白TCP的三次握手与四次挥手_qzcsu的博客-CSDN博客_三次握手四次挥手详解</a></p>
 <h2 id="TCP-四次挥手的过程"><a href="#TCP-四次挥手的过程" class="headerlink" title="TCP 四次挥手的过程"></a>TCP 四次挥手的过程</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">A：老师，下课了。</span><br><span class="line">B：好，我知道了，我说完这点。</span><br><span class="line">B：好了，说完了，下课吧。</span><br><span class="line">A：谢谢老师，老师再见。</span><br></pre></td></tr></table></figure>
         
           <p class="article-more-link">
@@ -411,7 +411,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="TCP的三次握手"><a href="#TCP的三次握手" class="headerlink" title="TCP的三次握手"></a>TCP的三次握手</h1><h2 id="1-IP协议"><a href="#1-IP协议" class="headerlink" title="1. IP协议"></a>1. IP协议</h2><ul>
+        <h2 id="1-IP协议"><a href="#1-IP协议" class="headerlink" title="1. IP协议"></a>1. IP协议</h2><ul>
 <li><code>IP</code>协议是无连接的通信协议，他不会占用两个正在通信的计算机之间的通信线路，这样<code>IP</code>就降低了对网络线路的需求，每条线可以同时满足许多不同的计算机之间的通信需要。</li>
 <li>通过<code>IP</code>消息或者其他数据会被分割为较小的独立的包，并通过因特网在计算机之间传送。</li>
 <li><code>IP</code>负责将每个包路由至他的目的地，但<code>IP</code>协议没有确认数据包是否按顺序发送或者包是否损坏，所以<code>IP</code>数据包是不可靠的，需要由他的上层协议作出控制。</li>
@@ -693,9 +693,9 @@
   
     <a href="/" class="mobile-nav-link">首页</a>
   
-    <a href="/categories/life" class="mobile-nav-link">生活</a>
+    <a href="/categories" class="mobile-nav-link">归档</a>
   
-    <a href="/archives" class="mobile-nav-link">归档</a>
+    <a href="/tags" class="mobile-nav-link">标签</a>
   
 </nav>
     -->
