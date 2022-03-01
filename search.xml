@@ -2242,4 +2242,319 @@
         <tag>java 并发编程</tag>
       </tags>
   </entry>
+  <entry>
+    <title>浅谈 Netty 核心组件</title>
+    <url>/2022/03/01/%E6%B5%85%E8%B0%88Netty%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6/</url>
+    <content><![CDATA[<h2 id="1-Netty-的整体结构"><a href="#1-Netty-的整体结构" class="headerlink" title="1. Netty 的整体结构"></a>1. Netty 的整体结构</h2><p>Netty 官网给出了有关 Netty 的整体功能模块结构，从图中，我们可以清晰地看出 Netty 结构一共分为三个模块：</p>
+<ul>
+<li><p>Core 核心层</p>
+<p>Core 核心层是 Netty 最精华的内容，它提供了底层网络通信的通用抽象和实现，包括可扩展的事件模型、通用的通信 API、支持零拷贝的 ByteBuf 等。</p>
+</li>
+<li><p>Protocol Support 协议支持层</p>
+<p>协议支持层基本上覆盖了主流协议的编解码实现，如 HTTP、SSL、Protobuf、压缩、大文件传输、WebSocket、文本、二进制等主流协议，此外 Netty 还支持自定义应用层协议。Netty 丰富的协议支持降低了用户的开发成本，基于 Netty 我们可以快速开发 HTTP、WebSocket 等服务。</p>
+</li>
+<li><p>Transport Service 传输服务层</p>
+<p>传输服务层提供了网络传输能力的定义和实现方法。它支持 Socket、HTTP 隧道、虚拟机管道等传输方式。Netty 对 TCP、UDP 等数据传输做了抽象和封装，用户可以更聚焦在业务逻辑实现上，而不必关系底层数据传输的细节。</p>
+</li>
+</ul>
+<p><img src="https://gitee.com/AD-Gai-Code/pic-go/raw/master/CgqCHl-NO7eATPMMAAH8t8KvehQ985.png" alt="Drawing 0.png"></p>
+<p>本文将主要就 Netty 的核心层进行学习，了解 Neety 的核心层组件及其作用。</p>
+<h2 id="2-Netty-核心组件"><a href="#2-Netty-核心组件" class="headerlink" title="2. Netty 核心组件"></a>2. Netty 核心组件</h2><p>Netty 的逻辑处理架构为典型网络分层架构设计，共分为网络通信层、事件调度层、服务编排层，每一层各司其职。每层中包含的核心组件如下所示：</p>
+<ul>
+<li>网络通信层<ul>
+<li>Bootstrap</li>
+<li>SeverBootstrap</li>
+<li>Channel</li>
+</ul>
+</li>
+<li>事件调度层<ul>
+<li>EventloopGroup</li>
+<li>Eventloop</li>
+</ul>
+</li>
+<li>服务编排层<ul>
+<li>ChannelPipeLine</li>
+<li>ChannelHandler</li>
+<li>ChannelHandlerContext</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://gitee.com/AD-Gai-Code/pic-go/raw/master/Ciqc1F-NO9KAUOtaAAE1S5uRlDE275.png" alt="Drawing 1.png"></p>
+<p>接下来将就每一个组件进行学习。</p>
+<h2 id="3-网络通信层"><a href="#3-网络通信层" class="headerlink" title="3. 网络通信层"></a>3. 网络通信层</h2><h3 id="3-1-Bootstrap-amp-SeverBootstrap（启动引导类）"><a href="#3-1-Bootstrap-amp-SeverBootstrap（启动引导类）" class="headerlink" title="3.1 Bootstrap &amp; SeverBootstrap（启动引导类）"></a>3.1 Bootstrap &amp; SeverBootstrap（启动引导类）</h3><p>2 个类均继承 AbstraBootstrap</p>
+<p><strong>Bootstrap 用于启动一个 Netty TCP 客户端，是客户端的启动引导类/辅助类。</strong></p>
+<blockquote>
+<ul>
+<li>通常使用 <code>connet(...)</code> 方法连接到远程的主机和端口，作为一个 Netty TCP 客户端。</li>
+<li><code>Bootstrap</code> 也可以通过 <code>bind()</code> 方法绑定本地的一个端口，作为 UDP 协议通信中的一端。</li>
+<li>仅仅需要使用<strong>一个</strong> EventLoopGroup</li>
+</ul>
+</blockquote>
+<p>具体使用方法如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">EventLoopGroup group = <span class="keyword">new</span> NioEventLoopGroup();</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="comment">//创建客户端启动引导/辅助类：Bootstrap</span></span><br><span class="line">            Bootstrap bootstrap = <span class="keyword">new</span> Bootstrap();</span><br><span class="line">            <span class="comment">//指定线程模型</span></span><br><span class="line">            bootstrap.group(group).</span><br><span class="line">                    ......</span><br><span class="line">            <span class="comment">// 尝试建立连接</span></span><br><span class="line">            ChannelFuture f = bootstrap.connect(host, port).sync();</span><br><span class="line">            f.channel().closeFuture().sync();</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    <span class="comment">// 优雅关闭相关线程组资源</span></span><br><span class="line">    group.shutdownGracefully();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong><code>ServerBootstrap</code> 服务端的启动引导类</strong></p>
+<blockquote>
+<ul>
+<li>通常使用 <code>bind(...)</code> 方法绑定本地的端口上，然后等待客户端的连接。</li>
+<li>使用<strong>两个</strong> EventLoopGroup 对象( 当然这个对象可以引用同一个对象 )：第一个用于处理它本地 Socket <strong>连接</strong>的 IO 事件处理，而第二个责负责处理远程客户端的 IO 事件处理。</li>
+</ul>
+</blockquote>
+<p>具体使用方法如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 1.bossGroup 用于接收连接，workerGroup 用于具体的处理</span></span><br><span class="line">EventLoopGroup bossGroup = <span class="keyword">new</span> NioEventLoopGroup(<span class="number">1</span>);</span><br><span class="line">EventLoopGroup workerGroup = <span class="keyword">new</span> NioEventLoopGroup();</span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">    	<span class="comment">//2.创建服务端启动引导/辅助类：ServerBootstrap</span></span><br><span class="line">    	ServerBootstrap b = <span class="keyword">new</span> ServerBootstrap();</span><br><span class="line">    	<span class="comment">//3.给引导类配置两大线程组,确定了线程模型</span></span><br><span class="line">    	b.group(bossGroup, workerGroup).</span><br><span class="line">        	......</span><br><span class="line">        	<span class="comment">// 6.绑定端口</span></span><br><span class="line">        	ChannelFuture f = b.bind(port).sync();</span><br><span class="line">    	<span class="comment">// 等待连接关闭</span></span><br><span class="line">    	f.channel().closeFuture().sync();</span><br><span class="line">	&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    	<span class="comment">//7.优雅关闭相关线程组资源</span></span><br><span class="line">    	bossGroup.shutdownGracefully();</span><br><span class="line">    	workerGroup.shutdownGracefully();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2-Channel（网络操作抽象类）"><a href="#3-2-Channel（网络操作抽象类）" class="headerlink" title="3.2 Channel（网络操作抽象类）"></a>3.2 Channel（网络操作抽象类）</h3><p><code>Channel</code> 接口是 Netty 对网络操作抽象类。通过 <code>Channel</code> 我们可以进行 I/O 操作，如 bind, connect,  read, write。</p>
+<p>一旦客户端成功连接服务端，就会新建一个 <code>Channel</code> 同该用户端进行绑定，比较常用的<code>Channel</code>接口实现类是 ：</p>
+<ul>
+<li><code>NioServerSocketChannel</code>（服务端）</li>
+<li><code>NioSocketChannel</code>（客户端）</li>
+</ul>
+<h4 id="ChannelFuture"><a href="#ChannelFuture" class="headerlink" title="ChannelFuture"></a>ChannelFuture</h4><p>看下面的客户端代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ChannelFuture channelFuture = <span class="keyword">new</span> Bootstrap()</span><br><span class="line">    .group(<span class="keyword">new</span> NioEventLoopGroup())</span><br><span class="line">    .channel(NioSocketChannel.class)</span><br><span class="line">    .handler(<span class="keyword">new</span> ChannelInitializer&lt;Channel&gt;() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">initChannel</span><span class="params">(Channel ch)</span> </span>&#123;</span><br><span class="line">            ch.pipeline().addLast(<span class="keyword">new</span> StringEncoder());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    .connect(<span class="string">&quot;127.0.0.1&quot;</span>, <span class="number">8080</span>); <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line">channelFuture.sync().channel().writeAndFlush(<span class="keyword">new</span> Date() + <span class="string">&quot;: hello world!&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>1 处返回的是 ChannelFuture 对象，它的作用是利用 channel() 方法来获取 Channel 对象</li>
+</ul>
+<blockquote>
+<p><strong>注意</strong> connect 方法是异步的，意味着不等连接建立，方法执行就返回了。因此 channelFuture 对象中不能【立刻】获得到正确的 Channel 对象.</p>
+</blockquote>
+<p>实验如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ChannelFuture channelFuture = <span class="keyword">new</span> Bootstrap()</span><br><span class="line">    .group(<span class="keyword">new</span> NioEventLoopGroup())</span><br><span class="line">    .channel(NioSocketChannel.class)</span><br><span class="line">    .handler(<span class="keyword">new</span> ChannelInitializer&lt;Channel&gt;() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">initChannel</span><span class="params">(Channel ch)</span> </span>&#123;</span><br><span class="line">            ch.pipeline().addLast(<span class="keyword">new</span> StringEncoder());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    .connect(<span class="string">&quot;127.0.0.1&quot;</span>, <span class="number">8080</span>);</span><br><span class="line"></span><br><span class="line">System.out.println(channelFuture.channel()); <span class="comment">// 1</span></span><br><span class="line">channelFuture.sync(); <span class="comment">// 2</span></span><br><span class="line">System.out.println(channelFuture.channel()); <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>执行到 1 时，连接未建立，打印 <code>[id: 0x2e1884dd]</code></li>
+<li>执行到 2 时，sync 方法是同步等待连接建立完成</li>
+<li>执行到 3 时，连接肯定建立了，打印 <code>[id: 0x2e1884dd, L:/127.0.0.1:57191 - R:/127.0.0.1:8080]</code></li>
+</ul>
+<p>除了用 sync 方法可以让异步操作同步以外，通过 ChannelFuture 接口的 <code>addListener(...)</code> 方法，注册一个 ChannelFutureListener，当操作执行成功或者失败时，监听就会自动触发返回结果。代码验证如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ChannelFuture channelFuture = <span class="keyword">new</span> Bootstrap()</span><br><span class="line">    .group(<span class="keyword">new</span> NioEventLoopGroup())</span><br><span class="line">    .channel(NioSocketChannel.class)</span><br><span class="line">    .handler(<span class="keyword">new</span> ChannelInitializer&lt;Channel&gt;() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">initChannel</span><span class="params">(Channel ch)</span> </span>&#123;</span><br><span class="line">            ch.pipeline().addLast(<span class="keyword">new</span> StringEncoder());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    .connect(<span class="string">&quot;127.0.0.1&quot;</span>, <span class="number">8080</span>);</span><br><span class="line">System.out.println(channelFuture.channel()); <span class="comment">// 1</span></span><br><span class="line">channelFuture.addListener((ChannelFutureListener) future -&gt; &#123;</span><br><span class="line">    System.out.println(future.channel()); <span class="comment">// 2</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>执行到 1 时，连接未建立，打印 <code>[id: 0x749124ba]</code></li>
+<li>ChannelFutureListener 会在连接建立时被调用（其中 operationComplete 方法），因此执行到 2 时，连接肯定建立了，打印 <code>[id: 0x749124ba, L:/127.0.0.1:57351 - R:/127.0.0.1:8080]</code></li>
+</ul>
+<h2 id="4-事件调度层"><a href="#4-事件调度层" class="headerlink" title="4. 事件调度层"></a>4. 事件调度层</h2><h3 id="EventLoop-amp-amp-EventLoopGroup"><a href="#EventLoop-amp-amp-EventLoopGroup" class="headerlink" title="EventLoop &amp;&amp; EventLoopGroup"></a>EventLoop &amp;&amp; EventLoopGroup</h3><p><code>EventLoop</code>（事件循环）接口可以说是 Netty 中最核心的概念了，**<code>EventLoop</code> 的主要作用实际就是责监听网络事件并调用事件处理器进行相关 I/O 操作（读写）的处理。**其本质是一个单线程执行器（同时维护了一个 Selector），里面有 run 方法处理 Channel 上源源不断的 io 事件。</p>
+<blockquote>
+<ul>
+<li>一个 EventLoopGroup 包含一个或多个 EventLoop ，即 EventLoopGroup : EventLoop = <code>1 : n</code> 。</li>
+<li>一个 EventLoop 在它的生命周期内，只能与一个 Thread 绑定，即 EventLoop : Thread = <code>1 : 1</code> 。</li>
+<li>所有有 EventLoop 处理的 I/O 事件都将在它<strong>专有</strong>的 Thread 上被处理，从而保证线程安全，即 Thread : EventLoop = <code>1 : 1</code>。</li>
+<li>一个 Channel 在它的生命周期内只能注册到一个 EventLoop 上，即 Channel : EventLoop = <code>n : 1</code> 。</li>
+<li>一个 EventLoop 可被分配至一个或多个 Channel ，即 EventLoop : Channel = <code>1 : n</code> 。</li>
+</ul>
+<p>当一个连接到达时，Netty 就会创建一个 Channel，然后从 EventLoopGroup 中分配一个 EventLoop 来给这个 Channel 绑定上，在该 Channel 的整个生命周期中都是有这个绑定的 EventLoop 来服务的。</p>
+</blockquote>
+<p><code>EventLoopGroup</code> 是一组 <code>EventLoop</code>，<code>Channel</code>一般会调用 <code>EventLoopGroup</code> 的 <code>register</code> 方法来绑定其中一个 <code>EventLoop</code>，后续这个 <code>Channel</code> 上的 io 事件都由此 <code>EventLoop</code> 来处理（保证了 I/O 事件处理时的线程安全）</p>
+<ul>
+<li><p>继承自 netty 自己的 <code>EventExecutorGroup</code></p>
+<ul>
+<li>实现了 <code>Iterable</code> 接口提供遍历 <code>EventLoop</code> 的能力</li>
+<li>另有 <code>next</code> 方法获取集合中下一个 <code>EventLoop </code></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 内部创建了两个 EventLoop, 每个 EventLoop 维护一个线程</span></span><br><span class="line">DefaultEventLoopGroup group = <span class="keyword">new</span> DefaultEventLoopGroup(<span class="number">2</span>);</span><br><span class="line">System.out.println(group.next());</span><br><span class="line">System.out.println(group.next());</span><br><span class="line">System.out.println(group.next());</span><br><span class="line">输出</span><br><span class="line">io.netty.channel.DefaultEventLoop@60f82f98</span><br><span class="line">io.netty.channel.DefaultEventLoop@35f983a6</span><br><span class="line">io.netty.channel.DefaultEventLoop@60f82f98</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<p><img src="https://images.xiaozhuanlan.com/photo/2021/bf4a8a21f5e3426a477ab019a5460bee.png" alt="img"></p>
+<h2 id="5-服务编排层"><a href="#5-服务编排层" class="headerlink" title="5. 服务编排层"></a>5. 服务编排层</h2><h3 id="ChannelHandler（消息处理器）-和-ChannelPipeline（ChannelHandler-对象链表）"><a href="#ChannelHandler（消息处理器）-和-ChannelPipeline（ChannelHandler-对象链表）" class="headerlink" title="ChannelHandler（消息处理器） 和 ChannelPipeline（ChannelHandler 对象链表）"></a>ChannelHandler（消息处理器） 和 ChannelPipeline（ChannelHandler 对象链表）</h3><p>先看下面这段代码，我们指定了序列化编解码器以及自定义的 <code>ChannelHandler</code> 处理消息。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">b.group(eventLoopGroup)</span><br><span class="line">    .handler(<span class="keyword">new</span> ChannelInitializer&lt;SocketChannel&gt;() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">initChannel</span><span class="params">(SocketChannel ch)</span> </span>&#123;</span><br><span class="line">            ch.pipeline().addLast(<span class="keyword">new</span> NettyKryoDecoder(kryoSerializer, RpcResponse.class));</span><br><span class="line">            ch.pipeline().addLast(<span class="keyword">new</span> NettyKryoEncoder(kryoSerializer, RpcRequest.class));</span><br><span class="line">            ch.pipeline().addLast(<span class="keyword">new</span> KryoClientHandler());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li><p>当 <code>Channel</code> 被创建时，它会被自动地分配到它专属的 <code>ChannelPipeline</code>。 一个<code>Channel</code>包含一个 <code>ChannelPipeline</code>。 <code>ChannelPipeline</code> 为 <code>ChannelHandler</code> 的链，一个 pipeline 上可以有多个 <code>ChannelHandler</code>。</p>
+</li>
+<li><p>我们可以在 <code>ChannelPipeline</code> 上通过 <code>addLast()</code> 方法添加一个或者多个<code>ChannelHandler</code> （_一个数据或者事件可能会被多个 Handler 处理_） .当一个 <code>ChannelHandler</code> 处理完之后就将数据交给下一个 <code>ChannelHandler</code> 。</p>
+</li>
+<li><p>当 <code>ChannelHandler</code> 被添加到的 <code>ChannelPipeline</code> 它得到一个 <code>ChannelHandlerContext</code>，它代表一个 <code>ChannelHandler</code> 和 <code>ChannelPipeline</code> 之间的“绑定”。 <code>ChannelPipeline</code> 通过 <code>ChannelHandlerContext</code>来间接管理 <code>ChannelHandler</code> 。</p>
+</li>
+</ul>
+<blockquote>
+<p>打个比方，每个 Channel 是一个产品的加工车间，Pipeline 是车间中的流水线，ChannelHandler 就是流水线上的各道工序，而后面要说的 ByteBuf 是原材料，经过很多工序的加工：先经过一道道入站工序，再经过一道道出站工序最终变成产品。</p>
+</blockquote>
+<h2 id="6-ByteBuf（字节容器）"><a href="#6-ByteBuf（字节容器）" class="headerlink" title="6. ByteBuf（字节容器）"></a>6. ByteBuf（字节容器）</h2><p><strong>网络通信最终都是通过字节流进行传输的。 <code>ByteBuf</code> 就是 Netty 提供的一个字节容器，其内部是一个字节数组。</strong> 当我们通过 Netty 传输数据的时候，就是通过 <code>ByteBuf</code> 进行的。</p>
+<h4 id="1）创建"><a href="#1）创建" class="headerlink" title="1）创建"></a>1）创建</h4><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ByteBuf buffer = ByteBufAllocator.DEFAULT.buffer(<span class="number">10</span>);</span><br><span class="line">log(buffer);</span><br></pre></td></tr></table></figure>
+
+<p>上面代码创建了一个默认的 ByteBuf（池化基于直接内存的 ByteBuf），初始容量是 10</p>
+<p>输出</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">read index:0 write index:0 capacity:10</span><br></pre></td></tr></table></figure>
+
+<p>其中 log 方法参考如下</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">log</span><span class="params">(ByteBuf buffer)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> length = buffer.readableBytes();</span><br><span class="line">    <span class="keyword">int</span> rows = length / <span class="number">16</span> + (length % <span class="number">15</span> == <span class="number">0</span> ? <span class="number">0</span> : <span class="number">1</span>) + <span class="number">4</span>;</span><br><span class="line">    StringBuilder buf = <span class="keyword">new</span> StringBuilder(rows * <span class="number">80</span> * <span class="number">2</span>)</span><br><span class="line">        .append(<span class="string">&quot;read index:&quot;</span>).append(buffer.readerIndex())</span><br><span class="line">        .append(<span class="string">&quot; write index:&quot;</span>).append(buffer.writerIndex())</span><br><span class="line">        .append(<span class="string">&quot; capacity:&quot;</span>).append(buffer.capacity())</span><br><span class="line">        .append(NEWLINE);</span><br><span class="line">    appendPrettyHexDump(buf, buffer);</span><br><span class="line">    System.out.println(buf.toString());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2）直接内存-vs-堆内存"><a href="#2）直接内存-vs-堆内存" class="headerlink" title="2）直接内存 vs 堆内存"></a>2）直接内存 vs 堆内存</h4><p>可以使用下面的代码来创建池化基于堆的 ByteBuf</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ByteBuf buffer = ByteBufAllocator.DEFAULT.heapBuffer(<span class="number">10</span>);</span><br></pre></td></tr></table></figure>
+
+<p>也可以使用下面的代码来创建池化基于直接内存的 ByteBuf</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">ByteBuf buffer = ByteBufAllocator.DEFAULT.directBuffer(<span class="number">10</span>);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>直接内存创建和销毁的代价昂贵，但读写性能高（少一次内存复制），适合配合池化功能一起用</li>
+<li>直接内存对 GC 压力小，因为这部分内存不受 JVM 垃圾回收的管理，但也要注意及时主动释放</li>
+</ul>
+<h4 id="3）池化-vs-非池化"><a href="#3）池化-vs-非池化" class="headerlink" title="3）池化 vs 非池化"></a>3）池化 vs 非池化</h4><p>池化的最大意义在于可以重用 ByteBuf，优点有</p>
+<ul>
+<li>没有池化，则每次都得创建新的 ByteBuf 实例，这个操作对直接内存代价昂贵，就算是堆内存，也会增加 GC 压力</li>
+<li>有了池化，则可以重用池中 ByteBuf 实例，并且采用了与 jemalloc 类似的内存分配算法提升分配效率</li>
+<li>高并发时，池化功能更节约内存，减少内存溢出的可能</li>
+</ul>
+<p>池化功能是否开启，可以通过下面的系统环境变量来设置</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">-Dio.netty.allocator.type=&#123;unpooled|pooled&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>4.1 以后，非 Android 平台默认启用池化实现，Android 平台启用非池化实现</li>
+<li>4.1 之前，池化功能还不成熟，默认是非池化实现</li>
+</ul>
+<h4 id="4）组成"><a href="#4）组成" class="headerlink" title="4）组成"></a>4）组成</h4><p>ByteBuf 由四部分组成</p>
+<p><img src="D:/java/Netty教程源码资料/讲义/Netty-讲义/img/0010.png"></p>
+<p>最开始读写指针都在 0 位置</p>
+<h4 id="5）写入"><a href="#5）写入" class="headerlink" title="5）写入"></a>5）写入</h4><p>方法列表，省略一些不重要的方法</p>
+<table>
+<thead>
+<tr>
+<th>方法签名</th>
+<th>含义</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>writeBoolean(boolean value)</td>
+<td>写入 boolean 值</td>
+<td>用一字节 01|00 代表 true|false</td>
+</tr>
+<tr>
+<td>writeByte(int value)</td>
+<td>写入 byte 值</td>
+<td></td>
+</tr>
+<tr>
+<td>writeShort(int value)</td>
+<td>写入 short 值</td>
+<td></td>
+</tr>
+<tr>
+<td>writeInt(int value)</td>
+<td>写入 int 值</td>
+<td>Big Endian，即 0x250，写入后 00 00 02 50</td>
+</tr>
+<tr>
+<td>writeIntLE(int value)</td>
+<td>写入 int 值</td>
+<td>Little Endian，即 0x250，写入后 50 02 00 00</td>
+</tr>
+<tr>
+<td>writeLong(long value)</td>
+<td>写入 long 值</td>
+<td></td>
+</tr>
+<tr>
+<td>writeChar(int value)</td>
+<td>写入 char 值</td>
+<td></td>
+</tr>
+<tr>
+<td>writeFloat(float value)</td>
+<td>写入 float 值</td>
+<td></td>
+</tr>
+<tr>
+<td>writeDouble(double value)</td>
+<td>写入 double 值</td>
+<td></td>
+</tr>
+<tr>
+<td>writeBytes(ByteBuf src)</td>
+<td>写入 netty 的 ByteBuf</td>
+<td></td>
+</tr>
+<tr>
+<td>writeBytes(byte[] src)</td>
+<td>写入 byte[]</td>
+<td></td>
+</tr>
+<tr>
+<td>writeBytes(ByteBuffer src)</td>
+<td>写入 nio 的 ByteBuffer</td>
+<td></td>
+</tr>
+<tr>
+<td>int writeCharSequence(CharSequence sequence, Charset charset)</td>
+<td>写入字符串</td>
+<td></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>注意</p>
+<ul>
+<li>这些方法的未指明返回值的，其返回值都是 ByteBuf，意味着可以链式调用</li>
+<li>网络传输，默认习惯是 Big Endian</li>
+</ul>
+</blockquote>
+<p>先写入 4 个字节</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">buffer.writeBytes(<span class="keyword">new</span> <span class="keyword">byte</span>[]&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>&#125;);</span><br><span class="line">log(buffer);</span><br></pre></td></tr></table></figure>
+
+<p>结果是</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">read index:0 write index:4 capacity:10</span><br><span class="line">         +-------------------------------------------------+</span><br><span class="line">         |  0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f |</span><br><span class="line">+--------+-------------------------------------------------+----------------+</span><br><span class="line">|00000000| 01 02 03 04                                     |....            |</span><br><span class="line">+--------+-------------------------------------------------+----------------+</span><br></pre></td></tr></table></figure>
+
+<p>再写入一个 int 整数，也是 4 个字节</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">buffer.writeInt(<span class="number">5</span>);</span><br><span class="line">log(buffer);</span><br></pre></td></tr></table></figure>
+
+<p>结果是</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">read index:0 write index:8 capacity:10</span><br><span class="line">         +-------------------------------------------------+</span><br><span class="line">         |  0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f |</span><br><span class="line">+--------+-------------------------------------------------+----------------+</span><br><span class="line">|00000000| 01 02 03 04 00 00 00 05                         |........        |</span><br><span class="line">+--------+-------------------------------------------------+----------------+</span><br></pre></td></tr></table></figure>
+
+
+
+<p>还有一类方法是 set 开头的一系列方法，也可以写入数据，但不会改变写指针位置</p>
+<h4 id="6）扩容"><a href="#6）扩容" class="headerlink" title="6）扩容"></a>6）扩容</h4><p>再写入一个 int 整数时，容量不够了（初始容量是 10），这时会引发扩容</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">buffer.writeInt(<span class="number">6</span>);</span><br><span class="line">log(buffer);</span><br></pre></td></tr></table></figure>
+
+<p>扩容规则是</p>
+<ul>
+<li>如何写入后数据大小未超过 512，则选择下一个 16 的整数倍，例如写入后大小为 12 ，则扩容后 capacity 是 16</li>
+<li>如果写入后数据大小超过 512，则选择下一个 2^n，例如写入后大小为 513，则扩容后 capacity 是 2^10^=1024（2^9^=512 已经不够了）</li>
+<li>扩容不能超过 max capacity 会报错</li>
+</ul>
+<p>结果是</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">read index:0 write index:12 capacity:16</span><br><span class="line">         +-------------------------------------------------+</span><br><span class="line">         |  0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f |</span><br><span class="line">+--------+-------------------------------------------------+----------------+</span><br><span class="line">|00000000| 01 02 03 04 00 00 00 05 00 00 00 06             |............    |</span><br><span class="line">+--------+-------------------------------------------------+----------------+</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="7）读取"><a href="#7）读取" class="headerlink" title="7）读取"></a>7）读取</h4><p>例如读了 4 次，每次一个字节</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">System.out.println(buffer.readByte());</span><br><span class="line">System.out.println(buffer.readByte());</span><br><span class="line">System.out.println(buffer.readByte());</span><br><span class="line">System.out.println(buffer.readByte());</span><br><span class="line">log(buffer);</span><br></pre></td></tr></table></figure>
+
+<p>读过的内容，就属于废弃部分了，再读只能读那些尚未读取的部分</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">read index:4 write index:12 capacity:16</span><br><span class="line">         +-------------------------------------------------+</span><br><span class="line">         |  0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f |</span><br><span class="line">+--------+-------------------------------------------------+----------------+</span><br><span class="line">|00000000| 00 00 00 05 00 00 00 06                         |........        |</span><br><span class="line">+--------+-------------------------------------------------+----------------+</span><br></pre></td></tr></table></figure>
+
+<p>如果需要重复读取 int 整数 5，怎么办？</p>
+<p>可以在 read 前先做个标记 mark</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">buffer.markReaderIndex();</span><br><span class="line">System.out.println(buffer.readInt());</span><br><span class="line">log(buffer);</span><br></pre></td></tr></table></figure>
+
+<p>结果</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">5</span><br><span class="line">read index:8 write index:12 capacity:16</span><br><span class="line">         +-------------------------------------------------+</span><br><span class="line">         |  0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f |</span><br><span class="line">+--------+-------------------------------------------------+----------------+</span><br><span class="line">|00000000| 00 00 00 06                                     |....            |</span><br><span class="line">+--------+-------------------------------------------------+----------------+</span><br></pre></td></tr></table></figure>
+
+<p>这时要重复读取的话，重置到标记位置 reset</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">buffer.resetReaderIndex();</span><br><span class="line">log(buffer);</span><br></pre></td></tr></table></figure>
+
+<p>这时</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">read index:4 write index:12 capacity:16</span><br><span class="line">         +-------------------------------------------------+</span><br><span class="line">         |  0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f |</span><br><span class="line">+--------+-------------------------------------------------+----------------+</span><br><span class="line">|00000000| 00 00 00 05 00 00 00 06                         |........        |</span><br><span class="line">+--------+-------------------------------------------------+----------------+</span><br></pre></td></tr></table></figure>
+
+<p>还有种办法是采用 get 开头的一系列方法，这些方法不会改变 read index</p>
+<h4 id="8）retain-amp-release"><a href="#8）retain-amp-release" class="headerlink" title="8）retain &amp; release"></a>8）retain &amp; release</h4><p>由于 Netty 中有堆外内存的 ByteBuf 实现，堆外内存最好是手动来释放，而不是等 GC 垃圾回收。</p>
+<ul>
+<li>UnpooledHeapByteBuf 使用的是 JVM 内存，只需等 GC 回收内存即可</li>
+<li>UnpooledDirectByteBuf 使用的就是直接内存了，需要特殊的方法来回收内存</li>
+<li>PooledByteBuf 和它的子类使用了池化机制，需要更复杂的规则来回收内存</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Netty</category>
+      </categories>
+      <tags>
+        <tag>Netty</tag>
+      </tags>
+  </entry>
 </search>

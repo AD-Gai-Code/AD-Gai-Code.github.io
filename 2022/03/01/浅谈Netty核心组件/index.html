@@ -20,24 +20,33 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.8.0","exturl":false,"sidebar":{"position":"left","display":"remove","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":"false;","trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
-<meta property="og:type" content="website">
-<meta property="og:title" content="ADGai&#39;s Blog">
-<meta property="og:url" content="http://example.com/index.html">
+<meta name="description" content="1. Netty 的整体结构Netty 官网给出了有关 Netty 的整体功能模块结构，从图中，我们可以清晰地看出 Netty 结构一共分为三个模块：  Core 核心层 Core 核心层是 Netty 最精华的内容，它提供了底层网络通信的通用抽象和实现，包括可扩展的事件模型、通用的通信 API、支持零拷贝的 ByteBuf 等。  Protocol Support 协议支持层 协议支持层基本上覆">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅谈 Netty 核心组件">
+<meta property="og:url" content="http://example.com/2022/03/01/%E6%B5%85%E8%B0%88Netty%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6/index.html">
 <meta property="og:site_name" content="ADGai&#39;s Blog">
+<meta property="og:description" content="1. Netty 的整体结构Netty 官网给出了有关 Netty 的整体功能模块结构，从图中，我们可以清晰地看出 Netty 结构一共分为三个模块：  Core 核心层 Core 核心层是 Netty 最精华的内容，它提供了底层网络通信的通用抽象和实现，包括可扩展的事件模型、通用的通信 API、支持零拷贝的 ByteBuf 等。  Protocol Support 协议支持层 协议支持层基本上覆">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/AD-Gai-Code/pic-go/raw/master/CgqCHl-NO7eATPMMAAH8t8KvehQ985.png">
+<meta property="og:image" content="https://gitee.com/AD-Gai-Code/pic-go/raw/master/Ciqc1F-NO9KAUOtaAAE1S5uRlDE275.png">
+<meta property="og:image" content="https://images.xiaozhuanlan.com/photo/2021/bf4a8a21f5e3426a477ab019a5460bee.png">
+<meta property="og:image" content="d:/java/Netty教程源码资料/讲义/Netty-讲义/img/0010.png">
+<meta property="article:published_time" content="2022-03-01T08:25:20.964Z">
+<meta property="article:modified_time" content="2022-03-01T08:22:57.968Z">
 <meta property="article:author" content="AiLaodu">
-<meta property="article:tag" content="Java">
+<meta property="article:tag" content="Netty">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/AD-Gai-Code/pic-go/raw/master/CgqCHl-NO7eATPMMAAH8t8KvehQ985.png">
 
 
-<link rel="canonical" href="http://example.com/">
+<link rel="canonical" href="http://example.com/2022/03/01/%E6%B5%85%E8%B0%88Netty%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2022/03/01/%E6%B5%85%E8%B0%88Netty%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6/","path":"2022/03/01/浅谈Netty核心组件/","title":"浅谈 Netty 核心组件"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>ADGai's Blog</title>
+<title>浅谈 Netty 核心组件 | ADGai's Blog</title>
   
 
 
@@ -132,16 +141,17 @@
 </noscript>
 
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
 
-    
+
+  
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/01/%E6%B5%85%E8%B0%88Netty%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -154,9 +164,9 @@
       <meta itemprop="name" content="ADGai's Blog">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/03/01/%E6%B5%85%E8%B0%88Netty%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6/" class="post-title-link" itemprop="url">浅谈 Netty 核心组件</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          浅谈 Netty 核心组件
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -189,7 +199,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="1-Netty-的整体结构"><a href="#1-Netty-的整体结构" class="headerlink" title="1. Netty 的整体结构"></a>1. Netty 的整体结构</h2><p>Netty 官网给出了有关 Netty 的整体功能模块结构，从图中，我们可以清晰地看出 Netty 结构一共分为三个模块：</p>
+        <h2 id="1-Netty-的整体结构"><a href="#1-Netty-的整体结构" class="headerlink" title="1. Netty 的整体结构"></a>1. Netty 的整体结构</h2><p>Netty 官网给出了有关 Netty 的整体功能模块结构，从图中，我们可以清晰地看出 Netty 结构一共分为三个模块：</p>
 <ul>
 <li><p>Core 核心层</p>
 <p>Core 核心层是 Netty 最精华的内容，它提供了底层网络通信的通用抽象和实现，包括可扩展的事件模型、通用的通信 API、支持零拷贝的 ByteBuf 等。</p>
@@ -494,7 +504,6 @@
 <li>PooledByteBuf 和它的子类使用了池化机制，需要更复杂的规则来回收内存</li>
 </ul>
 
-      
     </div>
 
     
@@ -502,266 +511,21 @@
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
+          <div class="post-tags">
+              <a href="/tags/Netty/" rel="tag"># Netty</a>
+          </div>
 
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/16/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%9Avolatile%E5%85%B3%E9%94%AE%E5%AD%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="AiLaodu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ADGai's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/02/16/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%9Avolatile%E5%85%B3%E9%94%AE%E5%AD%97/" class="post-title-link" itemprop="url">java 并发编程：volatile 关键字</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-02-16 19:08:01" itemprop="dateCreated datePublished" datetime="2022-02-16T19:08:01+08:00">2022-02-16</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-02-19 16:34:26" itemprop="dateModified" datetime="2022-02-19T16:34:26+08:00">2022-02-19</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/java-%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">java 并发编程</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="java-并发编程：volatile-关键字"><a href="#java-并发编程：volatile-关键字" class="headerlink" title="java 并发编程：volatile 关键字"></a>java 并发编程：volatile 关键字</h1><p>volatile 是 Java 提供的一种轻量级的同步机制。Java 语言包含两种内在的同步机制：同步块（或方法）和 volatile 变量，相比于 synchronized（synchronized通常称为重量级锁），volatile更轻量级，因为它不会引起线程上下文的切换和调度。但是volatile 变量的同步性较差（有时它更简单并且开销更低），而且其使用也更容易出错。</p>
-<h2 id="一-内存模型的相关概念"><a href="#一-内存模型的相关概念" class="headerlink" title="一.内存模型的相关概念"></a>一.内存模型的相关概念</h2><p>计算机在执行程序时，每条指令都是在 CPU 中执行的，而执行指令过程中，势必涉及到数据的读取和写入。由于程序运行过程中的临时数据是存放在主内存（物理内存）当中的，这时就存在一个问题，由于 CPU 执行速度很快，而从内存读取数据和向内存写入数据的过程跟 CPU 执行指令的速度比起来要慢的多，因此如果任何时候对数据的操作都要通过和内存的交互来进行，会大大降低指令执行的速度。因此在 CPU 里面就有了高速缓存。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/02/16/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%9Avolatile%E5%85%B3%E9%94%AE%E5%AD%97/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/15/%E9%87%8D%E8%AF%BB%20HashMap%20%E6%BA%90%E7%A0%81%EF%BC%8C%E5%80%BC%E5%BE%97%E4%B8%80%E5%93%81/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="AiLaodu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ADGai's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/02/15/%E9%87%8D%E8%AF%BB%20HashMap%20%E6%BA%90%E7%A0%81%EF%BC%8C%E5%80%BC%E5%BE%97%E4%B8%80%E5%93%81/" class="post-title-link" itemprop="url">重读 HashMap 源码，值得一品</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2022-02-15 10:04:01 / 修改时间：11:50:59" itemprop="dateCreated datePublished" datetime="2022-02-15T10:04:01+08:00">2022-02-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/java-%E9%9B%86%E5%90%88/" itemprop="url" rel="index"><span itemprop="name">java 集合</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="重读-HashMap-源码，值得一品"><a href="#重读-HashMap-源码，值得一品" class="headerlink" title="重读 HashMap 源码，值得一品"></a>重读 HashMap 源码，值得一品</h1><p>今天看面经的时候看到了 HashMap 的连环夺命问，故细致地重读一遍 HashMap 的源码，开始之前先把问题放在前面，带着问题去看更具有针对性：</p>
-<blockquote>
-<p>1、table 的初始化时机是什么时候，初始化的 table.length 是多少、阀值（threshold）是多少，实际能容下多少元素</p>
-<p>2、什么时候触发扩容，扩容之后的 table.length、阀值各是多少？</p>
-<p>3、table 的 length 为什么是 2 的 n 次幂</p>
-<p>4、求索引的时候为什么是：h&amp;(length-1)，而不是 h&amp;length，更不是 h%length</p>
-<p>5、 Map map = new HashMap(1000); 当我们存入多少个元素时会触发map的扩容； Map map1 = new HashMap(10000); 我们存入第 10001个元素时会触发 map1 扩容吗</p>
-<p>6、为什么加载因子的默认值是 0.75，并且不推荐我们修改</p>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/02/15/%E9%87%8D%E8%AF%BB%20HashMap%20%E6%BA%90%E7%A0%81%EF%BC%8C%E5%80%BC%E5%BE%97%E4%B8%80%E5%93%81/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/02/16/java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%EF%BC%9Avolatile%E5%85%B3%E9%94%AE%E5%AD%97/" rel="prev" title="java 并发编程：volatile 关键字">
+                  <i class="fa fa-chevron-left"></i> java 并发编程：volatile 关键字
+                </a>
             </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/11/02/%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E8%BE%93%E5%85%A5URL/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="AiLaodu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ADGai's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/11/02/%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E8%BE%93%E5%85%A5URL/" class="post-title-link" itemprop="url">在浏览器中输入 url 地址，按下回车后发生了什么</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2021-11-02 08:44:09 / 修改时间：09:06:17" itemprop="dateCreated datePublished" datetime="2021-11-02T08:44:09+08:00">2021-11-02</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91/" itemprop="url" rel="index"><span itemprop="name">计算机网</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="打开一个网页，整个过程会使用哪些协议？"><a href="#打开一个网页，整个过程会使用哪些协议？" class="headerlink" title="打开一个网页，整个过程会使用哪些协议？"></a>打开一个网页，整个过程会使用哪些协议？</h2>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/11/02/%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E8%BE%93%E5%85%A5URL/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
+            <div class="post-nav-item">
             </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+          </div>
     </footer>
   </article>
 </div>
@@ -769,547 +533,7 @@
 
 
 
-    
 
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/11/02/TCP%E7%9A%84%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="AiLaodu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ADGai's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/11/02/TCP%E7%9A%84%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/" class="post-title-link" itemprop="url">TCP的四次挥手</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2021-11-02 08:43:59 / 修改时间：08:55:52" itemprop="dateCreated datePublished" datetime="2021-11-02T08:43:59+08:00">2021-11-02</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91/" itemprop="url" rel="index"><span itemprop="name">计算机网</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="TCP-的四次挥手"><a href="#TCP-的四次挥手" class="headerlink" title="TCP 的四次挥手"></a>TCP 的四次挥手</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qzcsu/article/details/72861891">(45条消息) 两张动图-彻底明白TCP的三次握手与四次挥手_qzcsu的博客-CSDN博客_三次握手四次挥手详解</a></p>
-<h2 id="TCP-四次挥手的过程"><a href="#TCP-四次挥手的过程" class="headerlink" title="TCP 四次挥手的过程"></a>TCP 四次挥手的过程</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">A：老师，下课了。</span><br><span class="line">B：好，我知道了，我说完这点。</span><br><span class="line">B：好了，说完了，下课吧。</span><br><span class="line">A：谢谢老师，老师再见。</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/11/02/TCP%E7%9A%84%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/11/02/TCP%E7%9A%84%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="AiLaodu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ADGai's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/11/02/TCP%E7%9A%84%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B/" class="post-title-link" itemprop="url">TCP的三次握手</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2021-11-02 08:43:59 / 修改时间：08:55:37" itemprop="dateCreated datePublished" datetime="2021-11-02T08:43:59+08:00">2021-11-02</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91/" itemprop="url" rel="index"><span itemprop="name">计算机网</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="TCP的三次握手"><a href="#TCP的三次握手" class="headerlink" title="TCP的三次握手"></a>TCP的三次握手</h1><h2 id="1-IP协议"><a href="#1-IP协议" class="headerlink" title="1. IP协议"></a>1. IP协议</h2><ul>
-<li><code>IP</code>协议是无连接的通信协议，他不会占用两个正在通信的计算机之间的通信线路，这样<code>IP</code>就降低了对网络线路的需求，每条线可以同时满足许多不同的计算机之间的通信需要。</li>
-<li>通过<code>IP</code>消息或者其他数据会被分割为较小的独立的包，并通过因特网在计算机之间传送。</li>
-<li><code>IP</code>负责将每个包路由至他的目的地，但<code>IP</code>协议没有确认数据包是否按顺序发送或者包是否损坏，所以<code>IP</code>数据包是不可靠的，需要由他的上层协议作出控制。</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/11/02/TCP%E7%9A%84%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/04/%E9%80%92%E5%BD%92%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="AiLaodu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ADGai's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/09/04/%E9%80%92%E5%BD%92%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">递归算法学习笔记</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-09-04 22:32:51" itemprop="dateCreated datePublished" datetime="2021-09-04T22:32:51+08:00">2021-09-04</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-10-26 17:22:24" itemprop="dateModified" datetime="2021-10-26T17:22:24+08:00">2021-10-26</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="1-递归的概念"><a href="#1-递归的概念" class="headerlink" title="1.递归的概念"></a>1.递归的概念</h1><p>递归就是方法自己调用自己,每次调用时传入不同的变量.递归有助于解决复杂的问题的同时还可以让代码变得更加简洁。但是值得注意的是，递归只是让解决方案变得清晰，并没有性能上的优势，有时甚至还没有循环的性能好，而这也是递归的主要缺点之一。</p>
-<p>比如定义函数 f(x)=x+f(x-1)：</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/09/04/%E9%80%92%E5%BD%92%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/04/%E6%9E%9A%E4%B8%BE%E4%B8%8E%E6%B3%A8%E8%A7%A3%E5%A4%8D%E4%B9%A0%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="AiLaodu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ADGai's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/09/04/%E6%9E%9A%E4%B8%BE%E4%B8%8E%E6%B3%A8%E8%A7%A3%E5%A4%8D%E4%B9%A0%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">枚举与注解复习总结</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-09-04 22:32:51" itemprop="dateCreated datePublished" datetime="2021-09-04T22:32:51+08:00">2021-09-04</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-10-26 17:22:53" itemprop="dateModified" datetime="2021-10-26T17:22:53+08:00">2021-10-26</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/java%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">java基础</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="枚举主要内容"><a href="#枚举主要内容" class="headerlink" title="枚举主要内容:"></a>枚举主要内容:</h1><ul>
-<li><p>如何自定义枚举类 </p>
-</li>
-<li><p>如何使用关键字enum定义枚举类 </p>
-</li>
-<li><p>Enum类的主要方法 </p>
-</li>
-<li><p>实现接口的枚举类 </p>
-</li>
-</ul>
-<h2 id="一、枚举类的使用"><a href="#一、枚举类的使用" class="headerlink" title="一、枚举类的使用"></a>一、枚举类的使用</h2><ul>
-<li>1.枚举类的理解：类的对象只有有限个，确定的。我们称此类为枚举类</li>
-<li>2.当需要定义一组常量(final关键字)时，强烈建议使用枚举类</li>
-<li>3.如果枚举类中只有一个对象，则可以作为单例模式的实现方式。</li>
-</ul>
-<h2 id="二、如何定义枚举类"><a href="#二、如何定义枚举类" class="headerlink" title="二、如何定义枚举类"></a>二、如何定义枚举类</h2><ul>
-<li>方式一：jdk5.0之前，自定义枚举类</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/09/04/%E6%9E%9A%E4%B8%BE%E4%B8%8E%E6%B3%A8%E8%A7%A3%E5%A4%8D%E4%B9%A0%E6%80%BB%E7%BB%93/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/04/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="AiLaodu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ADGai's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/09/04/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">排序算法</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-09-04 22:32:51" itemprop="dateCreated datePublished" datetime="2021-09-04T22:32:51+08:00">2021-09-04</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-10-26 17:23:26" itemprop="dateModified" datetime="2021-10-26T17:23:26+08:00">2021-10-26</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="排序的分类"><a href="#排序的分类" class="headerlink" title="排序的分类"></a>排序的分类</h1><h2 id="内部排序"><a href="#内部排序" class="headerlink" title="内部排序"></a>内部排序</h2><p>在排序时仅使用主存储器的排序算法成为内部排序，对所有的存储器都能够高速随机存储。</p>
-<h2 id="外部排序"><a href="#外部排序" class="headerlink" title="外部排序"></a>外部排序</h2><p>在排序时需要使用外部存储的排序算法都属于外部排序。</p>
-<h1 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h1><p>冒泡排序的基本思想是迭代地对输入序列中的第一个元素到最后一个元素进行两两比较，当需要时交换这两个元素的位置（升序或者降序），持续迭代直到在一趟排序过程中不需要交换位置为止。由于排序的过程中较小的元素像气泡一样逐渐到序列的顶端，故得名“冒泡排序”。</p>
-<p>冒泡排序代码如下：</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/09/04/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/04/Spring5%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0(%E4%BA%8C)/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="AiLaodu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ADGai's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/09/04/Spring5%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0(%E4%BA%8C)/" class="post-title-link" itemprop="url">Spring5框架学习系列（二）</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-09-04 22:32:51" itemprop="dateCreated datePublished" datetime="2021-09-04T22:32:51+08:00">2021-09-04</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-10-26 17:21:34" itemprop="dateModified" datetime="2021-10-26T17:21:34+08:00">2021-10-26</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="AOP-面向切面编程"><a href="#AOP-面向切面编程" class="headerlink" title="AOP(面向切面编程)"></a>AOP(面向切面编程)</h1><h2 id="Ⅰ-什么是-AOP"><a href="#Ⅰ-什么是-AOP" class="headerlink" title="Ⅰ.什么是 AOP"></a>Ⅰ.什么是 AOP</h2><p>（1）面向切面编程（方面），利用 AOP 可以对业务逻辑的各个部分进行隔离，从而使得业务逻辑各部分之间的耦合度降低，提高程序的可重用性，同时提高了开发的效率。</p>
-<p> （2）通俗描述：不通过修改源代码方式，在主干功能里面添加新功能 </p>
-<p> （3）使用登录例子说明 AOP</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/09/04/Spring5%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0(%E4%BA%8C)/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
 
 </div>
   </main>
